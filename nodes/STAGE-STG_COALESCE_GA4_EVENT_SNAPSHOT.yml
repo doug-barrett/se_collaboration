@@ -1,0 +1,65 @@
+steps:
+  STG_COALESCE_GA4_EVENT_SNAPSHOT-08109ac4-cb76-498e-805b-c1ffd4d96e32:
+    operation:
+      config:
+        insertStrategy: UNION
+        postSQL: null
+        preSQL: null
+        selectDistinct: false
+        testsEnabled: false
+        truncateBefore: true
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: STAGE
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 0181877b-af81-42e3-ba05-4dfab324f592
+              stepCounter: 08109ac4-cb76-498e-805b-c1ffd4d96e32
+            dataType: VARIANT
+            description: ""
+            name: EVENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: a43a7979-ccb5-4d74-bcb6-e0ec9d8ff61d
+                    stepCounter: 653891f5-f121-4794-9a79-7bc62b3659d7
+                transform: ""
+          - columnReference:
+              columnCounter: 2452ee7d-654d-4f26-81ab-51bb7e6b155f
+              stepCounter: 08109ac4-cb76-498e-805b-c1ffd4d96e32
+            dataType: STRING
+            description: ""
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: dda74d26-441c-4c8f-9491-098a50b422e7
+                    stepCounter: 653891f5-f121-4794-9a79-7bc62b3659d7
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              EXT_GA4: 653891f5-f121-4794-9a79-7bc62b3659d7
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: EXT_GA4
+            join:
+              joinCondition: |-
+                FROM {{ ref('STAGE', 'EXT_GA4') }} "EXT_GA4"
+                WHERE "METADATA$FILENAME" not LIKE '%GA4_EVENT.json'
+            name: STG_COALESCE_GA4_EVENT_SNAPSHOT
+            noLinkRefs: []
+      name: STG_COALESCE_GA4_EVENT_SNAPSHOT
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: 08109ac4-cb76-498e-805b-c1ffd4d96e32
