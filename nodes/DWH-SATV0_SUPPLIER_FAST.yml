@@ -1,0 +1,194 @@
+steps:
+  SATV0_SUPPLIER_FAST-844f7c47-51fa-4c94-86ed-535a49eb2fee:
+    operation:
+      config:
+        disable_hwm: false
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+      database: ""
+      deployEnabled: true
+      description: Supplier data as defined by TPC-H
+      isMultisource: false
+      locationName: DWH
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 6f3d9e54-7084-4107-a06a-67e51efc61b0
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            config:
+              is_hk: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: H_SUPPLIER_KEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 80895cfa-c16b-4093-b86c-929f16a2a6d6
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: ae65b770-cecc-4abc-9f17-f99ce62470dd
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_SUPPKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 4627ae9e-5a9a-401d-8fe3-c49a79772344
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: 900dab3d-4ef1-47d6-b26d-043e76d6184c
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7ecdccb2-2ee1-46dc-a890-e8e6f6755471
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: e42d938b-d41f-4762-85a7-90a7119b0815
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            dataType: VARCHAR(40)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: e86b65c3-04aa-469e-bf51-9c973f32a9f9
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: 345923c8-2317-4fee-8ee5-dbf19414d5dc
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: a01f72db-dac0-47b3-a479-2bf33007a572
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: 0c19dcb8-ff87-4c36-ad74-139fbb4f82d3
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 46b3ee39-ddaf-4ff5-bdf3-a72199e82d81
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: 3591e6aa-a436-42ea-941d-9f729305bb6a
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: a3a362c2-8131-4269-9cad-65794a6a0871
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: 2843442f-e3e6-468b-917a-e817f4a8cb3b
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            dataType: VARCHAR(101)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2dc75630-8c0d-4ec9-9ffa-bde771ec03f3
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: d19aa97a-2d3e-44d8-b777-26fe4d09172d
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            dataType: TIMESTAMP
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            hashColumns: []
+            hashDetails: null
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: b9ebcda4-86ea-4958-a390-72913f97f967
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: 6e86a716-242a-420a-8321-453f2b68f2e9
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            dataType: STRING
+            description: The Record Source (RSRC) describes the source of this data.
+            hashColumns: []
+            hashDetails: null
+            name: RSRC
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 870473e3-edc4-4a58-a726-23424abfc5ae
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+          - columnReference:
+              columnCounter: db7fb45a-d10d-4b87-909f-0d15873571ce
+              stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
+            config:
+              is_hd: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_SUPPLIER_HASH
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: b262a34a-ed0a-4810-9ed0-22a636e1ef62
+                    stepCounter: ad5301c3-34dd-4009-aa3f-0e7dda393e8b
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: DVSTG_SUPPLIER
+            join:
+              joinCondition: FROM {{ ref('STAGE', 'DVSTG_SUPPLIER') }} "DVSTG_SUPPLIER"
+            name: SATV0_SUPPLIER_FAST
+            noLinkRefs: []
+      name: SATV0_SUPPLIER_FAST
+      overrideSQL: false
+      schema: ""
+      sqlType: "177"
+      type: sql
+    stepCounter: 844f7c47-51fa-4c94-86ed-535a49eb2fee
