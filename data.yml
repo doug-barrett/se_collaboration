@@ -3907,11 +3907,11 @@ stepTypes:
     version: 1
   StepType-85:
     id: "85"
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: STAGE
       error: null
-      nodeMetadataSpec: |-
+      nodeMetadataSpec: |
         capitalized: Snowpipe
         short: 'LOAD'
         tagColor: '#C39BD3'
@@ -3924,20 +3924,10 @@ stepTypes:
 
           - displayName: Stage
             attributeName: fileLocation
-            type: dropdownSelector
+            type: textBox
             default: "DOUGS3"
-            options:
-            - "DOUGS3"
-            - "Create external stages on Snowflake"
-            - "Place them in the same storage location"
-            - "List the storage locations in this dropdown"
             isRequired: true
 
-          - displayName: File Pattern
-            attributeName: filePattern
-            type: textBox
-            default: ".*[.]json"
-            isRequired: true
 
         - groupName: File Format 
           items:
@@ -4039,11 +4029,6 @@ stepTypes:
           transform: ''
           dataType: VARIANT
           placement: beginning
-        - displayName: 'METADATA$FILENAME'
-          attributeName: 'METADATA$FILENAME'
-          transform: ''
-          dataType: STRING
-          placement: end
       templates:
         create:
           templateString: |+
@@ -4069,14 +4054,18 @@ stepTypes:
             {{ stage('Create Snowpipe') }}
             CREATE OR REPLACE PIPE  {{ this | replace (node.name, "PIPE_"+node.name) }}
               auto_ingest = true
-              
             AS
               COPY INTO {{ this }} (VALUE)
-              FROM  @{{parameters.stage_location}}.{{ config.fileLocation | upper  }}
-              FILE_FORMAT = (TYPE = '{{ config.fileType }}');
+              FROM  @{{parameters.stage_location}}.{{ config.fileLocation  }}
+              FILE_FORMAT = (TYPE = '{{ config.fileType }}')
 
         run:
-          templateString: ""
+          templateString: |-
+            {{ stage('Run Snowpipe Copy')}}
+
+              COPY INTO {{ this }} (VALUE)
+              FROM  @{{parameters.stage_location}}.{{ config.fileLocation  }}
+              FILE_FORMAT = (TYPE = '{{ config.fileType }}')
     name: Snowpipe
     version: 1
   StepType-9:
