@@ -216,6 +216,462 @@ stepTypes:
             {% endif %}
     name: Hub
     version: 1
+  StepType-100:
+    id: "100"
+    isDisabled: true
+    metadata:
+      defaultStorageLocation: STAGE
+      error: null
+      nodeMetadataSpec: |
+        capitalized: Task DAG Root Resume
+        short: TGRR
+        tagColor: green
+        plural: none
+
+        deployStrategy: advanced
+
+        config:
+        - groupName: Sceduling Options
+          items:
+          - displayName: Enter root task name
+            attributeName: rootTask
+            type: textBox
+            default: '"DATA_TRANSFORMATION_ROOT_TASK"'
+            isRequired: TRUE
+
+        - groupName: "Pre/Post SQL"
+          items: 
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+
+        systemColumns:
+        - displayName: DAG_RESUME_TIMESTAMP
+          transform: current_timestamp()::timestamp_ntz
+          dataType: timestamp_ntz
+          placement: start
+          attributeName: dagResumeTS
+
+        - displayName: DAG_ROOT_TASK_NAME
+          transform: desiredState.config.rootTask
+          dataType: string
+          placement: start
+          attributeName: dagResumeTS
+      templates:
+        create:
+          templateString: |
+            {# Task Info #}
+            {% set tgtDb = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[0] %} 
+            {% set tgtSch = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[1] %} 
+            {%- set fqRootTaskName = tgtDb + '.' + tgtSch + '.' + desiredState.config.rootTask -%} 
+
+            {{ stage('Try Enable Root Task') }}
+            begin
+                let sqlDml := 'select system$task_dependents_enable(''{{fqRootTaskName}}'')';
+                execute immediate sqlDml;
+                return 'Task resumed';
+                    exception
+                    when statement_error then
+                        return 'Task already running';
+            end;
+        run:
+          templateString: ""
+    name: Task DAG Resume Root
+    version: 1
+  StepType-101:
+    id: "101"
+    isDisabled: true
+    metadata:
+      defaultStorageLocation: STAGE
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: Copy of Copy of Stream and Insert or Merge
+        short: SIM
+        tagColor: black
+        plural: Streams and Merges
+
+        deployStrategy: advanced
+
+        config:
+        - groupName: Stream Options
+          items:
+          - displayName: Append Only Stream
+            attributeName: appendOnly
+            type: toggleButton
+            default: true
+            isRequired: true
+
+          - displayName: Show Initial Rows
+            attributeName: initialRows
+            type: toggleButton
+            default: true
+            isRequired: true
+
+        - groupName: Target Loading Options
+          items:
+          - displayName: Load Type
+            attributeName: loadType
+            type: dropdownSelector
+            default: Insert
+            options:
+              - Insert
+              - Merge
+            isRequired: true
+
+          - displayName: Table Key Column(s)
+            attributeName: tblKey
+            type: columnSelector
+            isRequired: false
+            enableIf: "{% if config.loadType == 'Merge' %} true {% else %} false {% endif %}"
+
+          - displayName: Row Update Timestamp Column
+            attributeName: tblChgTS
+            type: columnSelector
+            isRequired: false
+            enableIf: "{% if config.loadType == 'Merge' %} true {% else %} false {% endif %}"
+         
+        - groupName: Sceduling Options
+          items:
+          - displayName: Sceduling Options
+            attributeName: schedulingMode
+            type: dropdownSelector
+            default: Warehouse Task
+            options:
+              - Warehouse Task
+              - Serverless Task
+            isRequired: true
+
+          - displayName: When Source Stream has Data Flag
+            attributeName: flagSrcStream
+            type: toggleButton
+            isRequired: true
+
+          - displayName: Select Warehouse on which to run task
+            attributeName: whName
+            type: textBox
+            default: '<WAREHOUSE_NAME>'
+            isRequired: false
+            enableIf: "{% if config.schedulingMode == 'Warehouse Task' %} true {% else %} false {% endif %}"
+
+          - displayName: Select initial serverless Warehouse size
+            attributeName: serverlessSize
+            type: dropdownSelector
+            default: 'MEDIUM'
+            options:
+              - XSMALL
+              - SMALL
+              - MEDIUM
+              - LARGE
+              - XLARGE
+              - XXLARGE
+            isRequired: false
+            enableIf: "{% if config.schedulingMode == 'Serverless Task' %} true {% else %} false {% endif %}"
+
+          - displayName: Task Schedule
+            attributeName: schedulePeriodOption
+            type: dropdownSelector
+            default: Minutes
+            options:
+              - Minutes
+              - CRON
+              - Predecessor
+            isRequired: TRUE
+
+          - displayName: Enter task schedule using minutes
+            attributeName: schedulePeriod
+            type: textBox
+            default: '60'
+            isRequired: false
+            enableIf: "{% if config.schedulePeriodOption == 'Minutes' %} true {% else %} false {% endif %}"
+
+          - displayName: Enter task schedule using CRON
+            attributeName: scheduleCRON
+            type: textBox
+            default: '5 0-23 * * * America/Los_Angeles'
+            isRequired: false
+            enableIf: "{% if config.schedulePeriodOption == 'CRON' %} true {% else %} false {% endif %}"
+
+          - displayName: Enter predecessor task(s) seperated by a comma 
+            attributeName: predTask
+            type: textBox
+            default: ""
+            isRequired: false
+            enableIf: "{% if config.schedulePeriodOption == 'Predecessor' %} true {% else %} false {% endif %}"
+
+          - displayName: Enter root task name
+            attributeName: rootTask
+            type: textBox
+            default: ""
+            isRequired: false
+            enableIf: "{% if config.schedulePeriodOption == 'Predecessor' %} true {% else %} false {% endif %}"
+
+        - groupName: "Pre/Post SQL"
+          items: 
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+      templates:
+        create:
+          templateString: |+
+            {% if (currentState == undefined and desiredState != undefined) or (currentState != undefined and desiredState != undefined ) %}
+
+            {# Source Stream Location and Name #}
+            {% set srcSchName = desiredState.sources[0].dependencies[0].node.location.name %}
+            {% set srcDb = desiredState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='database') | first %}
+            {% set srcSch = desiredState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='schema') | first %}
+            {% set srcTbl = desiredState.sources[0].dependencies[0].node.name %}
+            {% set strName = srcTbl + '_STREAM' %}
+            {% set fqSrcTblName = '"' + srcDb + '"."' + srcSch + '"."' + srcTbl + '"' %}
+            {% set fqStrName = '"' + srcDb + '"."' + srcSch + '"."' + strName + '"' %}
+            {% set strFrom = desiredState.sources[0].join | replace(srcTbl, strName) %}
+
+            {# Target Table Info #}
+            {% set tgtDb = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[0] %} 
+            {% set tgtSch = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[1] %} 
+            {% set tgtTbl = ref_no_link(desiredState.node.location.name, desiredState.node.name) %}
+
+            {# Task Info #}
+            {% set taskName = desiredState.node.name + '_TASK'  %}
+            {%- set fqTaskName = tgtDb + '.' + tgtSch + '."' + taskName + '"' -%} 
+
+            {% set rootTaskName = tgtDb + '.' + tgtSch + '."' + desiredState.config.rootTask + '"' %}
+            {% set predTaskList = desiredState.config.predTask.split(",") %}
+            {% set predTasks = tgtDb + '.' + tgtSch + '.' + desiredState.config.predTask.replace(',', ',' + tgtDb + '.' + tgtSch + '.') %}
+
+            {% set tblColid = desiredState.columns | map(attribute='id') | list %}
+            {% set tblCol = desiredState.columns | map(attribute='name') | list %}
+            {% set tblKey = desiredState.columns | selectattr('tblKey', 'defined') | map(attribute='name') | list %}
+            {% set tblColUpd = tblCol | reject('in', tblKeys) | list %}
+            {%- set tblKeyColStr = '"'+tblKey | join('", "')+'"' -%}
+            {% set recTS = desiredState.columns | selectattr('tblChgTS', 'defined') | map(attribute='name') | first %}
+
+            {{ stage('Create Stream') }}
+            CREATE OR REPLACE STREAM {{ fqStrName }}
+                ON TABLE {{ fqSrcTblName }}
+                APPEND_ONLY = {% if desiredState.config.appendOnly == true %} TRUE {% else %} FALSE {% endif %}
+                SHOW_INITIAL_ROWS = {% if desiredState.config.initialRows == true %} TRUE {% else %} FALSE {% endif %}
+
+                
+            {{ stage('Create Target Table') }}
+            CREATE OR REPLACE TABLE {{ tgtTbl }}
+                (
+                {%- for col in desiredState.columns %}
+                        "{{ col.name }}" {{ col.dataType }}
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                {%- endfor %}
+                )
+
+            {%- if desiredState.config.schedulePeriodOption == 'Predecessor' -%} 
+                {{ stage('Suspend Root Task') }}
+                ALTER TASK {{ rootTaskName }} SUSPEND
+            {%- endif -%}
+
+            {{ stage('Create Task') }}
+                {# Task Type #}
+                {%- if desiredState.config.schedulingMode == 'Warehouse Task' -%} 
+                    {%- set taskType = 'WAREHOUSE = ' + desiredState.config.whName -%} 
+                {%- else -%}
+                    {%- set taskType = 'USER_TASK_MANAGED_INITIAL_WAREHOUSE_SIZE = ' + desiredState.config.serverlessSize -%} 
+                {%- endif -%}
+
+                {# Schedule Type #}
+                {%- if desiredState.config.schedulePeriodOption == 'Minutes' -%} 
+                    {%- set whenRun = 'SCHEDULE = ' + "'" + desiredState.config.schedulePeriod + ' MINUTE' + "'" -%} 
+                {% elif desiredState.config.schedulePeriodOption == 'CRON' %}
+                    {%- set whenRun = 'SCHEDULE = ' + "'" + 'USING CRON ' + desiredState.config.scheduleCRON %}
+                {%- else -%}
+                    {%- set whenRun = 'AFTER ' + predTasks -%} 
+                {%- endif -%}
+
+                {# When Stream has data logic #}
+                {%- if desiredState.config.flagSrcStream == true -%} 
+                    {%- set poll = "WHEN SYSTEM$STREAM_HAS_DATA('" + fqStrName + "')" -%} 
+                {%- endif -%}
+                
+                CREATE OR REPLACE TASK 
+                    {{ fqTaskName }} 
+                    {{ taskType}} 
+                    {{ whenRun }} 
+                    {{ poll }} 
+                AS 
+                {% if desiredState.config.loadType == 'Insert' -%} 
+                INSERT INTO {{ tgtTbl }}
+                SELECT {% for id in tblColid %}
+                        {% set col = desiredState.sources[0].columns | selectattr('id', 'equalto', id) | map(attribute='name') | first -%}
+                        {% set colTran = desiredState.sources[0].columns | selectattr('id', 'equalto', id) | map(attribute='transform') | first -%}
+                        {%- if colTran == "" -%}
+                          "{{ col }}" as "{{ col }}" {%- if not loop.last -%}, {%- endif -%}
+                        {%- else -%}
+                          {{ colTran | replace(srcTbl, strName) }} as "{{ col }}" {%- if not loop.last -%}, {%- endif -%}
+                        {%- endif %}
+                    {%- endfor %}
+                 {{ strFrom }}
+                {% else -%}
+                MERGE INTO {{ tgtTbl }} tgt USING
+                -- Select Statement Preparing Data for Merge
+                (SELECT {% for id in tblColid %}
+                        {% set col = desiredState.sources[0].columns | selectattr('id', 'equalto', id) | map(attribute='name') | first -%}
+                        {% set colTran = desiredState.sources[0].columns | selectattr('id', 'equalto', id) | map(attribute='transform') | first -%}
+                        {%- if colTran == "" -%}
+                          "{{ col }}" as "{{ col }}" {%- if not loop.last -%}, {%- endif -%}
+                        {%- else -%}
+                          {{ colTran | replace(srcTbl, strName) }} as "{{ col }}" {%- if not loop.last -%}, {%- endif -%}
+                        {%- endif %}
+                    {%- endfor %}
+                 {{ strFrom }}
+                 QUALIFY ROW_NUMBER() over (partition by {{ tblKeyColStr }} order by 
+                {% if recTS | length > 0 %}
+                    "{{ recTS }}" desc
+                {% else %}
+                    "METADATA$ROW_ID" desc
+                {% endif %}
+                ) = 1) src
+                 -- Join Condition
+                 ON {% for col in tblKey -%}
+                     src."{{ col }}" = tgt."{{ col }}"
+                {% if not loop.last %} AND {% endif %}
+                    {%- endfor -%}
+                -- What to do if data is matched based on table key
+                WHEN MATCHED THEN UPDATE SET 
+                    {%- for col in tblColUpd %}
+                            tgt."{{ col }}" = src."{{ col }}"
+                            {%- if not loop.last -%}, {%- endif %}
+                    {%- endfor %}
+                -- What to do with new records based on table key
+                WHEN NOT MATCHED THEN INSERT 
+                    (
+                    {%- for col in desiredState.columns -%}
+                            "{{ col.name }}"
+                            {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}) 
+                VALUES (
+                    {%- for col in desiredState.columns -%}
+                            src."{{ col.name }}"
+                            {%- if not loop.last -%}, {% endif %}
+                    {% endfor %})
+                {%- endif -%}
+
+            {{ stage('Resume Task') }}
+            {%- if desiredState.config.schedulePeriodOption == 'Predecessor' -%} 
+                select system$task_dependents_enable('{{ rootTaskName }}');
+            {%- else -%}
+                ALTER TASK {{ fqTaskName }} RESUME;
+            {%- endif -%}
+
+            {% elif currentState != undefined and desiredState == undefined %}
+
+            {# Source Stream Location and Name #}
+            {% set srcSchName = currentState.sources[0].dependencies[0].node.location.name %}
+            {% set srcDb = currentState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='database') | first %}
+            {% set srcSch = currentState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='schema') | first %}
+            {% set srcTbl = currentState.sources[0].dependencies[0].node.name %}
+            {% set strName = srcTbl + '_STREAM' %}
+            {% set fqSrcTblName = '"' + srcDb + '"."' + srcSch + '"."' + srcTbl + '"' %}
+            {% set fqStrName = '"' + srcDb + '"."' + srcSch + '"."' + strName + '"' %}
+            {% set strFrom = currentState.sources[0].join | replace(srcTbl, strName) %}
+
+            {# Target Table Info #}
+            {% set tgtDb = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[0] %} 
+            {% set tgtSch = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[1] %} 
+            {% set tgtTbl = ref_no_link(currentState.node.location.name, currentState.node.name) %}
+
+            {# Task Info #}
+            {% set taskName = currentState.node.name + '_TASK'  %}
+            {%- set fqTaskName = tgtDb + '.' + tgtSch + '."' + taskName + '"' -%} 
+
+            {% set tblColid = currentState.columns | map(attribute='id') | list %}
+            {% set tblCol = currentState.columns | map(attribute='name') | list %}
+            {% set tblKey = currentState.columns | selectattr('tblKey', 'defined') | map(attribute='name') | list %}
+            {% set tblColUpd = tblCol | reject('in', tblKeys) | list %}
+            {%- set tblKeyColStr = '"'+tblKey | join('", "')+'"' -%}
+            {% set recTS = currentState.columns | selectattr('tblChgTS', 'defined') | map(attribute='name') | first %}
+
+            {{ stage('Drop Stream') }}
+            DROP STREAM IF EXISTS {{ fqStrName }}
+            {{ stage('Drop Table') }}
+            DROP TABLE IF EXISTS {{ tgtTbl }}
+
+            {%- if desiredState.config.schedulingPeriodOption == 'Predecessor' -%} 
+            {{ stage('Suspend Root Task') }}
+                ALTER TASK IF EXISTS {{ rootTaskName }} SUSPEND
+            {{ stage('Drop Current Task Task') }}
+                DROP TASK IF EXISTS {{ fqTaskName }} 
+            {{ stage('Resume Root Task') }}
+                select system$task_dependents_enable('{{ rootTaskName }}');
+            {%- else -%}
+                DROP TASK IF EXISTS {{ fqTaskName }} 
+            {%- endif -%}
+
+            {%- else -%}
+
+            {{ stage('Nothing to do.') }}
+            select 1 = 0
+
+            {% endif %}
+
+        run:
+          templateString: |-
+            {# Source Stream Location and Name #}
+            {% set srcSchName = desiredState.sources[0].dependencies[0].node.location.name %}
+            {% set srcDb = desiredState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='database') | first %}
+            {% set srcSch = desiredState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='schema') | first %}
+            {% set srcTbl = desiredState.sources[0].dependencies[0].node.name %}
+            {% set strName = srcTbl + '_STREAM' %}
+            {% set fqSrcTblName = '"' + srcDb + '"."' + srcSch + '"."' + srcTbl + '"' %}
+            {% set fqStrName = '"' + srcDb + '"."' + srcSch + '"."' + strName + '"' %}
+            {% set strFrom = desiredState.sources[0].join | replace(srcTbl, strName) %}
+
+            {# Target Table Info #}
+            {% set tgtDb = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[0] %} 
+            {% set tgtSch = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[1] %} 
+            {% set tgtTbl = ref_no_link(desiredState.node.location.name, desiredState.node.name) %}
+
+            {# Task Info #}
+            {% set taskName = desiredState.node.name + '_TASK'  %}
+            {%- set fqTaskName = tgtDb + '.' + tgtSch + '."' + taskName + '"' -%} 
+
+            {% set tblColid = desiredState.columns | map(attribute='id') | list %}
+            {% set tblCol = desiredState.columns | map(attribute='name') | list %}
+            {% set tblKey = desiredState.columns | selectattr('tblKey', 'defined') | map(attribute='name') | list %}
+            {% set tblColUpd = tblCol | reject('in', tblKeys) | list %}
+            {%- set tblKeyColStr = '"'+tblKey | join('", "')+'"' -%}
+            {% set recTS = desiredState.columns | selectattr('tblChgTS', 'defined') | map(attribute='name') | first %}
+
+            {{ stage('Create Stream') }}
+            CREATE OR REPLACE STREAM {{ fqStrName }}
+                ON TABLE {{ fqSrcTblName }}
+                APPEND_ONLY = {% if desiredState.config.appendOnly == true %} TRUE {% else %} FALSE {% endif %}
+                SHOW_INITIAL_ROWS = {% if desiredState.config.initialRows == true %} TRUE {% else %} FALSE {% endif %}
+
+                
+            {{ stage('Create Target Table') }}
+            CREATE OR REPLACE TABLE {{ tgtTbl }}
+                (
+                {%- for col in desiredState.columns %}
+                        "{{ col.name }}" {{ col.dataType }}
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                {%- endfor %}
+                )
+    name: Stream and Insert or Merge Predecessor - Advanced
+    version: 1
   StepType-102:
     id: "102"
     isDisabled: false
@@ -455,6 +911,98 @@ stepTypes:
             {% endif %}
     name: Link
     version: 1
+  StepType-111:
+    id: "111"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: STAGE
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: INCREMENTAL
+        short: INC
+        plural: Incremental
+        tagColor: green
+
+        config:
+        - groupName: Options
+          items:
+          - type: materializationSelector
+            default: view
+            options:
+            - view
+            isRequired: true
+            enableIf: "false"
+
+          - displayName: Filter data based on Persistent Table
+            attributeName: refTable
+            type: toggleButton
+            default: false
+            isRequired: false
+
+          - displayName: Persistent Table based on prefix
+            attributeName: persistTable
+            type: dropdownSelector
+            default: ""
+            options:
+            - ""
+            - "DS"
+            - "DIM"
+            - "FCT"
+            - "SAT"
+            - "PSTG"
+            isRequired: false
+            enableIf: "{{config.refTable}}"
+
+          - displayName: Persistent Table name if not selected above
+            attributeName: persistTableName
+            type: textBox
+            default: ""
+            isRequired: false
+            enableIf: "{{config.refTable}}"
+      templates:
+        create:
+          templateString: |
+            {% set base = node.name | replace("INC", "") %}
+            {% if config.persistTableName | length > 0 %}
+                {% set persist = config.persistTableName %}
+            {% else %}
+                {% set persist = config.persistTable + base %}
+            {% endif %}
+            {% set source = sources[0] %}
+
+
+            {{ stage('Create Stage View') }}
+
+            CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+            (
+                {% for col in columns if col.name != "_SEQUENCE" %}
+                    "{{ col.name }}"
+                    {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                    {% if not loop.last %}, {% endif %}
+                {% endfor %}
+            )
+            {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+            AS
+            SELECT
+            {% for col in source.columns  %}
+                {{ get_source_transform(col) }} AS  "{{ col.name }}" 
+                {%- if not loop.last -%}, {% endif %} 
+            {% endfor %}
+
+            {{ source.join }}
+
+            {% if config.refTable and persist | length > 0  %}
+                {% if "WHERE" in source.join | upper %}
+                    AND
+                {% else %}
+                    WHERE 
+                {% endif %}
+                CDC_TIMESTAMP > (SELECT NVL(MAX(CDC_TIMESTAMP), '1900-01-01') FROM {{ref('DWH', persist)}} )
+            {% endif %}
+        run:
+          templateString: ""
+    name: CDC Table Incremental
+    version: 1
   StepType-12:
     id: "12"
     isDisabled: true
@@ -586,13 +1134,13 @@ stepTypes:
     version: 1
   StepType-120:
     id: "120"
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: STAGE
       error: null
       nodeMetadataSpec: |
         capitalized: Stage View
-        short: VSTG
+        short: 
         tagColor: '#C4C4C4'
         isDisabled: true
         plural: Views
@@ -666,7 +1214,7 @@ stepTypes:
     version: 1
   StepType-138:
     id: "138"
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: null
       error: null
@@ -910,6 +1458,296 @@ stepTypes:
             {% endif %}
     name: ML Forecast
     version: 1
+  StepType-141:
+    id: "141"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |
+        capitalized: Copy of ML FORECAST
+        short: ML_FORECAST
+        tagColor: 'red'
+        plural: ML Forecasts
+
+        config:
+        - groupName: Entity Options
+          items:
+          - type: materializationSelector
+            default: table
+            options:
+            - table
+            - view
+            isRequired: true
+
+          - displayName: Truncate Before
+            attributeName: truncateBefore
+            type: toggleButton
+            default: true
+            enableIf: "{{ node.materializationType == 'table' }}"
+
+        - groupName: Forecast Model Input
+          items:
+
+            - type: toggleButton
+              displayName: 'Refresh Model each run'
+              attributeName: 'refreshmodel'
+              isRequired: true
+              default: 'true'
+
+            - type: toggleButton
+              displayName: 'Multi-Series Forecast'
+              attributeName: 'multiseries'
+              isRequired: false
+              default: 'true'
+
+            - type: columnDropdownSelector
+              displayName: 'Series Column'
+              attributeName: 'seriescol'
+              isRequired: false
+              enableIf: "{{ config.multiseries }}"
+
+            - type: columnDropdownSelector
+              displayName: 'Timestamp Column'
+              attributeName: 'tscol'
+              isRequired: true
+
+            - type: columnDropdownSelector
+              displayName: 'Target Column'
+              attributeName: 'tgtcol'
+              isRequired: true
+
+            - displayName: Days To Forecast
+              attributeName: fcdays
+              type: textBox
+              isRequired: true
+              default: '30'
+
+        - groupName: Forecast Model Output
+          items:
+            - type: toggleButton
+              displayName: 'Include Source Data'
+              attributeName: 'addsourcedata'
+              isRequired: false
+              default: 'true'
+
+        systemColumns:
+        - displayName: "FORECAST"
+          attributeName: forecast
+          transform: ""
+          dataType: FLOAT
+          placement: end
+          description: 'Generated by ML Forecast Model'
+        - displayName: "LOWER_BOUND"
+          attributeName: lower_bound
+          transform: ""
+          dataType: FLOAT
+          placement: end
+          description: 'Generated by ML Forecast Model'
+        - displayName: "UPPER_BOUND"
+          attributeName: upper_bound
+          transform: ""
+          dataType: FLOAT
+          placement: end
+          description: 'Generated by ML Forecast Model'
+      templates:
+        create:
+          templateString: |
+            {% set source = sources[0] %}
+            {% set src_node = source.dependencies[0].node %}
+            {% set forecast_name = 'forecast_' ~ src_node.name %}
+
+            {{ stage('Create Forecast Model Instance') }}
+
+            CREATE OR REPLACE SNOWFLAKE.ML.FORECAST
+             {{ ref_no_link(node.location.name, forecast_name) }}(
+                INPUT_DATA => SYSTEM$QUERY_REFERENCE('
+                    SELECT
+                    {% for col in source.columns if not col.forecast and not col.lower_bound and not col.upper_bound %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}" {%- if not loop.last -%}, {%- endif -%}
+                    {% endfor %}
+                    {{ source.join }}
+                '),
+                {%- if config.multiseries -%}SERIES_COLNAME => '{{ config.seriescol.name }}',{%- endif -%}
+                TIMESTAMP_COLNAME => '{{ config.tscol.name }}',
+                TARGET_COLNAME => '{{ config.tgtcol.name }}'
+            )
+
+            {% if node.materializationType == 'table' %}
+            	{{ stage('Create Forecast Table') }}
+
+            	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            	(
+            		{% for col in columns %}
+            			"{{ col.name }}" {{ col.dataType }}
+            			{%- if not col.nullable %} NOT NULL
+            				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            			{% endif %}
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+            	)
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+
+
+            {% elif node.materializationType == 'view' %}
+
+                {{ stage('Refresh Forecast') }}
+                CALL {{ ref_no_link(node.location.name, forecast_name) }}!FORECAST({{ config.fcdays }})
+
+                {{ stage('Create Forecast View') }}
+
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}"
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                AS
+                SELECT
+                {% for col in source.columns %}       
+                    {{ get_source_transform(col) }} AS "{{ col.name }}"
+                    {%- if not loop.last -%}, {% endif %}
+                {% endfor %}
+
+                {{ source.join }}
+
+                {% if config.unionforecast %}
+                UNION ALL
+                SELECT
+                {% for col in source.columns %}
+                    {% if col.id == config.tscol.id %}
+                        "TS"
+                    {% elif col.id == config.tgtcol.id %}
+                        NULL
+                    {% elif col.forecast or col.lower_bound or col.upper_bound %}
+                        "{{ col.name }}"
+                    {% else %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+                    {% endif %}
+                    {%- if not loop.last -%}, {% endif %}
+                {% endfor %}
+                FROM TABLE(RESULT_SCAN(-1))
+                {% endif %}
+
+            {% endif %}
+        run:
+          templateString: |
+            {% set source = sources[0] %}
+            {% set src_node = source.dependencies[0].node %}
+            {% set forecast_name = 'forecast_' ~ src_node.name %}
+
+            {% for test in node.tests if config.testsEnabled %}
+                    {% if test.runOrder == 'Before' %}
+                        {{ test_stage(test.name, test.continueOnFailure) }}
+                        {{ test.templateString }}
+                    {% endif %}
+            {% endfor %}
+
+            {% set source = sources[0] %}
+            {% set src_node = source.dependencies[0].node %}
+            {% set forecast_name = 'forecast_' ~ src_node.name %}
+
+            {% if config.refreshmodel %}
+            {{ stage('Recreate Forecast Model Instance') }}
+
+            CREATE OR REPLACE SNOWFLAKE.ML.FORECAST {{ ref_no_link(node.location.name, forecast_name) }}(
+                INPUT_DATA => SYSTEM$QUERY_REFERENCE('
+                    SELECT
+                    {% for col in source.columns if not col.forecast and not col.lower_bound and not col.upper_bound %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}" {%- if not loop.last -%}, {%- endif -%}
+                    {% endfor %}
+                    {{ source.join }}
+                '),
+                {%- if config.multiseries -%}SERIES_COLNAME => '{{ config.seriescol.name }}',{%- endif -%}
+                TIMESTAMP_COLNAME => '{{ config.tscol.name }}',
+                TARGET_COLNAME => '{{ config.tgtcol.name }}'
+
+            {% endif %}
+
+
+            {% if node.materializationType == 'table' %}
+            	{% if config.preSQL %}
+            		{{ stage('Pre-SQL') }}
+            		{{ config.preSQL }}
+            	{% endif %}
+            	
+            	
+            	
+            		{% if config.truncateBefore %}
+            	
+            			{{ stage('Truncate Stage Table') }}
+            			TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
+            	
+            		{% endif %}
+            	
+            	
+            		{{ stage('Insert ' + source.name | string ) }}
+
+            		BEGIN
+            		CALL {{ ref_no_link(node.location.name, forecast_name) }}!FORECAST({{ config.fcdays }});
+
+            		INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+            		(
+            			{% for col in source.columns %}
+            				"{{ col.name }}"
+            				{%- if not loop.last -%},{% endif %}
+            			{% endfor %}
+            		)
+            		{% if config.addsourcedata %}
+            		SELECT
+            		{% for col in source.columns %}
+            			{{ get_source_transform(col) }} AS "{{ col.name }}"
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+
+            		{{ source.join }}
+
+            		UNION ALL
+            		{% endif %}
+
+            		SELECT
+            		{% for col in source.columns %}
+            			{% if col.id == config.tscol.id %}
+            				"TS"
+            			{% elif col.id == config.tgtcol.id %}
+            				NULL
+            			{% elif col.forecast or col.lower_bound or col.upper_bound %}
+            				"{{ col.name }}"
+            			{% else %}
+            				{{ get_source_transform(col) }} AS "{{ col.name }}"
+            			{% endif %}
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+            		FROM TABLE(RESULT_SCAN(-1));
+            		END
+
+            	{% if config.postSQL %}
+            		{{ stage('Post-SQL') }}
+            		{{ config.postSQL }}
+            	{% endif %}
+            {% endif %}
+
+            {% if config.testsEnabled %}
+            	{% for test in node.tests %}
+            		{% if test.runOrder == 'After' %}
+            			{{ test_stage(test.name, test.continueOnFailure) }}
+            			{{ test.templateString }}
+                    {% endif %}
+            	{% endfor %}
+
+            	{% for column in columns %}
+            		{% for test in column.tests %}
+            			{{ test_stage(column.name + ": " + test.name) }}
+            			{{ test.templateString }}
+            		{% endfor %}
+            	{% endfor %}
+            {% endif %}
+    name: ML Forecast Multi-Series
+    version: 1
   StepType-144:
     id: "144"
     isDisabled: false
@@ -920,13 +1758,13 @@ stepTypes:
         capitalized: Stream
         short: STR
         tagColor: "yellow"
-        plural: Streams
+        plural: CDC Tables
 
         deployStrategy: advanced
 
         config:
 
-        - groupName: Stream
+        - groupName: Task
           items:
 
           - displayName: Initial Rows
@@ -974,23 +1812,210 @@ stepTypes:
         create:
           templateString: |-
             {% if desiredState == undefined %}
+              {{ stage('Drop Dynamic Table') }}
+              DROP STREAM {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
 
-              {{ stage('Drop Stream') }}
-              DROP STREAM IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+            {% else %}
 
-            {% elif currentState == undefined %}
-
-              {{ stage('Create Stream') }}
-              CREATE STREAM IF NOT EXISTS {{ ref_no_link(desiredState.node.location.name, desiredState.node.name )  }}
-              ON TABLE {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
-              APPEND_ONLY = {% if desiredState.config.appendOnly is true %} TRUE {%- else -%} FALSE {% endif %} 
-              SHOW_INITIAL_ROWS = {% if desiredState.config.initialRows is true %} TRUE {%- else -%} FALSE {% endif %} 
-              COMMENT = 'CDC Stream on {{ this }}'
+                {{ stage('Create Stream') }}
+                CREATE OR REPLACE STREAM {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+                ON TABLE {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
+                APPEND_ONLY = {% if desiredState.config.appendOnly is true %} TRUE {%- else -%} FALSE {% endif %} 
+                SHOW_INITIAL_ROWS = {% if desiredState.config.initialRows is true %} TRUE {%- else -%} FALSE {% endif %} 
+                COMMENT = 'CDC Stream on {{ this }}'
 
             {% endif %}
         run:
-          templateString: ""
+          templateString: |-
+            {% if config.taskEnabled is true %}
+                {{ stage('Resume Task') }}
+                ALTER TASK
+                {% if config.taskCustomName != '' %}
+                    {{ ref_no_link(node.location.name, config.taskCustomName) }}
+                {% else %}
+                    {{ ref_no_link(node.location.name, "TSK_" + node.name) }}
+                {% endif %}
+                RESUME
+            {% else %}
+                {{ stage('Insert From Stream') }}
+                INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+                {% for source in sources %}
+                    SELECT
+                    {% for col in source.columns %}
+                        {% if col.name == 'CDC_ID' %}
+                            {{ ref_no_link(node.location.name, "SEQ_" + node.name) }}.NEXTVAL
+                        {% else %}
+                            {{ get_source_transform(col) }}
+                        {% endif %} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                    FROM {{ ref_no_link(node.location.name, "STR_" + node.name) }} AS "{{ sources[0].dependencies[0].node.name }}"
+                    {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                        {{config.insertStrategy}}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
     name: Stream
+    version: 1
+  StepType-153:
+    id: "153"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: TGT_HL
+      error: null
+      nodeMetadataSpec: |
+        capitalized: Copy of View
+        short: VW
+        tagColor: 'blue'
+        isDisabled: true
+        plural: Views
+
+        config:
+          - groupName: Options
+            items: 
+            - type: materializationSelector
+              options:
+                - view
+              default: view
+              isRequired: true
+
+            - type: toggleButton
+              attributeName: selectDistinct
+              displayName: Distinct
+
+            - type: multisourceToggle
+
+            - type: overrideSQLToggle
+
+            - displayName: Multi Source Strategy
+              attributeName: insertStrategy
+              type: dropdownSelector
+              default: UNION
+              options:
+              - "UNION"
+              - "UNION ALL" 
+              isRequired: true
+              enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+      templates:
+        create:
+          templateString: |
+            {% if node.override.create.enabled %}
+                
+                {{ node.override.create.script }}
+
+            {% else %}
+                {{ stage('Create View') }}
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}"
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                AS
+                {% for source in sources %}
+                    SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
+                    {% for col in source.columns %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                    {{ source.join }}
+
+                    {% if not loop.last %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ config.insertStrategy }}
+                        {% else %}
+                            UNION
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        run:
+          templateString: ""
+    name: VW View
+    version: 1
+  StepType-154:
+    id: "154"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: TGT_HL
+      error: null
+      nodeMetadataSpec: |
+        capitalized: Copy of View
+        short: 
+        tagColor: 'green'
+        isDisabled: true
+        plural: Views
+
+        config:
+          - groupName: Options
+            items: 
+            - type: materializationSelector
+              options:
+                - view
+              default: view
+              isRequired: true
+
+            - type: toggleButton
+              attributeName: selectDistinct
+              displayName: Distinct
+
+            - type: multisourceToggle
+
+            - type: overrideSQLToggle
+
+            - displayName: Multi Source Strategy
+              attributeName: insertStrategy
+              type: dropdownSelector
+              default: UNION
+              options:
+              - "UNION"
+              - "UNION ALL" 
+              isRequired: true
+              enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+      templates:
+        create:
+          templateString: |
+            {% if node.override.create.enabled %}
+                
+                {{ node.override.create.script }}
+
+            {% else %}
+                {{ stage('Create View') }}
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}"
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                AS
+                {% for source in sources %}
+                    SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
+                    {% for col in source.columns %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                    {{ source.join }}
+
+                    {% if not loop.last %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ config.insertStrategy }}
+                        {% else %}
+                            UNION
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        run:
+          templateString: ""
+    name: TMP View
     version: 1
   StepType-16:
     id: "16"
@@ -1014,10 +2039,9 @@ stepTypes:
           - displayName: Stage
             attributeName: fileLocation
             type: dropdownSelector
-            default: "DOUGS3/salesforce"
+            default: "DOUGS32"
             options:
-            - "DOUGS3"
-            - "DOUGS3/salesforce"
+            - "DOUGS32"
             - "Create external stages on Snowflake"
             - "Place them in the same storage location"
             - "List the storage locations in this dropdown"
@@ -1157,7 +2181,7 @@ stepTypes:
                 {% endfor %}
               {% endif %}
               
-              with location = @{{desiredState.parameters.stage_location}}.{{desiredState.config.fileLocation}}
+              with location = @{{desiredState.parameters.stage_location}}.{{desiredState.config.fileLocation | upper}}
               pattern='{{ desiredState.config.filePattern }}'
               file_format = (type = {{ desiredState.config.fileType }}
               {% if desiredState.config.fileType == "CSV" %}
@@ -1684,7 +2708,7 @@ stepTypes:
     version: 1
   StepType-17:
     id: "17"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: STAGE
       error: null
@@ -1702,9 +2726,9 @@ stepTypes:
           - displayName: Stage
             attributeName: fileLocation
             type: dropdownSelector
-            default: "DOUGS32"
+            default: "DOUG_DB.PUBLIC.DOUGS3"
             options:
-            - "DOUGS32"
+            - "DOUG_DB.PUBLIC.DOUGS3"
             - "Name of Snowflake STAGE"
             - "Add STAGE to Template"
             isRequired: true
@@ -1802,34 +2826,29 @@ stepTypes:
             isRequired: false
       templates:
         create:
-          templateString: |
-            {{ stage('Create View of Stage') }}
-            {% set source = sources[0] %}
-
-            CREATE OR REPLACE VIEW {{this}}
-            AS 
-            {% for dep in source.dependencies if dep.node %}
-                SELECT 'EXPORTED {{ ref_no_link(dep.node.location.name, dep.node.name) | upper }}' RESULT {% if not loop.last %} UNION ALL {% endif %}
-            {% endfor %}
+          templateString: |-
+            {{ stage('Nothing to create') }}
+            SELECT 1
         run:
-          templateString: |
-            {% set source = sources[0] %}
-            {% for dep in source.dependencies if dep.node %}
-                {{ stage('Unloading ' + dep.node.name | string ) }}
-                COPY INTO @{{parameters.stage_location}}.{{config.fileLocation | trim | upper ~ "/" ~ node.name }}{% if config.singleFile %}.{{ config.fileType | lower }}{% endif %}
-                FROM {{ ref_no_link(dep.node.location.name, dep.node.name) | upper }}
-                overwrite = {{ config.overwrite }}
-                single = {{ config.singleFile }}
-                file_format = (type = {{ config.fileType }}
-                {% if config.fileType == "CSV" %}
-                    {% if config.recDelim != null %}record_delimiter = '{{ config.recDelim }}'{% endif %}
-                    {% if config.fieldDelim != null %}field_delimiter = '{{ config.fieldDelim }}'{% endif %}
-                    {% if config.fieldEnclosed != null %}field_optionally_enclosed_by = '{{ config.fieldEnclosed }}'{% endif %}
-                    {% if config.skipHeader != null %}skip_header = {{ config.skipHeader }}{% endif %}
-                    {% if config.skipBlankLines %}skip_blank_lines = {{ config.skipBlankLines }}{% endif %}
-                    {% if config.trimSpace %}trim_space = {{ config.trimSpace }}{% endif %}
-                {% endif %}
-                )
+          templateString: |-
+            {% for source in sources %}
+                {% for dep in source.dependencies if dep.node %}
+                    {{ stage('Unloading ' + dep.node.name | string ) }}
+                    COPY INTO @{{ ref_no_link(node.location.name, config.fileLocation) | trim | upper ~ "/" ~ node.name }}{% if config.singleFile %}.{{ config.fileType | lower }}{% endif %}
+                    FROM {{ ref_no_link(dep.node.location.name, dep.node.name) | upper }}
+                    overwrite = {{ config.overwrite }}
+                    single = {{ config.singleFile }}
+                    file_format = (type = {{ config.fileType }}
+                    {% if config.fileType == "CSV" %}
+                        {% if config.recDelim != null %}record_delimiter = '{{ config.recDelim }}'{% endif %}
+                        {% if config.fieldDelim != null %}field_delimiter = '{{ config.fieldDelim }}'{% endif %}
+                        {% if config.fieldEnclosed != null %}field_optionally_enclosed_by = '{{ config.fieldEnclosed }}'{% endif %}
+                        {% if config.skipHeader != null %}skip_header = {{ config.skipHeader }}{% endif %}
+                        {% if config.skipBlankLines %}skip_blank_lines = {{ config.skipBlankLines }}{% endif %}
+                        {% if config.trimSpace %}trim_space = {{ config.trimSpace }}{% endif %}
+                    {% endif %}
+                    )
+                {% endfor %}
             {% endfor %}
     name: Unload
     version: 1
@@ -2633,6 +3652,210 @@ stepTypes:
 
     name: ML Forecast
     version: 1
+  StepType-2:
+    id: "2"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: STAGE
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: CDC Table
+        short: "CDC"
+        tagColor: "#FF33CC"
+        plural: CDC Tables
+        config:
+        - groupName: Stream
+          items:
+          - displayName: Description
+            attributename: description
+            type: textBox
+            isRequired: false
+            default: "A CDC table consists of a few components:\n
+              1. A stream on the source node\n
+              2. The CDC table which contains a persistent replica of recent CDC records\n
+              3. A sequence to keep track of streams\n
+              4. Optional: a Task to replicate records from the Stream into the CDC table\n
+              "
+        - groupName: Task
+          items:
+          - displayName: Create Task
+            enableIf: {{config.cdcTableEnabled}}
+            attributeName: taskEnabled
+            type: toggleButton
+            default: false
+            isRequired: false
+
+          - displayName: Task Schedule
+            enableIf: "{{config.taskEnabled}}"
+            attributeName: taskSchedule
+            type: dropdownSelector
+            default: "Every 30 minutes"
+            options:
+            - "Every minute"
+            - "Every 5 minutes"
+            - "Every 30 minutes"
+            - "Every hour"
+            - "Every day"
+            - Every week
+            - Every Month
+            isRequired: false
+            
+          - displayName: Warehouse
+            enableIf: "{{config.taskEnabled}}"
+            attributeName: taskWarehouse
+            type: dropdownSelector
+            default: "COMPUTE_WH"
+            options:
+            - "COMPUTE_WH"
+            isRequired: false
+          - displayName: Custom Task Name
+            enableIf: "{{config.taskEnabled}}"
+            attributeName: taskCustomName
+            type: textBox
+            isRequired: false
+        - groupName: Hidden config
+          enableIf: "false"
+          items:
+          - displayName: Type
+            type: materializationSelector
+            default: table
+            options:
+            - table
+            isRequired: false
+        systemColumns:
+        - displayName: "METADATA$ACTION"
+          transform: "METADATA$ACTION"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataAction
+          description: Indicates the DML operation (INSERT, DELETE) recorded.
+        - displayName: "METADATA$ISUPDATE"
+          transform: "METADATA$ISUPDATE"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataIsUpdate
+          description: Indicates whether the operation was part of an UPDATE statement.
+        - displayName: "METADATA$ROW_ID"
+          transform: "METADATA$ROW_ID"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataRowId
+          description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
+        - displayName: "CDC_ID"
+          transform: ""
+          dataType: INTEGER
+          placement: end
+          attributeName: isStreamMetadataCDCId
+          description: Medtronic specific CDC identifier based on a sequence.
+        - displayName: "CDC_TIMESTAMP"
+          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemCreateDate
+          description: Medtronic specific attribute containing the timestamp of storing the CDC record.
+      templates:
+        create:
+          templateString: |-
+            {{ stage('Create Stream') }}
+            CREATE OR REPLACE STREAM {{ ref_no_link(node.location.name, "STR_" + node.name) }}
+            ON TABLE {{ ref(sources[0].dependencies[0].node.location.name, sources[0].dependencies[0].node.name) }}
+            APPEND_ONLY = FALSE SHOW_INITIAL_ROWS = TRUE
+            COMMENT = 'CDC Stream on {{ ref(node.location.name, sources[0].dependencies[0].node.name) }}'
+            {{ stage('Create Sequence') }}
+            CREATE OR REPLACE SEQUENCE {{ ref_no_link(node.location.name, "SEQ_" + node.name) }}
+            {{ stage('Create CDC Table') }}
+            CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            (
+                {% for col in columns %}
+                    "{{ col.name }}" {{ col.dataType }}
+                    {%- if not col.nullable %} NOT NULL
+                        {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+                    {% endif %}
+                    {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                    {%- if not loop.last -%}, {% endif %}
+                {% endfor %}
+            )
+            {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+            {% if config.taskEnabled is true %}
+                {{ stage('Create Task') }}
+                CREATE OR REPLACE TASK
+                {% if config.taskCustomName != '' %}
+                    {{ ref_no_link(node.location.name, config.taskCustomName) }}
+                {% else %}
+                    {{ ref_no_link(node.location.name, "TSK_" + node.name) }}
+                {% endif %}
+                WAREHOUSE = {{config.taskWarehouse}}
+                SCHEDULE =
+                {% if config.taskSchedule == 'Every minute' %}
+                    '1 MINUTE'
+                {% elif config.taskSchedule == 'Every 5 minutes' %}
+                    '5 MINUTE'
+                {% elif config.taskSchedule == 'Every 30 minutes' %}
+                    '30 MINUTE'
+                {% elif config.taskSchedule == 'Every hour' %}
+                    '60 MINUTE'
+                {% elif config.taskSchedule == 'Every day' %}
+                    '3600 MINUTE'
+                {% else %}
+                    'INVALID'
+                {% endif %}
+                COMMENT='Task to copy data of stream STR_{{node.name}} to CDC Table {{node.name}}'
+                WHEN "SYSTEM$STREAM_HAS_DATA"('{{- ref_no_link(node.location.name, "STR_" + node.name) -}}')
+                AS
+                INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+                {% for source in sources %}
+                    SELECT
+                    {% for col in source.columns %}
+                        {% if col.name == 'CDC_ID' %}
+                             {{ ref_no_link(node.location.name, "SEQ_" + node.name) }}.NEXTVAL
+                        {% elif col.transform | trim != '' %}
+                            {{ col.transform.replace(source.dependencies[0].node.name, 'STR_' + node.name) }}
+                        {% elif col.sourceColumns[0].column and col.sourceColumns[0].column.name %}
+                            "STR_{{ node.name }}"."{{ col.sourceColumns[0].column.name }}"
+                        {% else %}
+                            NULL
+                        {% endif %}
+                        AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                    FROM {{ ref_no_link(node.location.name, "STR_" + node.name) }}
+                    {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                        {{config.insertStrategy}}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        run:
+          templateString: |-
+            {% if config.taskEnabled is true %}
+                {{ stage('Resume Task') }}
+                ALTER TASK
+                {% if config.taskCustomName != '' %}
+                    {{ ref_no_link(node.location.name, config.taskCustomName) }}
+                {% else %}
+                    {{ ref_no_link(node.location.name, "TSK_" + node.name) }}
+                {% endif %}
+                RESUME
+            {% else %}
+                {{ stage('Insert From Stream') }}
+                INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+                {% for source in sources %}
+                    SELECT
+                    {% for col in source.columns %}
+                        {% if col.name == 'CDC_ID' %}
+                            {{ ref_no_link(node.location.name, "SEQ_" + node.name) }}.NEXTVAL
+                        {% else %}
+                            {{ get_source_transform(col) }}
+                        {% endif %} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                    FROM {{ ref_no_link(node.location.name, "STR_" + node.name) }} AS "{{ sources[0].dependencies[0].node.name }}"
+                    {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                        {{config.insertStrategy}}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+    name: CDC Table
+    version: 1
   StepType-20:
     id: "20"
     isDisabled: false
@@ -2973,9 +4196,172 @@ stepTypes:
               PATTERN = '{{ config.filePattern}}'
     name: Snowpipe V2
     version: 1
+  StepType-3:
+    id: "3"
+    isDisabled: true
+    metadata:
+      defaultStorageLocation: DWH
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: MS Loop
+        short: MSLOOP
+        plural: MS Loop
+        tagColor: 'black'
+        config:
+        - groupName: Additional Options
+          items:
+          - type: materializationSelector
+            default: table
+            options:
+            - table
+            - view
+            isRequired: true
+          - type: multisourceToggle
+            isRequired: false
+            enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
+          - displayName: Insert Strategy
+            attributeName: insertStrategy
+            type: dropdownSelector
+            default: INSERT
+            options:
+            - "INSERT"
+            - "UNION"
+            - "UNION ALL"
+            isRequired: true
+          - displayName: Truncate Before
+            attributeName: truncateBefore
+            type: toggleButton
+            default: true
+            isRequired: true
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+        - groupName: Storage Location Query
+          items:
+          - displayName: Starts With
+            attributeName: storageLocationSearchText
+            type: textBox
+            default: 'SOURCE'
+            isRequired: true
+        systemColumns:
+        - displayName: "SOURCE"
+          transform: ''
+          dataType: VARCHAR
+          placement: end
+          attributeName: isSystemSource
+      templates:
+        create:
+          templateString: |-
+            {% if node.override.create.enabled %}
+                {{ node.override.create.script }}
+            {% elif node.materializationType == 'table' %}
+                {{ stage('Create Stage Table') }}
+                CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}" {{ col.dataType }}
+                        {%- if not col.nullable %} NOT NULL
+                            {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+                        {% endif %}
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+            {% elif node.materializationType == 'view' %}
+                {{ stage('Create Stage View') }}
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}"
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+                AS
+                {% for source in sources %}
+                    SELECT
+                    {% for col in source.columns %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                    {{ source.join }}
+                    {% if not loop.last %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ config.insertStrategy }}
+                        {% else %}
+                            UNION
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        run:
+          templateString: |-
+            {% if config.truncateBefore %}
+                {{ stage('Truncate Stage Table') }}
+                TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
+            {% endif %}
+            {% for sourceMapping in storageLocations if sourceMapping.name.startswith(config.storageLocationSearchText) %}
+                {% if node.materializationType == 'table' %}
+                    {% if config.preSQL %}
+                        {{ stage('Pre-SQL') }}
+                        {{ config.preSQL }}
+                    {% endif %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ stage( config.insertStrategy + ' Sources' | string ) }}
+                            INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+                                (
+                                    {% for col in columns %}
+                                        "{{ col.name }}"
+                                        {%- if not loop.last -%},{% endif %}
+                                    {% endfor %}
+                                )
+                        {% endif %}
+                        {% for source in sources %}
+                            {% if config.insertStrategy == 'INSERT' %}
+                                {{ stage('Insert ' +  sourceMapping.name + '_' + source.name | string ) }}
+                                INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+                                (
+                                    {% for col in source.columns %}
+                                        "{{ col.name }}"
+                                        {%- if not loop.last -%},{% endif %}
+                                    {% endfor %}
+                                )
+                            {% endif %}
+                            SELECT
+                            {% for col in source.columns %}
+                                {% if col.isSystemSource %}
+                                    '{{ sourceMapping.name }}'
+                                {% else %}
+                                    {{ get_source_transform(col) }}
+                                {% endif %}
+                                AS "{{ col.name }}"
+                                {%- if not loop.last -%}, {% endif %}
+                            {% endfor %}
+                            FROM {{ ref(sourceMapping.name, sources[0].columns[0].sourceColumns[0].node.name )}}
+                            {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                                {{config.insertStrategy}}
+                            {% endif %}
+                        {% endfor %}
+                    {% if config.postSQL %}
+                        {{ stage('Post-SQL') }}
+                        {{ config.postSQL }}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+    name: Multi-Source Loop
+    version: 1
   StepType-4:
     id: "4"
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: STAGE
       error: null
@@ -3117,6 +4503,489 @@ stepTypes:
                 {{ config.postSQL }}
             {% endif %}
     name: Date Stage
+    version: 1
+  StepType-43:
+    id: "43"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: DWH
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: Dimension with Zero Key
+        short: DIM
+        tagColor: 'blue'
+        plural: Dimensions
+
+        config:
+        - groupName: Options
+          items:
+
+          - type: multisourceToggle
+            enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
+
+          - type: businessKeyColumns
+            isRequired: true
+
+          - type: toggleButton
+            attributeName: insertZeroKey
+            displayName: Insert Zero Key Record
+            default: true
+
+          - type: changeTrackingColumns
+            isRequired: false
+
+          - type: overrideSQLToggle
+            enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
+
+          - displayName: Enable Tests
+            attributeName: testsEnabled
+            type: toggleButton
+            default: true
+            
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+
+        - groupName: Hidden config
+          enableIf: "false"
+          items:
+          - displayName: Type
+            type: materializationSelector
+            default: table
+            options:
+            - table
+            isRequired: false
+
+        systemColumns:
+        - displayName: '{{NODE_NAME}}_KEY'
+          transform: ''
+          dataType: NUMBER
+          placement: beginning
+          attributeName: isSurrogateKey
+
+        - displayName: SYSTEM_VERSION
+          transform: ''
+          dataType: NUMBER
+          placement: end
+          attributeName: isSystemVersion
+
+        - displayName: SYSTEM_CURRENT_FLAG
+          transform: ''
+          dataType: VARCHAR
+          placement: end
+          attributeName: isSystemCurrentFlag
+
+        - displayName: SYSTEM_START_DATE
+          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemStartDate
+
+        - displayName: SYSTEM_END_DATE
+          transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemEndDate
+
+        - displayName: SYSTEM_CREATE_DATE
+          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemCreateDate
+
+        - displayName: SYSTEM_UPDATE_DATE
+          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemUpdateDate
+      templates:
+        create:
+          templateString: |
+            {% if node.materializationType == 'table' %}
+            	{{ stage('Create Dimension Table') }}
+
+            	CREATE OR REPLACE TABLE {{ this }}
+            	(
+            		{% for col in columns %}
+            			"{{ col.name }}" {{ col.dataType }} 
+            			{% if col.isSurrogateKey %}
+            		        identity
+            			{% endif %}
+            			{%- if not col.nullable %} NOT NULL
+            				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            			{% endif %}
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+            	)
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+
+            	{% if config.insertZeroKey %}
+
+            		{{ stage('Insert Zero Record') }}
+            		INSERT INTO {{ this }}
+            		(SELECT 
+            		{% for col in sources[0].columns %}
+            			{% set dtparams = col.dataType.partition('(')[-1].rpartition(')')[0].split(',') %}
+            			{% if col.isSurrogateKey %}0
+            				{% elif col.isSystemCurrentFlag %}'Y'
+            				{% elif col.isSystemStartDate or col.isSystemEndDate or col.isSystemUpdateDate or col.isSystemCreateDate %}{{ get_source_transform(col) }}
+            				{% elif col.isSystemVersion%}1
+            				{% elif col.dataType[:3] | upper in ('NUM','INT','DEC','FLO') %}0
+            				{% elif col.dataType[:4] | upper in ('DATE','TIME') %}CAST('0001-01-01' AS {{ col.dataType }})
+            				{% elif col.dataType[:3] | upper in ('VAR','CHA','STR','BIN') %}
+            					{% if dtparams[0] and dtparams[0] | int < 7 %}
+            						SUBSTRING('UNKNOWN',1,{{ dtparams[0] }})
+            					{% else %}
+            						'UNKNOWN'
+            					{% endif %}
+            				{% elif col.nullable %}NULL
+            				{% else %}''
+            			{% endif %}
+            			AS "{{ col.name }}"
+            			{% if not loop.last %}, {% endif %}
+            		{% endfor %}
+            		)
+            	{% endif %}
+
+            {% elif node.materializationType == 'view' %}
+            	{{ stage('Create Dimension View') }}
+
+            	CREATE OR REPLACE VIEW {{ this }}
+            	(
+            		{% for col in columns %}
+            			"{{ col.name }}"
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            			{%- if not loop.last -%},{% endif %}
+            		{% endfor %}
+            	)
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+            	AS
+            	{% for source in sources %}
+
+            		{% if loop.first %}SELECT {% endif %}
+
+            		{% for col in source.columns %}
+            			{% if col.isSurrogateKey or col.isSystemUpdateDate or col.isSystemCreateDate %}
+                            NULL
+            			{% else %}
+                            {{ get_source_transform(col) }}
+            			{% endif %}
+            			AS "{{ col.name }}"
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+            		{{ source.join }}
+
+            		{% if not loop.last %} UNION ALL {% endif %}
+            	{% endfor %}
+
+            {% endif %}
+        run:
+          templateString: |
+
+            {% set is_type_2 = columns | selectattr("isChangeTracking") | list | length > 0 %}
+
+                {% for test in node.tests if config.testsEnabled %}
+                    {% if test.runOrder == 'Before' %}
+                        {{ test_stage(test.name, test.continueOnFailure) }}
+                        {{ test.templateString }}
+                    {% endif %}
+                {% endfor %}
+
+            {% if node.materializationType == 'table' %}
+
+            	{% if config.preSQL %}			
+            		{{ stage('Pre-SQL') }}
+            		{{ config.preSQL }}
+            	{% endif %}
+            	
+                {% if is_type_2 %}
+
+                    {% for source in sources %}
+                        {{ stage('MERGE ' + source.name | string) }}
+                        MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
+                        USING (
+                        /* New Rows That Don't Exist */
+                        SELECT
+                        {% for col in source.columns if not col.isSurrogateKey %}
+                            {% if col.isSystemVersion %}
+                                1
+                            {% elif col.isSystemCurrentFlag %}
+                                'Y'
+                            {% else %}
+                               {{ get_source_transform(col) }}
+                            {% endif %}
+                            AS "{{ col.name }}",
+                        {% endfor %}
+                            'INSERT_INITAL_VERSION_ROWS' AS "DML_OPERATION"
+                        {{ source.join }}
+                        LEFT JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                                {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %}
+                        WHERE
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            "DIM"."{{ col.name }}" IS NULL
+                        {% endfor %}
+                        UNION ALL
+                        /* New Row Needing To Be Inserted Due To Type-2 Column Changes */
+                        SELECT
+                        {% for col in source.columns if not col.isSurrogateKey %}
+                            {% if col.isSystemVersion %}
+                                "DIM"."{{ col.name }}" + 1
+                            {% elif col.isSystemCurrentFlag %}
+                                'Y'
+                            {% else %}
+                               {{ get_source_transform(col) }}
+                            {% endif %}
+                            AS "{{ col.name }}",
+                        {% endfor %}
+                            'INSERT_NEW_VERSION_ROWS' AS "DML_OPERATION"
+                        {{ source.join }}
+                        INNER JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %}
+                        WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
+                        {% for col in source.columns if (col.isChangeTracking == true) %}
+                            {% if loop.first %}
+                                AND (
+                            {% else %}
+                                OR
+                            {% endif %}
+                            ( NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') <> NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**') )
+                            {% if loop.last %}
+                                )
+                            {% endif %}
+                        {% endfor %}
+                        UNION ALL
+                        /* Rows Needing To Be Expired Due To Type-2 Column Changes
+                        In this case, only two columns are merged (version and end date) */
+                        SELECT
+                        {%- for col in source.columns if not col.isSurrogateKey %}
+                            {% if col.isSystemEndDate %}
+                                DATEADD(MILLISECONDS, -1, CAST(CURRENT_TIMESTAMP AS TIMESTAMP))
+                            {% elif col.isSystemCurrentFlag %}
+                                'N'
+                            {% else %}
+                                "DIM"."{{ col.name }}"
+                            {% endif %}
+                            AS "{{ col.name }}",
+                        {% endfor -%}
+                            'update_expired_version_rows' AS "DML_OPERATION"
+                        {{ source.join }}
+                        INNER JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %}
+                        WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
+                        {% for col in source.columns if (col.isChangeTracking == true) %}
+                            {% if loop.first %}
+                                AND (
+                            {% else %}
+                                OR
+                            {% endif %}
+                            ( NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') <> NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**') )
+                            {% if loop.last %}
+                                )
+                            {% endif %}
+                        {% endfor %}
+                        UNION ALL
+                        /* Rows Needing To Be Updated Due To Changes To Non-Type-2 source.columns
+                        This case merges only when there are changes in non-type-2 column updates, but no changes in type-2 columns*/
+                        SELECT
+                        {%- for col in source.columns if not col.isSurrogateKey %}
+                            {% if col.isSystemVersion or col.isSystemCreateDate or col.isSystemStartDate or col.isSystemEndDate %}
+                                "DIM"."{{ col.name }}"
+                            {% elif col.isSystemCurrentFlag %}
+                                'Y'
+                            {% else %}
+                                {{ get_source_transform(col) }}
+                            {% endif %}
+                            AS "{{ col.name }}",
+                        {% endfor -%}
+                            'UPDATE_NON_TYPE2_ROWS' AS "DML_OPERATION"
+                        {{ source.join }}
+                        INNER JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %}
+                        WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
+                        AND (
+                        {% for col in source.columns if (col.isChangeTracking) -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %} )
+                        {% for col in source.columns if not (   col.isBusinessKey or
+                                                                col.isChangeTracking or
+                                                                col.isSurrogateKey or
+                                                                col.isSystemVersion or
+                                                                col.isSystemCurrentFlag or
+                                                                col.isSystemStartDate or
+                                                                col.isSystemEndDate or
+                                                                col.isSystemUpdateDate or
+                                                                col.isSystemCreateDate) -%}
+                            {% if loop.first %}
+                                AND (
+                            {% endif %}
+                            {% if not loop.first %}
+                                OR
+                            {% endif %}
+                            NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') <> NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**')
+                            {% if loop.last %}
+                                )
+                            {% endif %}
+                        {% endfor %}
+                    ) AS "SRC"
+                    ON
+                    {% for col in source.columns if col.isBusinessKey -%}
+                        {% if not loop.first %}
+                            AND
+                        {% endif %}
+                        "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
+                    {% endfor %}
+                    AND "TGT"."{{ get_value_by_column_attribute("isSystemVersion") }}" = "SRC"."{{ get_value_by_column_attribute("isSystemVersion") }}"
+                    WHEN MATCHED THEN UPDATE SET
+                    {%- for col in source.columns if not (col.isBusinessKey or col.isSurrogateKey or col.isSystemCreateDate) %}
+                        "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
+                        {% if not loop.last %}, {% endif %}
+                    {% endfor -%}
+                    WHEN NOT MATCHED THEN INSERT (
+                    {%- for col in source.columns if not col.isSurrogateKey %}
+                        "{{ col.name }}"
+                        {% if not loop.last %}, {% endif %}
+                    {% endfor -%}
+                    )
+                    VALUES (
+                    {%- for col in source.columns if not col.isSurrogateKey %}
+                        "SRC"."{{ col.name }}"
+                        {% if not loop.last %}, {% endif %}
+                    {% endfor -%}
+                    )
+
+                {% endfor %}
+
+
+
+                {% else %}
+                    {% for source in sources %}
+                        {{ stage('MERGE ' + source.name | string ) }}
+                        MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
+                        USING (
+                            SELECT
+                            {% for col in source.columns if not col.isSurrogateKey %}
+                                {% if col.isSystemVersion %}
+                                	1
+                                {% elif col.isSystemCurrentFlag %}
+                                	'Y'
+                                {% else %}
+                                    {{ get_source_transform(col) }}
+                                {% endif %}
+                                AS "{{ col.name }}"
+                                {%- if not loop.last %}, {% endif %}
+                            {% endfor %}
+                            {{ source.join }})
+                            AS "SRC"
+                        ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            "SRC"."{{ col.name }}" = "TGT"."{{ col.name }}"
+                        {% endfor %}
+                        WHEN MATCHED
+                        {% for col in source.columns if not (   col.isBusinessKey or
+                                                                col.isSurrogateKey or
+                                                                col.isSystemVersion or
+                                                                col.isSystemCurrentFlag or
+                                                                col.isSystemStartDate or
+                                                                col.isSystemEndDate or
+                                                                col.isSystemUpdateDate or
+                                                                col.isSystemCreateDate) %}
+                            {% if loop.first %}
+                                AND (
+                            {% else %}
+                                OR
+                            {% endif %}
+                            NVL( CAST("SRC"."{{ col.name }}" as STRING), '**NULL**') <> NVL( CAST("TGT"."{{ col.name }}" as STRING), '**NULL**')
+                            {% if loop.last %}
+                                )
+                            {% endif %}
+                        {% endfor %}
+                        THEN UPDATE SET
+                        {%- for col in source.columns if not (  col.isBusinessKey or
+                                                                col.isSurrogateKey or
+                                                                col.isSystemVersion or
+                                                                col.isSystemCurrentFlag or
+                                                                col.isSystemStartDate or
+                                                                col.isSystemEndDate or
+                                                                col.isSystemCreateDate) %}
+                                "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                        WHEN NOT MATCHED THEN
+                        INSERT (
+                        {%- for col in source.columns if not col.isSurrogateKey %}
+                            "{{ col.name }}"
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor -%}
+                        )
+                        VALUES (
+                        {%- for col in source.columns if not col.isSurrogateKey %}
+                            "SRC"."{{ col.name }}"
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor -%}
+                        )
+                    {% endfor %}
+                {% endif %}
+            	
+            	{% if config.postSQL %}			
+            		{{ stage('Post-SQL') }}
+            		{{ config.postSQL }}
+            	{% endif %}
+            {% endif %}
+
+            {% if config.testsEnabled %}
+            	{% for test in node.tests %}
+            		{% if test.runOrder == 'After' %}
+            			{{ test_stage(test.name, test.continueOnFailure) }}
+            			{{ test.templateString }}
+                    {% endif %}
+            	{% endfor %}
+
+            	{% for column in columns %}
+            		{% for test in column.tests %}
+            			{{ test_stage(column.name + ": " + test.name) }}
+            			{{ test.templateString }}
+            		{% endfor %}
+            	{% endfor %}
+            {% endif %}
+    name: Dimension 0
     version: 1
   StepType-53:
     id: "53"
@@ -3583,7 +5452,7 @@ stepTypes:
         short: 'DYN'
         tagColor: '#C39BD3'
         isDisabled: false
-        plural: Dynamic Tables
+        plural: External Tables
 
         deployStrategy: advanced
 
@@ -3624,25 +5493,23 @@ stepTypes:
           templateString: |-
             {% if desiredState == undefined %}
               {{ stage('Drop Dynamic Table') }}
-              DROP DYNAMIC TABLE IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+              DROP DYNAMIC TABLE {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
 
             {% else %}
 
-              {% if currentState != desiredState %}
+              {{ stage('Create Dynamic Table') }}
 
-              {{ stage('(Re)Create Dynamic Table') }}
-
-                CREATE OR REPLACE DYNAMIC TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
-                  LAG = '{{ desiredState.config.lagSchedule }}'
-                  WAREHOUSE = {{ desiredState.config.Warehouse }}
-                AS
-                  SELECT
-                    {% for col in desiredState.sources[0].columns %}
-                        {{ get_source_transform(col) }} AS "{{ col.name }}"
-                      {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-                  {{ desiredState.sources[0].join }}
-              {% endif %}
+              CREATE OR REPLACE DYNAMIC TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+                LAG = '{{ desiredState.config.lagSchedule }}'
+                WAREHOUSE = {{ desiredState.config.Warehouse }}
+              AS
+                SELECT
+                  {% for col in desiredState.sources[0].columns %}
+                      {{ get_source_transform(col) }} AS "{{ col.name }}"
+                    {%- if not loop.last -%}, {% endif %}
+                  {% endfor %}
+                {{ desiredState.sources[0].join }}
+            ;
             {% endif %}
         run:
           templateString: ""
@@ -3911,7 +5778,7 @@ stepTypes:
     metadata:
       defaultStorageLocation: STAGE
       error: null
-      nodeMetadataSpec: |
+      nodeMetadataSpec: |-
         capitalized: Snowpipe
         short: 'LOAD'
         tagColor: '#C39BD3'
@@ -3924,10 +5791,20 @@ stepTypes:
 
           - displayName: Stage
             attributeName: fileLocation
-            type: textBox
-            default: "DOUGS3"
+            type: dropdownSelector
+            default: "DOUGS32"
+            options:
+            - "DOUGS32"
+            - "Create external stages on Snowflake"
+            - "Place them in the same storage location"
+            - "List the storage locations in this dropdown"
             isRequired: true
 
+          - displayName: File Pattern
+            attributeName: filePattern
+            type: textBox
+            default: ".*[.]json"
+            isRequired: true
 
         - groupName: File Format 
           items:
@@ -4024,11 +5901,17 @@ stepTypes:
             isRequired: true
 
         systemColumns:
+
         - displayName: 'VALUE'
           attributeName: 'VALUE'
           transform: ''
           dataType: VARIANT
           placement: beginning
+        - displayName: 'METADATA$FILENAME'
+          attributeName: 'METADATA$FILENAME'
+          transform: ''
+          dataType: STRING
+          placement: end
       templates:
         create:
           templateString: |+
@@ -4054,18 +5937,14 @@ stepTypes:
             {{ stage('Create Snowpipe') }}
             CREATE OR REPLACE PIPE  {{ this | replace (node.name, "PIPE_"+node.name) }}
               auto_ingest = true
+              
             AS
               COPY INTO {{ this }} (VALUE)
-              FROM  @{{parameters.stage_location}}.{{ config.fileLocation  }}
-              FILE_FORMAT = (TYPE = '{{ config.fileType }}')
+              FROM  @{{parameters.stage_location}}.{{ config.fileLocation | upper  }}
+              FILE_FORMAT = (TYPE = '{{ config.fileType }}');
 
         run:
-          templateString: |-
-            {{ stage('Run Snowpipe Copy')}}
-
-              COPY INTO {{ this }} (VALUE)
-              FROM  @{{parameters.stage_location}}.{{ config.fileLocation  }}
-              FILE_FORMAT = (TYPE = '{{ config.fileType }}')
+          templateString: ""
     name: Snowpipe
     version: 1
   StepType-9:
@@ -4425,6 +6304,150 @@ stepTypes:
                 {{ filePatternSQL }}
                 FILE_FORMAT = (FORMAT_NAME = '{{ db }}.{{ sch }}.{{ config.fileFormatName}}')
     name: Copy Into
+    version: 1
+  StepType-99:
+    id: "99"
+    isDisabled: true
+    metadata:
+      defaultStorageLocation: STAGE
+      error: null
+      nodeMetadataSpec: |
+        capitalized: Task DAG Create Root
+        short: TGCR
+        tagColor: red
+        plural: None
+
+        deployStrategy: advanced
+
+        config: 
+        - groupName: Sceduling Options
+          items:
+          - displayName: Sceduling Options
+            attributeName: schedulingMode
+            type: dropdownSelector
+            default: Warehouse Task
+            options:
+              - Warehouse Task
+              - Serverless Task
+            isRequired: true
+
+          - displayName: Select Warehouse on which to run task
+            attributeName: whName
+            type: textBox
+            default: '<WAREHOUSE_NAME>'
+            isRequired: false
+            enableIf: "{% if config.schedulingMode == 'Warehouse Task' %} true {% else %} false {% endif %}"
+
+          - displayName: Select initial serverless Warehouse size
+            attributeName: serverlessSize
+            type: dropdownSelector
+            default: 'MEDIUM'
+            options:
+              - XSMALL
+              - SMALL
+              - MEDIUM
+              - LARGE
+              - XLARGE
+              - XXLARGE
+            isRequired: false
+            enableIf: "{% if config.schedulingMode == 'Serverless Task' %} true {% else %} false {% endif %}"
+
+          - displayName: Task Schedule
+            attributeName: schedulePeriodOption
+            type: dropdownSelector
+            default: Minutes
+            options:
+              - Minutes
+              - CRON
+            isRequired: TRUE
+
+          - displayName: Enter task schedule using minutes
+            attributeName: schedulePeriod
+            type: textBox
+            default: '60'
+            isRequired: false
+            enableIf: "{% if config.schedulePeriodOption == 'Minutes' %} true {% else %} false {% endif %}"
+
+          - displayName: Enter task schedule using CRON
+            attributeName: scheduleCRON
+            type: textBox
+            default: '5 0-23 * * * America/Los_Angeles'
+            isRequired: false
+            enableIf: "{% if config.schedulePeriodOption == 'CRON' %} true {% else %} false {% endif %}"
+
+          - displayName: Root task SQL
+            attributeName: tskSql
+            type: textBox
+            default: 'select current_timestamp()'
+            isRequired: true
+      templates:
+        create:
+          templateString: |+
+            {% if (currentState == undefined and desiredState != undefined) or (currentState != undefined and desiredState != undefined ) %}
+
+            {# Target Task Info #}
+            {% set tgtDb = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[0] %} 
+            {% set tgtSch = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[1] %} 
+            {% set taskName =desiredState.node.name %}
+            {%- set fqTaskName = tgtDb + '.' + tgtSch + '."' + taskName + '"' -%} 
+
+            {# Task Type #}
+            {%- if desiredState.config.schedulingMode == 'Warehouse Task' -%} 
+                {%- set taskType = 'WAREHOUSE = ' + desiredState.config.whName -%} 
+            {%- else -%}
+                {%- set taskType = 'USER_TASK_MANAGED_INITIAL_WAREHOUSE_SIZE = ' + desiredState.config.serverlessSize -%} 
+            {%- endif -%}
+
+            {# Schedule Type #}
+            {%- if desiredState.config.schedulePeriodOption == 'Minutes' -%} 
+                {%- set whenRun = 'SCHEDULE = ' + "'" + desiredState.config.schedulePeriod + ' MINUTE' + "'" -%} 
+            {% else %}
+                {%- set whenRun = 'SCHEDULE = ' + "'" + 'USING CRON ' + desiredState.config.scheduleCRON %}
+            {% endif %}
+
+            {{ stage('Suspend Root Task') }}
+            ALTER TASK IF EXISTS {{ fqTaskName }} SUSPEND
+
+            {{ stage('Create Task') }}
+            CREATE OR REPLACE TASK 
+                    {{ fqTaskName }} 
+                    {{ taskType}} 
+                    {{ whenRun }} 
+                AS 
+            {{desiredState.config.tskSql }} 
+
+            {{ stage('Try Enable Root Task') }}
+            begin
+                let sqlDml := 'select system$task_dependents_enable(''{{fqTaskName}}'')';
+                execute immediate sqlDml;
+                return 'Task resumed';
+                    exception
+                    when statement_error then
+                        return 'Task already running';
+            end;
+
+            {% elif desiredState == undefined %}
+
+            {% set tgtDb = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[0] %} 
+            {% set tgtSch = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[1] %} 
+            {% set taskName =currentState.node.name %}
+            {%- set fqTaskName = tgtDb + '.' + tgtSch + '."' + taskName + '"' -%} 
+
+            {{ stage('Suspend Root Task') }}
+                ALTER TASK IF EXISTS {{ fqTaskName }} SUSPEND
+            {{ stage('Drop Current Task Task') }}
+                DROP TASK IF EXISTS {{ fqTaskName }} 
+
+            {%- else -%}
+
+            {{ stage('Nothing to do.') }}
+            select 1 = 0
+
+            {% endif %}
+
+        run:
+          templateString: ""
+    name: Task DAG Create Root
     version: 1
   StepType-Dimension:
     id: Dimension
@@ -5902,4 +7925,31 @@ subgraphs:
     name: New Subgraph
     steps:
       - 786e9e60-f128-48f9-a556-b87230d890b8
+  Subgraph-121:
+    id: "121"
+    name: Opportunity
+    steps:
+      - 0ac6465e-9a84-4e17-999e-f3a16d2f40d1
+      - 0c63b69b-2c0c-4f2a-bd14-d18756f6e942
+      - 1e7deeac-e752-4546-908e-cddde9033aa1
+      - 310a703c-a7a8-4565-8171-d0d04dd741c9
+      - 33c4d7ba-122d-4c08-8fee-088d42cefb37
+      - 4108c609-276b-4bc6-a0a1-37229843ba53
+      - 416f8116-39df-493d-8779-5f05512600ae
+      - 41dc6cc4-43a0-49ea-85bf-838180756ce6
+      - 44622751-08c3-4ba4-8eee-823c81525761
+      - 51bbbfae-c22f-4ea9-ba62-5067570a6fb6
+      - 592afa23-af1a-41b0-a239-06801d02d3e4
+      - 87c08224-2455-4b17-b493-83876e56491e
+      - 9ee29abe-1280-4f02-aa25-6956015b74e8
+      - ada44ece-5e88-47fc-95ca-3343d6da78f3
+      - b026903a-da37-4bcd-83a0-fb949bfebe5e
+      - c1ef0dab-6e63-48fe-9a9b-07241eaeb07f
+      - c4d920c2-e94b-4d0c-9812-315b47ceed15
+      - d647d09e-d143-4d83-b592-01bed0860ee1
+      - df17cb43-eb21-48c0-b3cd-30967973c80b
+      - e7773c12-5b5a-401a-bc93-981fcf13ef27
+      - eb165e02-985b-424c-b489-8a80e709b28c
+      - f6e3e123-6e6e-4551-a020-914e129774fc
+      - ff0d2bd2-cd47-4007-98ac-450c7081e247
 version: 2
