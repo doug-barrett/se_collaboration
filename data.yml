@@ -31,7 +31,47 @@ jobs:
     name: Customer Job
     steps: []
     subgraphs: []
-locations: {}
+locations:
+  DWH:
+    mappingDefinitions:
+      "151":
+        database: DOUG_DB
+        schema: PROD_DWH
+      "152":
+        database: DOUG_DB
+        schema: QA_DWH
+  SRC_FIVETRAN_RETAIL:
+    mappingDefinitions:
+      "151":
+        database: FIVETRAN_DATABASE
+        schema: RETAIL_DATA
+      "152":
+        database: FIVETRAN_DATABASE
+        schema: RETAIL_DATA
+  SRC_SAMPLE:
+    mappingDefinitions:
+      "151":
+        database: SNOWFLAKE_SAMPLE_DATA
+        schema: TPCH_SF1
+      "152":
+        database: SNOWFLAKE_SAMPLE_DATA
+        schema: TPCH_SF1
+  SRC_WEATHER:
+    mappingDefinitions:
+      "151":
+        database: COALESCE_SAMPLE_DATABASE
+        schema: WEATHER
+      "152":
+        database: COALESCE_SAMPLE_DATABASE
+        schema: WEATHER
+  STAGE:
+    mappingDefinitions:
+      "151":
+        database: DOUG_DB
+        schema: PROD_STG
+      "152":
+        database: DOUG_DB
+        schema: QA_STG
 macros:
   Macro-1:
     id: "1"
