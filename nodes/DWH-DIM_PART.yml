@@ -275,14 +275,18 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          STG_PART: 83a5b432-baa3-4667-a3ac-22e47ec12640
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: STAGE
             nodeName: STG_PART
         join:
-          joinCondition: FROM {{ ref('STAGE', 'STG_PART') }} "STG_PART"
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'STG_PART') }} "STG_PART"
+
+            WHERE time = (SELECT * FROM {{ this}})
         name: DIM_PART
         noLinkRefs: []
   name: DIM_PART

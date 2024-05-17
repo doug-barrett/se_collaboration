@@ -55,6 +55,7 @@ operation:
           stepCounter: e3b3d7db-4b65-4a8d-b392-ff29a1fc4b33
         config: {}
         dataType: VARCHAR(25)
+        defaultValue: "\"Jesse\""
         description: ""
         hashDetails: null
         name: CUSTOMER_NAME
@@ -256,18 +257,76 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f9a934a8-c271-4519-8c22-0784a65b77de
+          stepCounter: e3b3d7db-4b65-4a8d-b392-ff29a1fc4b33
+        config: {}
+        dataType: VARCHAR(55)
+        description: ""
+        name: P_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d76cc296-7e49-444c-b81f-2ca870fc96a9
+                stepCounter: f4bd8116-765f-4df4-ba1d-b4c63fefba5c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76df5b79-5286-4d77-9928-1b89cdf1a3c7
+          stepCounter: e3b3d7db-4b65-4a8d-b392-ff29a1fc4b33
+        config: {}
+        dataType: VARCHAR(55)
+        description: ""
+        name: P_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d76cc296-7e49-444c-b81f-2ca870fc96a9
+                stepCounter: f4bd8116-765f-4df4-ba1d-b4c63fefba5c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 08d81edf-2892-474f-a882-d2ce0766622c
+          stepCounter: e3b3d7db-4b65-4a8d-b392-ff29a1fc4b33
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: S_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a5459a25-815e-4be6-a598-9f7ffd1989bb
+                stepCounter: 0073a491-01be-4e7c-8929-a127e3dd7d66
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 706d46e2-880a-46fd-bd41-e381cdbd7014
+          stepCounter: e3b3d7db-4b65-4a8d-b392-ff29a1fc4b33
+        config: {}
+        dataType: VARCHAR(101)
+        description: ""
+        name: S_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ead49376-86c0-4b38-8ed8-2069233d3951
+                stepCounter: 0073a491-01be-4e7c-8929-a127e3dd7d66
+            transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases:
-          PY_CUSTOMER: fcf68b48-8c98-4d4b-839d-acd7cfd35abb
+      - aliases: {}
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: STAGE
             nodeName: PY_CUSTOMER
         join:
-          joinCondition: FROM {{ ref('STAGE', 'PY_CUSTOMER') }} "PY_CUSTOMER"
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'PY_CUSTOMER') }} "PY_CUSTOMER"
+
+            WHERE data = {{this}} gh hgf 
         name: DIM_CUSTOMER
         noLinkRefs: []
   name: DIM_CUSTOMER
