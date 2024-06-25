@@ -1,0 +1,126 @@
+fileVersion: 1
+id: 455c4a36-62e3-4951-be5a-5918087f5d52
+name: VWA_FORECAST_PROFILE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd2af632-85fc-46f1-bc6e-e8f9ab30209c
+          stepCounter: 455c4a36-62e3-4951-be5a-5918087f5d52
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e8f201b5-5180-4240-ac7c-c12a60991372
+                stepCounter: 592b6ec9-1980-4c8d-b3c8-598b66417984
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32ee480f-832e-483b-afc9-a7386c01256c
+          stepCounter: 455c4a36-62e3-4951-be5a-5918087f5d52
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9c22968f-9260-4892-87a6-4010486d67f7
+                stepCounter: 592b6ec9-1980-4c8d-b3c8-598b66417984
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 144871da-d8d2-4142-a975-84f4fd36ddac
+          stepCounter: 455c4a36-62e3-4951-be5a-5918087f5d52
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: PERIOD_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 07b0cdf4-77fd-4a25-bda5-c5689ffbfd1b
+                stepCounter: 592b6ec9-1980-4c8d-b3c8-598b66417984
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8cea6a4-afff-4a98-a150-bccf1d03001c
+          stepCounter: 455c4a36-62e3-4951-be5a-5918087f5d52
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: HOLIDAY_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fb708936-1a0b-4ced-af74-74072f2dc305
+                stepCounter: 592b6ec9-1980-4c8d-b3c8-598b66417984
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28c82956-d39f-49e6-b4f1-bcf3edf54d99
+          stepCounter: 455c4a36-62e3-4951-be5a-5918087f5d52
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: DAY_NO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 11143122-047f-4ef5-ba5c-1a12d4fddb58
+                stepCounter: 592b6ec9-1980-4c8d-b3c8-598b66417984
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1e3133af-4743-44da-8fb5-2c7f1aca3002
+          stepCounter: 455c4a36-62e3-4951-be5a-5918087f5d52
+        config: {}
+        dataType: NUMBER(12,6)
+        description: ""
+        hashDetails: null
+        name: UNITS_RATIO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 600594e8-8b5a-42c2-b9cd-f2b30b1334ae
+                stepCounter: 592b6ec9-1980-4c8d-b3c8-598b66417984
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: STG_FORECAST_PROFILE
+        join:
+          joinCondition: FROM {{ ref('STAGE', 'STG_FORECAST_PROFILE') }} "STG_FORECAST_PROFILE"
+        name: VWA_FORECAST_PROFILE
+        noLinkRefs: []
+  name: VWA_FORECAST_PROFILE
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

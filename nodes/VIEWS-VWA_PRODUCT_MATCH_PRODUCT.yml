@@ -1,0 +1,738 @@
+fileVersion: 1
+id: 2f25393b-a51e-4631-baa0-8e00733ef18a
+name: VWA_PRODUCT_MATCH_PRODUCT
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b784457-5165-4c53-a6c1-b8fe9609a312
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 60ffb518-6c31-4cf6-b166-546fb4c224ef
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1532eb3f-22b5-4df8-a3af-917a8b148a11
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7bf35253-5168-421a-8849-fcfa9475cb66
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88614483-83c6-4336-a3fa-4b131d419633
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5920c5a6-2833-48df-8cd9-cee5732508fe
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 08d60af0-0e03-4149-9907-44b3750bd031
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: FINANCIAL_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36a14eb6-9139-4e18-8f17-3df1fde49742
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."FINANCIAL_YEAR")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aafdcfc3-1868-462e-81d9-e12fbaeebc3a
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: FINANCIAL_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6be49e75-8660-4789-a828-2dea2d61f576
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."FINANCIAL_WEEK")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22cf5c9e-3555-49f6-b118-717078394fb3
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: CHAR(3)
+        description: ""
+        name: CAL_MONTH_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f746a3eb-0791-4acb-9cd7-d61697279b44
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."CAL_MONTH_NAME")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22805e07-84cb-41cc-92e4-06582e79242a
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: da2146a5-c6ff-4e1a-b0a7-b1e29a19afa6
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."BRAND")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4738be61-ac81-4952-aa1a-c6a0606b8231
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: MANUFACTURER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 93f03b8e-8ded-4e3d-8e7c-238b90e367ee
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."MANUFACTURER")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a1dbfc0-f004-4e67-a6c7-678a204c4ee7
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL1_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b72ab752-c0a5-4234-bc5d-7edc61e29cb3
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."LEVEL1_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3dd89e19-d229-4e8c-ba26-85673face952
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL2_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aeb955ea-41ff-4624-8219-980ba2a34d7b
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."LEVEL2_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d2f8e5f-126c-404a-9800-94eefc1ae49f
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 371ad8e2-95ae-4eff-9685-3299a9fd7ad6
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."LEVEL3_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1cdf2715-a5b6-436e-a4ed-5039d719f898
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL4_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bbc3b701-738b-4eb8-a446-f29a369143a4
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."LEVEL4_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b43d0805-718f-4112-9174-80a21e3065ac
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d9ea0ec1-30fc-4c23-886d-527a1d9125ea
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."DESCRIPTION")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 145df429-8220-4b35-af0d-d25ca8b7506d
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(150)
+        description: ""
+        name: PRODKEY_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9cab6dda-3c83-4921-b442-900c0a57ea14
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."PRODKEY_DESCRIPTION")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0627cccf-4129-4c72-a76d-8d0521739e19
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: PRODUCT_GROUP_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ad824ad-e81b-4700-9a76-2813332068ad
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."PRODUCT_GROUP_NAME")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c92c45f-9fcf-421b-9450-ab721664be51
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: PRODUCT_GROUP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 991f3ba3-a047-4b48-a2b5-a7169a984018
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."PRODUCT_GROUP")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5bf746e7-cc16-4fbb-8bf9-a9e9fdb9e637
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dd80b99a-dc07-4acc-a328-6afca2d8bd54
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."COMPETITOR_CODE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa2b0329-b911-4f71-a5d2-eb462d6903f1
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd1054e7-3de7-4436-9183-6cfc800c7631
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."COMPETITOR_SKU")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac52b722-3664-4ee0-a4fb-3cd1a826266e
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: CHAR(1)
+        defaultValue: ""
+        description: ""
+        name: CURRYS_PROMO_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 62a9eeae-cfed-40e6-b756-27560cffaa93
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: |-
+              CASE WHEN MAX(NVL(CURRYS_WAS_PRICE,0)) > 0 THEN 'Y' 
+              ELSE 'N'
+              END
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c1e4e69-718a-46c4-bdad-13f73843e9a1
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: CURRYS_PRODUCT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 908c7051-57ed-4e9b-abdd-93f3ef5cb2f4
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."CURRYS_PRODUCT_NAME")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 951ed62a-3bba-4378-a125-51b248573a78
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: CURRYS_STOCK_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3cb19698-1508-4297-b038-64064bd0dd8e
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."CURRYS_STOCK_STATUS")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1e55940e-5f83-46f6-952e-5cfd334e9113
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: CURRYS_PROMOTIONAL_MECHANIC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f85c9c3c-5e8a-4574-b373-d7bb42bbb5b4
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."CURRYS_PROMOTIONAL_MECHANIC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f948e0b6-27af-455a-bff2-29ea0048d520
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: CURRYS_REVENUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e2dc74c-1170-4686-af92-2d23d3dbb05b
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."BASE_UNITS_PER_DAY")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25a28036-c664-41b3-939b-c8f2a4d2ee40
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER(9,2)
+        defaultValue: ""
+        description: ""
+        name: CURRYS_MODE_PRICE_GAP_OFF_PROMO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE WHEN MAX(NVL(CURRYS_WAS_PRICE,0)) > 0 THEN 0 
+              ELSE (MODE(COMPETITOR_PRICE) - MAX(CURRYS_PRICE))
+              END
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27b1d28c-7102-4c26-a4b0-9fdfe1b2beb2
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER(9,2)
+        defaultValue: ""
+        description: ""
+        name: CURRYS_MODE_PRICE_GAP_OFF_PROMO_REVENUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE WHEN MAX(NVL(CURRYS_WAS_PRICE,0)) > 0 THEN 0 
+                   WHEN (MODE(COMPETITOR_PRICE) - MAX(CURRYS_PRICE)) < 0 THEN 0
+              ELSE (MODE(COMPETITOR_PRICE) - MAX(CURRYS_PRICE)) * MAX(BASE_UNITS_PER_DAY)
+              END 
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4140f13d-f154-4525-bbf7-b1bb85d5bbb0
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: COMPETITOR_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b7c84ac-c901-408f-8bcd-22d38cd4231e
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: SUM("VWA_PRODUCT_MATCH_ALL"."COMPETITOR_COUNT")
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2898c8be-724a-427e-acc2-80ab19213884
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: COMPETITORS_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: COUNT(1)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e9ac5933-10af-4e96-9a41-63c6405d50f5
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: EXACT_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25ccf6ab-a2c0-41c1-b2d3-79131f113408
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: SUM(CASE WHEN MATCH_TYPE = 'EXACT' THEN 1 ELSE 0 END)
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83f9f997-12b4-4f6b-aaff-743f79695bd7
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER(12,4)
+        description: ""
+        hashDetails: null
+        name: CPI_EXACT_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0139b7ad-f5ff-4ec7-add5-81b650173748
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: DIV0(SUM(CASE WHEN MATCH_TYPE = 'EXACT' THEN "VWA_PRODUCT_MATCH_ALL"."CPI_BUCKET" END), EXACT_MATCH_COUNT)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 98c274d9-6720-41b5-b9e2-a6615597514f
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: SAME_BRAND_SAME_SPEC_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25ccf6ab-a2c0-41c1-b2d3-79131f113408
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: SUM(CASE WHEN MATCH_TYPE = 'SAME BRAND / SAME SPEC' THEN 1 ELSE 0 END)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a79196eb-1c37-44f1-bb50-1ec0e3981c9c
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: DIFF_BRAND_SAME_SPEC_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25ccf6ab-a2c0-41c1-b2d3-79131f113408
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: SUM(CASE WHEN MATCH_TYPE = 'DIFF BRAND / SAME SPEC' THEN 1 ELSE 0 END)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79c7491c-d041-4965-9b1f-668110644f94
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: SIMILAR_SPEC_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25ccf6ab-a2c0-41c1-b2d3-79131f113408
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: SUM(CASE WHEN MATCH_TYPE = 'SIMILAR SPEC' THEN 1 ELSE 0 END)
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6da07157-48fa-403e-8b0f-65d075ca9e4d
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: CURRYS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e57ac7e8-095b-4a9c-b696-417b9e373818
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."CURRYS_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f49d493-c6ab-47e0-9d43-a68f7c1fe3dc
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: CURRYS_WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 62a9eeae-cfed-40e6-b756-27560cffaa93
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."CURRYS_WAS_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 466d054d-64a9-4200-b71c-ed4cb7fafe69
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COMPETITOR_PRICE_MIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 585b105f-d8c6-4ab7-bb97-9d4b5da07a82
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MIN("VWA_PRODUCT_MATCH_ALL"."COMPETITOR_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 357e07e4-d265-4d66-b71b-95cadd321fe2
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: CURRYS_CHEAPEST_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 585b105f-d8c6-4ab7-bb97-9d4b5da07a82
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: CASE WHEN MAX("VWA_PRODUCT_MATCH_ALL"."CURRYS_PRICE") < MIN("VWA_PRODUCT_MATCH_ALL"."COMPETITOR_PRICE") THEN 'Y' ELSE 'N' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76f2b4c1-3742-428b-b69a-cd87b5f71428
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COMPETITOR_PRICE_MAX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 585b105f-d8c6-4ab7-bb97-9d4b5da07a82
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."COMPETITOR_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f0027555-c659-4b22-9fb0-59a2e4385f50
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COMPETITOR_PRICE_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 585b105f-d8c6-4ab7-bb97-9d4b5da07a82
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: AVG("VWA_PRODUCT_MATCH_ALL"."COMPETITOR_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fe4bde45-4fde-482f-91f1-b55fff41fdfb
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COMPETITOR_PRICE_MODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 585b105f-d8c6-4ab7-bb97-9d4b5da07a82
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MODE("VWA_PRODUCT_MATCH_ALL"."COMPETITOR_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 66bb3df2-eca9-49d5-8208-8408ad2c95c8
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER(12,4)
+        description: ""
+        hashDetails: null
+        name: CPI_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0139b7ad-f5ff-4ec7-add5-81b650173748
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: AVG("VWA_PRODUCT_MATCH_ALL"."CPI_BUCKET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f4db3bc-cde9-4d39-8a99-93178de0c662
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER(12,4)
+        description: ""
+        name: CPI_MODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0139b7ad-f5ff-4ec7-add5-81b650173748
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MODE("VWA_PRODUCT_MATCH_ALL"."CPI_BUCKET")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bbe9374a-527d-44fc-b8a3-02ef7f06263e
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: COMPETITORS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b23540f-d4cc-4398-8613-ecd354a74237
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: |-
+              LISTAGG(COMPETITOR_NAME||' ('||COMPETITOR_SKU||') '|| TO_VARCHAR(COMPETITOR_PRICE)||' - '||MATCH_TYPE,' ,') 
+              WITHIN GROUP (ORDER BY CPI DESC) 
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c1691a6-164f-42de-8535-02de7e9332b3
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: INVENTORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 638c7355-ae92-4349-bb95-550304ed3590
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: MAX("VWA_PRODUCT_MATCH_ALL"."INVENTORY")
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 75a74e4b-beb5-49c8-bfe4-b91ee0a73a0f
+          stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: THIS_COMPETITOR_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36ab70c3-134f-4fdc-a7f6-8eb2871c2e07
+                stepCounter: e4a45b2e-cc21-43de-a97b-551a791f80b4
+            transform: SUM("VWA_PRODUCT_MATCH_ALL"."THIS_COMPETITOR_MATCH_COUNT")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VWA_PRODUCT_MATCH_ALL: e4a45b2e-cc21-43de-a97b-551a791f80b4
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: VIEWS
+            nodeName: VWA_PRODUCT_MATCH_ALL
+        join:
+          joinCondition: |-
+            FROM {{ ref('VIEWS', 'VWA_PRODUCT_MATCH_ALL') }} "VWA_PRODUCT_MATCH_ALL"
+            GROUP BY 1, 2, 3
+        name: VWA_PRODUCT_MATCH_PRODUCT
+        noLinkRefs: []
+  name: VWA_PRODUCT_MATCH_PRODUCT
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,84 @@
+fileVersion: 1
+id: 723b6527-ee7a-4e6c-9738-2903325845d2
+name: VW_MEASURES_BASE_FNR_DAY
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 509b0996-5b9a-4364-bcb9-3a415db2f8be
+          stepCounter: 723b6527-ee7a-4e6c-9738-2903325845d2
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e50df167-8e2a-465e-8582-e95e6f7366d3
+                stepCounter: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 45d7d2fb-94f4-4d11-a1ce-747d3a01c087
+          stepCounter: 723b6527-ee7a-4e6c-9738-2903325845d2
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8852780-52d9-4fbd-817e-28e4a453867a
+                stepCounter: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b90343a-745b-4b60-943d-6f2638aca23b
+          stepCounter: 723b6527-ee7a-4e6c-9738-2903325845d2
+        config: {}
+        dataType: NUMBER(20,10)
+        description: ""
+        hashDetails: null
+        name: FNR_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d6449dbe-6bd7-4912-8390-262b06086dd1
+                stepCounter: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+            transform: AVG("VW_MEASURES_BASE_FNR"."FNR_UNITS")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VW_MEASURES_BASE_FNR: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_MEASURES_BASE_FNR
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_MEASURES_BASE_FNR') }} "VW_MEASURES_BASE_FNR"
+            GROUP BY "ZONE_GEOGRAPHY", "PRODKEY"
+        name: VW_MEASURES_BASE_FNR_DAY
+        noLinkRefs: []
+  name: VW_MEASURES_BASE_FNR_DAY
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

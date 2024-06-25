@@ -1,0 +1,79 @@
+fileVersion: 1
+id: 20ce97dd-acf7-4398-8e68-e65baaa7b678
+name: EXT_SCRAPE_COMPETITOR_PRICES_IRELAND
+operation:
+  config:
+    autoRefresh: false
+    compression: ""
+    fieldDelim: ","
+    fieldEnclosed: \042
+    fileLocation: WIIBIT_DIXONS_LAND.LAND.WISER_STAGE/data/CPCW_COMPETITOR_PRICES_Ireland
+    filePattern: .*[.]csv
+    fileType: CSV
+    recDelim: |+
+
+    skipBlankLines: true
+    skipHeader: "1"
+    snsTopic: arn:aws:sns:us-east-1:121674918127:prod-emea-s3-notification
+    trimSpace: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: LAND
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - VALUE: true
+        acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0537968a-960b-4d77-9b9e-f470d22748b8
+          stepCounter: 20ce97dd-acf7-4398-8e68-e65baaa7b678
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        name: VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - METADATA$FILENAME: true
+        acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3aae56d9-2e2a-4ca1-9011-f0239b321ac7
+          stepCounter: 20ce97dd-acf7-4398-8e68-e65baaa7b678
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: METADATA$FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: EXT_SCRAPE_COMPETITOR_PRICES_IRELAND
+        noLinkRefs: []
+  name: EXT_SCRAPE_COMPETITOR_PRICES_IRELAND
+  overrideSQL: false
+  schema: ""
+  sqlType: "36"
+  type: sql
+  version: 1
+type: Node

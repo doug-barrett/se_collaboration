@@ -1,0 +1,187 @@
+fileVersion: 1
+id: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+name: VW_MEASURES_CURRENT_OPTIMIZE_1
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e0a7a1c7-df30-4499-be12-c1a77bdb2533
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e186cce5-bdea-4e7a-9e44-daedbef819e5
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 43b93191-7d39-4389-b9d4-f80b6e2e3ca8
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bb99dfad-955b-49f2-8278-635070b9b45f
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85ba5ff7-3a73-4382-9896-c43765f454b5
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b28fa242-cbd5-4b0d-ad25-28e728ee54cd
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d4a4139-e163-4509-8930-c9bea667e5bb
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d665892-dfd2-4def-8209-6e03153c49df
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8ee596eb-fa88-4934-b7d9-c7f814616d50
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 03969a22-10f4-44e1-8325-0ec040e7f0ef
+                stepCounter: c13d0009-e85a-4a02-b34e-131bb850e537
+            transform: HOL.HOLIDAY_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b64c68f1-eb97-4368-9a7e-73472d82d727
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: DISCOUNT_BUCKET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 03969a22-10f4-44e1-8325-0ec040e7f0ef
+                stepCounter: c13d0009-e85a-4a02-b34e-131bb850e537
+            transform: DISC.DISCOUNT_BUCKET
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd41b8e4-7137-4323-bf73-290ee536c7ab
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: BASE_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 29ad4d5a-ab48-49aa-a8ae-be041193a2ec
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 805f5cd4-1070-4e0a-9b6b-8c3e8472d120
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: BASE_UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 085efd98-4cef-416a-bd71-18f5dc34a6ce
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4dfeaebd-f9bf-44be-983f-396959b800aa
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: STRING
+        description: ""
+        name: BASE_UNITS_PER_DAY_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba3a0c20-0ed4-4943-97fd-37af3577a3e0
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f69c5229-981d-4986-9f46-c292d1040a1c
+          stepCounter: 11ed50b4-e5c3-44b7-89fa-c539a604102d
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: YEAR_MAX_UNITS_SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 20df9c70-109d-44ce-be35-13681cf3cfa0
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_MEASURES_CURRENT: 6deaf504-e80c-4050-810f-1e356357d18c
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: REFERENCE
+            nodeName: REF_DATE_HOLIDAY
+          - locationName: STAGE
+            nodeName: STG_MEASURES_CURRENT
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'STG_MEASURES_CURRENT') }} "STG_MEASURES_CURRENT"
+            CROSS JOIN (SELECT DISTINCT HOLIDAY_NAME FROM {{ ref('REFERENCE','REF_DATE_HOLIDAY')}} UNION SELECT 'NO_HOLIDAY') HOL
+            CROSS JOIN (SELECT 10 DISCOUNT_BUCKET UNION SELECT 20 UNION SELECT 30 UNION SELECT 40 UNION SELECT 50 UNION SELECT 60 UNION SELECT 70 UNION SELECT 80 UNION SELECT 90) DISC 
+        name: VW_MEASURES_CURRENT_OPTIMIZE_1
+        noLinkRefs: []
+  name: VW_MEASURES_CURRENT_OPTIMIZE_1
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

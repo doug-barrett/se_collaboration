@@ -1,0 +1,166 @@
+fileVersion: 1
+id: b0d8f628-6c49-4225-813f-c82a61cd2dae
+name: VWA_DATE_FINANCIAL
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Type 1 Date Dimension - no surrogate key required
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7054acd3-779d-4b23-af3f-5d3fa90ca728
+          stepCounter: b0d8f628-6c49-4225-813f-c82a61cd2dae
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: CALENDAR_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 698bd8e1-66a3-4c00-b745-141f47201e74
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7700709d-9ec6-43ed-97fe-68d53564fc8b
+          stepCounter: b0d8f628-6c49-4225-813f-c82a61cd2dae
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        name: FINANCIAL_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2246e010-ea5d-4b5b-975a-a51a8a65b11c
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 42f5508e-5049-4915-b159-fea0d4792344
+          stepCounter: b0d8f628-6c49-4225-813f-c82a61cd2dae
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        hashDetails: null
+        name: FINANCIAL_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4002d1c2-ff8a-4b5f-927c-1f5be4257a85
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b458e6a1-6d6a-4ea5-8edb-5e75dd68c437
+          stepCounter: b0d8f628-6c49-4225-813f-c82a61cd2dae
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        hashDetails: null
+        name: FINANCIAL_YYWW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b60f7cc-94bc-46df-b522-0d7d00038d9b
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9608af14-f8cc-476e-a4d8-d89ee984d1aa
+          stepCounter: b0d8f628-6c49-4225-813f-c82a61cd2dae
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e887d56-d37d-4e5f-a594-6a55cc229433
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: NVL("DIM_DATE"."HOLIDAY_NAME", 'NO_HOLIDAY')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0fc8fcfd-a3d7-407d-8a9a-bfb8cdf84adc
+          stepCounter: b0d8f628-6c49-4225-813f-c82a61cd2dae
+        config: {}
+        dataType: DATE
+        description: ""
+        name: HOLIDAY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e352c8f9-a2d0-454f-9ccd-bc99876ed0fe
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 989aca26-8872-4d9c-abf0-06d735300576
+          stepCounter: b0d8f628-6c49-4225-813f-c82a61cd2dae
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: DAYS_FROM_HOLIDAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22bd57b6-cccd-4646-a050-f0bfb3b3fc6c
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0fa4b310-0722-4176-88aa-efe24fe06d8a
+          stepCounter: b0d8f628-6c49-4225-813f-c82a61cd2dae
+        config: {}
+        dataType: VARCHAR(9)
+        description: ""
+        name: DAY_IN_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 67b820c2-5429-4511-ae92-9b557e84d88f
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32ad60f7-10fb-4cd3-9476-e220e3fb3398
+          stepCounter: b0d8f628-6c49-4225-813f-c82a61cd2dae
+        config: {}
+        dataType: SMALLINT
+        description: ""
+        name: DAY_IN_WEEK_NO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 69f98120-cfdf-4305-b385-aeff86c942e3
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+        join:
+          joinCondition: FROM {{ ref('DATA', 'DIM_DATE') }} "DIM_DATE"
+        name: VWA_DATE_FINANCIAL
+        noLinkRefs: []
+  name: VWA_DATE_FINANCIAL
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

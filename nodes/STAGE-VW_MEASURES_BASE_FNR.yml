@@ -1,0 +1,119 @@
+fileVersion: 1
+id: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+name: VW_MEASURES_BASE_FNR
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e50df167-8e2a-465e-8582-e95e6f7366d3
+          stepCounter: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 939ad01b-91f8-4a74-b51c-8c72016a4bc5
+                stepCounter: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e876be78-3937-4a75-935a-f7ee8b4d9827
+          stepCounter: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4eac2c7b-8ee9-4320-bd25-1fdd243b7ff1
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f8852780-52d9-4fbd-817e-28e4a453867a
+          stepCounter: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b02fffad-934a-49d0-bbfc-19632e79d08f
+                stepCounter: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f9e7c93-7d54-46fd-8262-2c67e77cf1ae
+          stepCounter: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+        config: {}
+        dataType: DATE
+        description: ""
+        name: FNR_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bc9f787a-b624-475e-b36d-e03b47defe70
+                stepCounter: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6449dbe-6bd7-4912-8390-262b06086dd1
+          stepCounter: fef5d052-36e7-4d4a-aa09-caaf62395bf7
+        config: {}
+        dataType: NUMBER(20,10)
+        description: ""
+        name: FNR_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ddb7345-466e-4cc5-b28f-f061fe49a150
+                stepCounter: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_EVENTS_REGION: b4585615-226c-470e-8e85-be95816a6df2
+          FCT_FNR_FORECAST: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_EVENTS_REGION
+          - locationName: DATA
+            nodeName: FCT_FNR_FORECAST
+        join:
+          joinCondition: |
+            FROM {{ ref('DATA', 'FCT_FNR_FORECAST') }} "FCT_FNR_FORECAST"
+            JOIN {{ ref('DATA', 'DIM_EVENTS_REGION') }} "DIM_EVENTS_REGION"
+            ON "FCT_FNR_FORECAST"."ZONE_GEOGRAPHY" = "DIM_EVENTS_REGION"."ZONE_GEOGRAPHY"
+            AND "FCT_FNR_FORECAST"."PRODKEY" = "DIM_EVENTS_REGION"."PRODKEY"
+            AND "FCT_FNR_FORECAST"."FNR_DATE" BETWEEN "DIM_EVENTS_REGION"."EFFECTIVE_DATE" AND "DIM_EVENTS_REGION"."END_DATE"
+            AND "DIM_EVENTS_REGION"."EVENT_TYPE" <> 'EVENT'
+            QUALIFY ROW_NUMBER() OVER (PARTITION BY "FCT_FNR_FORECAST"."ZONE_GEOGRAPHY", "FCT_FNR_FORECAST"."PRODKEY" ORDER BY ABS(DATEDIFF(DAY, CURRENT_DATE, "FCT_FNR_FORECAST".FNR_DATE))) < 28
+        name: VW_MEASURES_BASE_FNR
+        noLinkRefs: []
+  name: VW_MEASURES_BASE_FNR
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

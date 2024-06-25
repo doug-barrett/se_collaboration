@@ -1,0 +1,116 @@
+fileVersion: 1
+id: 4d09d591-98ad-43c3-a210-a4b5613cb0f1
+name: VW_SCRAPE_COMPETITOR_CODES
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2405474d-cdba-4110-a587-9b04ed9d1069
+          stepCounter: 4d09d591-98ad-43c3-a210-a4b5613cb0f1
+        config: {}
+        dataType: STRING
+        description: ""
+        name: COMPETITOR_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba4167df-9b5c-401f-b825-8d0fdf018058
+                stepCounter: 79eea326-620c-4966-a48b-99be66ea42c8
+            transform: "\"EXT_SCRAPE_COMPETITOR_CODES\".\"VALUE\":\"c2\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8499014c-79b2-4335-adc3-4ef2cc4c06fc
+          stepCounter: 4d09d591-98ad-43c3-a210-a4b5613cb0f1
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ALT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba4167df-9b5c-401f-b825-8d0fdf018058
+                stepCounter: 79eea326-620c-4966-a48b-99be66ea42c8
+            transform: "\"EXT_SCRAPE_COMPETITOR_CODES\".\"VALUE\":\"c3\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 81f9d34d-8339-4f84-aacd-dbdab6f848c4
+          stepCounter: 4d09d591-98ad-43c3-a210-a4b5613cb0f1
+        config: {}
+        dataType: STRING
+        description: ""
+        name: COMPETITOR_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba4167df-9b5c-401f-b825-8d0fdf018058
+                stepCounter: 79eea326-620c-4966-a48b-99be66ea42c8
+            transform: "\"EXT_SCRAPE_COMPETITOR_CODES\".\"VALUE\":\"c4\"::STRING"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 19276cfa-6c9b-49db-92f1-6fb94a3bcf0d
+          stepCounter: 4d09d591-98ad-43c3-a210-a4b5613cb0f1
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba4167df-9b5c-401f-b825-8d0fdf018058
+                stepCounter: 79eea326-620c-4966-a48b-99be66ea42c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22d138f4-b83c-4abf-a980-510a8c601f86
+          stepCounter: 4d09d591-98ad-43c3-a210-a4b5613cb0f1
+        config: {}
+        dataType: STRING
+        description: ""
+        name: METADATA$FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a819ae01-50ee-4a08-9c5c-0af9503ed011
+                stepCounter: 79eea326-620c-4966-a48b-99be66ea42c8
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          EXT_SCRAPE_COMPETITOR_CODES: 79eea326-620c-4966-a48b-99be66ea42c8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: LAND
+            nodeName: EXT_SCRAPE_COMPETITOR_CODES
+        join:
+          joinCondition: FROM {{ ref('LAND', 'EXT_SCRAPE_COMPETITOR_CODES') }} "EXT_SCRAPE_COMPETITOR_CODES"
+        name: VW_SCRAPE_COMPETITOR_CODES
+        noLinkRefs: []
+  name: VW_SCRAPE_COMPETITOR_CODES
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

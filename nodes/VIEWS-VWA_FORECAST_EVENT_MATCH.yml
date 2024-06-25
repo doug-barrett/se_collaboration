@@ -1,0 +1,2010 @@
+fileVersion: 1
+id: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+name: VWA_FORECAST_EVENT_MATCH
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: "Just a bit of tidy up "
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 401868c4-51a0-4375-aa41-7ca3a9cca398
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: INTEGER
+        description: Generated artificial key
+        name: DIM_EVENTS_REGION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b70fdb0-ebd0-4ac6-bafb-0fa51641d2e3
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: NVL("VW_FORECAST_EVENT_MATCH"."DIM_EVENTS_REGION_KEY",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fcb46ed3-31d2-4581-a13d-288473f541dd
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(32)
+        description: ""
+        name: FORECAST_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 17d40edc-cff9-4325-92bb-60c58fc351b2
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8d2a4d9-9cae-4a70-a40e-68916c9f6cda
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87f2afb6-3ba1-415e-84ab-8d8d8fcf5a1f
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 782dd1f6-33e2-4bf3-9651-40b4673322ac
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 937a1b35-f3a6-4097-86f4-e8ea0cfa707a
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 84c25a32-a402-482f-9bd5-d51ce0da9283
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3a50a19a-d2e9-4f1e-82ed-c1645d25b47f
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4218707c-f9bf-48b9-bd58-3044f9a5411e
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DATE
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36a2e2f8-8627-412c-b2db-3d13faeb11da
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1cddb8b2-e8e2-41dc-9762-1af57fa21eae
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DURATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36a2e2f8-8627-412c-b2db-3d13faeb11da
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: |
+              DATEDIFF(DAY, "VW_FORECAST_EVENT_MATCH"."EFFECTIVE_DATE", VW_FORECAST_EVENT_MATCH."END_DATE") + 1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 686a483e-9db1-4016-be75-74528a200865
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: TIME_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d654bfb1-73f3-4f7c-9363-d68efd3fc32a
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: |-
+              CASE WHEN "VW_FORECAST_EVENT_MATCH".END_DATE < CURRENT_DATE THEN 'PAST'
+                   WHEN "VW_FORECAST_EVENT_MATCH".EFFECTIVE_DATE > CURRENT_DATE THEN 'FUTURE'
+              ELSE 'OPEN'
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fbf80bf1-b064-4394-b260-ea51f0ece814
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: CURRENT_OPEN_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36a2e2f8-8627-412c-b2db-3d13faeb11da
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: |-
+              CASE WHEN TIME_DESC = 'OPEN' THEN 'Y'
+              ELSE 'N'
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e5db7de3-4c06-4af6-a4ab-05019ce25a0c
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DAYS_PAST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36a2e2f8-8627-412c-b2db-3d13faeb11da
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: |-
+              CASE WHEN CURRENT_DATE > "VW_FORECAST_EVENT_MATCH".END_DATE THEN DATEDIFF(DAY, "VW_FORECAST_EVENT_MATCH"."EFFECTIVE_DATE", VW_FORECAST_EVENT_MATCH."END_DATE") + 1
+              WHEN CURRENT_DATE < "VW_FORECAST_EVENT_MATCH"."EFFECTIVE_DATE" THEN 0
+              ELSE DATEDIFF(DAY, "VW_FORECAST_EVENT_MATCH"."EFFECTIVE_DATE", CURRENT_DATE) + 1
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79807c10-353a-4b29-8ff0-38402f80d79b
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DAYS_LEFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36a2e2f8-8627-412c-b2db-3d13faeb11da
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: |-
+              CASE WHEN CURRENT_DATE > "VW_FORECAST_EVENT_MATCH".END_DATE THEN 0 
+              WHEN CURRENT_DATE < "VW_FORECAST_EVENT_MATCH"."EFFECTIVE_DATE" THEN DATEDIFF(DAY, "VW_FORECAST_EVENT_MATCH"."EFFECTIVE_DATE", VW_FORECAST_EVENT_MATCH."END_DATE") + 1
+              ELSE DATEDIFF(DAY, CURRENT_DATE, VW_FORECAST_EVENT_MATCH."END_DATE")
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b80ff6b5-4c6b-4b6a-962f-0ce27c0ff6f6
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: CURRENT_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e4ccce4f-5cd3-49a2-8f32-45b806b2b7bb
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: NVL("STG_MEASURES_CURRENT"."CPI",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f49cb7e6-a39e-4c04-a7e9-35b1af043ea0
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: CURRENT_INVENTORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1af2b6d-1cec-4741-ab06-533df4f696b7
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: NVL("STG_MEASURES_CURRENT"."INVENTORY",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25827438-20ef-485d-a993-12c0322f9678
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1af2b6d-1cec-4741-ab06-533df4f696b7
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: DIV0("AGG_SALES_EVENT"."UNITS_SALES", DAYS_PAST)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6c7c549e-fbac-4af7-9b23-5b51b3358420
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: CURRENT_DAYS_COVER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1af2b6d-1cec-4741-ab06-533df4f696b7
+                stepCounter: 6deaf504-e80c-4050-810f-1e356357d18c
+            transform: DIV0(STG_MEASURES_CURRENT.INVENTORY,SALES_PER_DAY)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e5f9dd91-9d8d-49ab-8673-5a9af7529abe
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: EVENT_EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 77eea41c-924a-40d1-a813-41ea43e1ce71
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: be8c7f11-191f-4882-89f9-1da992ac6ecf
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: EVENT_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cebdfdc4-ef11-4a36-bba2-b9a62882663c
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a7f0cfc-fe45-4af8-9fd6-1743342ff73c
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: EVENT_WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6044ed71-8c9b-4b9f-b487-016d20a540be
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: NVL("VW_FORECAST_EVENT_MATCH"."EVENT_WAS_PRICE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1c66dd1e-d5b6-4a7c-bd51-f0f7253f0d84
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: EVENT_NOW_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5aad3b45-2c1e-447d-97af-c6fa30b5de77
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: NVL("VW_FORECAST_EVENT_MATCH"."EVENT_NOW_PRICE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 51d5eecc-d266-4b49-bd04-82c0cc8eb957
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: EVENT_DISCOUNT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 54bcb8a8-0506-43ed-b46e-af327c4994a7
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb42a675-ea32-45bf-a898-08d374fde734
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: FORECAST_EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 00fe0a70-8899-4d20-a157-990e85d96232
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a8eee69a-a48b-40a4-b735-b2af11aea8cf
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: FORECAST_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cbc90f9b-7d57-45a5-808c-a4f98b7f193e
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3cbdb9e4-0227-4405-827d-d6dec6a9f0ce
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: FORECAST_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2676729c-62e8-4628-aa4b-2f96f679e6a8
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c9ca16c4-d931-4853-a878-9edd08a66262
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: FORECAST_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b3a38d0a-e7cc-48d7-bffb-876a6f6c4988
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7a95e9f-3728-4209-b6c4-afeb253e8f22
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        hashDetails: null
+        name: FORECAST_DAYS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b125a053-59d9-4101-8163-a46c36c3924a
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: NVL("VW_FORECAST_EVENT_MATCH"."FORECAST_DAYS",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e0375a5-bffa-4a3d-a4c8-bbe012597991
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: FORECAST_WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 88e0b680-4943-44ba-a608-6eec79da55a2
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: NVL("VW_FORECAST_EVENT_MATCH"."FORECAST_WAS_PRICE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 146c9c83-979a-48a9-a824-8785b5b2f7b8
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: FORECAST_NOW_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 714f1ab7-76e2-43e1-a9ea-1cafff377cb5
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: NVL("VW_FORECAST_EVENT_MATCH"."FORECAST_NOW_PRICE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c534a06d-9b0f-4e9a-8bc6-46b82b43b357
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: MATCH_OBSERVATION
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 17d40edc-cff9-4325-92bb-60c58fc351b2
+                stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+            transform: |-
+              CASE WHEN "VW_FORECAST_EVENT_MATCH"."FORECAST_KEY" IS NULL THEN 'NO PLAN'
+              WHEN "VW_FORECAST_EVENT_MATCH"."DIM_EVENTS_REGION_KEY" IS NULL THEN 'NO ACTUAL'
+              ELSE 'PLANNED PROMO'
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f1d928d-7d64-404e-9dcf-112fa236b630
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PROMO_OBSERVATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4cc7dcf5-6242-4909-834b-a840ca69c867
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0cbe80a0-e27f-456e-88fa-f90f644242b9
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: SUGGESTED_ACTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4cc7dcf5-6242-4909-834b-a840ca69c867
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: |+
+              CASE 
+                WHEN VW_FORECAST_EVENT_MATCH."FORECAST_KEY" IS NULL THEN 'Create a plan'
+                WHEN "AGG_SALES_EVENT"."UNITS_SALES" = 0 THEN 'No volume'
+                WHEN -- Not enough Inventory
+                     CURRENT_OPEN_FLAG = 'Y' 
+                 AND NVL(STG_MEASURES_CURRENT.INVENTORY, 0) > 0 
+                 AND CURRENT_DAYS_COVER < DAYS_LEFT THEN 'Get more stock'
+                WHEN -- Ahead of plan
+                  NVL("AGG_SALES_EVENT"."UNITS_SALES",0) >  NVL(VW_FORECAST_TO_DATE."UNITS_TO_DATE",0) THEN 'Ahead of plan'
+                WHEN -- Investment
+                     "AGG_SALES_EVENT"."UPLIFT_MARGIN" < 0 
+                 AND "AGG_SALES_EVENT"."UPLIFT_UNITS" > 0 THEN 'Get more SOA'
+                WHEN -- Behind plan
+                  NVL("AGG_SALES_EVENT"."UNITS_SALES",0) < NVL(VW_FORECAST_TO_DATE."UNITS_TO_DATE",0) THEN 'Lower the price'
+              ELSE 'Good Promo'
+              END
+
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 43ad92ee-8706-47d4-a4c9-8002606fa262
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: EVENT_TYPE_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d654bfb1-73f3-4f7c-9363-d68efd3fc32a
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15805103-bf31-4451-8ecf-1981da478a2a
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: EVENT_DURATION_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 15777f5f-5dd6-4072-92a8-14ec820dfce7
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a7ea02b-64ce-4359-81b4-d1755e16ceca
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: EVENT_BASE_DURATION_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8a60d726-14fa-428e-8427-8e64b0995ae6
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 46563d95-3bbd-4b89-8772-d6f9a5e0e6b6
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: EVENT_MARGIN_UPLIFT_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 69137c28-865e-4e3a-b8c3-74925d1ac004
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39624ba4-3ec2-44c1-b77d-ccc2981d2f71
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: EVENT_CPI_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cd35b380-5ab7-4c7b-983a-f8ffa9b2b643
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 98681cbd-b4bb-4b26-a52d-1c47c896d54a
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: EVENT_PRICE_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a11b3c05-7411-4562-8e3a-ab367ef2f34b
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fcc39177-2dec-4adf-8b6d-f7bf200594d7
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: EVENT_DISCOUNT_BUCKET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f3a133a7-ae84-42be-bc85-1d9195af5a98
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."DISCOUNT_BUCKET",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0eaecaa8-7478-454a-9b09-2a00ae235790
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: EVENT_HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 597c9047-8e0e-4197-bf44-c961fc5a4cfb
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 779fbd71-eda1-4c41-b356-03f0d885faa5
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: EVENT_CAMPAIGN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b60edcec-bc23-4e13-a265-f7879923bd9e
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dd0fc493-89f0-41a2-a9c0-8f0ec2d3f7a0
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: EVENT_CAMPAIGN_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ced878ba-1056-4d9c-a115-bbde8e737677
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2df2b986-e45c-466d-a191-100c57e68c1e
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: EVENT_FINANCIAL_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 323e37b6-bad2-4581-a6d5-ef2d97bc3938
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d9369c45-256c-45af-a2a9-38605716b810
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: EVENT_FINANCIAL_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f016bc35-4a45-435c-8345-dbb0ac9db1a6
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."FINANCIAL_WEEK",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bcfc934e-bb62-443c-8e1b-f3276c304a23
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EVENT_BASE_EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab9ddb77-ee4d-4c5d-9273-efc0f68b660d
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a58be08b-fc01-4761-a31a-71e63212e3fb
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EVENT_BASE_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 216d2fe3-fccb-41da-aa9e-bb2b51290c8a
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a63e2f5-a50a-42f3-a6d4-24c9febff075
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: INT
+        description: ""
+        name: EVENT_BASE_DURATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a8668381-8eb4-4afb-97d7-fabeca1c3c4e
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."BASE_DURATION",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6075e997-a83f-42db-be50-e1815892d9a4
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: EVENT_BASE_EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7469b639-e0db-4430-9224-cdeb6a06d126
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2695b4f1-b4ae-45f9-a6cf-af29692e794b
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 83cf6b2a-c9e3-477f-9960-e3d1281340bb
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."PRICE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a6159b6f-7f62-4b0c-bb3a-600bca6d025c
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_BASE_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 428cb2f5-3cfb-418b-8871-2f0eb7fef596
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."BASE_PRICE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3674e5e0-3c63-45e9-9ef4-e08a1ff0a2a7
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_DISCOUNT_RATIO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1db7ebec-86fa-42c2-949e-0cdba0d95ece
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."DISCOUNT_RATIO",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fad1d44-6406-4e2e-89ad-997cc6f8f70d
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: EVENT_BASE_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d50ecc8b-5bbf-4586-89aa-d559b64c96ba
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."BASE_UNITS",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b2d3102b-9e00-48a3-9c15-7b14d3341614
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: EVENT_UNITS_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3296bc31-8a60-44f4-add3-e8c01027177a
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."UNITS_SALES",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 103476bd-9b9c-4a95-ba8d-b5ff8a430e11
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: EVENT_UPLIFT_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1962bcc-8afa-4a7f-93b8-a64262f1f5e2
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."UPLIFT_UNITS",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4938e3cf-63f7-400b-9f3d-a28e011370a8
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: EVENT_SALES_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 07ea6c9c-65b2-4642-b769-06c261fe10b2
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."SALES_SALES",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b0ba67b2-6f2d-48d0-9448-ad56a5de5a55
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: EVENT_BASE_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f4c5996-b5b6-41c8-ac4e-237442833cec
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."BASE_SALES",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 33167ec8-4efa-4cd6-9b3e-3b719a45f5af
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: EVENT_UPLIFT_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7f074277-47af-4943-8ff4-38f93124b28a
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."UPLIFT_SALES",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 581e1fc4-5eac-4e90-8330-3137e2e56472
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: EVENT_MARGIN_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ae48cd65-a810-4410-877a-26b6b3f7c419
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."MARGIN_TOTAL",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7b3077a3-7b9a-444d-8df7-749ac532ff76
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: EVENT_BASE_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 50575efc-70c9-4487-b8ec-67508286418f
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."BASE_MARGIN",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2e67022-1cd8-4392-8355-2de45973fbb1
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: EVENT_UPLIFT_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39e12ba2-f74a-43fc-83ed-5831a55ed88f
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."UPLIFT_MARGIN",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a9ccf3dd-a90e-4315-a731-f64d30db2d13
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_ACP_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8c7e4235-3cbb-4b64-9dd8-c51e897976b9
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."ACP_PER_UNIT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6048a16-191c-4035-89b1-d1aa3044121c
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_UBC_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a63bac6c-8146-4657-9552-db2466faa743
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."UBC_PER_UNIT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 73cfa907-1410-48f7-8455-b35a9dfbe9d3
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_SOA_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1c57ae91-d780-4668-806d-edaf8893ad3b
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."SOA_PER_UNIT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d82f739e-dd96-478d-bd9e-b419a745cf81
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_COST_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 03b5bc5b-2b5f-4df1-b4b5-238106c07834
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."COST_PER_UNIT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78bdba48-2721-449d-8d17-51b9e33b16ea
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: EVENT_APPLIED_TA_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0728ba2f-f338-4b39-a100-849ab4f5ea5f
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."APPLIED_TA_PER_UNIT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3bebc79-996c-465c-9d20-ef262b2ec89c
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: EVENT_SOA_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 13f8f6c0-c6ad-4efd-b123-37df747ef6d8
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."SOA_TOTAL",0)
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ef87e95-18df-4968-b7ac-9332381703b5
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_RETAILER_SOA_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8bbeecf1-c2f3-4e9e-81c1-c6dff44b51f7
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."RETAILER_SOA_TOTAL",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f4048c97-324f-44d3-b72b-0da5ed3fa15d
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: EVENT_MARGIN_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 05f5c799-b156-4dcb-b20f-9558c5f4784c
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."MARGIN_PER_UNIT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 19801ffd-83fc-4240-a8a2-64a251306aab
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: EVENT_MARGIN_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db9d5b08-095f-45dd-9396-4e946e190ad4
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."MARGIN_PERCENT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3f02b13-7792-4482-83e1-dcac18b6ed2c
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: EVENT_MAINTAIN_MARGIN_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: de57eda2-b780-4c35-90fd-71a1c21fffc6
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."MAINTAIN_MARGIN_TOTAL",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 658d88f7-0d24-4a1e-9b29-a5e86eba5995
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: EVENT_CURRENCY_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f62a03ef-2927-4674-a876-df5ac13f78e3
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f8ee2af1-c27c-4b60-a246-32f8288be508
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(13,2)
+        description: ""
+        name: EVENT_INVENTORY_MIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ced3eed-36df-416d-ae79-b8bb8748ac7d
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."INVENTORY_MIN",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1cb30f52-eb6d-4a83-8edf-6d9e3a7f1c36
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(12,6)
+        description: ""
+        name: EVENT_INVENTORY_WGT_MIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 28d85da1-ce73-4903-8569-ec0e35194d51
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."INVENTORY_WGT_MIN",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e6225e9-1d64-49dc-8477-7805a4f1caea
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(13,2)
+        description: ""
+        name: EVENT_INVENTORY_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7f72c05-28fe-40f8-b668-c7442b8ccd52
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."INVENTORY_AVG",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e4da97f-1f96-4703-964c-89898d087ad0
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(12,6)
+        description: ""
+        name: EVENT_INVENTORY_WGT_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6a67d486-600b-46fb-ae85-18c761397643
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."INVENTORY_WGT_AVG",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7260d9b2-083f-443f-a905-01c758f339fc
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7f48100c-daea-48e3-9718-17facad5856c
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."CPI",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: de2e4bd4-4e7f-4abf-bc50-41f7b8542f07
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_PRIOR_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 49042148-6e5c-456e-94b1-2a12b2e762dd
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."PRIOR_CPI",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b3f2aff-f4e5-4f2c-ba8e-06bad59240bd
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: EVENT_CURRY_CHEAPEST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1abf2d78-8dd8-4ed7-8781-78a022684454
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a609f74-e4df-4fa6-8b1c-65201477776d
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: EVENT_CURRY_CHEAPEST1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8c4f2e3e-21c3-4e58-9895-646cb3ef87c8
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 20691730-11c7-4af4-9dc6-0306f2555691
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: EVENT_CURRY_CHEAPEST2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a9eeb15d-0084-498d-8082-d9a66cdfcd66
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 611d5524-f7a2-47d8-a67e-8cb994965458
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: EVENT_CURRY_CHEAPEST3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9ca93b6b-fb63-4a93-b57f-edb333b2405b
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85d7d977-b070-4f6a-89a5-a2d4052bab7d
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: EVENT_CURRY_CHEAPEST4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 48912357-a661-4318-bc5f-aca6776dd346
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3954e104-4844-40cb-a328-3c58dc228126
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: EVENT_CURRY_CHEAPEST5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b3c0a77-b652-40f1-9342-82130662999f
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 51a1f40c-9510-4aeb-ba71-2623fae37f5e
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: EVENT_CURRY_CHEAPEST6
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e98f0101-43f4-4718-97df-44f0845fe004
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f70fcabd-59ce-4162-ba22-28550f07c7af
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: EVENT_CURRY_CHEAPEST7
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6362f7c4-1443-41c6-a32e-4aba4746f1c8
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed7de691-2756-4db6-aa1b-a136f5bbc64a
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_AVG_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac6a9d49-68b8-4630-b6cf-5a397d72d0b5
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."AVG_CPI",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e6c8b30-2278-4d5d-a0a9-a13c33075e03
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_MIN_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cc79c2a6-c132-4c76-be2f-683052ef2d03
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."MIN_CPI",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8285b60-f2ac-45cf-884e-36a3f4294658
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: EVENT_MAX_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 013c56ba-9e8a-46d0-93ba-9ce7b0c52889
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."MAX_CPI",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4b7b8c6e-edd7-4f36-8f9c-0b1466bb9ec7
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: EVENT_CURRY_CHEAPEST_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8479983-d927-45da-8934-035ff4603be0
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."CURRY_CHEAPEST_COUNT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bcad500a-d6df-4878-a9f3-f49676b4bfac
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: EVENT_CURRY_NOT_CHEAPEST_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b26db24e-3029-42d1-ace9-d02382f12904
+                stepCounter: 44e24440-cd16-4f34-bf87-e0796818623f
+            transform: NVL("AGG_SALES_EVENT"."CURRY_NOT_CHEAPEST_COUNT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bfe0bf20-4fa6-49f0-95d7-7859bfbb5ded
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_SOA_2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6c0f5c9-9a73-4834-99d4-0df809454e5b
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."SOA_2",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9147a9d7-d1fe-4017-b5b8-21bfdab1de2f
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_DISCOUNT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bfa00662-8126-4874-a288-93a1b69054b4
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."DISCOUNT_PERCENT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: be522a97-96a5-4bb5-9f7f-da83d4b54883
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_DISCOUNT_BUCKET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 26b64f2e-a5ef-44a5-ac25-b0e661cdd3ad
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."DISCOUNT_BUCKET",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7bd5bd5c-1660-420f-8035-ec3fb01fe88d
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: FORECAST_MARGIN_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 94dffd8e-2fcf-4fc5-8d09-0f079102a62b
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."MARGIN_PER_UNIT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d44a52e-de3d-428d-84e5-4b855de39bad
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: FORECAST_MARGIN_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6201b21e-5c5f-42fa-a133-6be49214744d
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."MARGIN_PERCENT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 95811d17-b226-47b3-a5b9-22e9bde136c2
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_BASE_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1e1a37e-fda9-4e4e-8899-ad42930253ba
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."BASE_UNITS",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2381fe25-cc95-45e6-a306-972a1edc836c
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FORECAST_TOTAL_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a206b410-30f8-446e-98dd-01df45711011
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."TOTAL_UNITS",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fbbbfd7f-74b8-41a9-af91-d588ca48bff7
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FORECAST_UPLIFT_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 278cd292-b747-4288-839a-ee46b3685af2
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."UPLIFT_UNITS",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a3c229b7-48cb-445b-87e0-ce3dbbbe9dc9
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_BASE_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0c33db2a-7281-42a3-a661-6e1d0acdfe1e
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."BASE_SALES",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 521733e9-1ccc-484d-a577-1c4ec1dbbbc2
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_TOTAL_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1914250-c400-42dc-8486-59ca74222362
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."TOTAL_SALES",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eddfcb13-9c63-4fce-95fa-b9d37b62d0ae
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_UPLIFT_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 46545e48-6e0a-41a3-8097-4d752a3a6a02
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."UPLIFT_SALES",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e15dc3d-0aa6-4b63-9196-88d1df12e9b4
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_TOTAL_COSTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b8f237a-02bd-4174-8fa4-e4a0cc54d7f4
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."TOTAL_COSTS",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 987bfa01-2ddf-47dc-af11-70502848ad2c
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_BASE_COSTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9a78f303-f0b2-4be3-b780-fa421e869f82
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."BASE_COSTS",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 40121aaf-cd81-4033-82b7-9885f54ab92f
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_BASE_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 71494a8e-38c2-401a-bea3-b9f19fc2242a
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."BASE_MARGIN",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 434042ac-0166-4c9e-8dc6-aebf60c671d8
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_TOTAL_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 16973e52-fa39-4222-b9c1-004eac1dc8fe
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."TOTAL_MARGIN",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b7740876-48f6-4d10-9cf9-aaff414e3b0d
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(38,19)
+        description: ""
+        name: FORECAST_UPLIFT_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 51587fff-8343-4a8e-b9fd-c20355494a6a
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DS_FORECAST"."UPLIFT_MARGIN",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 530719de-f1d2-43dc-a8a6-adecbfbdb1ae
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: FORECAST_HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 58247950-7069-40d7-8216-eeb2163ba683
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 226593ac-136f-4e9a-82e4-549ce9b36d9d
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: FORECAST_CAMPAIGN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ff54faa1-1f00-4449-9a69-e5585fad12fd
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87bebe34-e9d9-4137-a6f5-75725bd8bec7
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: FORECAST_DAYS_LEFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7dad559e-a987-4bba-b191-c67ed8cf5876
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: NVL("VW_FORECAST_TO_DATE"."DAYS_LEFT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c2062946-736e-489d-8601-d31d3aec526f
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FORECAST_COMPLETENESS_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4a52991b-fbbe-4b63-97c6-72872407b94d
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: NVL("VW_FORECAST_TO_DATE"."COMPLETENESS_PERCENT",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 033a91c4-a2a2-4947-b280-617a2960c6b2
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: FORECAST_STARTED_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 247fff01-1829-43b3-95e4-b8b5880696cd
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 259c37de-2319-4c34-bffa-4cd57242c21f
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: FORECAST_RUNNING_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c08412c0-34d0-4f06-8069-e817d8204fb1
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b679c9ba-af36-4b8e-939f-0f77d4542e84
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: FORECAST_COMPLETED_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aac55202-5ab2-4152-9285-131526005746
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0687d8bd-88de-4881-8c1d-8f5ae0032496
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_BASE_UNITS_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0e630939-cea7-4369-ab77-2d19158e828c
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: NVL("VW_FORECAST_TO_DATE"."BASE_UNITS_TO_DATE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a3a1f291-5ed5-4a8c-ba3e-9e48b2bc3fb1
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FORECAST_UNITS_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b7838de8-52f6-43ec-a5bf-968267359cf6
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: NVL("VW_FORECAST_TO_DATE"."UNITS_TO_DATE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db324c22-b007-4b84-8cdc-3a17b4ecbec0
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_SALES_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e35a02d0-8405-4f69-b2cd-670771ce3a47
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: NVL("VW_FORECAST_TO_DATE"."SALES_TO_DATE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41d4055e-4c65-47fc-88cb-dbc974b9a63e
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_MARGIN_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d271bec-f552-48a8-ae00-11fd8d35c1b3
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: NVL("VW_FORECAST_TO_DATE"."MARGIN_TO_DATE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9c187f05-7b8e-4b3b-9a12-4022cc4b2b9a
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FORECAST_UNITS_VARIANCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b7838de8-52f6-43ec-a5bf-968267359cf6
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: FORECAST_UNITS_TO_DATE - EVENT_UNITS_SALES
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03399eea-148c-46a2-984b-be0808fb46f5
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FORECAST_UNITS_VARIANCE_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b7838de8-52f6-43ec-a5bf-968267359cf6
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: 100 * DIV0(FORECAST_UNITS_VARIANCE, FORECAST_UNITS_TO_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7fc0ebaf-2b88-479e-8640-e2826ca4a1cb
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_SALES_VARIANCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e35a02d0-8405-4f69-b2cd-670771ce3a47
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: FORECAST_SALES_TO_DATE - EVENT_SALES_SALES
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b8fc9b15-2434-4b6b-9a38-34869067fb24
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_SALES_VARIANCE_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e35a02d0-8405-4f69-b2cd-670771ce3a47
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: 100 * DIV0(FORECAST_SALES_VARIANCE, FORECAST_SALES_TO_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fbb25def-14ec-47c4-85c5-7c230a995de6
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_MARGIN_VARIANCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d271bec-f552-48a8-ae00-11fd8d35c1b3
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: FORECAST_MARGIN_TO_DATE - EVENT_MARGIN_TOTAL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa7705ca-fc6c-46cf-8c91-06fe6abf14ea
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: FORECAST_MARGIN_VARIANCE_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d271bec-f552-48a8-ae00-11fd8d35c1b3
+                stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+            transform: 100 * DIV0(FORECAST_MARGIN_VARIANCE, FORECAST_MARGIN_TO_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c38598a-fea1-479e-a92e-b43897e7b826
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 44ec9c8f-f896-42cb-9436-1c15d0e43c48
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc3e72f9-cf1b-401c-b7b0-c282732d1687
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: MANUFACTURER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e9fd59ca-560a-4d5d-8c48-da1fe1a75f88
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a00f4112-9d75-42bf-9989-e21fbfb52109
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL1_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9267fd6e-e1a5-46c9-b5d0-9ba356c370b9
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 257d208d-77bb-4e81-ae66-05557cd4ca3e
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL2_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0067af8f-65e3-40b3-94f6-ba83ff100402
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e062501c-b70c-46ca-8a35-d45fc58f5f0a
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d51521a9-8a90-4dce-ac03-335f02066694
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f663608-4cbe-4024-b0d1-1af3693327ec
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL4_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7f7020e6-6fe3-441c-8476-cce6609cdc5d
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e3ea5b6-1d2a-45a9-869d-7f813d6e3834
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL5_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d98d3125-e0ee-48d6-9390-7a135d41688e
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1ea89dfe-78b5-491e-b905-bbec1a2e93ff
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: DECIMAL(38)
+        description: ""
+        name: ITEM_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a3b863f0-c55d-482e-95bf-84d4f28cffe0
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: NVL("VWA_PRODUCT"."ITEM_STATUS",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c47224ca-26d2-42de-8d99-67014d759900
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: PRODUCT_GROUP_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25fb8aed-aa37-4c23-9015-28d05ccb99d0
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49b7f85a-8ed4-4136-b7b7-73e4193b0da9
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: PRODUCT_GROUP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc6461e9-2b68-4c0d-bf9f-11f3e1b62ee1
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6227efc6-e0a3-45b1-9fc8-9bde0f40da26
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: VARCHAR(150)
+        description: ""
+        name: PRODKEY_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e81eae71-3703-4de6-a1fc-40c8c8a121ad
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eaf29509-20b5-4cd2-99a6-b2885d198f12
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PRICE_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c19998ea-f6bb-48e4-bf94-9f8bfa2fd2df
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b2e8d5a-f9af-4220-aeb9-36c589d0f49f
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: VOLUME_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5df15876-ed2d-4330-83f5-183fe7a7abb8
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3183d553-3855-419e-b15b-c2ca4a3c6afa
+          stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        config: {}
+        dataType: STRING
+        description: ""
+        name: MA_CAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab2bdee5-33f3-489f-ac4f-30b324b15d6a
+                stepCounter: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          AGG_SALES_EVENT: 44e24440-cd16-4f34-bf87-e0796818623f
+          DS_FORECAST: e6e000e3-f962-4187-a382-475935ae8974
+          STG_MEASURES_CURRENT: 6deaf504-e80c-4050-810f-1e356357d18c
+          VWA_PRODUCT: 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+          VW_FORECAST_EVENT_MATCH: e4033997-2a90-4bca-8e15-a8eb61d67a69
+          VW_FORECAST_TO_DATE: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: AGG_SALES_EVENT
+          - locationName: DATASTORE
+            nodeName: DS_FORECAST
+          - locationName: STAGE
+            nodeName: STG_MEASURES_CURRENT
+          - locationName: STAGE
+            nodeName: VW_FORECAST_EVENT_MATCH
+          - locationName: STAGE
+            nodeName: VW_FORECAST_TO_DATE
+          - locationName: VIEWS
+            nodeName: VWA_PRODUCT
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_FORECAST_EVENT_MATCH') }} "VW_FORECAST_EVENT_MATCH"
+            INNER JOIN {{ ref('VIEWS', 'VWA_PRODUCT') }} "VWA_PRODUCT"
+            ON "VW_FORECAST_EVENT_MATCH"."PRODKEY"= "VWA_PRODUCT"."PRODKEY"
+            LEFT JOIN {{ ref('DATA', 'AGG_SALES_EVENT') }} "AGG_SALES_EVENT"
+            ON "VW_FORECAST_EVENT_MATCH"."DIM_EVENTS_REGION_KEY" = "AGG_SALES_EVENT"."DIM_EVENTS_REGION_KEY"
+            LEFT JOIN {{ ref('DATASTORE', 'DS_FORECAST') }} "DS_FORECAST"
+            ON "VW_FORECAST_EVENT_MATCH"."FORECAST_KEY" = "DS_FORECAST"."FORECAST_KEY"
+            LEFT JOIN {{ ref('STAGE', 'VW_FORECAST_TO_DATE') }} "VW_FORECAST_TO_DATE"
+            ON "VW_FORECAST_EVENT_MATCH"."FORECAST_KEY" = "VW_FORECAST_TO_DATE"."FORECAST_KEY"
+            LEFT JOIN {{ ref('STAGE', 'STG_MEASURES_CURRENT') }} "STG_MEASURES_CURRENT"
+            ON "VW_FORECAST_EVENT_MATCH"."ZONE_GEOGRAPHY" = "STG_MEASURES_CURRENT"."ZONE_GEOGRAPHY"
+            AND "VW_FORECAST_EVENT_MATCH"."PRODKEY" = "STG_MEASURES_CURRENT"."PRODKEY"
+        name: VWA_FORECAST_EVENT_MATCH
+        noLinkRefs: []
+  name: VWA_FORECAST_EVENT_MATCH
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

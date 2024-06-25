@@ -1,0 +1,65 @@
+fileVersion: 1
+id: 4f42da76-389c-4f5b-9aa1-b64b45f36f49
+name: REF_PRICE_LIST
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: ""
+  locationName: REFERENCE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 329cd077-deda-4bc0-b703-8ee4e1c811b9
+          stepCounter: 4f42da76-389c-4f5b-9aa1-b64b45f36f49
+        config: {}
+        dataType: VARCHAR(20)
+        defaultValue: ""
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1bf8e6b5-b2ff-43a0-b158-109fbb3333d6
+          stepCounter: 4f42da76-389c-4f5b-9aa1-b64b45f36f49
+        config: {}
+        dataType: VARCHAR(255)
+        defaultValue: ""
+        description: ""
+        name: PRICE_LIST
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ebbf1630-bcd9-49db-bc80-a8199d2cfbf2
+          stepCounter: 4f42da76-389c-4f5b-9aa1-b64b45f36f49
+        config: {}
+        dataType: NUMBER(12,2)
+        defaultValue: ""
+        description: ""
+        name: PRICE_POINT
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+    join:
+      joinCondition: FROM {{ ref('REFERENCE', 'REF_PRICE_LIST') }}
+  name: REF_PRICE_LIST
+  schema: ""
+  sqlType: Source
+  table: REF_PRICE_LIST
+  type: sourceInput
+  version: 1
+type: Node

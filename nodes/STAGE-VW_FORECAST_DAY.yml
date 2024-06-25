@@ -1,0 +1,480 @@
+fileVersion: 1
+id: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+name: VW_FORECAST_DAY
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: "Just a bit of tidy up "
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d1c5cf8-05cd-485d-a12c-975d02bdbf11
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: VARCHAR(32)
+        description: ""
+        name: FORECAST_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d432410f-eaf1-4025-b37a-86edf9c569b2
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3a775e6-2770-4bd0-a611-f5098d1f4f47
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ac2350f-fd4a-4b58-b189-286d1607f7c9
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b3f9a48-d33f-450f-bc1a-5ec6fabb7a3e
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e157cdf4-fffd-4bc4-aa6d-19be8d45bf61
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a07a6b91-fecd-4271-af85-a1f312256363
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76b80dd0-990c-439c-9b2a-f320fd772670
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 67797555-ff56-405c-97cc-e63610f0d530
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a308c7d-92e4-4704-942d-19a11b63f6e9
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d44ded03-d1a1-4ef2-ad8a-bc0f390de940
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2257aa01-dacc-4166-a5d6-caaa3577e2f6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: deb0ad6f-df26-4e22-9a3b-d7b343ae0465
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e887d56-d37d-4e5f-a594-6a55cc229433
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d3133f2-52a2-4b87-833a-57a4d6143262
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: DATE
+        description: ""
+        name: TRANSACTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 698bd8e1-66a3-4c00-b745-141f47201e74
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7ce659c-ffdc-4f3f-bafd-6849f591d756
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: DAY_IN_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 69f98120-cfdf-4305-b385-aeff86c942e3
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: DAYNAME("DIM_DATE"."CALENDAR_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: efbd59ad-70b5-45cf-a0ca-d7b267d3c286
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: DAYS_FROM_HOLIDAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22bd57b6-cccd-4646-a050-f0bfb3b3fc6c
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ae69e00-d453-4771-bba0-c04fa7ea98e5
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6fd198e7-b8ff-40cb-ba11-b546288b36f0
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70100fdf-0e12-4725-a9b3-596d85009a8b
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0977a9a9-ef5e-402e-a0ae-5e948477e6c6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: abe703b0-70cb-4e54-aeee-c2ef288aab5c
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        hashDetails: null
+        name: DAYS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7fec432-6c18-4516-99ad-4821d8195779
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1ab93b08-ee26-432a-9402-d3293c464756
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9c67e70-224e-49e4-b85a-75404655c8b6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 178b27b7-4f1c-4946-ba47-c6e7b9cb9c9f
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: NOW_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d9673f1-53de-4c07-8ae5-c84eec6dc275
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: afc04bea-5870-4c44-bd5e-2907a9bed4c3
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: SOA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 90b578b4-974d-4967-9d41-cbab97b4eb52
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a136d6f-0b87-4afd-bbc0-6c7aa09ab021
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: SOA_2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6c0f5c9-9a73-4834-99d4-0df809454e5b
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8aa7a18e-33b7-4df5-8611-51e531bb82ba
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: BASE_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1e1a37e-fda9-4e4e-8899-ad42930253ba
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 212c5837-6364-4711-b483-a2ccb45c006f
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: TOTAL_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a206b410-30f8-446e-98dd-01df45711011
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c2577f6-c5b9-4a8e-b85f-cf05e2d4b561
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: TOTAL_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1914250-c400-42dc-8486-59ca74222362
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a059573c-c7b0-4a18-9f55-8fabcf1d49f9
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: TOTAL_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 16973e52-fa39-4222-b9c1-004eac1dc8fe
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e9d7c6d-cc2e-4a6a-b657-c8d3b6c585c2
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(12,6)
+        description: ""
+        name: UNITS_RATIO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 600594e8-8b5a-42c2-b9cd-f2b30b1334ae
+                stepCounter: 592b6ec9-1980-4c8d-b3c8-598b66417984
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32818301-6d27-4cb8-b195-acd3591692f7
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(12,6)
+        description: ""
+        name: UNITS_RATIO_SUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e34e2e4f-4ba7-4f40-90be-c7c9fc1c3874
+                stepCounter: 39a4cb47-b48d-448b-9847-6d2fbeb149d3
+            transform: SUM("STG_FORECAST_PROFILE"."UNITS_RATIO") OVER (PARTITION BY "DS_FORECAST"."FORECAST_KEY")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48d1267f-9f97-4591-a4df-a9d6504ceaed
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: ""
+        defaultValue: ""
+        description: ""
+        name: UNITS_RATIO_APPLY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: DIV0("STG_FORECAST_PROFILE"."UNITS_RATIO", UNITS_RATIO_SUM)
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ebe1c360-1102-40cb-aa05-9e03630bba77
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: BASE_UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1e1a37e-fda9-4e4e-8899-ad42930253ba
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: BASE_UNITS * UNITS_RATIO_APPLY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd0faef7-5fce-4b95-ad84-490f6540950b
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a206b410-30f8-446e-98dd-01df45711011
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: TOTAL_UNITS * UNITS_RATIO_APPLY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7777a5d9-f958-4672-87be-533c06adc84d
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1914250-c400-42dc-8486-59ca74222362
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: TOTAL_SALES * UNITS_RATIO_APPLY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1238c0e7-a552-42fa-b99f-640ffabaf2eb
+          stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: MARGIN_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 16973e52-fa39-4222-b9c1-004eac1dc8fe
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: TOTAL_MARGIN * UNITS_RATIO_APPLY
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
+          DIM_PRODUCT: 99510b9e-1d3e-4709-93b8-2042202093b0
+          DS_FORECAST: e6e000e3-f962-4187-a382-475935ae8974
+          STG_FORECAST_PROFILE: 592b6ec9-1980-4c8d-b3c8-598b66417984
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: DATASTORE
+            nodeName: DS_FORECAST
+          - locationName: STAGE
+            nodeName: STG_FORECAST_PROFILE
+        join:
+          joinCondition: |+
+            FROM {{ ref('DATASTORE', 'DS_FORECAST') }} "DS_FORECAST"
+
+            JOIN {{ ref('DATA', 'DIM_DATE') }} "DIM_DATE"
+            ON "DIM_DATE"."CALENDAR_DATE" BETWEEN "DS_FORECAST"."START_DATE" AND "DS_FORECAST"."END_DATE"
+
+            JOIN {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            ON "DS_FORECAST"."PRODKEY" = "DIM_PRODUCT"."PRODKEY"
+
+            LEFT JOIN {{ ref('STAGE', 'STG_FORECAST_PROFILE') }} "STG_FORECAST_PROFILE"
+            ON "DS_FORECAST"."ZONE_GEOGRAPHY" = "STG_FORECAST_PROFILE"."ZONE_GEOGRAPHY"
+            AND "DIM_PRODUCT"."LEVEL3_DESC" = "STG_FORECAST_PROFILE"."LEVEL3_DESC"
+            AND NVL(DIM_DATE.HOLIDAY_NAME, 'NO_HOLIDAY') = "STG_FORECAST_PROFILE"."PERIOD_NAME"
+            AND NVL("DIM_DATE"."DAYS_FROM_HOLIDAY", "DIM_DATE"."CAL_DAY_IN_WEEK_NO") = "STG_FORECAST_PROFILE"."DAY_NO"
+
+            WHERE UPPER("DS_FORECAST"."STATUS") = 'APPROVED'
+
+            QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY "DS_FORECAST"."ZONE_GEOGRAPHY", "DS_FORECAST"."PRODKEY", "DIM_DATE"."CALENDAR_DATE" ORDER BY "DS_FORECAST"."END_DATE" DESC)
+
+        name: VW_FORECAST_DAY
+        noLinkRefs: []
+  name: VW_FORECAST_DAY
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

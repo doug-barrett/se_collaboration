@@ -1,0 +1,52 @@
+fileVersion: 1
+id: fa7ab1cd-d3bc-4ad2-9dcf-7c7e09abe6af
+name: VWA_ZONE_GEOGRAPHY
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: true
+  database: ""
+  deployEnabled: true
+  description: |
+    Type 1 Zone  Dimension - no surrogate key required
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 47fca569-761e-4589-8297-6d626f72d05f
+          stepCounter: fa7ab1cd-d3bc-4ad2-9dcf-7c7e09abe6af
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcc39867-91fa-4c55-a8aa-68037cfef00d
+                stepCounter: 60485eef-5f0f-4e58-88de-e60de6bdd818
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_ZONE
+        join:
+          joinCondition: FROM {{ ref('DATA', 'DIM_ZONE') }} "DIM_ZONE"
+        name: VWA_ZONE_GEOGRAPHY
+        noLinkRefs: []
+  name: VWA_ZONE_GEOGRAPHY
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

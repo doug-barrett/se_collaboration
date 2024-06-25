@@ -1,0 +1,79 @@
+fileVersion: 1
+id: f19b53e6-ffca-4da2-9990-6f15cbd0a297
+name: EXT_SCRAPE_CHARACTERISTICS_UK
+operation:
+  config:
+    autoRefresh: false
+    compression: ""
+    fieldDelim: ","
+    fieldEnclosed: \042
+    fileLocation: WIIBIT_DIXONS_LAND.LAND.WISER_STAGE/data/CPCW_CHARACTERISTICS
+    filePattern: .*[.]csv
+    fileType: CSV
+    recDelim: |+
+
+    skipBlankLines: true
+    skipHeader: "1"
+    snsTopic: arn:aws:sns:us-east-1:121674918127:prod-emea-s3-notification
+    trimSpace: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: LAND
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - VALUE: true
+        acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d2dadff-a336-4417-a156-a2cf32b66a8a
+          stepCounter: f19b53e6-ffca-4da2-9990-6f15cbd0a297
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        name: VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - METADATA$FILENAME: true
+        acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f9e6c46c-4d00-4555-a15b-a3575239e98f
+          stepCounter: f19b53e6-ffca-4da2-9990-6f15cbd0a297
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: METADATA$FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: EXT_SCRAPE_CHARACTERISTICS_UK
+        noLinkRefs: []
+  name: EXT_SCRAPE_CHARACTERISTICS_UK
+  overrideSQL: false
+  schema: ""
+  sqlType: "36"
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,148 @@
+fileVersion: 1
+id: 07ade06a-c56d-4a21-adb8-12ac5591496d
+name: VWA_PRODUCT_MATCH_LEVEL3
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77cced80-9d4b-4b57-ad0d-a816f36a3321
+          stepCounter: 07ade06a-c56d-4a21-adb8-12ac5591496d
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b784457-5165-4c53-a6c1-b8fe9609a312
+                stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd35668b-4a1f-44a5-84f3-e3fff7997b51
+          stepCounter: 07ade06a-c56d-4a21-adb8-12ac5591496d
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 88614483-83c6-4336-a3fa-4b131d419633
+                stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14a08144-7302-4a29-998c-d5703da8dea2
+          stepCounter: 07ade06a-c56d-4a21-adb8-12ac5591496d
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d2f8e5f-126c-404a-9800-94eefc1ae49f
+                stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cfa2a723-54f5-424e-8b60-8ca24e5827d8
+          stepCounter: 07ade06a-c56d-4a21-adb8-12ac5591496d
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d2f8e5f-126c-404a-9800-94eefc1ae49f
+                stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+            transform: "3"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2bc18001-ae6a-48fc-9c25-17d90ba27885
+          stepCounter: 07ade06a-c56d-4a21-adb8-12ac5591496d
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: CURRYS_REVENUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f948e0b6-27af-455a-bff2-29ea0048d520
+                stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+            transform: SUM("VWA_PRODUCT_MATCH_PRODUCT"."CURRYS_REVENUE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5856e294-f425-4410-bef3-77f00cc02c0a
+          stepCounter: 07ade06a-c56d-4a21-adb8-12ac5591496d
+        config: {}
+        dataType: NUMBER(12,4)
+        description: ""
+        hashDetails: null
+        name: CPI_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 66bb3df2-eca9-49d5-8208-8408ad2c95c8
+                stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+            transform: |
+              TO_NUMBER(100* DIV0(sum(CURRYS_PRICE * CURRYS_REVENUE),
+                 sum(COMPETITOR_PRICE_AVG * CURRYS_REVENUE))) 
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 186233e7-e418-4c3f-9336-d1d554ca60b4
+          stepCounter: 07ade06a-c56d-4a21-adb8-12ac5591496d
+        config: {}
+        dataType: NUMBER(12,4)
+        description: ""
+        hashDetails: null
+        name: CPI_MODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3f4db3bc-cde9-4d39-8a99-93178de0c662
+                stepCounter: 2f25393b-a51e-4631-baa0-8e00733ef18a
+            transform: |
+              TO_NUMBER(100* DIV0(sum(CURRYS_PRICE * CURRYS_REVENUE),
+                 sum(COMPETITOR_PRICE_MODE * CURRYS_REVENUE))) 
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VWA_PRODUCT_MATCH_PRODUCT: 2f25393b-a51e-4631-baa0-8e00733ef18a
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: VIEWS
+            nodeName: VWA_PRODUCT_MATCH_PRODUCT
+        join:
+          joinCondition: |-
+            FROM {{ ref('VIEWS', 'VWA_PRODUCT_MATCH_PRODUCT') }} "VWA_PRODUCT_MATCH_PRODUCT"
+            GROUP BY 1, 2, 3
+        name: VWA_PRODUCT_MATCH_LEVEL3
+        noLinkRefs: []
+  name: VWA_PRODUCT_MATCH_LEVEL3
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,187 @@
+fileVersion: 1
+id: b7d5cce8-1979-4b26-9433-22fc6785b627
+name: STG_FINANCIAL_YEAR_PREVIOUS
+operation:
+  config:
+    insertStrategy: UNION
+    postSQL: null
+    preSQL: null
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 747f35bb-ed0c-4107-ab0c-5c5fcfbe24af
+          stepCounter: b7d5cce8-1979-4b26-9433-22fc6785b627
+        config: {}
+        dataType: DATE
+        description: ""
+        name: TRANSACTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 698bd8e1-66a3-4c00-b745-141f47201e74
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cdab0c07-9867-4bbe-bd0a-7972ce92f435
+          stepCounter: b7d5cce8-1979-4b26-9433-22fc6785b627
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        hashDetails: null
+        name: FINANCIAL_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 82011664-1d67-4397-8020-b75a1220ad3f
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ff2a27c2-db75-4a4a-9a8d-94ee9f4dab38
+          stepCounter: b7d5cce8-1979-4b26-9433-22fc6785b627
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: MIN_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6095f65-e0db-41e0-9936-96ddecfa2b30
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e16e7108-2e8f-4ffc-b5d5-c81576316dd2
+          stepCounter: b7d5cce8-1979-4b26-9433-22fc6785b627
+        config: {}
+        dataType: DATE
+        description: ""
+        name: MAX_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3d25396-e6ad-4d60-9ff9-05b43c67f1fd
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b2af435-9bd8-458d-beda-a06589c91b5a
+          stepCounter: b7d5cce8-1979-4b26-9433-22fc6785b627
+        config: {}
+        dataType: VARCHAR(9)
+        description: ""
+        name: PREV_FINANCIAL_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e2f02fb7-164d-4355-b54e-314c52dc600f
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ce9f9743-5e88-4d1d-8497-c5b290c3ca96
+          stepCounter: b7d5cce8-1979-4b26-9433-22fc6785b627
+        config: {}
+        dataType: DATE
+        description: ""
+        name: PREV_MIN_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ce37cb0a-4b65-41eb-92e1-935b51ef61d5
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db2c0da5-0418-426d-9278-3e8b71c54181
+          stepCounter: b7d5cce8-1979-4b26-9433-22fc6785b627
+        config: {}
+        dataType: DATE
+        description: ""
+        name: PREV_MAX_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a4979012-25d8-4a05-8db0-9c5bb106ba93
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc191d83-4ad1-4bea-a528-6f741d950b24
+          stepCounter: b7d5cce8-1979-4b26-9433-22fc6785b627
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: DAYS_INTO_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: DATEDIFF(DAY, MIN_DATE, TRANSACTION_DATE) + 1
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 640c8c92-caea-48b4-96ce-1546aff70e6c
+          stepCounter: b7d5cce8-1979-4b26-9433-22fc6785b627
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: THIS_DATE_PREVIOUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: DATEADD(DAY, DAYS_INTO_YEAR, PREV_MIN_YEAR)
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
+          VW_FINANCIAL_YEAR_PERIODS: 13b634a1-7351-4d8f-a4c2-2fc923343882
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: STAGE
+            nodeName: VW_FINANCIAL_YEAR_PERIODS
+        join:
+          joinCondition: |+
+            FROM {{ ref('DATA', 'DIM_DATE') }} "DIM_DATE"
+            JOIN {{ ref('STAGE', 'VW_FINANCIAL_YEAR_PERIODS') }} "VW_FINANCIAL_YEAR_PERIODS"
+            ON "DIM_DATE"."CALENDAR_DATE" BETWEEN "VW_FINANCIAL_YEAR_PERIODS"."MIN_DATE" AND "VW_FINANCIAL_YEAR_PERIODS"."MAX_DATE"
+
+
+        name: STG_FINANCIAL_YEAR_PREVIOUS
+        noLinkRefs: []
+  name: STG_FINANCIAL_YEAR_PREVIOUS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

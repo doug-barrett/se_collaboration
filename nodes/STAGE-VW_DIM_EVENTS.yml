@@ -1,0 +1,210 @@
+fileVersion: 1
+id: f678e8cf-4171-42f1-89a2-f9e61af192a7
+name: VW_DIM_EVENTS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd6743ed-8a2d-4f15-abaf-d496f41e8a61
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a686f6b5-47e8-430b-9983-60206e0c69e6
+                stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fae4b3bb-ef14-4468-976c-afc8abb804ed
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: INT
+        description: ""
+        hashDetails: null
+        name: ZONE_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e83b5457-5e1f-454f-b032-abc16c0135cc
+                stepCounter: dad91b29-a0e5-495a-b169-a3a7f78e66e2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 93fd3a83-a52a-4780-8e15-9bebe0a16dba
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: CHAR(6)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c483b906-b6b2-487a-bcb1-7afcc7bd6633
+                stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5806d75b-0e1c-4604-9bac-96d10d53ac1c
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3e5c56b5-1377-4de9-a304-0b9fd2dba1cb
+                stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 709fdf6e-45ff-4bb5-8e9f-e78623157d45
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c8caba3-0df4-49da-ad40-242e795d9d00
+                stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48fe67b4-2ddc-4c7f-a8aa-42783e526ffb
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 44ae60ce-3c5c-4e45-a55c-ef2355a81feb
+                stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9e8bd725-e595-4644-bb54-2fdf512dd21b
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e8f5764d-1895-4407-ad1f-aa05404f065a
+                stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bc62c30d-4517-4590-8099-f82063f946b6
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: NOW_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: decfbb29-ad97-4b1b-aff1-a913daa18739
+                stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 45977e00-300e-4e62-a402-d3b92fedad9f
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: WAS_NOW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: decfbb29-ad97-4b1b-aff1-a913daa18739
+                stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+            transform: |-
+              CASE WHEN VW_DIM_EVENTS_PERIODS.EVENT_TYPE = 'EVENT' THEN 'WAS ' || TO_CHAR(TO_NUMBER(NVL(VW_DIM_EVENTS_PERIODS.WAS_PRICE, 0), 10, 2))
+               || ' NOW ' || TO_CHAR(TO_NUMBER(NVL(VW_DIM_EVENTS_PERIODS.NOW_PRICE, 0), 10, 2))
+              ELSE ''
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b395845e-5ed0-4eab-9125-8acbe083af82
+          stepCounter: f678e8cf-4171-42f1-89a2-f9e61af192a7
+        config: {}
+        dataType: INT
+        description: ""
+        hashDetails: null
+        name: DURATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b2b3dd9a-2a90-4f6a-81a1-8666c5b8906f
+                stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_EVENTS: dcecf750-3ca1-418e-a5b6-dca1e383dd74
+          DS_ZONE: dad91b29-a0e5-495a-b169-a3a7f78e66e2
+          VW_DIM_EVENTS_PERIODS: 5e382670-0dd2-49b4-a569-da42751478e5
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATASTORE
+            nodeName: DS_ZONE
+          - locationName: STAGE
+            nodeName: VW_DIM_EVENTS_PERIODS
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_DIM_EVENTS_PERIODS') }} "VW_DIM_EVENTS_PERIODS"
+            JOIN {{ ref('DATASTORE', 'DS_ZONE') }} "DS_ZONE"
+             ON "VW_DIM_EVENTS_PERIODS"."ZONE_GEOGRAPHY" = "DS_ZONE"."ZONE_GEOGRAPHY"
+            LEFT JOIN {{ ref_no_link('DATA', 'DIM_EVENTS') }} "DIM_EVENTS"
+            ON DS_ZONE.ZONE_CODE = "DIM_EVENTS"."ZONE_CODE"
+            AND "VW_DIM_EVENTS_PERIODS".PRODKEY = "DIM_EVENTS"."PRODKEY"
+            AND "VW_DIM_EVENTS_PERIODS"."EFFECTIVE_DATE" = "DIM_EVENTS"."EFFECTIVE_DATE"
+            AND "VW_DIM_EVENTS_PERIODS"."END_DATE_CALC" = "DIM_EVENTS"."END_DATE"
+            WHERE "DIM_EVENTS"."PRODKEY" IS NULL
+        name: VW_DIM_EVENTS
+        noLinkRefs:
+          - locationName: DATA
+            nodeName: DIM_EVENTS
+  name: VW_DIM_EVENTS
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

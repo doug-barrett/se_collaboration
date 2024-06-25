@@ -1,0 +1,100 @@
+fileVersion: 1
+id: 240e3339-1d8c-4204-ad22-9d7e8379d647
+name: VW_MEASURES_INVENTORY_DC
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c7a762ed-c5d5-426c-aac3-a4d18b508f18
+          stepCounter: 240e3339-1d8c-4204-ad22-9d7e8379d647
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 08d7b62b-33e8-4f0f-991c-735e76fab57c
+                stepCounter: 41708d9c-50ea-4410-bb0f-d4febd4c39b7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 59cafdb4-a789-4384-bb9c-34c2ee3174e1
+          stepCounter: 240e3339-1d8c-4204-ad22-9d7e8379d647
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c21638b8-9062-4a7c-ae06-75961b554d7a
+                stepCounter: 41708d9c-50ea-4410-bb0f-d4febd4c39b7
+            transform: "'UK'"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a4d052c-6f15-4ce7-ae0c-b6b6e2952f8a
+          stepCounter: 240e3339-1d8c-4204-ad22-9d7e8379d647
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: INVENTORY_DC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e327dff9-14bb-41e1-a207-669076229ef8
+                stepCounter: 41708d9c-50ea-4410-bb0f-d4febd4c39b7
+            transform: SUM("FCT_INVENTORY_DC"."INVENTORY")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a2737b18-ad0c-47ac-b9d1-38b527e80959
+          stepCounter: 240e3339-1d8c-4204-ad22-9d7e8379d647
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: UPDATED_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8efdec7a-6a0d-4416-820e-a44789bf33d8
+                stepCounter: 41708d9c-50ea-4410-bb0f-d4febd4c39b7
+            transform: MAX("FCT_INVENTORY_DC"."UPDATED_DATE")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          FCT_INVENTORY_DC: 41708d9c-50ea-4410-bb0f-d4febd4c39b7
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: FCT_INVENTORY_DC
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_INVENTORY_DC') }} "FCT_INVENTORY_DC"
+            WHERE "UPDATED_DATE" = (SELECT NVL(MAX("UPDATED_DATE"), CURRENT_DATE -1) FROM {{ ref('DATA', 'FCT_INVENTORY_DC') }} )
+            GROUP BY 1
+        name: VW_MEASURES_INVENTORY_DC
+        noLinkRefs: []
+  name: VW_MEASURES_INVENTORY_DC
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

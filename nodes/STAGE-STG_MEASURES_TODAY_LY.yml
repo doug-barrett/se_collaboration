@@ -1,0 +1,408 @@
+fileVersion: 1
+id: e9f56218-8000-43fc-94f6-68916bbb21a9
+name: STG_MEASURES_TODAY_LY
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Type 1 Date Dimension - no surrogate key required
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25ccc14d-0e03-4f92-9e07-e15862450a4b
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcede211-1839-4363-b6da-6fa314efe9ac
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27dc7d8e-4a6c-47f4-9184-161ef18c8e9f
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 67539d7f-ec1f-4f62-95c0-e1a6e99796f7
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c38bcea1-91f0-47dd-82aa-8fe0d0878589
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: FINANCIAL_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f532f2d-f6d6-407e-9e20-c2e1ecf42084
+                stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+            transform: MAX("VW_FINANCIAL_YEAR_PREVIOUS"."FINANCIAL_YEAR")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a14c9865-1757-4e9a-9587-c9e768995138
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: FINANCIAL_YEAR_PREVIOUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f532f2d-f6d6-407e-9e20-c2e1ecf42084
+                stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+            transform: MAX("VW_FINANCIAL_YEAR_PREVIOUS"."FINANCIAL_YEAR_PREVIOUS")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f53f5268-9ff9-48b6-8e17-8c35446390a9
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: DATE
+        description: ""
+        name: MIN_DATE_PREVIOUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 310a1aab-9468-4f39-ad3c-ff72727270e9
+                stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+            transform: MAX("VW_FINANCIAL_YEAR_PREVIOUS"."MIN_DATE_PREVIOUS")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 50c438e8-9f5d-4ad2-b9b0-408a3ed56c75
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: DATE
+        description: ""
+        name: TODAY_LAST_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 310a1aab-9468-4f39-ad3c-ff72727270e9
+                stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+            transform: MAX("VW_FINANCIAL_YEAR_PREVIOUS"."THIS_DATE_PREVIOUS")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a83f6182-3390-41ab-99e1-68f294059fdd
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_UNITS_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fb185ff0-d38d-4d87-aeb8-9dcdb236b7b4
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4058f172-fbb4-4e4b-9780-df442782e66f
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_UNITS_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0982f174-c543-4de4-a91e-3b6c4b01855f
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d04d58c9-fb2d-496f-9386-cb74c53b8245
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_UNITS_NET_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cac3e1c5-19b6-4097-a729-c4aa7ff08c40
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM(CASE WHEN "DIM_EVENTS_REGION".EVENT_TYPE <> 'EVENT' THEN "FCT_SALES_DAY"."UNITS_NET" END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f44f9348-af3d-43c8-842f-33d08f432058
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_UNITS_NET_PROMO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cac3e1c5-19b6-4097-a729-c4aa7ff08c40
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM(CASE WHEN "DIM_EVENTS_REGION".EVENT_TYPE = 'EVENT' THEN "FCT_SALES_DAY"."UNITS_NET" END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ef5a8bb-0440-4188-b82c-fb6380a6c278
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_UNITS_UPLIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a5314a0-22d7-47f2-953b-a48bb7a28f99
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_UPLIFT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e267a5fe-a7f1-4a5e-baf3-17d7ef90fac0
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_SALES_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4af4a132-3536-425a-bc6e-8403e96095de
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."SALES_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ef89894f-31d2-4407-af8c-856a398f2c50
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_SALES_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cac3e1c5-19b6-4097-a729-c4aa7ff08c40
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."SALES_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9de8d805-cdd9-4957-860f-9651fe601e19
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_SALES_NET_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cac3e1c5-19b6-4097-a729-c4aa7ff08c40
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM(CASE WHEN "DIM_EVENTS_REGION".EVENT_TYPE <> 'EVENT' THEN "FCT_SALES_DAY"."SALES_NET" END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b7894f08-96a0-4b7f-a5a3-c9d8970928ae
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_SALES_NET_PROMO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cac3e1c5-19b6-4097-a729-c4aa7ff08c40
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM(CASE WHEN "DIM_EVENTS_REGION".EVENT_TYPE = 'EVENT' THEN "FCT_SALES_DAY"."SALES_NET" END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 33e1464c-f9f1-4774-821a-50e455bcbc0e
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_SALES_UPLIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 169bd8e5-ce50-4955-a933-8edd0feba9e2
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."SALES_UPLIFT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ece41d65-b90b-4aaa-a3c3-630cbdf2d3a6
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_COST_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7f48726-fdd3-41bd-a1b4-5b73ae192bfa
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."COST_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f779ce75-75bf-4e1c-86df-25477f656c4b
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_MARGIN_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fcc4451a-9ec1-4c75-b342-52541997793a
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."MARGIN_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 689d0bea-f708-4abb-8157-edf748a253e7
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_MARGIN_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 107c4b55-1541-4898-ba87-3b66dc77ba43
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."MARGIN_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2018ae8e-11ef-4800-8750-19b822b91d85
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_MARGIN_NET_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cac3e1c5-19b6-4097-a729-c4aa7ff08c40
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM(CASE WHEN "DIM_EVENTS_REGION".EVENT_TYPE <> 'EVENT' THEN "FCT_SALES_DAY"."MARGIN_NET" END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e6d10f75-a08d-4674-881e-2ae6081bd0bd
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_MARGIN_NET_PROMO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cac3e1c5-19b6-4097-a729-c4aa7ff08c40
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM(CASE WHEN "DIM_EVENTS_REGION".EVENT_TYPE = 'EVENT' THEN "FCT_SALES_DAY"."MARGIN_NET" END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8ccae5c9-2622-4eba-a222-dd0f5e02750c
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_MARGIN_UPLIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 40e369f0-435b-432d-9a2b-db2fea96b6d0
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."MARGIN_UPLIFT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a26ed88-6e69-42c6-8f5b-b5ff8fc30e79
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_SOA_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 60a3f9cc-182a-4c32-bf0e-2166dc8634e2
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."SOA_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 64db9342-065f-4466-8573-9b00577d72ae
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: LAST_YEAR_RETAILER_SOA_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b137310-626b-4f68-a63f-69358a63d32a
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."RETAILER_SOA_TOTAL")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b643b5cd-c73e-492d-b5b4-1306ba2d9e09
+          stepCounter: e9f56218-8000-43fc-94f6-68916bbb21a9
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: LAST_YEAR_PROMO_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "COUNT(DISTINCT CASE WHEN \"DIM_EVENTS_REGION\".\"EVENT_TYPE\" = 'EVENT' THEN \"FCT_SALES_DAY\".\"DIM_EVENTS_REGION_KEY\" END) "
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_EVENTS_REGION: b4585615-226c-470e-8e85-be95816a6df2
+          FCT_SALES_DAY: 91c3542a-c2f9-472c-8706-d613acb63e06
+          VW_FINANCIAL_YEAR_PREVIOUS: b424713a-ab99-405c-a57b-1797a0b61c62
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_EVENTS_REGION
+          - locationName: DATA
+            nodeName: FCT_SALES_DAY
+          - locationName: STAGE
+            nodeName: VW_FINANCIAL_YEAR_PREVIOUS
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_SALES_DAY') }} "FCT_SALES_DAY"
+            JOIN {{ ref('DATA', 'DIM_EVENTS_REGION') }} "DIM_EVENTS_REGION"
+            ON "FCT_SALES_DAY"."DIM_EVENTS_REGION_KEY" = "DIM_EVENTS_REGION"."DIM_EVENTS_REGION_KEY"
+            INNER JOIN {{ ref('STAGE', 'VW_FINANCIAL_YEAR_PREVIOUS') }} "VW_FINANCIAL_YEAR_PREVIOUS"
+            ON "FCT_SALES_DAY"."TRANSACTION_DATE" BETWEEN "VW_FINANCIAL_YEAR_PREVIOUS"."MIN_DATE_PREVIOUS" AND "VW_FINANCIAL_YEAR_PREVIOUS"."THIS_DATE_PREVIOUS"
+            AND "VW_FINANCIAL_YEAR_PREVIOUS"."THIS_YEAR_FLAG" = 'Y'
+            GROUP BY 1, 2
+        name: STG_MEASURES_TODAY_LY
+        noLinkRefs: []
+  name: STG_MEASURES_TODAY_LY
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

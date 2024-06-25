@@ -1,0 +1,675 @@
+fileVersion: 1
+id: 98ca2571-facb-4dfe-a385-4aaf056310cd
+name: VWA_SALES_12_MONTHS
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b3dfcd7-3396-4c3b-97a5-db74a72cf295
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7f8e2fa6-dc17-46ee-b538-a98a30c00c1c
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6d6d36ab-02b3-40a6-b046-513625bb1e67
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ad8725b-1fa4-4995-9ef8-c0dd4fe3f7db
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ffb9b9a-f265-4345-93c9-04b33c71cf61
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: MIN_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6462ad19-2e3e-40f0-9245-d0c795905f2b
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MIN("VWA_SALES_WEEK"."MIN_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e6efb32e-01d2-449e-9667-106134ceeedf
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: MAX_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8bf6b9b9-fd10-4327-9be0-2e9b4ee96939
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."MAX_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7070a099-bbfc-4128-8a96-6ba3edf7fa8c
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bda11691-1f7d-41c3-bce3-86b39bf0fda7
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."BRAND")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25f017af-3f5d-45f4-90eb-58b7b89ebebc
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL1_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cbc8d8cd-dac2-4c5d-8ea4-f6b29b429a48
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."LEVEL1_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 69103d26-4754-43dc-8521-4df33731606e
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL2_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 222c33f4-6101-49b0-bfd5-7bfe380789c8
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."LEVEL2_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c0320380-d104-471f-b10a-5146e593ad5f
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f91b96d0-4bcf-48b7-ba0c-0d783546b21f
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."LEVEL3_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c60dae9e-57ad-45d0-82e2-8aaca09991cf
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL4_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ff2c2baa-795a-4898-86e1-665bdbe63281
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."LEVEL4_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aefe5d74-7c16-4973-8668-79b89b53bc65
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL5_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b07323aa-25cc-4db2-8228-6d4fe49949e3
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."LEVEL5_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b4c58c1-9cf3-46ed-9681-866c8d5bdf97
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: PRODUCT_GROUP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b358822-46ac-4a5d-90b7-e4453983c8d4
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."PRODUCT_GROUP")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 94f9fc9c-3a5f-4c4c-86ea-c659a702704a
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: PRODUCT_GROUP_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c714790-676d-4d6f-be99-7affe591fffd
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."PRODUCT_GROUP_NAME")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48315e00-4568-4d28-b3b0-244c8d3cc1e7
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(150)
+        description: ""
+        name: PRODKEY_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2445ef95-d23a-4727-bff9-6c18b31f9d49
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."PRODKEY_DESCRIPTION")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 643fc14d-388f-46e4-8c81-f04dcee5434c
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PRICE_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 85b38936-77f6-455e-a8d4-37078e433122
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."PRICE_CATEGORY")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad1b5f9c-53a7-49fd-9028-b7ab132b438f
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: STRING
+        description: ""
+        name: VOLUME_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22250dba-ae84-43bb-8d6d-deaf9143955f
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."VOLUME_CATEGORY")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 24c763d0-5d8e-4d9c-a4c1-2b173b71dbd6
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: STRING
+        description: ""
+        name: MA_CAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b9ff8f2-660b-470e-9e92-f1adc61b5c85
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."MA_CAT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e75b6baa-1c38-4126-bc48-83581dc2e795
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: PRICE_MIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 65d80138-d0df-4595-9d26-5542155146ce
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MIN("VWA_SALES_WEEK"."PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a5188180-ee0f-40d4-ae58-d6ffb33656f4
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: PRICE_MAX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 65d80138-d0df-4595-9d26-5542155146ce
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bae34200-457f-4896-b0b5-82324013a787
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: AVG_PRICE_ACTUAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bbb007f2-0c72-4a88-9853-6f4440aab337
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: AVG("VWA_SALES_WEEK"."AVG_PRICE_ACTUAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: abcc41e6-f129-45cd-a174-33253d4586f2
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: PROMO_LIST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7b0677a-4bd1-458f-897a-4f2d1aa0c81b
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: ARRAY_DISTINCT(ARRAY_FLATTEN(ARRAY_UNIQUE_AGG("VWA_SALES_WEEK"."PROMO_LIST")))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1810674f-e3cc-4432-a491-891ab0ad094b
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: PROMO_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7b0677a-4bd1-458f-897a-4f2d1aa0c81b
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: ARRAY_SIZE(ARRAY_DISTINCT(ARRAY_FLATTEN(ARRAY_UNIQUE_AGG("VWA_SALES_WEEK"."PROMO_LIST"))))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a734b3f3-5e7c-4f34-beea-ebfc05479435
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: UNITS_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f9314385-b435-4c03-8b60-da3cc7e55761
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."UNITS_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c334a98c-97a4-4d57-95a8-f4043d84a913
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: UNITS_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76cf4dba-2e73-4a1a-a810-ec2896f02212
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."UNITS_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3289f8a-e6bd-47e9-b713-2d264dc7d7e5
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UNITS_NET_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 56456a8d-79e8-4c3b-b36a-45132a032129
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."UNITS_NET_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9160eeb6-48ff-4f58-9b0f-f030825bbf72
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UNITS_NET_PROMO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 84f639b3-8f12-4815-986f-ef008644135b
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."UNITS_NET_PROMO")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bfdc9692-f566-408a-b186-bcf4584e8670
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UNITS_UPLIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 51b2ba16-0802-491e-9138-df5eb4d3af18
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."UNITS_UPLIFT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1347e0b1-88de-4753-bc3a-744707687f62
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: SALES_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0604f5e5-61a1-4149-bc6d-42021f0de7bc
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."SALES_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04251ba1-0d4e-4d66-97cc-b2af40868e8b
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: DECIMAL(15,2)
+        description: ""
+        name: SALES_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9acfb195-7a53-4621-9d31-1b8850cab43a
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."SALES_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d99cd222-180b-4281-b2da-4d3cbd4b0e53
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: SALES_NET_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ed1c1898-23ef-40fe-ae2d-baa31d1b4caa
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."SALES_NET_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cf937729-4e94-4c44-8d25-d637bca53c04
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: SALES_NET_PROMO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ac7818a-d732-49ec-99da-c3ebdb3bf4ca
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."SALES_NET_PROMO")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c95c9cf-d6de-4619-8f29-bb4175d27e99
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: SALES_UPLIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 889cc8c7-977b-48e0-8d37-71930ca60371
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."SALES_UPLIFT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 851d6e6d-a7e2-48f5-a75e-e4b3b327c571
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: ACP_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 904defa3-c575-4f86-aa72-30776797ed48
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."ACP_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 498a3a76-c597-43c2-b85c-92a781b250a2
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UBC_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e071436-d55d-4738-9a08-6604f9d14ac4
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."UBC_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8f10118-021e-44cd-ba77-26c5e9c5d181
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: SOA_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5161230b-899b-46f1-9883-b3990d20cdd2
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."SOA_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f789ce72-5516-4689-bcec-c3c750f57685
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: RETAILER_SOA_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b868e22b-5e2d-4a4c-b729-ce60eb58bb77
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."RETAILER_SOA_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fffa0a0e-0877-409a-aa03-97da2fe5b804
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: TA_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fdea0f90-6619-45bd-bade-02d6c0acc067
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."TA_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d00876b6-7e2c-4162-8809-3452009eb5f8
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: COST_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0828d869-a8ba-436a-a96a-17b09c433f9b
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."COST_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4f8a8f71-1a0b-468d-be9f-910809353d87
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: MARGIN_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7002690-a77b-4b08-ba48-789efb9e190f
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."MARGIN_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa17190b-d48e-41b0-881e-172f10193ae9
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: MARGIN_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7dc11d06-b9dd-46ce-9f62-fbd63438c586
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."MARGIN_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 522b5a87-201c-4bb1-8a2b-3571641d0b45
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: MARGIN_NET_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d70f3949-3765-4f1f-83b3-0cc3c68eea01
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."MARGIN_NET_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad753098-7458-4a62-a58b-5ac12fc5537f
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: MARGIN_NET_PROMO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4573d196-9447-4ecd-8278-5285c913b877
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."MARGIN_NET_PROMO")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f6c6c11-5f03-4852-947b-8f4b649b9df3
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: MARGIN_UPLIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 20d0dbce-fb57-4796-b747-315fa254ca18
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: SUM("VWA_SALES_WEEK"."MARGIN_UPLIFT")
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 55ec60a7-6ffa-4e3b-88e1-7ab797dc89fd
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: MARGIN_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 100e71fa-74a6-47df-9f68-9453cedfc984
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: AVG("VWA_SALES_WEEK"."MARGIN_PERCENT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6d57c992-8ab2-4712-aac7-cb57d4b8f0e4
+          stepCounter: 98ca2571-facb-4dfe-a385-4aaf056310cd
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        hashDetails: null
+        name: CURRENCY_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aa60432a-0a31-4492-9ff8-53dbe338d3d5
+                stepCounter: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+            transform: MAX("VWA_SALES_WEEK"."CURRENCY_CODE")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VWA_SALES_WEEK: dd9b9c00-5f8a-4b18-9272-236e6bdacf28
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: VIEWS
+            nodeName: VWA_SALES_WEEK
+        join:
+          joinCondition: |-
+            FROM {{ ref('VIEWS', 'VWA_SALES_WEEK') }} "VWA_SALES_WEEK"
+            WHERE MIN_DATE BETWEEN DATEADD(YEAR, -1, CURRENT_DATE) AND CURRENT_DATE
+            GROUP BY 1, 2
+            HAVING SUM(UNITS_NET) > 0
+        name: VWA_SALES_12_MONTHS
+        noLinkRefs: []
+  name: VWA_SALES_12_MONTHS
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

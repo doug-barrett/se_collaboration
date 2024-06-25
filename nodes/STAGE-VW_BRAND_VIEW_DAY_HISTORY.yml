@@ -1,0 +1,398 @@
+fileVersion: 1
+id: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+name: VW_BRAND_VIEW_DAY_HISTORY
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: efeefe5c-1694-4529-aea1-da8a60316da7
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: SCRAPE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b1b4cfdc-3c71-447e-9020-8dbf4d44ec4d
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e81b77e8-1183-4be7-8c7d-d4b037a76e21
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4863dd9c-9a24-4970-96a6-309e2fa61c22
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e4ae977b-d736-432c-8bd6-a1fefc16dde2
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bfd20a9b-f217-440a-aaa1-6dfb0a94c86d
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f54c216-7905-43d0-a04a-c7a61f4e6f09
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7aa25db0-db5d-48e3-abd7-7f4096829c6a
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f5abe508-aa0c-4c37-908a-e1bcbaff0a57
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: WAS_NOW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eba34a45-0c52-4478-95a8-2270425effe4
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 334aae6b-5761-4644-9e56-a9a271e5963b
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 68b60afb-0469-4392-92d0-46e570adae56
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d7ab958-8bdc-44a3-85fc-74a1d6bf7b39
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a31fb7a9-8aa1-48aa-9c86-d86c1b99ae76
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 67e88399-95e0-4b55-867b-e75f6a88ce09
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: PRIOR_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a31fb7a9-8aa1-48aa-9c86-d86c1b99ae76
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: LAG(CPI, 1, 100) OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY SCRAPE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bddb2194-85b0-43cd-9c15-8192be5dbdab
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: CPI_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a31fb7a9-8aa1-48aa-9c86-d86c1b99ae76
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: |-
+              CASE WHEN CPI IS NULL OR PRIOR_CPI IS NULL THEN 'No Scrape data'
+                  WHEN PRIOR_CPI = 100 AND CPI < 100 THEN 'Led Down'
+                  WHEN PRIOR_CPI = 100 AND CPI = 100 THEN 'Market Match'    
+                  WHEN PRIOR_CPI = 100 AND CPI > 100 THEN 'Led Up'  
+                  WHEN PRIOR_CPI < 100 AND CPI = 100 THEN 'Followed Up'
+                  WHEN PRIOR_CPI > 100 AND CPI = 100 THEN 'Followed Down'
+                  WHEN PRIOR_CPI > CPI AND CPI > 100 THEN 'Moved down still above market'
+                  WHEN PRIOR_CPI > CPI AND PRIOR_CPI > 100 AND CPI < 100 THEN 'Led from above to below market'
+                  WHEN PRIOR_CPI > CPI AND PRIOR_CPI < 100 AND CPI < 100 THEN 'Moved down from below market'
+                  WHEN PRIOR_CPI < CPI AND PRIOR_CPI < 100 AND CPI > 100 THEN 'Led up above market'
+                  WHEN PRIOR_CPI = CPI THEN 'Stayed the same'
+                  WHEN EVENT_TYPE LIKE 'BASE%' THEN 'Return to Base'
+              ELSE 'Other'
+              END  
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a0fb724-1d80-43ea-8310-f642483a34d7
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: CURRY_CHEAPEST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ee56818-2a11-4294-a407-2c424191111a
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: CURRY_CHEAPEST1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: LAG(CURRY_CHEAPEST, 1, 'U') OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY SCRAPE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0422e717-e0b7-4600-aa97-a8f74216e812
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: CURRY_CHEAPEST2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: LAG(CURRY_CHEAPEST, 2, 'U') OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY SCRAPE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5edc231a-165c-4b21-b4c4-de6c74dce73f
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: CURRY_CHEAPEST3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: LAG(CURRY_CHEAPEST, 3, 'U') OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY SCRAPE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e1310af4-52de-4aa5-92ca-9415f43fe7c7
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: CURRY_CHEAPEST4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: LAG(CURRY_CHEAPEST, 4, 'U') OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY SCRAPE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 318063b9-1a52-4658-af7f-d1faeb85f878
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: CURRY_CHEAPEST5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: LAG(CURRY_CHEAPEST, 5, 'U') OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY SCRAPE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dac6b225-146e-4eda-9cf3-8ded83ccaa33
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: CURRY_CHEAPEST6
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: LAG(CURRY_CHEAPEST, 6, 'U') OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY SCRAPE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: daf07b97-74d6-4d07-8401-c3ebb72e5ef0
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: CURRY_CHEAPEST7
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: LAG(CURRY_CHEAPEST, 7, 'U') OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY SCRAPE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14162742-a488-4300-9fc0-312abdf5309d
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: PRICE_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a31fb7a9-8aa1-48aa-9c86-d86c1b99ae76
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: |
+              CASE 
+              WHEN CURRY_CHEAPEST='U' OR CURRY_CHEAPEST1='U' THEN 'MISSING SCRAPE DATA'
+              WHEN CURRY_CHEAPEST='Y' AND CURRY_CHEAPEST1='N' THEN 'CHEAPEST FOR 1'
+              WHEN CURRY_CHEAPEST='Y' AND CURRY_CHEAPEST1='Y' AND CURRY_CHEAPEST2='N' THEN 'CHEAPEST FOR 2' 
+              WHEN CURRY_CHEAPEST='Y' AND CURRY_CHEAPEST1='Y' AND CURRY_CHEAPEST2='Y' AND CURRY_CHEAPEST3='N' THEN 'CHEAPEST FOR 3'
+              WHEN CURRY_CHEAPEST='Y' AND CURRY_CHEAPEST1='Y' AND CURRY_CHEAPEST2='Y' AND CURRY_CHEAPEST3='Y' AND CURRY_CHEAPEST4='N' THEN 'CHEAPEST FOR 4'
+              WHEN CURRY_CHEAPEST='Y' AND CURRY_CHEAPEST1='Y' AND CURRY_CHEAPEST2='Y' AND CURRY_CHEAPEST3='Y' AND CURRY_CHEAPEST4='Y' AND CURRY_CHEAPEST5='N' THEN 'CHEAPEST FOR 5'
+              WHEN CURRY_CHEAPEST='Y' AND CURRY_CHEAPEST1='Y' AND CURRY_CHEAPEST2='Y' AND CURRY_CHEAPEST3='Y' AND CURRY_CHEAPEST4='Y' AND CURRY_CHEAPEST5='Y' AND CURRY_CHEAPEST6='N' THEN 'CHEAPEST FOR 6'
+              WHEN CURRY_CHEAPEST='Y' THEN 'CHEAPEST >= 7 DAYS'
+              WHEN CURRY_CHEAPEST='N' AND CURRY_CHEAPEST1='Y' THEN 'NOT CHEAPEST FOR 1'
+              WHEN CURRY_CHEAPEST='N' AND CURRY_CHEAPEST1='N' AND CURRY_CHEAPEST2='Y' THEN 'NOT CHEAPEST FOR 2'
+              WHEN CURRY_CHEAPEST='N' AND CURRY_CHEAPEST1='N' AND CURRY_CHEAPEST2='N' AND CURRY_CHEAPEST3='Y' THEN 'NOT CHEAPEST FOR 3'
+              WHEN CURRY_CHEAPEST='N' AND CURRY_CHEAPEST1='N' AND CURRY_CHEAPEST2='N' AND CURRY_CHEAPEST3='N' AND CURRY_CHEAPEST4='Y' THEN 'NOT CHEAPEST FOR 4'
+              WHEN CURRY_CHEAPEST='N' AND CURRY_CHEAPEST1='N' AND CURRY_CHEAPEST2='N' AND CURRY_CHEAPEST3='N' AND CURRY_CHEAPEST4='N' AND CURRY_CHEAPEST5='Y' THEN 'NOT CHEAPEST FOR 5'
+              WHEN CURRY_CHEAPEST='N' AND CURRY_CHEAPEST1='N' AND CURRY_CHEAPEST2='N' AND CURRY_CHEAPEST3='N' AND CURRY_CHEAPEST4='N' AND CURRY_CHEAPEST5='N' AND CURRY_CHEAPEST6='Y' THEN 'NOT CHEAPEST FOR 6'
+              WHEN CURRY_CHEAPEST='N' THEN 'NOT CHEAPEST >= 7 DAYS'
+              ELSE 'MISSING SCRAPE DATA'
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c589578a-43ba-42f2-93b6-f262294b9afc
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_MIN_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4aab10f2-1d67-4ed4-989a-3fe52f3ec6a9
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 29c8713a-2a10-4f64-8fcf-7ca606f400cc
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_MAX_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eb62f712-9d93-4e9a-b377-19fe3020eb73
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2cee25a6-8a0a-42bb-b460-12165cfdada6
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_SUMMARY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1759fcd6-6f97-4189-89ee-c2f11c46ad42
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 915592ff-c5e5-4894-878e-3e61bba5afba
+          stepCounter: fefb74e9-0edf-4b30-9f9c-b336c99bf5b5
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: COMPETITORS_CHEAPER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3658894-7e45-4adf-a370-b11b8f624ad8
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: FCT_BRAND_VIEW_DAY
+        join:
+          joinCondition: FROM {{ ref('DATA', 'FCT_BRAND_VIEW_DAY') }} "FCT_BRAND_VIEW_DAY"
+        name: VW_BRAND_VIEW_DAY_HISTORY
+        noLinkRefs: []
+  name: VW_BRAND_VIEW_DAY_HISTORY
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

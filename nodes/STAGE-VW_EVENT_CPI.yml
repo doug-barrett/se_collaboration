@@ -1,0 +1,133 @@
+fileVersion: 1
+id: e75d57a8-07fa-4815-87fe-e40868c3b5c4
+name: VW_EVENT_CPI
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: |-
+    Regional Events.
+    Post-SQL updates DIM_EVENTS with DIM_EVENTS_REGION_KEY.
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc9ea051-0345-4067-8c4f-90fee6684164
+          stepCounter: e75d57a8-07fa-4815-87fe-e40868c3b5c4
+        config: {}
+        dataType: INTEGER
+        description: Generated artificial key
+        hashDetails: null
+        name: DIM_EVENTS_REGION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 546e14b9-c682-44e1-aca5-293a5b15141b
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 08d773c6-fbf5-4bdd-add7-07ff2e463dd8
+          stepCounter: e75d57a8-07fa-4815-87fe-e40868c3b5c4
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: AVG_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a31fb7a9-8aa1-48aa-9c86-d86c1b99ae76
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: AVG("FCT_BRAND_VIEW_DAY"."CPI")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 169ad348-92eb-44c1-a1eb-0a9c183ba1bc
+          stepCounter: e75d57a8-07fa-4815-87fe-e40868c3b5c4
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: MIN_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a31fb7a9-8aa1-48aa-9c86-d86c1b99ae76
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: MIN("FCT_BRAND_VIEW_DAY"."CPI")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d5b296c4-ee04-425b-8c31-1e8f86f98aae
+          stepCounter: e75d57a8-07fa-4815-87fe-e40868c3b5c4
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: MAX_CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a31fb7a9-8aa1-48aa-9c86-d86c1b99ae76
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: MAX("FCT_BRAND_VIEW_DAY"."CPI")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc50777a-9688-4461-8035-93051dd8e96d
+          stepCounter: e75d57a8-07fa-4815-87fe-e40868c3b5c4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CURRY_CHEAPEST_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: SUM(CASE WHEN "FCT_BRAND_VIEW_DAY"."CURRY_CHEAPEST" = 'Y' THEN 1 ELSE 0 END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 112b73c9-8682-40f4-bd61-eae02c713f4d
+          stepCounter: e75d57a8-07fa-4815-87fe-e40868c3b5c4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CURRY_NOT_CHEAPEST_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1600eaa-8433-4554-a420-462f72c97a5f
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: SUM(CASE WHEN "FCT_BRAND_VIEW_DAY"."CURRY_CHEAPEST" = 'N' THEN 1 ELSE 0 END)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_EVENTS_REGION: b4585615-226c-470e-8e85-be95816a6df2
+          FCT_BRAND_VIEW_DAY: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_EVENTS_REGION
+          - locationName: DATA
+            nodeName: FCT_BRAND_VIEW_DAY
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'DIM_EVENTS_REGION') }} "DIM_EVENTS_REGION"
+            JOIN {{ ref('DATA', 'FCT_BRAND_VIEW_DAY') }} "FCT_BRAND_VIEW_DAY"
+            ON "DIM_EVENTS_REGION"."ZONE_GEOGRAPHY" = "FCT_BRAND_VIEW_DAY"."ZONE_GEOGRAPHY"
+            AND "DIM_EVENTS_REGION"."PRODKEY" = "FCT_BRAND_VIEW_DAY"."PRODKEY"
+            AND "FCT_BRAND_VIEW_DAY"."SCRAPE_DATE" BETWEEN "DIM_EVENTS_REGION"."EFFECTIVE_DATE" AND "DIM_EVENTS_REGION"."END_DATE"
+            GROUP BY "DIM_EVENTS_REGION"."DIM_EVENTS_REGION_KEY"
+        name: VW_EVENT_CPI
+        noLinkRefs: []
+  name: VW_EVENT_CPI
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

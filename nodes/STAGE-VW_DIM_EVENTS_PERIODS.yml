@@ -1,0 +1,194 @@
+fileVersion: 1
+id: 5e382670-0dd2-49b4-a569-da42751478e5
+name: VW_DIM_EVENTS_PERIODS
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3e5c56b5-1377-4de9-a304-0b9fd2dba1cb
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "8121"
+                stepCounter: "613"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a686f6b5-47e8-430b-9983-60206e0c69e6
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e2d17dda-eabd-44ab-88c4-607609cacd28
+                stepCounter: "613"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c483b906-b6b2-487a-bcb1-7afcc7bd6633
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "8095"
+                stepCounter: "613"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c8caba3-0df4-49da-ad40-242e795d9d00
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "8097"
+                stepCounter: "613"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eadf23b9-21d3-4689-98c1-eb3a07ed0789
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "8098"
+                stepCounter: "613"
+            transform: NVL("STG_DIM_EVENTS_PERIODS"."END_DATE", '2099-12-31')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b303e51f-5538-496e-b830-c555b7e8c66c
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: NEXT_EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "8097"
+                stepCounter: "613"
+            transform: LEAD("STG_DIM_EVENTS_PERIODS".EFFECTIVE_DATE, 1) OVER (PARTITION BY "STG_DIM_EVENTS_PERIODS".ZONE_GEOGRAPHY, "STG_DIM_EVENTS_PERIODS".PRODKEY ORDER BY "STG_DIM_EVENTS_PERIODS".EFFECTIVE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 44ae60ce-3c5c-4e45-a55c-ef2355a81feb
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: END_DATE_CALC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "8098"
+                stepCounter: "613"
+            transform: |-
+              CASE
+                   WHEN NEXT_EFFECTIVE_DATE IS NOT NULL AND NVL("STG_DIM_EVENTS_PERIODS".END_DATE,'2099-12-31') >= NEXT_EFFECTIVE_DATE 
+                   THEN NEXT_EFFECTIVE_DATE - 1
+              ELSE NVL("STG_DIM_EVENTS_PERIODS".END_DATE,'2099-12-31')
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b2b3dd9a-2a90-4f6a-81a1-8666c5b8906f
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: DURATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "8098"
+                stepCounter: "613"
+            transform: DATEDIFF(DAY, "STG_DIM_EVENTS_PERIODS".EFFECTIVE_DATE, END_DATE_CALC)+1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8f5764d-1895-4407-ad1f-aa05404f065a
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "8099"
+                stepCounter: "613"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: decfbb29-ad97-4b1b-aff1-a913daa18739
+          stepCounter: 5e382670-0dd2-49b4-a569-da42751478e5
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: NOW_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "8100"
+                stepCounter: "613"
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_DIM_EVENTS_PERIODS: "613"
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: STG_DIM_EVENTS_PERIODS
+        join:
+          joinCondition: |+
+            FROM {{ ref('STAGE', 'STG_DIM_EVENTS_PERIODS') }} "STG_DIM_EVENTS_PERIODS"
+
+        name: VW_DIM_EVENTS_PERIODS
+        noLinkRefs: []
+  name: VW_DIM_EVENTS_PERIODS
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

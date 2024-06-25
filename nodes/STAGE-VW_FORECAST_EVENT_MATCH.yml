@@ -1,0 +1,294 @@
+fileVersion: 1
+id: e4033997-2a90-4bca-8e15-a8eb61d67a69
+name: VW_FORECAST_EVENT_MATCH
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: "Just a bit of tidy up "
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b70fdb0-ebd0-4ac6-bafb-0fa51641d2e3
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: INTEGER
+        description: Generated artificial key
+        name: DIM_EVENTS_REGION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 546e14b9-c682-44e1-aca5-293a5b15141b
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 17d40edc-cff9-4325-92bb-60c58fc351b2
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: VARCHAR(32)
+        description: ""
+        name: FORECAST_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d432410f-eaf1-4025-b37a-86edf9c569b2
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87f2afb6-3ba1-415e-84ab-8d8d8fcf5a1f
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ac2350f-fd4a-4b58-b189-286d1607f7c9
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DIM_EVENTS_REGION"."ZONE_GEOGRAPHY", "DS_FORECAST"."ZONE_GEOGRAPHY")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 937a1b35-f3a6-4097-86f4-e8ea0cfa707a
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e157cdf4-fffd-4bc4-aa6d-19be8d45bf61
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: NVL("DIM_EVENTS_REGION"."PRODKEY", "DS_FORECAST"."PRODKEY")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a50a19a-d2e9-4f1e-82ed-c1645d25b47f
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d7c8dcd9-76f9-4ce1-bf33-52f2c1966033
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: NVL("DIM_EVENTS_REGION"."EFFECTIVE_DATE", "DS_FORECAST"."START_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36a2e2f8-8627-412c-b2db-3d13faeb11da
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: DATE
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 54ae9040-6db3-45be-914c-cf07ada4ed2c
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: NVL("DS_FORECAST"."END_DATE", "DIM_EVENTS_REGION"."END_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77eea41c-924a-40d1-a813-41ea43e1ce71
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EVENT_EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d7c8dcd9-76f9-4ce1-bf33-52f2c1966033
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cebdfdc4-ef11-4a36-bba2-b9a62882663c
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EVENT_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 54ae9040-6db3-45be-914c-cf07ada4ed2c
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6044ed71-8c9b-4b9f-b487-016d20a540be
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: EVENT_WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c93352d-8419-42d5-880b-b2c00d1cf1c8
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5aad3b45-2c1e-447d-97af-c6fa30b5de77
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: EVENT_NOW_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9672042f-7aae-4b02-b43f-67f823a84cc3
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 00fe0a70-8899-4d20-a157-990e85d96232
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: FORECAST_EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a308c7d-92e4-4704-942d-19a11b63f6e9
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cbc90f9b-7d57-45a5-808c-a4f98b7f193e
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: FORECAST_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2257aa01-dacc-4166-a5d6-caaa3577e2f6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2676729c-62e8-4628-aa4b-2f96f679e6a8
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: FORECAST_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6fd198e7-b8ff-40cb-ba11-b546288b36f0
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b3a38d0a-e7cc-48d7-bffb-876a6f6c4988
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: FORECAST_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0977a9a9-ef5e-402e-a0ae-5e948477e6c6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b125a053-59d9-4101-8163-a46c36c3924a
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        hashDetails: null
+        name: FORECAST_DAYS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7fec432-6c18-4516-99ad-4821d8195779
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88e0b680-4943-44ba-a608-6eec79da55a2
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: FORECAST_WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9c67e70-224e-49e4-b85a-75404655c8b6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 714f1ab7-76e2-43e1-a9ea-1cafff377cb5
+          stepCounter: e4033997-2a90-4bca-8e15-a8eb61d67a69
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: FORECAST_NOW_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d9673f1-53de-4c07-8ae5-c84eec6dc275
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DS_FORECAST: e6e000e3-f962-4187-a382-475935ae8974
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_EVENTS_REGION
+          - locationName: DATASTORE
+            nodeName: DS_FORECAST
+        join:
+          joinCondition: |-
+            FROM (SELECT * FROM {{ ref('DATA', 'DIM_EVENTS_REGION') }} WHERE "DIM_EVENTS_REGION"."EVENT_TYPE" = 'EVENT') "DIM_EVENTS_REGION"
+            FULL JOIN {{ ref('DATASTORE', 'DS_FORECAST') }} "DS_FORECAST"
+            ON "DS_FORECAST"."ZONE_GEOGRAPHY" = "DIM_EVENTS_REGION"."ZONE_GEOGRAPHY"
+            AND "DS_FORECAST"."PRODKEY" = "DIM_EVENTS_REGION"."PRODKEY"
+            AND ABS(DATEDIFF(DAY, "DS_FORECAST"."START_DATE", "DIM_EVENTS_REGION"."EFFECTIVE_DATE")) < 3
+            QUALIFY 1 = ROW_NUMBER() OVER (
+                            PARTITION BY "DIM_EVENTS_REGION"."ZONE_GEOGRAPHY", "DIM_EVENTS_REGION"."PRODKEY", "DIM_EVENTS_REGION"."EFFECTIVE_DATE"
+                            ORDER BY ABS(DATEDIFF(DAY, "DS_FORECAST"."START_DATE", "DIM_EVENTS_REGION"."EFFECTIVE_DATE")))
+        name: VW_FORECAST_EVENT_MATCH
+        noLinkRefs: []
+  name: VW_FORECAST_EVENT_MATCH
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

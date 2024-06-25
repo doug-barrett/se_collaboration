@@ -1,0 +1,327 @@
+fileVersion: 1
+id: 0241a2df-0401-4206-99e1-9082d21eb01b
+name: STG_MEASURES_CURRENT_OPTIMIZE
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7709cdca-a646-4663-aa15-5bd3baab4e3d
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b273b00-cb9d-4260-80a3-41cef36f8f26
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5a238e88-9213-4cb0-bafb-ebc37e8087de
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 55120a13-e407-4bbf-b105-c4f175c2e15d
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc0fab12-ffcf-43b4-a2ae-c2df8f0b910b
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5cbc403c-0e41-44d6-8da0-a9a4a0670783
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b0069d13-a831-4095-a2dc-213b319426d4
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5754fef7-d418-465e-8fac-53bde14d980b
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5142f5f4-6892-422b-a95a-1fe4cc74dae0
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8c04cbe5-1d15-41f1-8e80-d27ac1e8c88f
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 95ef0662-47c1-4bd1-83db-feee0462ea8c
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: DISCOUNT_BUCKET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 035e48e8-b39c-4912-93fd-7f2466b88b76
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a3b6478-23b7-4ace-90ea-200367acc8a0
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: BASE_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e99cb12a-9d12-489b-b2ee-acd2303b008c
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c352cfa-503b-4c6a-bde2-ddc48afa5a0e
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: DISCOUNTED_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e99cb12a-9d12-489b-b2ee-acd2303b008c
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: BASE_PRICE * ((100 - DISCOUNT_BUCKET) / 100)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 340c06fb-8b00-4e60-bc42-55fce053353b
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: NUMBER(12,4)
+        description: ""
+        name: PRICE_DELTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e99cb12a-9d12-489b-b2ee-acd2303b008c
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: DIV0((BASE_PRICE - DISCOUNTED_PRICE),(BASE_PRICE + DISCOUNTED_PRICE))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8519ab91-87e8-4b6e-a0c8-59d696640b3d
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: BASE_UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cb010088-a79a-430c-a006-80d082c97ef6
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25ab9998-e908-41da-a0d7-c8fbfc7999aa
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: STRING
+        description: ""
+        name: BASE_UNITS_PER_DAY_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 94ae5757-ff85-41fc-8d45-9c5fcc91edfa
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26d16424-c2f1-430b-ab3a-dd270e888086
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: YEAR_MAX_UNITS_SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cf3046fb-2185-494e-af78-b0c20f16fb44
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 16778bac-5c78-4b7d-8124-bf567d6bca5c
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: NUMBER(6,4)
+        description: ""
+        hashDetails: null
+        name: PRICE_ELASTICITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f2cdd87d-8d65-4be5-b52c-02dbba768a92
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 302c14b8-cc78-4826-ad19-e4224357bfe5
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: PRICE_ELASTICITY_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 614f68b3-71bf-4131-ad03-ff574d3fbbf4
+                stepCounter: 717747c4-65ff-42d0-bab9-5c86d3fb43a5
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 35ace088-be38-4bc0-8bae-7f8441344f4a
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: FLOAT
+        defaultValue: ""
+        description: ""
+        name: FORECAST_UNITS_PER_DAY_RAW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE WHEN NVL(BASE_UNITS_PER_DAY, 0) <= 0 THEN 0
+              ELSE
+                  BASE_UNITS_PER_DAY * 
+                      (
+                          DIV0((1 + (PRICE_ELASTICITY * PRICE_DELTA)),
+                               (1 - (PRICE_ELASTICITY * PRICE_DELTA)))
+                      )
+              END 
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa96bdcf-983e-441b-9d9e-d599e188e4bd
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: NUMBER(16,2)
+        defaultValue: ""
+        description: ""
+        name: FORECAST_UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE 
+                  WHEN NVL(FORECAST_UNITS_PER_DAY_RAW,0) <= 0 
+                   AND NVL(YEAR_MAX_UNITS_SALES_PER_DAY,0) > 0 THEN YEAR_MAX_UNITS_SALES_PER_DAY
+                  WHEN NVL(FORECAST_UNITS_PER_DAY_RAW,0) <= 0 
+                   AND NVL(YEAR_MAX_UNITS_SALES_PER_DAY,0) <= 0 
+                   AND NVL(BASE_UNITS_PER_DAY, 0) > 0 THEN BASE_UNITS_PER_DAY * 2
+                  WHEN NVL(FORECAST_UNITS_PER_DAY_RAW,0) > YEAR_MAX_UNITS_SALES_PER_DAY  THEN YEAR_MAX_UNITS_SALES_PER_DAY 
+              ELSE NVL(FORECAST_UNITS_PER_DAY_RAW,0)
+              END 
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c0e6326d-8a70-4ef9-9d57-5ddc71249823
+          stepCounter: 0241a2df-0401-4206-99e1-9082d21eb01b
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: FORECAST_UNITS_PER_DAY_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE 
+                  WHEN NVL(FORECAST_UNITS_PER_DAY_RAW,0) <= 0 
+                   AND NVL(YEAR_MAX_UNITS_SALES_PER_DAY,0) > 0 THEN 'Negative Forecast, use Max'
+                  WHEN NVL(FORECAST_UNITS_PER_DAY_RAW,0) <= 0 
+                   AND NVL(YEAR_MAX_UNITS_SALES_PER_DAY,0) <= 0 
+                   AND NVL(BASE_UNITS_PER_DAY, 0) > 0 THEN 'Negative Forecast, use Base * 2'
+                  WHEN NVL(FORECAST_UNITS_PER_DAY_RAW,0) > NVL(YEAR_MAX_UNITS_SALES_PER_DAY,0)  THEN 'Forecast more than Max, use Max'
+              ELSE 'Use calculated Forecast'
+              END 
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_MEASURES_CURRENT_OPTIMIZE_2
+        join:
+          joinCondition: FROM {{ ref('STAGE', 'VW_MEASURES_CURRENT_OPTIMIZE_2') }} "VW_MEASURES_CURRENT_OPTIMIZE_2"
+        name: STG_MEASURES_CURRENT_OPTIMIZE
+        noLinkRefs: []
+  name: STG_MEASURES_CURRENT_OPTIMIZE
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

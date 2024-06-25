@@ -1,0 +1,375 @@
+fileVersion: 1
+id: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+name: DS_SCRAPE_COMPETITOR_PRICES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DATASTORE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d61c7d79-a16d-44a1-ab59-cff3cb4a241f
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2fbf23a5-5e88-43be-a43f-8ace1e109686
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: RIGHT('000000'||TO_CHAR(TRY_TO_NUMBER(PRODUCT_NUMBER)), 6)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d82e23d6-40ba-417e-a370-3bb871c10441
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 692ae721-a817-43a9-a464-f2d79fce15af
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a4a3fb87-ddac-4c91-8e08-21adee7ecb66
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9006c841-f521-4f53-b97b-489e9303d926
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: TO_DATE("LOAD_WISER_COMPETITOR_PRICES"."DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6e8b5c79-9399-4fd4-8fd2-b048db3c4fbc
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 85e69a15-f641-4f27-9d1e-8dc318b17652
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36963539-1929-48e9-a133-c98ea9912480
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(4000)
+        description: ""
+        hashDetails: null
+        name: URL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2669a083-0776-4402-aa85-cd9c89dd2c5f
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7436e71-62ad-4dcf-8b38-00e74143db4f
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: SAVING_MESSAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a059a260-780f-4680-bbff-03b0c0509acb
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fe0b551-8c25-49e1-a0c7-85761a3e3fd8
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: COLLECT_AT_STORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 727cbd4d-ac1a-4443-9ac3-d78cb91b351d
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6335e0cb-fb8f-4f82-892d-7285f97cb804
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: ONLINE_AVAILABILITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f171d7e-09ef-45c9-a17b-20507f6a8687
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aceb7234-19c1-4580-98e6-b3888277d889
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7e98ecd1-ae11-4be7-868c-e0deadb06887
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dfd4c6a8-b1fe-47e3-8df8-f8955499b53a
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: LOWEST_DELIVERY_CHARGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 31abd315-c32f-4ccc-a9bd-616a98b9a8d7
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b585889-47fe-4e64-91a3-761de15ef934
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: QUICKEST_DELIVERY_CHARGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd942e7c-45ec-40c2-aac3-eb2eef08bb7f
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4ac12cae-68c3-4c6d-a71f-5ec8fcb93476
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a44961c3-884c-46b6-8ea7-fd0c0318d5d4
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c46443fe-eef9-47e4-8ccd-88e57f102fe7
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: MATCH_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d7e03d00-affc-4b15-9c44-bdc4df5ea02c
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a79a73e-9f88-41da-8d37-20d73519507f
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: SAVING_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: acb9733a-dd13-46d5-a767-80fff62d4e0f
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 57e244fc-3afd-45a0-ad8a-950268c923e6
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c79b5f25-c077-4491-ad69-359aca3114f4
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc284e9b-f706-4328-90f9-523f87c5ec0a
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ff261d8d-55f6-4a60-91ee-9b9cf8117001
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 202a24f8-403c-4c49-942b-315e59a36dcc
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_LINK_TO_MA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c2f3a5e7-3284-4815-b2d5-1f322ffe779a
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2a383c2-990a-49e7-88b0-b86b7135a848
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_LINK_TO_PG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0ee4438-75f6-4770-9057-c8200685e4cb
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ff8412fe-a56a-4da4-961b-fb725909a316
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: SPEC_1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ce0b68c-ff20-42d9-8371-fd2344d1b197
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06e22fc8-b90d-4098-a3cd-e1dfe62989e8
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: SPEC_2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5562ba2-6dd3-4529-a3c7-ab46c878135a
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d341eeee-a7d1-4287-96cc-cf65a767ac2d
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: SPEC_3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 697b4f33-b199-4ba3-872a-505761b57d2b
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83d65d64-ed6e-4e1e-b331-313d1ba7cef0
+          stepCounter: 690ffd7b-ff95-40c6-a92d-2cda1fffc250
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: DSS_RECORD_SOURCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b22e267-46a2-4db7-b1d4-d2856b9d56d9
+                stepCounter: a57ddd75-175b-419a-ade6-e763f1a92874
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          LOAD_WISER_COMPETITOR_PRICES: a57ddd75-175b-419a-ade6-e763f1a92874
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: LAND
+            nodeName: LOAD_WISER_COMPETITOR_PRICES
+        join:
+          joinCondition: |-
+            FROM {{ ref('LAND', 'LOAD_WISER_COMPETITOR_PRICES') }} "LOAD_WISER_COMPETITOR_PRICES"
+            WHERE DSS_RECORD_SOURCE NOT IN (SELECT DISTINCT DSS_RECORD_SOURCE FROM {{this}} )
+            AND DATE > CURRENT_DATE - 10
+        name: DS_SCRAPE_COMPETITOR_PRICES
+        noLinkRefs:
+          - locationName: DATASTORE
+            nodeName: DS_WISER_COMPETITOR_PRICES
+  name: DS_SCRAPE_COMPETITOR_PRICES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

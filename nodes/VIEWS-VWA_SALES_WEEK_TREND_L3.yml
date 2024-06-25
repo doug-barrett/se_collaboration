@@ -1,0 +1,171 @@
+fileVersion: 1
+id: ecab7236-c025-4d6a-ab3b-f79d61143e16
+name: VWA_SALES_WEEK_TREND_L3
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 57d39d7b-ca8b-4f5c-afec-4943741c91df
+          stepCounter: ecab7236-c025-4d6a-ab3b-f79d61143e16
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d37ebef-8f3c-4a4f-94e9-018cb65b5092
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 69e607c9-bd7c-4dbc-9610-ab4c1bfa0d59
+          stepCounter: ecab7236-c025-4d6a-ab3b-f79d61143e16
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        name: FINANCIAL_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: afc46ff0-5c10-40f7-b535-680415df4a42
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d22029d-d65e-49a7-9235-ee36beaf8db1
+          stepCounter: ecab7236-c025-4d6a-ab3b-f79d61143e16
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL0_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d4b20c23-0adf-486d-bfb0-6ae9cf0c243b
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d913f46f-9b62-4d13-9286-fab151446529
+          stepCounter: ecab7236-c025-4d6a-ab3b-f79d61143e16
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL1_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0023d27b-8bd3-4fb1-9bf8-557698ad5fa4
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0ceba13b-4a58-4665-a727-be827684eb5e
+          stepCounter: ecab7236-c025-4d6a-ab3b-f79d61143e16
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL2_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 180c99ae-07d5-4539-955e-b32f05f1f01c
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28286f63-cd69-4a11-bdf7-44392f27c4ea
+          stepCounter: ecab7236-c025-4d6a-ab3b-f79d61143e16
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: acb346ee-e38b-4638-ab65-3e821d0ba76c
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8b363f8-62f9-4a0b-86bd-a7717816940a
+          stepCounter: ecab7236-c025-4d6a-ab3b-f79d61143e16
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: AVG_UNITS_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9cfe9a5d-8944-42b2-bd32-40ae5fdd5640
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a7f4365-79e3-4686-a0c6-5f0cf5bcbdbe
+          stepCounter: ecab7236-c025-4d6a-ab3b-f79d61143e16
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        hashDetails: null
+        name: AVG_SALES_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 75084d10-ca2d-4eaa-b4d9-d0a10561d647
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 51338331-a18d-42fc-a4e5-2572a8fcd4f7
+          stepCounter: ecab7236-c025-4d6a-ab3b-f79d61143e16
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: AVG_MARGIN_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1c4e17f-2c76-482d-8ee1-b1029d37e7de
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: FCT_SALES_WEEK_TREND
+        join:
+          joinCondition: FROM {{ ref('DATA', 'FCT_SALES_WEEK_TREND') }} "FCT_SALES_WEEK_TREND"
+        name: VWA_SALES_WEEK_TREND_L3
+        noLinkRefs: []
+  name: VWA_SALES_WEEK_TREND_L3
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

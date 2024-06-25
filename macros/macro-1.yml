@@ -8,11 +8,13 @@ macroString: |-
                   {{- p_col -}}
               {%- if not loop.last %}, {% endif -%}
           {%- endfor -%}
+
           {%- for o_col in order_by -%}
               {%- if loop.first %} ORDER BY {% endif -%}
                   {{- o_col -}}
               {%- if not loop.last %}, {% endif -%}
           {%- endfor -%}
+
           {% if order != '' %} {{order}}{%- endif %} )
   {%- endmacro -%}
 
@@ -30,20 +32,6 @@ macroString: |-
 
   {%- macro even_odd(column) -%}
       CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
-  {%- endmacro %}
-
-
-  {%- macro date_sk(column) -%}
-      TO_NUMBER(TO_CHAR({{ column }}, 'YYYYMMDD'))
-  {%- endmacro %}
-
-
-  {%- macro replacer(column) -%}
-      {% set ns = namespace(col=column) %}
-      {% for p in parameters.replace %}
-          {% set ns.col = ns.col | replace(p.long,  p.short) %}
-      {% endfor %}
-      {{ ns.col }}
   {%- endmacro %}
 name: macro
 type: Macro

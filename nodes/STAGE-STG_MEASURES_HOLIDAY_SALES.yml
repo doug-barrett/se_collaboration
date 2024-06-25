@@ -1,0 +1,145 @@
+fileVersion: 1
+id: ade442d2-4076-424e-8af1-d7b9ccee6d49
+name: STG_MEASURES_HOLIDAY_SALES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: UNITS_BASE updated on post sql of FCT_SALES_EVENT
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85c1eb04-b194-4b37-ac19-67770c0ec5af
+          stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcede211-1839-4363-b6da-6fa314efe9ac
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 81179af7-5106-4fd0-ae84-b5c42f047ff5
+          stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e887d56-d37d-4e5f-a594-6a55cc229433
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: NVL("DIM_DATE"."HOLIDAY_NAME",'NO_HOLIDAY')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85ce013d-b515-48aa-9fe4-0c2bb20b6c3e
+          stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76b80dd0-990c-439c-9b2a-f320fd772670
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d644111d-66fe-44e6-8651-ec1bfc95687c
+          stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: UNITS_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1820fabd-6601-408b-87cf-7222cfc72522
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("UNITS_SALES")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f4ffdbe-cd19-4e72-aee6-e15250193cc1
+          stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: DAY_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53776bbd-937c-4506-a163-dedff0387a4a
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: COUNT(DISTINCT "TRANSACTION_DATE")
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a469ace-85f6-4c34-b5b2-0d90bf893b97
+          stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1820fabd-6601-408b-87cf-7222cfc72522
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("UNITS_SALES")/COUNT(DISTINCT "TRANSACTION_DATE")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
+          DIM_PRODUCT: 99510b9e-1d3e-4709-93b8-2042202093b0
+          FCT_SALES_DAY: 91c3542a-c2f9-472c-8706-d613acb63e06
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: DATA
+            nodeName: FCT_SALES_DAY
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_SALES_DAY') }} "FCT_SALES_DAY"
+            JOIN {{ ref('DATA', 'DIM_DATE') }} "DIM_DATE"
+            ON "FCT_SALES_DAY"."TRANSACTION_DATE" = "DIM_DATE"."CALENDAR_DATE"
+            JOIN {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            ON "FCT_SALES_DAY"."PRODKEY" = "DIM_PRODUCT"."PRODKEY"
+            GROUP BY 1, 2, 3
+        name: STG_MEASURES_HOLIDAY_SALES
+        noLinkRefs: []
+  name: STG_MEASURES_HOLIDAY_SALES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

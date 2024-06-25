@@ -1,0 +1,404 @@
+fileVersion: 1
+id: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+name: DS_SCRAPE_COMPETITOR_PRICES_IRELAND
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DATASTORE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 111290ba-e3a5-4922-93f5-1ef2405cf67d
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f55ca5c4-f385-4ec8-a1f0-2f149b06d304
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: RIGHT('000000'||TO_CHAR(TRY_TO_NUMBER(PRODKEY)), 6)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6fe2055b-801e-498a-b6be-19952cb790fc
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3d457126-fd3c-4b58-b4e4-2755025d9618
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 924883ae-798e-4b31-bcd3-e7032c82bdcd
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cd64b2c5-9fb7-4bc9-b373-9d5c78f91c58
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: TO_DATE(EFFECTIVE_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3edf3066-75bd-4020-a2dc-274356ca7819
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: de31db6a-c24f-496d-a544-8d880d936372
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f95463bc-61ef-40a4-81e9-a3a0363bbc77
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: URL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e119a96a-90ca-4d3d-a151-9421ab7c88d1
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a56388e4-36d1-4dfd-8e9c-6e30030c7057
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: SAVING_MESSAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d01c816a-5f77-41de-9714-15f774c3c571
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76c5ee40-5988-4b26-ac28-25d8e7d3564e
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bab04f52-30c2-4c39-86e4-e661de3f3ec5
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: TRY_TO_NUMERIC("VW_SCRAPE_COMPETITOR_PRICES_IE"."PRICE",16,2)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a93c372-5743-4ca3-b043-0cd53b922337
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: RETAILER_CURRENCY_SYMBOL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7ce67b4-77e3-4bae-b3a5-20f8e2afd613
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6cd6f4c-be43-4ec6-b294-29a0c5be8ecd
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: RETAILER_CURRENCY_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 891c9598-a74a-46e5-87f1-d8f19dd218ee
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 68c7491e-6298-46e0-830f-e6af2be33fb9
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: LOWEST_DELIVERY_CHARGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2e95e8b5-8fb8-4971-a9ba-8f6aff01a2f8
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: TRY_TO_NUMERIC("VW_SCRAPE_COMPETITOR_PRICES_IE"."LOWEST_DELIVERY_CHARGE",16,2)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 225795d9-5dcd-4e2e-89c6-77685c08b190
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: QUICKEST_DELIVERY_CHARGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b7e6ada-ef27-4c38-b886-20278a2560d0
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: TRY_TO_NUMERIC("VW_SCRAPE_COMPETITOR_PRICES_IE"."QUICKEST_DELIVERY_CHARGE",16,2)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d02b164b-9dcd-4bc5-9f13-66c3ac3f7f13
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b793e73-e2f3-44db-aa75-060545dd4d95
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: TRY_TO_NUMERIC("VW_SCRAPE_COMPETITOR_PRICES_IE"."WAS_PRICE",16,2)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7856333-94ae-4bef-94d0-04bfd4917244
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: SAVING_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 09d5176d-a8a7-46bb-ade3-c72b12c46111
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: TRY_TO_NUMERIC("VW_SCRAPE_COMPETITOR_PRICES_IE"."SAVING_VALUE",16,2)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53e7dc85-5138-412f-bfb5-32bfb59954ab
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ffb3341e-6a98-4ff5-84da-25777ed08556
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8fe256d-790c-44bf-a29c-e404813e69b2
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_CATEGORY_LV1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 03a211b4-ed9b-4b7a-9184-a4739c55eab0
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a033b512-f83b-46a3-b6b8-0b6579930537
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_CATEGORY_LV2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b3e90389-55f4-4347-b067-39605d28d2db
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3bb2c4cc-52c2-446b-b1e4-15030ed82627
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_CATEGORY_LV3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3d99e46-cd5d-4060-b5dc-564c74073414
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1ef0a8d5-129b-4c65-926f-48f1dfb54c53
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: PRODUCT_MATCH_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0f5cc08d-18bd-486d-8c41-cfb0addeee3e
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 300d7846-4407-4bb1-ae99-20ce0539c55c
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: STOCK_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 030e6ca2-f33a-4002-93f9-16dabcf4b82b
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3ce0d79-55ca-4fe0-bc1f-131d769b0aa0
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: RETAILER_BARCODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f43a04cb-3a12-4a28-981e-d791dc47da6a
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b29437bc-9dce-4247-9ad9-97c1b239462d
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: RETAILER_PART_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b7d48e21-ae27-495b-a2ac-c0e632ebea33
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5297a6fe-0d43-42ad-b632-568808a0494f
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: RETAILER_PRODUCT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 619afff7-005e-4970-8bbe-f1b797433ec3
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ea4ad84-b8f2-4a24-838c-c3c6f952f3b0
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: PROMOTIONAL_MECHANIC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d3371b0e-880f-4bf5-8a13-555f109ffecf
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b0380cf-310c-4ddb-8338-4b4513097819
+          stepCounter: 38c4f55c-7c4c-489c-bb7d-67ddae7af70c
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: DSS_RECORD_SOURCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f603e960-25e1-4cc1-aa8b-99b9dd5341ec
+                stepCounter: c3007dd1-f044-4137-8d7a-4eb2b506232d
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VW_SCRAPE_COMPETITOR_PRICES_IE: c3007dd1-f044-4137-8d7a-4eb2b506232d
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_SCRAPE_COMPETITOR_PRICES_IE
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_SCRAPE_COMPETITOR_PRICES_IE') }} "VW_SCRAPE_COMPETITOR_PRICES_IE"
+            WHERE DSS_RECORD_SOURCE NOT IN  (SELECT DISTINCT DSS_RECORD_SOURCE FROM {{this}} )
+        name: DS_SCRAPE_COMPETITOR_PRICES_IRELAND
+        noLinkRefs:
+          - locationName: DATASTORE
+            nodeName: DS_SCRAPE_COMPETITOR_PRICES_IRELAND
+  name: DS_SCRAPE_COMPETITOR_PRICES_IRELAND
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

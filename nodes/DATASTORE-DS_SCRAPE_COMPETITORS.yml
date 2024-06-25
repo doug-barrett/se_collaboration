@@ -1,0 +1,117 @@
+fileVersion: 1
+id: 337f484e-2a6b-4257-9324-4f5cb8b28b55
+name: DS_SCRAPE_COMPETITORS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DATASTORE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b9cb55b3-e34c-4794-8d0e-67dbf46ccabd
+          stepCounter: 337f484e-2a6b-4257-9324-4f5cb8b28b55
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: OURID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc50def7-35e1-4341-9a03-5f1e760fd64d
+                stepCounter: 25b2e894-f3c9-49a4-9d57-cd152f7fe803
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 543d717a-8977-4c57-a713-cc8d33746b1c
+          stepCounter: 337f484e-2a6b-4257-9324-4f5cb8b28b55
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d3c7e4e7-fad9-420c-bc9b-9b224a8d6174
+                stepCounter: 25b2e894-f3c9-49a4-9d57-cd152f7fe803
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c30f7bb3-5e6c-43b8-8b1b-71beeb8093e7
+          stepCounter: 337f484e-2a6b-4257-9324-4f5cb8b28b55
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 73ba8118-ca77-4168-951b-258e22e3528f
+                stepCounter: 25b2e894-f3c9-49a4-9d57-cd152f7fe803
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d366dc12-0442-456d-b2fc-a8dc9adcf3dd
+          stepCounter: 337f484e-2a6b-4257-9324-4f5cb8b28b55
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: DIXONS_COMPETITOR_FILE_CODES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 91f3c421-15f1-4baa-8d58-7737dea86a37
+                stepCounter: 25b2e894-f3c9-49a4-9d57-cd152f7fe803
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 94d8d75d-575e-49e4-a4e0-b62b837d07a7
+          stepCounter: 337f484e-2a6b-4257-9324-4f5cb8b28b55
+        config: {}
+        dataType: VARIANT
+        description: ""
+        hashDetails: null
+        name: VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3f490ead-b0e4-4fcc-9a1b-85cc35430537
+                stepCounter: 25b2e894-f3c9-49a4-9d57-cd152f7fe803
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VW_SCRAPE_COMPETITORS: 25b2e894-f3c9-49a4-9d57-cd152f7fe803
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_SCRAPE_COMPETITORS
+        join:
+          joinCondition: |
+            FROM {{ ref('STAGE', 'VW_SCRAPE_COMPETITORS') }} "VW_SCRAPE_COMPETITORS"
+        name: DS_SCRAPE_COMPETITORS
+        noLinkRefs: []
+  name: DS_SCRAPE_COMPETITORS
+  overrideSQL: false
+  schema: ""
+  sqlType: "1"
+  type: sql
+  version: 1
+type: Node

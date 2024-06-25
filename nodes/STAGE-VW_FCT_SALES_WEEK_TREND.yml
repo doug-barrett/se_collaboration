@@ -1,0 +1,192 @@
+fileVersion: 1
+id: 98f36c45-88dd-4312-a157-b314e3eb6682
+name: VW_FCT_SALES_WEEK_TREND
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 448954ca-022b-408b-9c61-036873a694da
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8843f289-f676-4745-ac04-db5c24eacb95
+                stepCounter: 32499007-8daf-416e-9b0a-940aa0500567
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ebd35f7c-2c2b-4df8-a350-ae7f2771f144
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: FINANCIAL_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2246e010-ea5d-4b5b-975a-a51a8a65b11c
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7468bc2-53a1-412a-a1a4-7fb3deaac166
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76b80dd0-990c-439c-9b2a-f320fd772670
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6279fdae-6a1a-4258-8c9d-9f34f3897d7b
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL0_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 48a82910-6386-46e0-b072-3c89965cb3c1
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: "'ALL'"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 57869a79-ccff-47d9-9ce7-95ca64f77731
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL1_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 48a82910-6386-46e0-b072-3c89965cb3c1
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: MAX("DIM_PRODUCT"."LEVEL1_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9bc441ac-86bd-43ea-860d-ea2518b40d87
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL2_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 850983c0-90a9-4640-84e8-e8ae587b9e5a
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: MAX("DIM_PRODUCT"."LEVEL2_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 52625a6b-e55a-4806-8cd3-65ab57a9cc59
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: AVG_UNITS_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c7fe5e11-2edb-4669-a2db-0bd7d52bd60f
+                stepCounter: 32499007-8daf-416e-9b0a-940aa0500567
+            transform: NVL(DIV0(SUM("FCT_SALES_WEEK"."UNITS_NET"),COUNT(DISTINCT DIM_DATE."FINANCIAL_YEAR")),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bc1c778a-7082-410c-8fb3-f882e2d5a2f2
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        hashDetails: null
+        name: AVG_SALES_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b0c2352-fb2d-4f1b-98f5-25849edac574
+                stepCounter: 32499007-8daf-416e-9b0a-940aa0500567
+            transform: NVL(DIV0(SUM("FCT_SALES_WEEK"."SALES_NET"),COUNT(DISTINCT DIM_DATE."FINANCIAL_YEAR")),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: de66ab06-ddfe-4e4a-aea3-f877e2373679
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: AVG_MARGIN_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b78ded7-a541-4ad8-8c21-b2d61a411b47
+                stepCounter: 32499007-8daf-416e-9b0a-940aa0500567
+            transform: NVL(DIV0(SUM("FCT_SALES_WEEK"."MARGIN_NET"),COUNT(DISTINCT DIM_DATE."FINANCIAL_YEAR")),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 55ad7d43-6f0d-4f61-97b3-3fdaabd7c777
+          stepCounter: 98f36c45-88dd-4312-a157-b314e3eb6682
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FINANCIAL_YEAR_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4002d1c2-ff8a-4b5f-927c-1f5be4257a85
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: COUNT(DISTINCT DIM_DATE."FINANCIAL_YEAR")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_PRODUCT: 99510b9e-1d3e-4709-93b8-2042202093b0
+          FCT_SALES_WEEK: 32499007-8daf-416e-9b0a-940aa0500567
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: DATA
+            nodeName: FCT_SALES_WEEK
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_SALES_WEEK') }} "FCT_SALES_WEEK"
+            INNER JOIN (SELECT DISTINCT "FINANCIAL_YYWW", "FINANCIAL_WEEK", "FINANCIAL_YEAR" FROM {{ ref('DATA', 'DIM_DATE') }}) "DIM_DATE"
+            ON "FCT_SALES_WEEK"."FINANCIAL_YYWW" = "DIM_DATE"."FINANCIAL_YYWW"
+            INNER JOIN {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            ON "FCT_SALES_WEEK"."PRODKEY"= "DIM_PRODUCT"."PRODKEY"
+            GROUP BY 1, 2, 3
+        name: VW_FCT_SALES_WEEK_TREND
+        noLinkRefs: []
+  name: VW_FCT_SALES_WEEK_TREND
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,137 @@
+fileVersion: 1
+id: 781d9f43-b1c7-45c2-9fa5-abd0ad2d80d7
+name: STG_MEASURES_HOLIDAY_RATIO
+operation:
+  config:
+    insertStrategy: UNION
+    postSQL: null
+    preSQL: null
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 659f34ba-16ac-4869-8411-216932ad0fb3
+          stepCounter: 781d9f43-b1c7-45c2-9fa5-abd0ad2d80d7
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 85c1eb04-b194-4b37-ac19-67770c0ec5af
+                stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eca21bc7-8c13-48ad-bb63-b5846a575f49
+          stepCounter: 781d9f43-b1c7-45c2-9fa5-abd0ad2d80d7
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 81179af7-5106-4fd0-ae84-b5c42f047ff5
+                stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b45cd8a-7876-4e44-853e-00a744448d46
+          stepCounter: 781d9f43-b1c7-45c2-9fa5-abd0ad2d80d7
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 85ce013d-b515-48aa-9fe4-0c2bb20b6c3e
+                stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f909b815-352e-42c7-9689-a626d77eb09d
+          stepCounter: 781d9f43-b1c7-45c2-9fa5-abd0ad2d80d7
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: HOLIDAY_SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a469ace-85f6-4c34-b5b2-0d90bf893b97
+                stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 90c66311-bdc0-4fd0-b7e3-64785ddb4f8f
+          stepCounter: 781d9f43-b1c7-45c2-9fa5-abd0ad2d80d7
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: NON_HOLIDAY_SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d644111d-66fe-44e6-8651-ec1bfc95687c
+                stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+            transform: NON.SALES_PER_DAY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 45e47093-9921-440e-ae1d-d7f822d6317d
+          stepCounter: 781d9f43-b1c7-45c2-9fa5-abd0ad2d80d7
+        config: {}
+        dataType: NUMBER(16,6)
+        description: ""
+        hashDetails: null
+        name: HOLIDAY_RATIO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d644111d-66fe-44e6-8651-ec1bfc95687c
+                stepCounter: ade442d2-4076-424e-8af1-d7b9ccee6d49
+            transform: DIV0(STG_MEASURES_HOLIDAY_SALES.SALES_PER_DAY, NON.SALES_PER_DAY)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          NON: ade442d2-4076-424e-8af1-d7b9ccee6d49
+          STG_MEASURES_HOLIDAY_SALES: ade442d2-4076-424e-8af1-d7b9ccee6d49
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: STG_MEASURES_HOLIDAY_SALES
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'STG_MEASURES_HOLIDAY_SALES') }} "STG_MEASURES_HOLIDAY_SALES"
+            JOIN  {{ ref('STAGE', 'STG_MEASURES_HOLIDAY_SALES') }} NON
+            ON "STG_MEASURES_HOLIDAY_SALES"."ZONE_GEOGRAPHY" = NON."ZONE_GEOGRAPHY"
+            AND "STG_MEASURES_HOLIDAY_SALES"."LEVEL3_DESC" = NON."LEVEL3_DESC"
+            AND NON.HOLIDAY_NAME = 'NO_HOLIDAY'
+            WHERE "STG_MEASURES_HOLIDAY_SALES"."HOLIDAY_NAME" <> 'NO_HOLIDAY'
+        name: STG_MEASURES_HOLIDAY_RATIO
+        noLinkRefs: []
+  name: STG_MEASURES_HOLIDAY_RATIO
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

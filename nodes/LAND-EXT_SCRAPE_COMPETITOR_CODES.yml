@@ -1,0 +1,79 @@
+fileVersion: 1
+id: 79eea326-620c-4966-a48b-99be66ea42c8
+name: EXT_SCRAPE_COMPETITOR_CODES
+operation:
+  config:
+    autoRefresh: false
+    compression: ""
+    fieldDelim: ","
+    fieldEnclosed: \042
+    fileLocation: WIIBIT_DIXONS_LAND.LAND.WISER_STAGE/data/COMPETITOR_CODES
+    filePattern: .*[.]csv
+    fileType: CSV
+    recDelim: |+
+
+    skipBlankLines: true
+    skipHeader: "1"
+    snsTopic: arn:aws:sns:us-east-1:121674918127:prod-emea-s3-notification
+    trimSpace: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: LAND
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - VALUE: true
+        acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba4167df-9b5c-401f-b825-8d0fdf018058
+          stepCounter: 79eea326-620c-4966-a48b-99be66ea42c8
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        name: VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - METADATA$FILENAME: true
+        acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a819ae01-50ee-4a08-9c5c-0af9503ed011
+          stepCounter: 79eea326-620c-4966-a48b-99be66ea42c8
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: METADATA$FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: EXT_SCRAPE_COMPETITOR_CODES
+        noLinkRefs: []
+  name: EXT_SCRAPE_COMPETITOR_CODES
+  overrideSQL: false
+  schema: ""
+  sqlType: "36"
+  type: sql
+  version: 1
+type: Node
