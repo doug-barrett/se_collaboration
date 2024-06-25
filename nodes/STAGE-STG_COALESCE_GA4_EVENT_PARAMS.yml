@@ -1,88 +1,91 @@
-steps:
-  STG_COALESCE_GA4_EVENT_PARAMS-6af384a8-8187-49db-9113-5ba85477b8b5:
-    operation:
-      config:
-        insertStrategy: INSERT
-        postSQL: ""
-        preSQL: ""
-        selectDistinct: false
-        testsEnabled: true
-        truncateBefore: true
-      database: ""
-      deployEnabled: true
-      description: ""
-      isMultisource: false
-      locationName: STAGE
-      materializationType: view
-      metadata:
-        appliedNodeTests: []
-        columns:
-          - acceptedValues:
-              strictMatch: false
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 1e340b84-77c5-4034-a998-b2038160eb0e
-              stepCounter: 6af384a8-8187-49db-9113-5ba85477b8b5
-            dataType: STRING
-            description: ""
-            name: EVENT_KEY
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: c98dbe5c-42d4-4d31-9b2f-4b29b8707b20
-                    stepCounter: 6a56ab9e-8568-4581-8d13-989c65ed5ff2
-                transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: aea1eb4b-5939-4dd1-8e02-f6bc37d26dcf
-              stepCounter: 6af384a8-8187-49db-9113-5ba85477b8b5
-            config: {}
-            dataType: STRING
-            description: ""
-            name: PARAM_KEY
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: "\"EVENT_PARAMS\".value:\"key\"::STRING"
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 89100018-49c6-46e6-8079-d8bdd28a40d6
-              stepCounter: 6af384a8-8187-49db-9113-5ba85477b8b5
-            config: {}
-            dataType: STRING
-            description: ""
-            name: PARAM_VALUE
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: COALESCE("EVENT_PARAMS".value:"value"."string_value"::STRING, "EVENT_PARAMS".value:"value"."int_value"::STRING, 'EMPTY')
-        cteString: ""
-        enabledColumnTestIDs: []
-        sourceMapping:
-          - aliases:
-              STG_COALESCE_GA4_EVENT_ALL: 6a56ab9e-8568-4581-8d13-989c65ed5ff2
-            customSQL:
-              customSQL: ""
-            dependencies:
-              - locationName: STAGE
-                nodeName: STG_COALESCE_GA4_EVENT_ALL
-            join:
-              joinCondition: |-
-                FROM {{ ref('STAGE', 'STG_COALESCE_GA4_EVENT_ALL') }} "STG_COALESCE_GA4_EVENT_ALL", 
-                lateral flatten(input => "EVENT_PARAMS", OUTER => TRUE) "EVENT_PARAMS"
-                WHERE ARRAY_SIZE("EVENT_PARAMS") > 0
-            name: STG_COALESCE_GA4_EVENT_PARAMS
-            noLinkRefs: []
-      name: STG_COALESCE_GA4_EVENT_PARAMS
-      overrideSQL: false
-      schema: ""
-      sqlType: View
-      type: sql
-    stepCounter: 6af384a8-8187-49db-9113-5ba85477b8b5
+fileVersion: 1
+id: 6af384a8-8187-49db-9113-5ba85477b8b5
+name: STG_COALESCE_GA4_EVENT_PARAMS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1e340b84-77c5-4034-a998-b2038160eb0e
+          stepCounter: 6af384a8-8187-49db-9113-5ba85477b8b5
+        config: {}
+        dataType: STRING
+        description: ""
+        name: EVENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c98dbe5c-42d4-4d31-9b2f-4b29b8707b20
+                stepCounter: 6a56ab9e-8568-4581-8d13-989c65ed5ff2
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: aea1eb4b-5939-4dd1-8e02-f6bc37d26dcf
+          stepCounter: 6af384a8-8187-49db-9113-5ba85477b8b5
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PARAM_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"EVENT_PARAMS\".value:\"key\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 89100018-49c6-46e6-8079-d8bdd28a40d6
+          stepCounter: 6af384a8-8187-49db-9113-5ba85477b8b5
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PARAM_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: COALESCE("EVENT_PARAMS".value:"value"."string_value"::STRING, "EVENT_PARAMS".value:"value"."int_value"::STRING, 'EMPTY')
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_COALESCE_GA4_EVENT_ALL: 6a56ab9e-8568-4581-8d13-989c65ed5ff2
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: STG_COALESCE_GA4_EVENT_ALL
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'STG_COALESCE_GA4_EVENT_ALL') }} "STG_COALESCE_GA4_EVENT_ALL", 
+            lateral flatten(input => "EVENT_PARAMS", OUTER => TRUE) "EVENT_PARAMS"
+            WHERE ARRAY_SIZE("EVENT_PARAMS") > 0
+        name: STG_COALESCE_GA4_EVENT_PARAMS
+        noLinkRefs: []
+  name: STG_COALESCE_GA4_EVENT_PARAMS
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
