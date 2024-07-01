@@ -1,9 +1,9 @@
 fileVersion: 1
-id: 5ee12b11-9e2a-4207-9fba-8da389679cea
-name: LINK_CUSTOMER_NATION
+id: 0d398541-c834-4693-9167-0b08435ad8d9
+name: SATV0_CUSTOMER_HROC
 operation:
   config:
-    disable_hwm: true
+    disable_hwm: false
     postSQL: ""
     preSQL: ""
     testsEnabled: true
@@ -18,43 +18,12 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: bad2ce07-9b10-42ed-aa82-ec5662c428e3
-          stepCounter: 5ee12b11-9e2a-4207-9fba-8da389679cea
+          columnCounter: 7a87f9e9-8cd1-4992-a308-480eac90b5e2
+          stepCounter: 0d398541-c834-4693-9167-0b08435ad8d9
         config:
-          is_Link_hk: true
+          is_hk: true
         dataType: STRING
         description: ""
-        hashDetails: null
-        name: L_CUSTOMER_NATION_KEY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: ca8f0731-df40-4d46-9ab5-e22035a4c399
-                stepCounter: 66d3852e-76f1-4208-9900-a9f9d3f34b49
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 80273f46-4c3a-401c-a542-a06f1c6ee3ea
-          stepCounter: 5ee12b11-9e2a-4207-9fba-8da389679cea
-        config: {}
-        dataType: STRING
-        description: ""
-        hashDetails: null
-        name: H_NATION_KEY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: b01b9e18-117e-49a0-9219-15904c83322d
-                stepCounter: 66d3852e-76f1-4208-9900-a9f9d3f34b49
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: c149497a-9690-4872-bd08-334d377a2ca2
-          stepCounter: 5ee12b11-9e2a-4207-9fba-8da389679cea
-        config: {}
-        dataType: STRING
-        description: ""
-        hashDetails: null
         name: H_CUSTOMER_KEY
         nullable: true
         sourceColumnReferences:
@@ -64,42 +33,53 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 0f6a4024-02ed-42d1-b0c2-d37bb001ed58
-          stepCounter: 5ee12b11-9e2a-4207-9fba-8da389679cea
+          columnCounter: 2fe3ac15-12a2-4118-aa6e-1c50e0e66adc
+          stepCounter: 0d398541-c834-4693-9167-0b08435ad8d9
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: NUMBER(12,2)
         description: ""
-        hashDetails: null
-        name: C_CUSTKEY
+        name: C_ACCTBAL
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: f82226f3-cf92-4091-95ae-f470d2be0eca
+              - columnCounter: 4a939a58-1773-463e-8190-b0b06d9d3ed5
                 stepCounter: 66d3852e-76f1-4208-9900-a9f9d3f34b49
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: aa4d6f05-b73e-42c3-bae0-02320fe846fb
-          stepCounter: 5ee12b11-9e2a-4207-9fba-8da389679cea
+          columnCounter: 217e1ea3-d0e7-4286-924a-c5245bc9737c
+          stepCounter: 0d398541-c834-4693-9167-0b08435ad8d9
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: VARCHAR(10)
         description: ""
-        hashDetails: null
-        name: C_NATIONKEY
-        nullable: false
+        name: C_MKTSEGMENT
+        nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 7155cd45-1bad-47a5-a6dd-8200ca0f696a
+              - columnCounter: debf1df3-4bb0-47f4-955e-009deb9735d9
                 stepCounter: 66d3852e-76f1-4208-9900-a9f9d3f34b49
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: eae06621-7c03-4d83-894e-0713e9a79a79
-          stepCounter: 5ee12b11-9e2a-4207-9fba-8da389679cea
+          columnCounter: e7e3be96-8fec-4fd4-9762-e8452e949b5e
+          stepCounter: 0d398541-c834-4693-9167-0b08435ad8d9
         config: {}
-        dataType: TIMESTAMP
+        dataType: STRING
+        description: The Record Source (RSRC) describes the source of this data.
+        name: RSRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3eed9b39-1588-4a51-a1fb-7f560ac416f4
+                stepCounter: 66d3852e-76f1-4208-9900-a9f9d3f34b49
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 56fff68f-6d25-4e30-94ce-c8751df2962a
+          stepCounter: 0d398541-c834-4693-9167-0b08435ad8d9
+        config: {}
+        dataType: DATETIME
         description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
-        hashDetails: null
         name: LDTS
         nullable: true
         sourceColumnReferences:
@@ -109,17 +89,17 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 1ead7532-e5ff-458a-b1a7-5ba91d236b87
-          stepCounter: 5ee12b11-9e2a-4207-9fba-8da389679cea
-        config: {}
+          columnCounter: 0569482e-c598-4c02-9719-0791fc522e0c
+          stepCounter: 0d398541-c834-4693-9167-0b08435ad8d9
+        config:
+          is_hd: true
         dataType: STRING
-        description: The Record Source (RSRC) describes the source of this data.
-        hashDetails: null
-        name: RSRC
+        description: ""
+        name: S_CUSTOMER_HROC_HASH
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 3eed9b39-1588-4a51-a1fb-7f560ac416f4
+              - columnCounter: 04ce386b-21d6-49ff-8212-a25d36381147
                 stepCounter: 66d3852e-76f1-4208-9900-a9f9d3f34b49
             transform: ""
     cteString: ""
@@ -134,12 +114,12 @@ operation:
             nodeName: DVSTG_CUSTOMER
         join:
           joinCondition: FROM {{ ref('STAGE', 'DVSTG_CUSTOMER') }} "DVSTG_CUSTOMER"
-        name: LINK_CUSTOMER_NATION
+        name: SATV0_CUSTOMER_HROC
         noLinkRefs: []
-  name: LINK_CUSTOMER_NATION
+  name: SATV0_CUSTOMER_HROC
   overrideSQL: false
   schema: ""
-  sqlType: DV:::7
+  sqlType: DV:::8
   type: sql
   version: 1
 type: Node
