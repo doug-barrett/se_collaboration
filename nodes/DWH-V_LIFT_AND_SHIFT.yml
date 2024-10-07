@@ -1,0 +1,1714 @@
+fileVersion: 1
+id: d43089fd-d085-402a-b471-e02c177adf0a
+name: V_LIFT_AND_SHIFT
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a2f2054-8a05-4b22-bcc7-3e187d2ebb16
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CASE_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b1d324c9-3f66-409e-9cd5-6677d0c174c7
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CASE_KEY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 95053815-0ffd-450e-9b26-3c4db1735672
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CLASSIFICATION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d4377ff-036d-427b-b621-305ade879098
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae802694-ce47-474f-a699-1c47b18e1d1f
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SUBJECT_KEY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 583c6ccf-b029-41dc-aca0-6d00678d919d
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SUBJECT_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3fad72bb-2d18-49a5-bf8c-3aa4ccda395f
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SUBJECT_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ab6f890b-9ba5-4691-9046-50fb7b45f3bd
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CASE_STATUS_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd88c1ab-fb9d-4cd4-aca2-fa9053deba77
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: START_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c14b7af5-dcda-4f84-8668-e94ad19bfefa
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: END_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CASE."COMPLETED_TIMESTAMP"
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5145459e-04c5-4563-9094-e964eeeb62b8
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: COUNTRY_CODE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ede8626e-f25a-4772-aa76-8de28997e92c
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: COUNTRY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d77706b7-0219-49e7-8a7c-1a6f97ba8c2f
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: STATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e20f560b-2b62-4872-9f76-6a7d056ced52
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: REFERRAL_SOURCE_DESCRIPTION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c984143-3aae-4b34-a63b-1e3d35d98765
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: RISK_TYPE_DESCRIPTION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fb89667c-f4e6-4414-a58e-af214e604622
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: STATUS_DESCRIPTION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79dbf6e3-ea00-42fa-83e1-1f3e2effdd84
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SUB_STATUS_DESCRIPTION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9a35fa73-5058-4d05-b604-99943c26e393
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SUSPICIOUS_ACTIVITY_IDENTIFIED_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 124970e7-c02e-4c91-b7c5-d7df79afa0bd
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: SAR_STR_FILED_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 107e54b2-b665-4d51-a5c6-387b92a1e6cd
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: QAA
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03675f57-2bf8-42c3-8d0e-72c38952df5c
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: QCA
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 73356f23-1882-48d8-bfcf-20d50bce459e
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: FRAUD
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ea2e304-38f8-40e2-998c-c446164d82ab
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: INTERDICTION_COUNT
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 458dcb14-b4f6-4d46-ae08-3892d03a6820
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: AGENT_SUSPENDED
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 54fe3c4a-a8d6-4478-95de-be7a0968322e
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: AGENT_TERMINATED
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78e53f0b-1ec4-4a9f-8d84-6a1a9953a357
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: TERMINATION_CODE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: edaa275e-51cd-4856-85b9-8322ec66e965
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: INITIAL_RISK_LEVEL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ba787f5-9370-41b3-a0c3-ac932f7dc8af
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: FINAL_RISK_LEVEL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0991ffe9-0e66-482f-8cdf-7b32ebe77bbe
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: RECOMMENDATION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 858a030a-e70f-4644-8318-86a6c492db7e
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: RECOMMENDATION_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a7e2f9c-4651-42d0-b396-48cfe843d5aa
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: RESOLUTION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49a021e9-fc6c-4c88-bee4-95ec771a003a
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: RESOLUTION_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d76dd21-606a-4d2f-944c-79b323ccf307
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: RESOLUTION_FINAL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1c2a577a-282a-4c48-b266-18ccc4f78e72
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: UNDERLYING_FACTS
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9cbbdfbb-e57f-4687-9ac4-1ae756adf395
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SWB
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ffc62a03-4e9f-4e3b-bf28-64da49d76eb8
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SWB_FLAG
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: df5f8d98-fb57-4a0c-9c79-3f11259ea8f4
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: REFERRED_TO_LAW_ENFORCEMENT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1640362-62ef-4f87-a670-d8f48ae3a979
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: FRAUD_COUNT
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed2a5889-3514-49da-a735-deab187cd995
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: FRAUD_AMOUNT
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6d5fc379-9638-4d7f-850d-edcb587a2e44
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: FRAUD_COUNT_CONFIRMED
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bfad1073-9a43-42f7-9184-c129dc1f7887
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: FRAUD_AMOUNT_CONFIRMED
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d582fba0-12b0-4d32-9990-bf0a4286ef14
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: FRAUD_COUNT_POTENTIAL
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 43f1b888-bf3c-4292-b817-ba0ad6fca45a
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: FRAUD_AMOUNT_POTENTIAL
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c48be0f-b5bd-487f-9520-779f87233ef7
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: ANALYST_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 764e3692-1557-4cd4-bd01-0e6a35824316
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SIGNIFICANT_REPORT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf92b1a3-7093-43cb-afaf-37ed7d2ff8b6
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: NETWORK_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 91e5d924-3f24-4595-b7b9-9905e5120762
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: SAR_REPORT_COUNT
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6943ed8c-f22b-4b89-81f0-da9dbbdd7555
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: REPORT_AMOUNT
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2670d48-21f7-405c-af2b-0b0d50d1ba5d
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: REPORT_TRANSACTIONS
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49b40af4-c3c5-4814-a400-bcadf0a98820
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SAR_REPORT_COMMENTS
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 92368ac0-c3f0-4544-a181-17fe5d87379c
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: REFERRAL_INFORMATION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cf2070fc-3aca-4716-bcd3-48cd2a6b0fa6
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: OTHER_ACTIONS
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1bf12da4-d05a-4a9e-96e5-3e7b5b3d677a
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: OTHER_ACTIONS_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 711e4be1-04f0-4cfc-935d-cf9250b58a44
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CREATOR_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 47be78a3-01cd-4051-8013-16cb873918a4
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: T1_AGENT_WB
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7924e1f6-5343-4379-b7d0-81bf19040165
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: DUE_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6b980f1-9c8a-4140-9ede-2e6955d503ff
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: EMAIL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c9e87ab1-b396-4d4c-9247-45c2d8acbfbf
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: AGENT_CHECKLIST
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28a21d3f-7546-4145-b291-73b97ef3c207
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: AS400_SUSPENSION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9fb61283-9397-4b2c-932c-411dd621a01b
+          stepCounter: d43089fd-d085-402a-b471-e02c177adf0a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: INV_GRP_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('DWH', 'V_LIFT_AND_SHIFT')}} AS (
+
+                
+                    WITH t1_agent AS (
+                    
+                        SELECT case_key, upper(trim(file_name)) AS t1_agent_WB,
+                        FROM {{ ref('SOURCE', 'CASE_ATTACHMENT') }}
+                        WHERE upper(file_name) LIKE ANY ('%AGENTWB%', '%AGENT WB%')
+                    ),
+                    agent_checklist AS (
+                    
+                        SELECT case_key, upper(trim(file_name)) AS agent_checklist,
+                        FROM {{ ref('SOURCE', 'CASE_ATTACHMENT') }}
+                        WHERE upper(file_name) LIKE ANY ('%AGENT CHECKLIST%', '%AGENT_CHECKLIST%') AND upper(file_name) LIKE '%PDF%'
+                    ),
+                    suspension AS (
+                    
+                        SELECT case_key, upper(trim(file_name)) AS as400_suspension
+                        FROM {{ ref('SOURCE', 'CASE_ATTACHMENT') }}
+                        WHERE upper(file_name) LIKE ANY ('%AS400%')
+                    ),
+                    cleaned_frm_cases AS (
+                    
+                        SELECT
+                        
+                            c.case_key,
+                            CASE
+                                WHEN d.classification IN ('AgentNetwork', 'AgentLocation') THEN 'Agent'
+                                WHEN d.classification IN ('Consumer by Galactic ID') THEN 'Consumer'
+                                WHEN d.classification IN ('GenericSubject') THEN 'Generic'
+                                ELSE d.classification
+                            END AS classification,
+                            ap.location_id,
+                            c.case_id,
+                            c.case_status_id,        
+                            c.create_timestamp AS start_date,
+                            CASE
+                                WHEN st.status_description NOT IN ('Completed') THEN NULL
+                                WHEN c.completed_timestamp IS NULL THEN c.case_status_timestamp
+                                ELSE c.completed_timestamp
+                            END AS end_date,
+                            s.subject_key,
+                            s.subject_id,
+                            s.subject_name,
+                            IFF(NULLIF(trim(scty.country_name), '') IS NULL, ccty.iso_country_code_2, scty.iso_country_code_2) AS country_code,
+                            IFF(NULLIF(trim(scty.country_name), '') IS NULL, trim(ccty.country_name), trim(scty.country_name)) AS country,
+                            IFF(NULLIF(trim(s.state_code), '') IS NULL, NULLIF(trim(d.state_code), ''), trim(s.state_code)) AS state,
+                            sor.referral_source_description,
+                            rt.risk_type_description,
+                            IFF(st.status_description LIKE 'Closed', 'Completed', st.status_description) AS status_description,
+                            upper(trim(ss.sub_status_description)) AS sub_status_description,
+                            NULLIF(trim(d.suspicious_activity_identified_date), '') AS suspicious_activity_identified_date,
+                            d.sar_str_filed_date,
+                            CASE
+                                WHEN NULLIF(trim(d.qaa), '') IS NULL OR d.qaa = 'No' THEN 'N'
+                                WHEN d.qaa = 'Yes' THEN 'Y'
+                            END AS qaa,
+                            CASE
+                                WHEN NULLIF(trim(d.qca), '') IS NULL OR d.qca = 'No' THEN 'N'
+                                WHEN d.qca = 'Yes' THEN 'Y'
+                            END AS qca,
+                            CASE
+                                WHEN d.fraud IS NULL OR d.fraud = 'No' THEN 'N'
+                                WHEN d.fraud = 'Yes' THEN 'Y'
+                            END AS fraud,
+                            ZEROIFNULL(d.interdiction_count) AS interdiction_count,
+                            NULLIF(trim(d.agent_suspended), '') AS agent_suspended,
+                            NULLIF(trim(s.agent_terminated), '') agent_terminated,
+                            ap.termination_code,
+                            ip.description AS initial_risk_level,
+                            fp.description AS final_risk_level,
+                            rlr.risk_level_description AS recommendation,
+                            d.recommendation_date,        
+                            d.resolution_final,
+                            rlf.risk_level_description AS resolution,
+                            d.resolution_final_date AS resolution_date,
+                            REPLACE(REPLACE(REPLACE(REPLACE(
+                                upper(d.underlying_facts), '"', ''), CHR(9), ''), CHR(13), ''), CHR(10), ''
+                            ) AS underlying_facts,
+                            IFF(d.swb IS NULL, 'N', d.swb) AS swb,
+                            IFF(ap.swb_flag IS NULL, 'N', ap.swb_flag) AS swb_flag,
+                            IFF(
+                                NULLIF(trim(d.referred_to_law_enforcement), '') IS NULL, 'N', d.referred_to_law_enforcement
+                            ) AS referred_to_law_enforcement,
+                            ZEROIFNULL(d.fraud_count) AS fraud_count,
+                            ZEROIFNULL(d.fraud_amount) AS  fraud_amount,
+                            ZEROIFNULL(d.fraud_count_confirmed) AS fraud_count_confirmed,
+                            ZEROIFNULL(d.fraud_amount_confirmed) AS fraud_amount_confirmed,
+                            ZEROIFNULL(d.fraud_count_potential) AS fraud_count_potential,
+                            ZEROIFNULL(d.fraud_amount_potential) AS fraud_amount_potential,
+                            concat(u.first_name, ' ', u.last_name) AS analyst_name,
+                            NULLIF(trim(d.significant_report), '') AS significant_report,
+                            ap.network_id,
+                            ZEROIFNULL(d.sar_report_count) AS sar_report_count,
+                            ZEROIFNULL(d.report_amount) AS report_amount,
+                            ZEROIFNULL(d.report_transactions) AS report_transactions,
+                            NULLIF(upper(trim(d.sar_report_comments)), '') AS sar_report_comments,
+                            NULLIF(upper(trim(d.referral_information)), '') AS referral_information,
+                            NULLIF(upper(trim(d.resolution_other)), '') AS other_actions,
+                            d.resolution_other_date AS other_actions_date,
+                            t1.t1_agent_WB,
+                            ac.agent_checklist,
+                            sus.as400_suspension,
+                            concat(u2.first_name, ' ', u2.last_name) AS creator_name,
+                            c.due_date,
+                            NULLIF(trim(iv.inv_grp_name), '') AS inv_grp_name,
+                            u.email
+                            
+                        FROM {{ ref('SOURCE', 'CASE') }} c
+                        
+                        JOIN {{ ref('SOURCE', 'CASE_DETAILS') }} d
+                            ON c.case_key = d.case_key
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'SOURCE_OF_REFERRAL') }} sor
+                            ON d.referral_source_id = sor.referral_source_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'CASE_SUBJECT') }} cs
+                            ON c.case_key = cs.case_key
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'SUBJECT') }} s
+                            ON cs.subject_key = s.subject_key AND cs.subject_id = s.subject_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'STATUS') }} st
+                            ON c.case_status_id = st.status_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'SUB_STATUS') }} ss
+                            ON d.sub_status_id = ss.sub_status_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'PRIORITY') }} ip
+                            ON c.initial_priority_id = ip.priority_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'PRIORITY') }} fp
+                            ON c.final_priority_id = fp.priority_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'COUNTRY') }} scty
+                            ON s.country_key = scty.country_key
+                        
+                        LEFT JOIN {{ ref('SOURCE', 'COUNTRY') }} ccty
+                            ON d.country_key = ccty.country_key
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'RISK_TYPE') }} rt
+                            ON d.risk_type_id = rt.risk_type_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'AGENT_PROFILE') }} ap
+                            ON s.subject_id = ap.account_number
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'USER') }} u
+                            ON c.assigned_to_user_id = u.user_id
+                        
+                        LEFT JOIN {{ ref('SOURCE', 'USER') }} u2
+                            ON c.create_user_id = u2.user_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'RISK_LEVEL') }} rlr
+                            ON d.risk_level_code = rlr.risk_level_code
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'RISK_LEVEL') }} rlf
+                            ON d.resolution_final = rlf.risk_level_code
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'INVESTIGATIVE_GROUP') }} iv
+                            ON c.inv_grp_id = iv.inv_grp_id
+                    
+                        LEFT JOIN t1_agent t1
+                            ON c.case_key = t1.case_key
+                    
+                        LEFT JOIN agent_checklist ac
+                            ON c.case_key = ac.case_key
+                    
+                        LEFT JOIN suspension sus
+                            ON c.case_key = sus.case_key
+                        
+                        WHERE trim(c.business_group_id) = 'FRM'
+                            AND d.classification <> '2'
+                            AND NOT (upper(ss.sub_status_description) LIKE ANY  ('%CASE CREATED IN ERROR%', '%CREATED IN ERROR%'))
+                            AND NOT (analyst_name LIKE ANY (
+                                'CHAD GIRNUS', 'HELEN OGBOURNE', 'KRISTEN NOLTON', 'NIMMI SHEREEN PRATHAP', 'ROBERT RIECKER', 
+                                'AMBER CLARK', 'CEARA SHEEHAN', 'JESSICA KRAFT', 'AMPA WILLIAMSON', 'ALGIMANTAS MAKNYS'
+                            ))
+                        GROUP BY ALL
+                    ),
+                    cleaned_frm_cases2 AS (
+                    
+                        SELECT
+                        
+                            case_id,
+                            case_key,
+                            classification,
+                            location_id,
+                            subject_key,
+                            subject_id,
+                            subject_name,
+                            case_status_id,        
+                            start_date,
+                            end_date,
+                            country_code,
+                            country,
+                            state,
+                            referral_source_description,
+                            risk_type_description,
+                            status_description,
+                            sub_status_description,
+                            suspicious_activity_identified_date,
+                            sar_str_filed_date,
+                            qaa,
+                            qca,
+                            fraud,
+                            interdiction_count,
+                            CASE
+                                WHEN classification = 'Agent' AND (
+                                    agent_suspended = 'Yes' OR agent_terminated = 'Y' OR resolution IN ('Suspension', 'Termination')) THEN 'Y'
+                                WHEN agent_suspended IS NULL OR agent_suspended = 'No' THEN 'N'
+                            END AS agent_suspended,
+                            CASE
+                                WHEN classification = 'Agent' AND (agent_terminated = 'Y' OR resolution IN ('Termination')) THEN 'Y'
+                                WHEN agent_terminated IS NULL or agent_terminated = 'No' THEN 'N'
+                            END AS agent_terminated,
+                            termination_code,
+                            initial_risk_level,
+                            final_risk_level,
+                            recommendation,
+                            recommendation_date,        
+                            resolution,
+                            resolution_date,
+                            resolution_final,
+                            underlying_facts,
+                            swb,
+                            swb_flag,
+                            referred_to_law_enforcement,
+                            fraud_count,
+                            fraud_amount,
+                            fraud_count_confirmed,
+                            fraud_amount_confirmed,
+                            fraud_count_potential,
+                            fraud_amount_potential,
+                            analyst_name,
+                            significant_report,
+                            network_id,
+                            sar_report_count,
+                            report_amount,
+                            report_transactions,
+                            sar_report_comments,
+                            referral_information,
+                            other_actions,
+                            other_actions_date,
+                            creator_name,
+                            t1_agent_WB,
+                            due_date,
+                            email,        
+                            agent_checklist,
+                            as400_suspension,
+                            inv_grp_name
+                    
+                        FROM cleaned_frm_cases
+                    )
+                    SELECT * FROM cleaned_frm_cases2
+
+            	)
+        dependencies:
+          - locationName: SOURCE
+            nodeName: AGENT_PROFILE
+          - locationName: SOURCE
+            nodeName: CASE
+          - locationName: SOURCE
+            nodeName: CASE_ATTACHMENT
+          - locationName: SOURCE
+            nodeName: CASE_DETAILS
+          - locationName: SOURCE
+            nodeName: CASE_SUBJECT
+          - locationName: SOURCE
+            nodeName: COUNTRY
+          - locationName: SOURCE
+            nodeName: INVESTIGATIVE_GROUP
+          - locationName: SOURCE
+            nodeName: PRIORITY
+          - locationName: SOURCE
+            nodeName: RISK_LEVEL
+          - locationName: SOURCE
+            nodeName: RISK_TYPE
+          - locationName: SOURCE
+            nodeName: SOURCE_OF_REFERRAL
+          - locationName: SOURCE
+            nodeName: STATUS
+          - locationName: SOURCE
+            nodeName: SUB_STATUS
+          - locationName: SOURCE
+            nodeName: SUBJECT
+          - locationName: SOURCE
+            nodeName: USER
+        join:
+          joinCondition: |2
+
+                
+                    WITH t1_agent AS (
+                    
+                        SELECT case_key, upper(trim(file_name)) AS t1_agent_WB,
+                        FROM {{ ref('SOURCE', 'CASE_ATTACHMENT') }}
+                        WHERE upper(file_name) LIKE ANY ('%AGENTWB%', '%AGENT WB%')
+                    ),
+                    agent_checklist AS (
+                    
+                        SELECT case_key, upper(trim(file_name)) AS agent_checklist,
+                        FROM {{ ref('SOURCE', 'CASE_ATTACHMENT') }}
+                        WHERE upper(file_name) LIKE ANY ('%AGENT CHECKLIST%', '%AGENT_CHECKLIST%') AND upper(file_name) LIKE '%PDF%'
+                    ),
+                    suspension AS (
+                    
+                        SELECT case_key, upper(trim(file_name)) AS as400_suspension
+                        FROM {{ ref('SOURCE', 'CASE_ATTACHMENT') }}
+                        WHERE upper(file_name) LIKE ANY ('%AS400%')
+                    ),
+                    cleaned_frm_cases AS (
+                    
+                        SELECT
+                        
+                            c.case_key,
+                            CASE
+                                WHEN d.classification IN ('AgentNetwork', 'AgentLocation') THEN 'Agent'
+                                WHEN d.classification IN ('Consumer by Galactic ID') THEN 'Consumer'
+                                WHEN d.classification IN ('GenericSubject') THEN 'Generic'
+                                ELSE d.classification
+                            END AS classification,
+                            ap.location_id,
+                            c.case_id,
+                            c.case_status_id,        
+                            c.create_timestamp AS start_date,
+                            CASE
+                                WHEN st.status_description NOT IN ('Completed') THEN NULL
+                                WHEN c.completed_timestamp IS NULL THEN c.case_status_timestamp
+                                ELSE c.completed_timestamp
+                            END AS end_date,
+                            s.subject_key,
+                            s.subject_id,
+                            s.subject_name,
+                            IFF(NULLIF(trim(scty.country_name), '') IS NULL, ccty.iso_country_code_2, scty.iso_country_code_2) AS country_code,
+                            IFF(NULLIF(trim(scty.country_name), '') IS NULL, trim(ccty.country_name), trim(scty.country_name)) AS country,
+                            IFF(NULLIF(trim(s.state_code), '') IS NULL, NULLIF(trim(d.state_code), ''), trim(s.state_code)) AS state,
+                            sor.referral_source_description,
+                            rt.risk_type_description,
+                            IFF(st.status_description LIKE 'Closed', 'Completed', st.status_description) AS status_description,
+                            upper(trim(ss.sub_status_description)) AS sub_status_description,
+                            NULLIF(trim(d.suspicious_activity_identified_date), '') AS suspicious_activity_identified_date,
+                            d.sar_str_filed_date,
+                            CASE
+                                WHEN NULLIF(trim(d.qaa), '') IS NULL OR d.qaa = 'No' THEN 'N'
+                                WHEN d.qaa = 'Yes' THEN 'Y'
+                            END AS qaa,
+                            CASE
+                                WHEN NULLIF(trim(d.qca), '') IS NULL OR d.qca = 'No' THEN 'N'
+                                WHEN d.qca = 'Yes' THEN 'Y'
+                            END AS qca,
+                            CASE
+                                WHEN d.fraud IS NULL OR d.fraud = 'No' THEN 'N'
+                                WHEN d.fraud = 'Yes' THEN 'Y'
+                            END AS fraud,
+                            ZEROIFNULL(d.interdiction_count) AS interdiction_count,
+                            NULLIF(trim(d.agent_suspended), '') AS agent_suspended,
+                            NULLIF(trim(s.agent_terminated), '') agent_terminated,
+                            ap.termination_code,
+                            ip.description AS initial_risk_level,
+                            fp.description AS final_risk_level,
+                            rlr.risk_level_description AS recommendation,
+                            d.recommendation_date,        
+                            d.resolution_final,
+                            rlf.risk_level_description AS resolution,
+                            d.resolution_final_date AS resolution_date,
+                            REPLACE(REPLACE(REPLACE(REPLACE(
+                                upper(d.underlying_facts), '"', ''), CHR(9), ''), CHR(13), ''), CHR(10), ''
+                            ) AS underlying_facts,
+                            IFF(d.swb IS NULL, 'N', d.swb) AS swb,
+                            IFF(ap.swb_flag IS NULL, 'N', ap.swb_flag) AS swb_flag,
+                            IFF(
+                                NULLIF(trim(d.referred_to_law_enforcement), '') IS NULL, 'N', d.referred_to_law_enforcement
+                            ) AS referred_to_law_enforcement,
+                            ZEROIFNULL(d.fraud_count) AS fraud_count,
+                            ZEROIFNULL(d.fraud_amount) AS  fraud_amount,
+                            ZEROIFNULL(d.fraud_count_confirmed) AS fraud_count_confirmed,
+                            ZEROIFNULL(d.fraud_amount_confirmed) AS fraud_amount_confirmed,
+                            ZEROIFNULL(d.fraud_count_potential) AS fraud_count_potential,
+                            ZEROIFNULL(d.fraud_amount_potential) AS fraud_amount_potential,
+                            concat(u.first_name, ' ', u.last_name) AS analyst_name,
+                            NULLIF(trim(d.significant_report), '') AS significant_report,
+                            ap.network_id,
+                            ZEROIFNULL(d.sar_report_count) AS sar_report_count,
+                            ZEROIFNULL(d.report_amount) AS report_amount,
+                            ZEROIFNULL(d.report_transactions) AS report_transactions,
+                            NULLIF(upper(trim(d.sar_report_comments)), '') AS sar_report_comments,
+                            NULLIF(upper(trim(d.referral_information)), '') AS referral_information,
+                            NULLIF(upper(trim(d.resolution_other)), '') AS other_actions,
+                            d.resolution_other_date AS other_actions_date,
+                            t1.t1_agent_WB,
+                            ac.agent_checklist,
+                            sus.as400_suspension,
+                            concat(u2.first_name, ' ', u2.last_name) AS creator_name,
+                            c.due_date,
+                            NULLIF(trim(iv.inv_grp_name), '') AS inv_grp_name,
+                            u.email
+                            
+                        FROM {{ ref('SOURCE', 'CASE') }} c
+                        
+                        JOIN {{ ref('SOURCE', 'CASE_DETAILS') }} d
+                            ON c.case_key = d.case_key
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'SOURCE_OF_REFERRAL') }} sor
+                            ON d.referral_source_id = sor.referral_source_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'CASE_SUBJECT') }} cs
+                            ON c.case_key = cs.case_key
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'SUBJECT') }} s
+                            ON cs.subject_key = s.subject_key AND cs.subject_id = s.subject_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'STATUS') }} st
+                            ON c.case_status_id = st.status_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'SUB_STATUS') }} ss
+                            ON d.sub_status_id = ss.sub_status_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'PRIORITY') }} ip
+                            ON c.initial_priority_id = ip.priority_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'PRIORITY') }} fp
+                            ON c.final_priority_id = fp.priority_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'COUNTRY') }} scty
+                            ON s.country_key = scty.country_key
+                        
+                        LEFT JOIN {{ ref('SOURCE', 'COUNTRY') }} ccty
+                            ON d.country_key = ccty.country_key
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'RISK_TYPE') }} rt
+                            ON d.risk_type_id = rt.risk_type_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'AGENT_PROFILE') }} ap
+                            ON s.subject_id = ap.account_number
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'USER') }} u
+                            ON c.assigned_to_user_id = u.user_id
+                        
+                        LEFT JOIN {{ ref('SOURCE', 'USER') }} u2
+                            ON c.create_user_id = u2.user_id
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'RISK_LEVEL') }} rlr
+                            ON d.risk_level_code = rlr.risk_level_code
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'RISK_LEVEL') }} rlf
+                            ON d.resolution_final = rlf.risk_level_code
+                    
+                        LEFT JOIN {{ ref('SOURCE', 'INVESTIGATIVE_GROUP') }} iv
+                            ON c.inv_grp_id = iv.inv_grp_id
+                    
+                        LEFT JOIN t1_agent t1
+                            ON c.case_key = t1.case_key
+                    
+                        LEFT JOIN agent_checklist ac
+                            ON c.case_key = ac.case_key
+                    
+                        LEFT JOIN suspension sus
+                            ON c.case_key = sus.case_key
+                        
+                        WHERE trim(c.business_group_id) = 'FRM'
+                            AND d.classification <> '2'
+                            AND NOT (upper(ss.sub_status_description) LIKE ANY  ('%CASE CREATED IN ERROR%', '%CREATED IN ERROR%'))
+                            AND NOT (analyst_name LIKE ANY (
+                                'CHAD GIRNUS', 'HELEN OGBOURNE', 'KRISTEN NOLTON', 'NIMMI SHEREEN PRATHAP', 'ROBERT RIECKER', 
+                                'AMBER CLARK', 'CEARA SHEEHAN', 'JESSICA KRAFT', 'AMPA WILLIAMSON', 'ALGIMANTAS MAKNYS'
+                            ))
+                        GROUP BY ALL
+                    ),
+                    cleaned_frm_cases2 AS (
+                    
+                        SELECT
+                        
+                            case_id,
+                            case_key,
+                            classification,
+                            location_id,
+                            subject_key,
+                            subject_id,
+                            subject_name,
+                            case_status_id,        
+                            start_date,
+                            end_date,
+                            country_code,
+                            country,
+                            state,
+                            referral_source_description,
+                            risk_type_description,
+                            status_description,
+                            sub_status_description,
+                            suspicious_activity_identified_date,
+                            sar_str_filed_date,
+                            qaa,
+                            qca,
+                            fraud,
+                            interdiction_count,
+                            CASE
+                                WHEN classification = 'Agent' AND (
+                                    agent_suspended = 'Yes' OR agent_terminated = 'Y' OR resolution IN ('Suspension', 'Termination')) THEN 'Y'
+                                WHEN agent_suspended IS NULL OR agent_suspended = 'No' THEN 'N'
+                            END AS agent_suspended,
+                            CASE
+                                WHEN classification = 'Agent' AND (agent_terminated = 'Y' OR resolution IN ('Termination')) THEN 'Y'
+                                WHEN agent_terminated IS NULL or agent_terminated = 'No' THEN 'N'
+                            END AS agent_terminated,
+                            termination_code,
+                            initial_risk_level,
+                            final_risk_level,
+                            recommendation,
+                            recommendation_date,        
+                            resolution,
+                            resolution_date,
+                            resolution_final,
+                            underlying_facts,
+                            swb,
+                            swb_flag,
+                            referred_to_law_enforcement,
+                            fraud_count,
+                            fraud_amount,
+                            fraud_count_confirmed,
+                            fraud_amount_confirmed,
+                            fraud_count_potential,
+                            fraud_amount_potential,
+                            analyst_name,
+                            significant_report,
+                            network_id,
+                            sar_report_count,
+                            report_amount,
+                            report_transactions,
+                            sar_report_comments,
+                            referral_information,
+                            other_actions,
+                            other_actions_date,
+                            creator_name,
+                            t1_agent_WB,
+                            due_date,
+                            email,        
+                            agent_checklist,
+                            as400_suspension,
+                            inv_grp_name
+                    
+                        FROM cleaned_frm_cases
+                    )
+                    SELECT * FROM cleaned_frm_cases2
+        name: V_LIFT_AND_SHIFT
+        noLinkRefs: []
+  name: V_LIFT_AND_SHIFT
+  overrideSQL: true
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
