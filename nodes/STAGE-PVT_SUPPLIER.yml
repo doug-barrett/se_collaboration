@@ -1,0 +1,103 @@
+fileVersion: 1
+id: 0feefca3-f13f-45b8-abbd-0cce8b281f84
+name: PVT_SUPPLIER
+operation:
+  config:
+    keyCol:
+      columnCounter: cc24894b-830e-41e1-8524-bc4bb1032e69
+      stepCounter: 0feefca3-f13f-45b8-abbd-0cce8b281f84
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+    valCol:
+      columnCounter: df76362d-b561-4e47-871e-3e8fff6fc93a
+      stepCounter: 0feefca3-f13f-45b8-abbd-0cce8b281f84
+  database: ""
+  deployEnabled: true
+  description: Supplier data as defined by TPC-H
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 68ce9833-cfef-4f7f-9851-efa5937adb73
+          stepCounter: 0feefca3-f13f-45b8-abbd-0cce8b281f84
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        isData: true
+        name: DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a0677a61-3209-45f1-a24f-156db5588b14
+          stepCounter: 0feefca3-f13f-45b8-abbd-0cce8b281f84
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: S_SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 922cc550-8d17-447f-8283-f8e1861cfcb8
+                stepCounter: ca69c827-d3b4-4d96-ab5a-1372aa6ddd76
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc24894b-830e-41e1-8524-bc4bb1032e69
+          stepCounter: 0feefca3-f13f-45b8-abbd-0cce8b281f84
+        config: {}
+        dataType: STRING
+        description: ""
+        name: KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fafa97de-f783-48ef-a632-5459ed835ff2
+                stepCounter: ca69c827-d3b4-4d96-ab5a-1372aa6ddd76
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: df76362d-b561-4e47-871e-3e8fff6fc93a
+          stepCounter: 0feefca3-f13f-45b8-abbd-0cce8b281f84
+        config: {}
+        dataType: STRING
+        description: ""
+        name: VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e833e245-b1e5-4604-afb7-e3a18e9097ae
+                stepCounter: ca69c827-d3b4-4d96-ab5a-1372aa6ddd76
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: UPVT_SUPPLIER
+        join:
+          joinCondition: FROM {{ ref('STAGE', 'UPVT_SUPPLIER') }} "UPVT_SUPPLIER"
+        name: PVT_SUPPLIER
+        noLinkRefs: []
+  name: PVT_SUPPLIER
+  overrideSQL: false
+  schema: ""
+  sqlType: "273"
+  type: sql
+  version: 1
+type: Node
