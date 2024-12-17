@@ -1,5 +1,0 @@
-{{ stage('Run Snowpipe Copy')}}
-
-  COPY INTO {{ this }} (VALUE)
-  FROM  @{{parameters.stage_location}}.{{ config.fileLocation  }}
-  FILE_FORMAT = (TYPE = '{{ config.fileType }}')
