@@ -1,0 +1,142 @@
+{#
+    Copyright (c) 2023 Coalesce. All rights reserved.
+This script and its associated documentation are confidential and proprietary to Coalesce.
+Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
+Coalesce permits you to copy and modify this script for the purposes of using with Coalesce but
+does not permit copying or modification for any other purpose.
+#}
+{# == Node Type Version        : 1  == #}
+{# == Node Type Name           : DLT  == #}
+{# == Node Type Description    : This node creates a streaming table in the target == #}
+
+
+# Storage Location-database and schema
+
+{%if config.readfiles != true%}
+{% set srcSchName = sources[0].dependencies[0].node.location.name %}
+{% set db = storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='database') | first %}
+{% set sch = storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='schema') | first %}
+{%endif%}
+
+
+# Target Location database and schema
+
+{% set tgtSchName = node.location.name %}
+{% set tdb = storageLocations | selectattr('name', 'equalto', tgtSchName) | map(attribute='database') | first %}
+{% set tsch = storageLocations | selectattr('name', 'equalto', tgtSchName) | map(attribute='schema') | first %}
+
+{%set join_clause = sources[0].join %}
+{% set parts = join_clause.split('FROM') %}
+{% set other_clause = parts[1] %}
+{%- set nsVariables = namespace(partValues="",primarykeyValues="",foreignkeyValues="",oconstraints="") %}    
+# Partition by clause
+
+{%if config.partclause == true%}
+
+       {% set column = config.partitionclause.get('items') | map(attribute='partname.name')| list%}
+	 
+	      {% for r in column %}
+			   {% set nsVariables.partValues = nsVariables.partValues + r %}
+         {%- if not loop.last -%} {% set nsVariables.partValues = nsVariables.partValues +','%} {% endif %}
+        {% endfor %}
+       
+         {% set nsVariables.partValues = 'PARTITIONED BY(' + nsVariables.partValues + ')' %}
+         
+
+{%endif%}
+
+# Primary key clause
+
+{%if config.primary == true%}
+
+   {% set column = config.primarykeycon.get('items') | map(attribute='primarykey.name')| list%}
+   
+	 
+	      {% for r in column %}
+			   {% set nsVariables.primarykeyValues = nsVariables.primarykeyValues +r %}
+         {%- if not loop.last -%} {% set nsVariables.primarykeyValues = nsVariables.primarykeyValues +','%} {% endif %}
+        {% endfor %}
+       
+         {% set nsVariables.primarykeyValues = 'CONSTRAINT ' + config.primarykeyname + ' PRIMARY KEY ('+nsVariables.primarykeyValues +')' %}
+
+{%endif%}
+
+#Foreign key clause
+
+{%if config.foreign == true%}
+
+   {% set column = config.foreignkeycon.get('items') | map(attribute='foreignkey.name')| list%}
+	 
+	      {% for r in column %}
+			   {% set nsVariables.foreignkeyValues = nsVariables.foreignkeyValues +r %}
+         {%- if not loop.last -%} {% set nsVariables.foreignkeyValues = nsVariables.foreignkeyValues +','%} {% endif %}
+        {% endfor %}
+       
+         {% set nsVariables.foreignkeyValues = 'CONSTRAINT ' + config.foreignkeyname + ' FOREIGN KEY ('+nsVariables.foreignkeyValues +')' + ' REFERENCES '+ config.parentabname %}
+
+{%endif%}
+
+#Other constraints
+
+    {%if config.constraints == true%}
+	
+	       {% set column, expression,violation = config.constraintsspec.get('items') | map(attribute='columnName.name')| list, config.constraintsspec.get('items') | map(attribute='sqlExpression') | list ,
+	      config.constraintsspec.get('items') | map(attribute='onviolation') | list%}
+
+	     
+	    {% for r in column %}
+	
+			{%set nsVariables.oconstraints = nsVariables.oconstraints + 'CONSTRAINT ' + r + ' EXPECT('+ expression[loop.index0] + ') ON VIOLATION ' + violation[loop.index0] %}
+      {% if not loop.last %}
+      {%set nsVariables.oconstraints = nsVariables.oconstraints +',' %}
+
+      {% endif %}                
+     {% endfor %}
+	  {%endif%}
+
+
+
+{# CreateSQL for Table #}
+
+{{ stage('CREATE '+ config.DLTtype ) }}
+
+CREATE OR REFRESH {{config.DLTtype}} 
+{%-if config.readfiles != true%}{{ ref_no_link(node.location.name, node.name) }}
+{%else%}
+`{{tdb}}`.`{{tsch}}`.`{{node.name}}_raw`
+{%endif%}
+{%- if config.readfiles != true%}
+      (
+        {% for col in columns %}
+            `{{ col.name }}` {{ col.dataType }}
+            {%- if not col.nullable %} NOT NULL
+            {% endif %}
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            {%- if not loop.last %}, {% endif %}
+            {%-if loop.last and (config.foreign == true or config.primary == true) -%},{%endif%}
+        {% endfor %}
+{% if config.primary == true%} {{nsVariables.primarykeyValues}}{%if config.foreign == true -%},{%endif-%}{%endif%}
+  {%if config.foreign == true%}{{nsVariables.foreignkeyValues}}{%endif%}
+  {%if config.constraints == true%}{{nsVariables.oconstraints}}{%endif%}  )
+  {%-endif-%} 
+  
+    {% if node.description | length > 0 -%} COMMENT '{{ node.description |escape }}'{%- endif%}
+    {% if config.partclause == true %} {{ nsVariables.partValues }} {%endif%}
+    {%if config.tblproperties != ""-%}TBLPROPERTIES ({{config.tblproperties}}){%endif%}
+    AS
+    SELECT 
+    {%if config.readfiles == true%} * 
+    {%else%}
+    {% for col in sources[0].columns %}
+            {{ get_source_transform(col) }} AS `{{ col.name }}`
+            {%- if not loop.last -%}, {% endif %}
+    {% endfor %}
+    {%-endif%} 
+    FROM {%if config.DLTtype == 'STREAMING TABLE'%} STREAM {%endif%}    
+    {%if config.readfiles == true %} 
+       read_files('{{config.fileloc}}',format=>'{{config.fileformat}}'{%if config.fileformat == 'csv'%},delimiter=>'{{config.delimiter}}',header=> {%if config.header == True %}true {%else%} false{%endif%}{%endif%})
+    {%else%}
+    (`{{db}}`.`{{sch}}`.`{{sources[0].dependencies[0].node.name}}`)
+    {{ get_clause_dbx(join_clause) }}
+    {%endif%}
+

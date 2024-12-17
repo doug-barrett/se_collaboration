@@ -1,0 +1,71 @@
+fileVersion: 1
+id: 0d77d644-c76d-4458-8051-00c6d255b94d
+name: region
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: ""
+  locationName: BRONZE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: dd237c4a-821c-4e86-94f1-7947d064a09d
+          stepCounter: 0d77d644-c76d-4458-8051-00c6d255b94d
+        config: {}
+        dataType: LONG
+        defaultValue: ""
+        description: ""
+        name: r_regionkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c391a269-8a05-492d-bcc9-486981793563
+          stepCounter: 0d77d644-c76d-4458-8051-00c6d255b94d
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: r_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6d38b7e-0f8d-47eb-8ea9-06e13e5df0f3
+          stepCounter: 0d77d644-c76d-4458-8051-00c6d255b94d
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: r_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+    join:
+      joinCondition: FROM {{ ref('SRC', 'region') }}
+  name: region
+  schema: ""
+  sqlType: Source
+  table: region
+  type: sourceInput
+  version: 1
+type: Node

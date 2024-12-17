@@ -1,0 +1,173 @@
+fileVersion: 1
+id: 4450c20e-1c03-4ce8-ae22-4549645282ba
+name: orders
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: ""
+  locationName: BRONZE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 40d12818-bd75-4878-a649-7ffeaa42c5d2
+          stepCounter: 4450c20e-1c03-4ce8-ae22-4549645282ba
+        config: {}
+        dataType: LONG
+        defaultValue: ""
+        description: ""
+        name: o_orderkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a2eb7f91-dcb5-4ede-b46d-665466f0aaf2
+          stepCounter: 4450c20e-1c03-4ce8-ae22-4549645282ba
+        config: {}
+        dataType: LONG
+        defaultValue: ""
+        description: ""
+        name: o_custkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1954eab1-4a50-4d7e-a347-881fa8cf2d82
+          stepCounter: 4450c20e-1c03-4ce8-ae22-4549645282ba
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: o_orderstatus
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3df1e6aa-9fe0-489d-b2e1-878aa0192939
+          stepCounter: 4450c20e-1c03-4ce8-ae22-4549645282ba
+        config: {}
+        dataType: DECIMAL
+        defaultValue: ""
+        description: ""
+        name: o_totalprice
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8625a240-8500-4b5e-a2cd-aea21ca3c373
+          stepCounter: 4450c20e-1c03-4ce8-ae22-4549645282ba
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: o_orderdate
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4dd26faa-8e17-44b8-919c-ab400404127b
+          stepCounter: 4450c20e-1c03-4ce8-ae22-4549645282ba
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: o_orderpriority
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b181460-8430-4dc9-ade8-3df6649895da
+          stepCounter: 4450c20e-1c03-4ce8-ae22-4549645282ba
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: o_clerk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ab3269c-70b3-47a3-840b-6cafafce6240
+          stepCounter: 4450c20e-1c03-4ce8-ae22-4549645282ba
+        config: {}
+        dataType: INT
+        defaultValue: ""
+        description: ""
+        name: o_shippriority
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd802add-8046-49f2-8e81-aad117151435
+          stepCounter: 4450c20e-1c03-4ce8-ae22-4549645282ba
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: o_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+    join:
+      joinCondition: FROM {{ ref('SRC', 'orders') }}
+  name: orders
+  schema: ""
+  sqlType: Source
+  table: orders
+  type: sourceInput
+  version: 1
+type: Node

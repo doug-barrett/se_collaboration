@@ -1,0 +1,170 @@
+fileVersion: 1
+id: "74"
+isDisabled: false
+metadata:
+  defaultStorageLocation: GOLD
+  error: null
+  nodeMetadataSpec: |+
+    capitalized: DLT
+    short: dlt
+    plural: Delta Live Tables
+    tagColor: '#35D491'
+
+    config:
+    - groupName: DLT Options
+      items:
+      - displayName: Type of Delta Live Table
+        attributeName: DLTtype
+        type: dropdownSelector
+        default: STREAMING TABLE
+        options:
+        - STREAMING TABLE
+        - MATERIALIZED VIEW
+        isRequired: true
+
+      - displayName: Read from files
+        attributeName: readfiles
+        type: toggleButton
+        default: false
+
+      - displayName: File location
+        attributeName: fileloc
+        type: textBox
+        enableIf: "{% if config.readfiles %} true {% else %} false {% endif %}"
+        isRequired: false
+
+      - displayName: File format
+        attributeName: fileformat
+        type: dropdownSelector
+        options:
+        - csv
+        - json
+        enableIf: "{% if config.readfiles %} true {% else %} false {% endif %}"
+        isRequired: false
+      
+      - displayName: Delimiter
+        attributeName: delimiter
+        type: textBox
+        enableIf: "{% if config.readfiles and config.fileformat == 'csv' %} true {% else %} false {% endif %}"
+        isRequired: false
+        
+      - displayName: Header
+        attributeName: header
+        type: toggleButton
+        enableIf: "{% if config.readfiles and config.fileformat == 'csv' %} true {% else %} false {% endif %}"
+        isRequired: false
+      
+      - displayName: Table properties
+        attributeName: tblproperties
+        type: textBox
+      
+      - type: toggleButton
+        displayName: Partition by 
+        attributeName: partclause
+        enableIf: "{% if config.readfiles %} false {% else %} true {% endif %}"
+
+      - type: tabular
+        displayName: Partition by
+        attributeName: partitionclause
+        columns:
+
+        -  type: columnDropdownSelector
+           displayName: Partition by
+           attributeName: partname
+           isRequired: false
+        isRequired: false
+        enableIf: "{% if (config.partclause) %} true {% else %} false {% endif %}"
+      
+      - type: toggleButton
+        displayName: Table Constraints
+        attributeName: tableconstraints
+        default: false
+        enableIf: "{% if config.readfiles == false and config.constraints == false %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        displayName: Primary key
+        attributeName: primary
+        enableIf: "{% if (config.tableconstraints) %} true {% else %} false {% endif %}"
+
+      - type: textBox
+        displayName: Primary key Name
+        attributeName: primarykeyname
+        enableIf: "{% if (config.tableconstraints and config.primary) %} true {% else %} false {% endif %}"
+
+
+      - type: tabular   
+        displayName: Primary key columns
+        attributeName: primarykeycon
+        columns:
+
+        -  type: columnDropdownSelector
+           displayName: Columns
+           attributeName: primarykey
+
+        isRequired: false
+        enableIf: "{% if (config.tableconstraints and config.primary) %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        displayName: Foreign key
+        attributeName: foreign
+        enableIf: "{% if (config.tableconstraints) %} true {% else %} false {% endif %}"
+
+      - type: textBox
+        displayName: Foreign key Name
+        attributeName: foreignkeyname
+        enableIf: "{% if (config.tableconstraints and config.foreign) %} true {% else %} false {% endif %}"
+
+      - type: textBox
+        displayName: Parent table name
+        attributeName: parentabname
+        default: "ex:`<catalog>`.`<schema>`.`<tablename>`"
+        enableIf: "{% if (config.tableconstraints and config.foreign) %} true {% else %} false {% endif %}"
+
+      - type: tabular
+        displayName: Foreign key columns
+        attributeName: foreignkeycon
+        columns:
+
+        -  type: columnDropdownSelector
+           displayName: Foreign key
+           attributeName: foreignkey
+      
+        isRequired: false
+        enableIf: "{% if (config.tableconstraints and config.foreign ) %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: constraints
+        displayName: Other constraints
+        default: false
+        enableIf: "{%if config.readfiles == false and config.tableconstraints == false%}true {%else%} false {%endif%}"
+        isRequired: false
+
+      - type: tabular
+        displayName: 'Constraints'
+        attributeName: constraintsspec
+        columns:
+
+        -  type: columnDropdownSelector
+           displayName: ColumnName
+           attributeName: columnName
+           isRequired: false
+      
+        -  type: textBox
+           displayName: Expected Expression
+           attributeName: sqlExpression
+           default: "ex:<column_name> IS NOT NULL"
+           isRequired: false
+        
+        -  type: dropdownSelector
+           displayName: ON VIOLATION
+           attributeName: onviolation
+           default: DROP ROW
+           options:
+           - FAIL UPDATE
+           - DROP ROW 
+      
+        isRequired: false
+        enableIf: "{% if config.constraints %} true {% else %} false {% endif %}"
+
+name: Delta Live Table
+type: NodeType

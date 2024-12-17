@@ -1,0 +1,216 @@
+fileVersion: 1
+id: 7c31606b-faf7-4b38-9f24-3492952e04ca
+name: stg_part
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: BRONZE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: true
+        columnReference:
+          columnCounter: 6157cf7a-6790-451e-a58a-544a9b46916e
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: LONG
+        description: ""
+        name: p_partkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f877d8f2-a704-4814-9981-8fa9741ec3cc
+                stepCounter: 84255480-5901-4e23-9877-12ecf1a63840
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: c0142827-329c-4651-b435-b739d0b94358
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: STRING
+        description: ""
+        name: p_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 181b1f4a-249a-4691-8a81-0d79a0b67a08
+                stepCounter: 84255480-5901-4e23-9877-12ecf1a63840
+            transform: upper("part"."p_name")
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 75616a5a-5c37-456d-9d6d-07902de92d07
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: STRING
+        description: ""
+        name: p_mfgr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2bdd3f42-4e9d-4523-bd1a-23578b5d2e69
+                stepCounter: 84255480-5901-4e23-9877-12ecf1a63840
+            transform: upper("part"."p_mfgr")
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 7deb2edc-890b-4d0e-bb08-e3b4c8c0b05b
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: STRING
+        description: ""
+        name: p_brand
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 662f2ef9-a37c-438a-8826-6d9ebba8b185
+                stepCounter: 84255480-5901-4e23-9877-12ecf1a63840
+            transform: upper("part"."p_brand")
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 0e58e001-d458-434d-9928-ba49548525d4
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: STRING
+        description: ""
+        name: p_type
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 85b1326b-ab36-4c62-ae9c-696539319185
+                stepCounter: 84255480-5901-4e23-9877-12ecf1a63840
+            transform: upper("part"."p_type")
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: eac6d778-a163-49c7-bf8f-6780c5845195
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: INT
+        description: ""
+        name: p_size
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c5a83091-c73e-41da-800f-fdddd602157e
+                stepCounter: 84255480-5901-4e23-9877-12ecf1a63840
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 0c194e9a-b43a-4596-a327-fe9681e878c4
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: STRING
+        description: ""
+        name: p_container
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3f0015ba-b0d6-483a-84cd-4ce5645288be
+                stepCounter: 84255480-5901-4e23-9877-12ecf1a63840
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: e50ee3a7-1255-4cef-8875-311649bd079d
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: DECIMAL
+        description: ""
+        name: p_retailprice
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bfa5e2f8-abad-4fdd-b162-758fbfaa72d1
+                stepCounter: 84255480-5901-4e23-9877-12ecf1a63840
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 38705d83-fa43-4195-a36a-44573a6b990d
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: STRING
+        description: ""
+        name: p_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0bbc01e5-f4b3-4bde-b8a0-6f227ac8c7aa
+                stepCounter: 84255480-5901-4e23-9877-12ecf1a63840
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: e950e1fc-9887-429f-840b-908c4cb5b281
+          stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        hashDetails:
+          hashAlgorithm: SHA1
+        hashedColumns:
+          - columnCounter: c0142827-329c-4651-b435-b739d0b94358
+            stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+          - columnCounter: 75616a5a-5c37-456d-9d6d-07902de92d07
+            stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+          - columnCounter: 7deb2edc-890b-4d0e-bb08-e3b4c8c0b05b
+            stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+          - columnCounter: 0e58e001-d458-434d-9928-ba49548525d4
+            stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+          - columnCounter: eac6d778-a163-49c7-bf8f-6780c5845195
+            stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+          - columnCounter: 0c194e9a-b43a-4596-a327-fe9681e878c4
+            stepCounter: 7c31606b-faf7-4b38-9f24-3492952e04ca
+        name: GH
+        nullable: true
+        sourceColumnReferences: []
+    cteString: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: part
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'part') }} `part`
+        name: stg_part
+        noLinkRefs: []
+  name: stg_part
+  overrideSQL: false
+  schema: ""
+  sqlType: "76"
+  type: sql
+  version: 1
+type: Node

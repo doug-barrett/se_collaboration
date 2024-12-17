@@ -1,0 +1,311 @@
+fileVersion: 1
+id: bb6a01d1-0b54-40da-ac6b-814726829baa
+name: v_orders
+operation:
+  config:
+    OverrideSQLCreate: false
+    groupByAll: false
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: USER_ACCESS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78bc46fb-1a95-44f1-85ac-e6c004cc6549
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: BIGINT
+        description: |-
+          - Surrogate key for the dim_orders table, uniquely identifying each order.
+          - System-generated, not derived from any source table.
+          - Serves as the primary key for the dim_orders table, enabling efficient joins with other tables in the data warehouse.
+          - Used in various downstream reports and analysis, including customer order history, order frequency, and order value analysis.
+        name: dim_orders_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c5a711c7-2965-4226-aec9-f7dc311545ba
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e1c61da-905c-4e3e-a4ab-c75da8f1a3cf
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: LONG
+        description: |-
+          - The unique identifier for each order, sourced directly from the stg_orders table.
+          - Acts as the business key for the dim_orders table, representing the primary identifier for orders from the source system.
+          - Used in numerous downstream processes and reports, including order tracking, customer order history, and order-related performance metrics.
+        name: o_orderkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 328efd64-eda1-46d3-a367-52af7c978bf3
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32e51215-64b5-4a37-a9da-3c1eec7a2536
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: LONG
+        description: |-
+          - Represents the customer ID associated with each order, sourced directly from the stg_orders table.
+          - Links orders to customer records, facilitating analysis of customer purchase behavior and order patterns.
+          - Used in downstream reports, including customer segmentation, order volume per customer, and customer lifetime value calculations.
+        name: o_custkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 62337c86-7beb-4507-8ed9-25af11965473
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 962d73c1-676a-4f26-b297-7ace5db05839
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: STRING
+        description: |-
+          - Indicates the current status of the order, sourced directly from the stg_orders table.
+          - Provides visibility into the order fulfillment process, enabling tracking of order progress and identifying potential delays.
+          - Used in downstream reports, including order fulfillment metrics, order backlog analysis, and on-time delivery rate calculations.
+        name: o_orderstatus
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 402b14e7-9a01-42f5-9ba6-8fd473f80fe8
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0242e76d-6daf-4669-a465-0032bc7803dc
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: DECIMAL
+        description: |-
+          - The total price of the order, sourced directly from the stg_orders table.
+          - Represents the financial value of each order, facilitating analysis of sales revenue, average order value, and profitability metrics.
+          - Used in downstream reports, including sales performance tracking, revenue forecasting, and customer spending analysis.
+        name: o_totalprice
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d3f7050b-07bd-4bdf-8410-8f5a3bd34358
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 12ea54b0-9ff7-44e9-b5b6-17e8abf9b00b
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: DATE
+        description: |-
+          - The date when the order was placed, sourced directly from the stg_orders table.
+          - Enables temporal analysis of orders, facilitating trend analysis, seasonal patterns, and forecasting.
+          - Used in downstream reports, including order volume by date, order history analysis, and time-series modeling for predicting order demand.
+        name: o_orderdate
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b781961-821c-43c4-9ab2-33d01ade47a8
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f5d81fc4-ddd2-4bae-9c50-23ae9878d67e
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: STRING
+        description: |-
+          - The priority assigned to each order, sourced directly from the stg_orders table.
+          - Reflects the urgency of fulfilling the order, enabling prioritization of orders and optimization of order fulfillment processes.
+          - Used in downstream reports, including order fulfillment performance metrics, order prioritization analysis, and customer satisfaction analysis.
+        name: o_orderpriority
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d1ba93d0-df19-4d35-8936-8dedc07a1036
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e396b7a3-26fe-44be-b99f-64d01901a344
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: STRING
+        description: |-
+          - Identifies the sales representative who processed the order, sourced directly from the stg_orders table.
+          - Facilitates analysis of sales performance by individual representatives, customer relationships, and order processing efficiency.
+          - Used in downstream reports, including sales performance metrics, customer service analysis, and order processing efficiency analysis.
+        name: o_clerk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d99097ff-6d69-42c0-9be3-70e5ebfeebb5
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b1e6213c-95e1-472b-95aa-d4f7467e01e4
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: INT
+        description: |-
+          - Represents the priority assigned to shipping the order, sourced directly from the stg_orders table.
+          - Reflects the urgency of order delivery, enabling prioritization of shipments and optimization of logistics operations.
+          - Used in downstream reports, including shipping performance metrics, on-time delivery analysis, and customer satisfaction analysis.
+        name: o_shippriority
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f146ec62-6e36-4141-b70b-37439682995a
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fed5fc21-766c-4654-ac54-b4bc370e5745
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: STRING
+        description: |-
+          - Free-text field for any relevant comments or notes related to the order, sourced directly from the stg_orders table.
+          - Provides additional context about the order, such as special requests or customer feedback, supporting more comprehensive analysis.
+          - Used in downstream reports, including customer service analysis, order fulfillment troubleshooting, and order quality analysis.
+        name: o_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 901d51d1-9465-468b-ad58-4aa2afe806dd
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 423fb70b-2097-46bb-8846-f660cd07af1d
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: NUMERIC
+        description: |-
+          - System-generated column indicating the version of the data warehouse schema used to load this record.
+          - Facilitates versioning of data and analysis, enabling comparison of results across different schema versions.
+          - Used for tracking data loading and analysis processes, ensuring consistency and reproducibility of results.
+        name: system_version
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ea4ef670-65db-4975-8b58-99dff90fdc8f
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b3fbbed8-6003-4256-b04d-1cf654687cb0
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: VARCHAR(1)
+        description: |-
+          - System-generated flag indicating whether the record represents the most current version of the order.
+          - Enables efficient filtering and data management, ensuring that analysis uses only the latest available information.
+          - Used for data quality control, ensuring accurate reporting and analysis based on up-to-date data.
+        name: system_current_flag
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c4e8f05b-77ca-42d3-b548-84f1eee1a9a9
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b6e392fa-1e4f-49c1-aeba-19db782283cb
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: TIMESTAMP
+        description: |-
+          - System-generated timestamp indicating when the record became valid in the data warehouse.
+          - Enables tracking of data loading and updates, facilitating data lineage analysis and audit trails.
+          - Used for data management, ensuring consistent data versioning and accurate data lifecycle tracking.
+        name: system_start_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1a25acba-7e91-4afc-befc-b6ff9538d8b0
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3042e904-9c13-4ac3-8695-1f990b561301
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: TIMESTAMP
+        description: |-
+          - System-generated timestamp indicating when the record became invalid in the data warehouse.
+          - Enables tracking of data changes and updates, facilitating data lifecycle analysis and audit trails.
+          - Used for data management, ensuring consistent data versioning and accurate data lifecycle tracking.
+        name: system_end_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4441980b-2ba7-4f3c-9f70-b58b9a0d7e25
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b3398ac-cd2b-49e7-945c-8483b6f73771
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: TIMESTAMP
+        description: |-
+          - System-generated timestamp indicating when the record was initially created in the data warehouse.
+          - Facilitates tracking of data creation and updates, enabling data lineage analysis and audit trails.
+          - Used for data management, ensuring consistent data versioning and accurate data lifecycle tracking.
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a8bf0233-738d-4757-b79a-5a929d05e004
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8c533f17-0eb1-4339-9231-d34f51724eee
+          stepCounter: bb6a01d1-0b54-40da-ac6b-814726829baa
+        config: {}
+        dataType: TIMESTAMP
+        description: |-
+          - System-generated timestamp indicating when the record was last updated in the data warehouse.
+          - Facilitates tracking of data modifications and updates, enabling data lineage analysis and audit trails.
+          - Used for data management, ensuring consistent data versioning and accurate data lifecycle tracking.
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b936479-44d7-4b8c-bc0e-57fd3bb256f9
+                stepCounter: dc2a9659-8b35-4746-91a0-67d89c677acb
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: dim_orders
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'dim_orders') }} `dim_orders`
+        name: v_orders
+        noLinkRefs: []
+  name: v_orders
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

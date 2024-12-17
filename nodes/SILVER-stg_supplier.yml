@@ -1,0 +1,175 @@
+fileVersion: 1
+id: f127d04d-f977-4871-bb35-cdfdd54f29ef
+name: stg_supplier
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: true
+        columnReference:
+          columnCounter: 24b40fc6-6c22-4cd2-a791-d41701502028
+          stepCounter: f127d04d-f977-4871-bb35-cdfdd54f29ef
+        config: {}
+        dataType: LONG
+        description: |-
+          - Represents the primary key for the supplier table, identifying each unique supplier in the database.
+          - Sourced from the 'supplier' table in the 'BRONZE' location. Used for joining with other tables to link supplier information with orders, parts, and other entities.
+          - Validated for null values and uniqueness to ensure data integrity. Applied tests include a Null check and a Unique check to confirm no duplicate supplier keys exist.
+        name: s_suppkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1e7dfec5-425c-4fce-a816-4b9202699e0b
+                stepCounter: 1863677e-61d9-420a-825b-129e48349088
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 5dd87232-cdd3-4086-937d-1aedf36120e9
+          stepCounter: f127d04d-f977-4871-bb35-cdfdd54f29ef
+        config: {}
+        dataType: STRING
+        description: |-
+          -  Represents the name of the supplier. If 's_name' is NULL, it uses 's_address' instead.
+          - Sourced from the 's_name' column of the 'supplier' table in the 'BRONZE' location.
+          - Used in reports and analysis to understand supplier information and identify specific suppliers. The transformation ensures that a supplier name is always available even if 's_name' is missing.
+        name: s_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ff79120-ea53-4129-9698-4624d5b6e0c7
+                stepCounter: 1863677e-61d9-420a-825b-129e48349088
+            transform: NVL("supplier"."s_name","supplier"."s_address")
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 1cdce561-6987-4fce-bb3d-cbb43859496a
+          stepCounter: f127d04d-f977-4871-bb35-cdfdd54f29ef
+        config: {}
+        dataType: STRING
+        description: |-
+          - Represents the address of the supplier.
+          - Sourced directly from the 's_address' column of the 'supplier' table in the 'BRONZE' location.
+          - Used in reports, analysis, and potentially for geographical mapping to understand the location of suppliers.
+        name: s_address
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30634cee-312c-45e7-9e87-365ea060d46d
+                stepCounter: 1863677e-61d9-420a-825b-129e48349088
+            transform: "\"supplier\".\"s_address\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 1b93917e-1a4f-427b-ae53-3c07d0a19a53
+          stepCounter: f127d04d-f977-4871-bb35-cdfdd54f29ef
+        config: {}
+        dataType: LONG
+        description: |-
+          - Represents the foreign key referencing the nation table, indicating the country of origin for the supplier.
+          - Sourced directly from the 's_nationkey' column of the 'supplier' table in the 'BRONZE' location.
+          - Used in joins with the nation table to retrieve country-specific information about suppliers, such as regional analysis or supplier distribution.
+        name: s_nationkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d063a1f3-617b-4c9c-b4b0-db362eff2bd2
+                stepCounter: 1863677e-61d9-420a-825b-129e48349088
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 37409273-75cb-4ae2-8cf7-8e9b86166da7
+          stepCounter: f127d04d-f977-4871-bb35-cdfdd54f29ef
+        config: {}
+        dataType: STRING
+        description: |-
+          - Represents the phone number of the supplier.
+          - Sourced directly from the 's_phone' column of the 'supplier' table in the 'BRONZE' location.
+          - Used for contacting suppliers, potentially for mapping phone numbers to specific regions, and potentially for analysis related to communication patterns.
+        name: s_phone
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d9b9dd1-c110-4250-8152-ff0b27c7bb61
+                stepCounter: 1863677e-61d9-420a-825b-129e48349088
+            transform: "\"supplier\".\"s_phone\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 80c3101e-454c-4ba8-9755-2f753b75f221
+          stepCounter: f127d04d-f977-4871-bb35-cdfdd54f29ef
+        config: {}
+        dataType: DECIMAL
+        description: |-
+          - Represents the account balance of the supplier, reflecting their financial status.
+          - Sourced directly from the 's_acctbal' column of the 'supplier' table in the 'BRONZE' location.
+          - Used in financial reporting, analysis, and potentially for supplier risk assessment. It is important to note that this value may not be real-time and represents the balance at the time of the data extraction.
+        name: s_acctbal
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7834e168-0911-43ec-847d-f32b75fd2829
+                stepCounter: 1863677e-61d9-420a-825b-129e48349088
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: c2ba08ce-4bad-4814-9f83-2e62245766c7
+          stepCounter: f127d04d-f977-4871-bb35-cdfdd54f29ef
+        config: {}
+        dataType: STRING
+        description: |-
+          - Represents any additional comments or notes related to the supplier.
+          - Sourced directly from the 's_comment' column of the 'supplier' table in the 'BRONZE' location.
+          - Used for qualitative analysis, providing insights into supplier characteristics, relationships, or potential issues. This column may contain free-text information.
+        name: s_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d2db72f8-1ca6-493e-8e5a-0668b4fe931f
+                stepCounter: 1863677e-61d9-420a-825b-129e48349088
+            transform: "\"supplier\".\"s_comment\""
+    cteString: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
+    sourceMapping:
+      - aliases:
+          supplier: 1863677e-61d9-420a-825b-129e48349088
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: supplier
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'supplier') }} `supplier`
+        name: stg_supplier
+        noLinkRefs: []
+  name: stg_supplier
+  overrideSQL: false
+  schema: ""
+  sqlType: "76"
+  type: sql
+  version: 1
+type: Node

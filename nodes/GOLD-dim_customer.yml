@@ -1,0 +1,450 @@
+fileVersion: 1
+id: f6199cb1-b042-4588-b0d6-2ecd1435759f
+name: dim_customer
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb5aaa48-bce4-473f-b5c0-aa6676aa2633
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: BIGINT
+        defaultValue: ""
+        description: |-
+          - A system-generated surrogate key uniquely identifying each customer record in the `dim_customer` dimension table.
+          - This column serves as a primary key for the `dim_customer` table and as a foreign key in fact tables referencing customer data.
+          - Used in joins with fact tables to link customer information with sales, order, or other relevant data.
+          - Enables efficient data analysis and reporting by providing a consistent identifier for customers across multiple datasets.
+        isSurrogateKey: true
+        name: dim_customer_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d2794e2-c65f-4029-8cd4-e633a061ec46
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: LONG
+        description: |-
+          - The primary key for the `stg_customer` staging table, identifying each customer record.
+          - Sourced from the `c_custkey` column in the `stg_customer` staging table.
+          - Used to identify and track customers in the data pipeline, ensuring data integrity and consistency between staging and dimensional tables.
+          - Serves as a foreign key in the `dim_customer` table, linking each customer record to its corresponding dimension record.
+        isBusinessKey: true
+        name: c_custkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b0d4c27e-e098-48ff-bc30-9eb26c9f8fcc
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 286358d6-6e5e-42b4-8a24-f2b2f8d14b11
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - The customer's name, as provided in the source data.
+          - Sourced from the `c_name` column in the `stg_customer` staging table.
+          - Used in reports, dashboards, and analyses to identify and segment customers by name.
+          - Helps understand customer demographics and market trends.
+        name: c_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f2232aeb-d161-4e2a-af62-eb3fca0bceec
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 01bb9175-3784-4b73-9d8a-35b811db4da8
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - The customer's address, as provided in the source data.
+          - Sourced from the `c_address` column in the `stg_customer` staging table.
+          - Used in reports and analyses to understand customer location and geographic distribution.
+          - Supports targeted marketing campaigns and customer segmentation based on geographic location.
+        name: c_address
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a02fac06-2ffb-40b3-b4e9-a14c11d0b4f6
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ea3e32e2-c803-45ac-ad18-e6a4604cd344
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: LONG
+        description: |-
+          - The nation key representing the customer's country of residence.
+          - Sourced from the `c_nationkey` column in the `stg_customer` staging table.
+          - Used to identify and group customers by nationality for analysis and reporting.
+          - Supports understanding global customer base and market penetration.
+        name: c_nationkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b13b3ea4-ecfb-4aac-a86f-5ae5b937a4ac
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad6144e3-272b-4665-ba9b-944e7087ec29
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - The customer's phone number, as provided in the source data.
+          - Sourced from the `c_phone` column in the `stg_customer` staging table.
+          - Used for customer communication and support, potentially integrated with CRM systems.
+          - Helps understand customer contact information and facilitates customer service operations.
+        name: c_phone
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 449c9329-2a19-4db5-b500-452b8e0680f5
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: be991407-5ce7-49b9-b0a5-069ea0e9dd17
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: DECIMAL
+        description: |-
+          - The customer's account balance, representing the amount owed or credited.
+          - Sourced from the `c_acctbal` column in the `stg_customer` staging table.
+          - Used for financial reporting, credit risk assessment, and customer credit management.
+          - Helps monitor customer payment behavior and understand financial health.
+        name: c_acctbal
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d5959bcf-5653-4a78-bd22-180593ef063d
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9563cff0-107a-4ae4-ae48-05021eea3063
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - A categorical representation of the customer's account balance.
+          - Sourced from the `c_acctbal_cat` column in the `stg_customer` staging table.
+          - Provides a high-level overview of customer financial status, facilitating analysis and reporting.
+          - Used for customer segmentation and targeted marketing based on financial status.
+        isChangeTracking: true
+        name: c_acctbal_cat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7a0c4833-3cb3-4969-8efd-f072ac1632bf
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b046d45b-28d8-49f1-9b24-1e092a8a5574
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - The customer's market segment, indicating their primary purchasing interests or demographics.
+          - Sourced from the `c_mktsegment` column in the `stg_customer` staging table.
+          - Used for market research, customer segmentation, and targeted marketing campaigns.
+          - Helps understand customer preferences and market trends.
+        name: c_mktsegment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ce12fce-5abc-4742-8505-d862a39f3d6b
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a8d3d055-cff7-4b8b-8b31-659200e34ac9
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - Free-text comments or notes related to the customer, captured from the source data.
+          - Sourced from the `c_comment` column in the `stg_customer` staging table.
+          - Used for internal customer notes, support documentation, or customer relationship management.
+          - Provides additional contextual information about the customer.
+        name: c_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a8ec892-1c15-40a1-bb84-e28fc1b3495a
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ef70e077-8088-4f31-ba88-9e726237307f
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - The name of the nation associated with the customer's `c_nationkey`.
+          - Sourced from the `n_name` column in the `stg_customer` staging table.
+          - Used in reports and analyses to understand customer distribution by nation.
+          - Helps analyze global market presence and international customer trends.
+        name: n_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f8372b4-f205-4baf-ba67-0acc25dfdfba
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: abe1081a-858c-4e61-b33b-af1b92028b66
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - Free-text comments or notes related to the nation associated with the customer's `c_nationkey`.
+          - Sourced from the `n_comment` column in the `stg_customer` staging table.
+          - Used for internal notes or documentation related to specific nations.
+          - Provides additional context and information about the nation.
+        name: n_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 928ddf3b-d4d4-4d57-8ebd-30f6d545a25b
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae054ae1-0803-42a0-a63c-629fe23e1f87
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - The name of the region associated with the customer's `c_nationkey`.
+          - Sourced from the `r_name` column in the `stg_customer` staging table.
+          - Used in reports and analyses to understand customer distribution by region.
+          - Helps analyze regional market trends and customer behavior.
+        name: r_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b75cde5-7416-4aaa-899b-80e0f554c37e
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 58a0437d-7c49-4dc7-8f09-f9c54b73e12e
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - Free-text comments or notes related to the region associated with the customer's `c_nationkey`.
+          - Sourced from the `r_comment` column in the `stg_customer` staging table.
+          - Used for internal notes or documentation related to specific regions.
+          - Provides additional context and information about the region.
+        name: r_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18bc57c7-cf92-487b-ba09-c1bd08d22ca5
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a82295c-bc7a-444f-b0f0-308d750efed7
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: NUMERIC
+        defaultValue: ""
+        description: |-
+          - A system-generated version number tracking changes to the `dim_customer` table.
+          - This column is automatically updated whenever data in the table is modified.
+          - Used to track data lineage and identify the version of the data used in specific analyses or reports.
+          - Helps ensure data consistency and reproducibility of results.
+        isSystemVersion: true
+        name: system_version
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f00aa3a-43e2-4d80-a011-7ac98cf0b777
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: VARCHAR(1)
+        defaultValue: ""
+        description: |-
+          - A system-generated flag indicating whether the customer record is currently active or has been marked as inactive.
+          - Typically set to 'Y' for active records and 'N' for inactive records.
+          - Used for data filtering and analysis, focusing on current or historical customer data.
+          - Helps ensure that analyses are based on relevant and up-to-date customer information.
+        isSystemCurrentFlag: true
+        name: system_current_flag
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d94f035b-921d-44b5-8e43-0dbee687e94d
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: |-
+          - A system-generated timestamp indicating when the customer record became active.
+          - This value is typically set to the current timestamp when a new customer record is created.
+          - Used to track the effective date of customer data and filter data based on time periods.
+          - Helps understand customer lifecycles and track changes over time.
+        isSystemStartDate: true
+        name: system_start_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e935d91c-ff57-4544-9296-790ac31f6634
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: |-
+          - A system-generated timestamp indicating when the customer record became inactive (if applicable).
+          - This value is typically set to a future date, such as '2999-12-31 00:00:00', for active records.
+          - Used to track the end date of customer data and filter data based on time periods.
+          - Helps understand customer lifecycles and track changes over time.
+        isSystemEndDate: true
+        name: system_end_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b9e6c53b-1a73-4d77-a442-dbbab2a9cb14
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: |-
+          - A system-generated timestamp indicating when the customer record was created.
+          - This value is typically set to the current timestamp when the record is initially inserted into the table.
+          - Used to track data lineage and identify the creation date of customer records.
+          - Helps understand the evolution of the customer dataset.
+        isSystemCreateDate: true
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9953fac3-ae16-4af7-ada8-5054ae7d13fe
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: |-
+          - A system-generated timestamp indicating when the customer record was last updated.
+          - This value is automatically updated whenever any data in the record is modified.
+          - Used to track data lineage and identify the last update date of customer records.
+          - Helps ensure data integrity and understand the most recent changes to customer information.
+        isSystemUpdateDate: true
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: afa4803a-8480-44a4-bd9e-6b7ff5c964a0
+          stepCounter: f6199cb1-b042-4588-b0d6-2ecd1435759f
+        config: {}
+        dataType: STRING
+        description: |-
+          - This column seems to be related to a specific identifier named 'GH', possibly a unique identifier in the source data or a system-specific field.
+          - Sourced from the `GH` column in the `stg_customer` staging table.
+          - More information is needed about the purpose of this column to provide a more specific description.
+          - It is recommended to document the meaning and usage of this column for clarity and future reference.
+        name: GH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b660abfc-9b9c-4aeb-9559-be1c35481a9b
+                stepCounter: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          stg_customer: d32a899d-3c83-48de-9b9f-010bcdc38ccc
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: stg_customer
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'stg_customer') }} `stg_customer`
+        name: dim_customer
+        noLinkRefs: []
+  name: dim_customer
+  overrideSQL: false
+  schema: ""
+  sqlType: "75"
+  type: sql
+  version: 1
+type: Node
