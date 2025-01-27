@@ -1,0 +1,77 @@
+fileVersion: 1
+id: "99"
+isDisabled: true
+metadata:
+  defaultStorageLocation: STAGE
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Task DAG Create Root
+    short: TGCR
+    tagColor: red
+    plural: None
+
+    deployStrategy: advanced
+
+    config: 
+    - groupName: Sceduling Options
+      items:
+      - displayName: Sceduling Options
+        attributeName: schedulingMode
+        type: dropdownSelector
+        default: Warehouse Task
+        options:
+          - Warehouse Task
+          - Serverless Task
+        isRequired: true
+
+      - displayName: Select Warehouse on which to run task
+        attributeName: whName
+        type: textBox
+        default: '<WAREHOUSE_NAME>'
+        isRequired: false
+        enableIf: "{% if config.schedulingMode == 'Warehouse Task' %} true {% else %} false {% endif %}"
+
+      - displayName: Select initial serverless Warehouse size
+        attributeName: serverlessSize
+        type: dropdownSelector
+        default: 'MEDIUM'
+        options:
+          - XSMALL
+          - SMALL
+          - MEDIUM
+          - LARGE
+          - XLARGE
+          - XXLARGE
+        isRequired: false
+        enableIf: "{% if config.schedulingMode == 'Serverless Task' %} true {% else %} false {% endif %}"
+
+      - displayName: Task Schedule
+        attributeName: schedulePeriodOption
+        type: dropdownSelector
+        default: Minutes
+        options:
+          - Minutes
+          - CRON
+        isRequired: TRUE
+
+      - displayName: Enter task schedule using minutes
+        attributeName: schedulePeriod
+        type: textBox
+        default: '60'
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption == 'Minutes' %} true {% else %} false {% endif %}"
+
+      - displayName: Enter task schedule using CRON
+        attributeName: scheduleCRON
+        type: textBox
+        default: '5 0-23 * * * America/Los_Angeles'
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption == 'CRON' %} true {% else %} false {% endif %}"
+
+      - displayName: Root task SQL
+        attributeName: tskSql
+        type: textBox
+        default: 'select current_timestamp()'
+        isRequired: true
+name: Task DAG Create Root
+type: NodeType

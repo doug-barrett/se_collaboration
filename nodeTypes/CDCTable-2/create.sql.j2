@@ -1,0 +1,68 @@
+{{ stage('Create Stream') }}
+CREATE OR REPLACE STREAM {{ ref_no_link(node.location.name, "STR_" + node.name) }}
+ON TABLE {{ ref(sources[0].dependencies[0].node.location.name, sources[0].dependencies[0].node.name) }}
+APPEND_ONLY = FALSE SHOW_INITIAL_ROWS = TRUE
+COMMENT = 'CDC Stream on {{ ref(node.location.name, sources[0].dependencies[0].node.name) }}'
+{{ stage('Create Sequence') }}
+CREATE OR REPLACE SEQUENCE {{ ref_no_link(node.location.name, "SEQ_" + node.name) }}
+{{ stage('Create CDC Table') }}
+CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+(
+    {% for col in columns %}
+        "{{ col.name }}" {{ col.dataType }}
+        {%- if not col.nullable %} NOT NULL
+            {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+        {% endif %}
+        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+        {%- if not loop.last -%}, {% endif %}
+    {% endfor %}
+)
+{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+{% if config.taskEnabled is true %}
+    {{ stage('Create Task') }}
+    CREATE OR REPLACE TASK
+    {% if config.taskCustomName != '' %}
+        {{ ref_no_link(node.location.name, config.taskCustomName) }}
+    {% else %}
+        {{ ref_no_link(node.location.name, "TSK_" + node.name) }}
+    {% endif %}
+    WAREHOUSE = {{config.taskWarehouse}}
+    SCHEDULE =
+    {% if config.taskSchedule == 'Every minute' %}
+        '1 MINUTE'
+    {% elif config.taskSchedule == 'Every 5 minutes' %}
+        '5 MINUTE'
+    {% elif config.taskSchedule == 'Every 30 minutes' %}
+        '30 MINUTE'
+    {% elif config.taskSchedule == 'Every hour' %}
+        '60 MINUTE'
+    {% elif config.taskSchedule == 'Every day' %}
+        '3600 MINUTE'
+    {% else %}
+        'INVALID'
+    {% endif %}
+    COMMENT='Task to copy data of stream STR_{{node.name}} to CDC Table {{node.name}}'
+    WHEN "SYSTEM$STREAM_HAS_DATA"('{{- ref_no_link(node.location.name, "STR_" + node.name) -}}')
+    AS
+    INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+    {% for source in sources %}
+        SELECT
+        {% for col in source.columns %}
+            {% if col.name == 'CDC_ID' %}
+                 {{ ref_no_link(node.location.name, "SEQ_" + node.name) }}.NEXTVAL
+            {% elif col.transform | trim != '' %}
+                {{ col.transform.replace(source.dependencies[0].node.name, 'STR_' + node.name) }}
+            {% elif col.sourceColumns[0].column and col.sourceColumns[0].column.name %}
+                "STR_{{ node.name }}"."{{ col.sourceColumns[0].column.name }}"
+            {% else %}
+                NULL
+            {% endif %}
+            AS "{{ col.name }}"
+            {%- if not loop.last -%}, {% endif %}
+        {% endfor %}
+        FROM {{ ref_no_link(node.location.name, "STR_" + node.name) }}
+        {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+            {{config.insertStrategy}}
+        {% endif %}
+    {% endfor %}
+{% endif %}

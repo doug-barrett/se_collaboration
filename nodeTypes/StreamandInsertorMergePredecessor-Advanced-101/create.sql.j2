@@ -1,0 +1,197 @@
+{% if (currentState == undefined and desiredState != undefined) or (currentState != undefined and desiredState != undefined ) %}
+
+{# Source Stream Location and Name #}
+{% set srcSchName = desiredState.sources[0].dependencies[0].node.location.name %}
+{% set srcDb = desiredState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='database') | first %}
+{% set srcSch = desiredState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='schema') | first %}
+{% set srcTbl = desiredState.sources[0].dependencies[0].node.name %}
+{% set strName = srcTbl + '_STREAM' %}
+{% set fqSrcTblName = '"' + srcDb + '"."' + srcSch + '"."' + srcTbl + '"' %}
+{% set fqStrName = '"' + srcDb + '"."' + srcSch + '"."' + strName + '"' %}
+{% set strFrom = desiredState.sources[0].join | replace(srcTbl, strName) %}
+
+{# Target Table Info #}
+{% set tgtDb = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[0] %} 
+{% set tgtSch = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[1] %} 
+{% set tgtTbl = ref_no_link(desiredState.node.location.name, desiredState.node.name) %}
+
+{# Task Info #}
+{% set taskName = desiredState.node.name + '_TASK'  %}
+{%- set fqTaskName = tgtDb + '.' + tgtSch + '."' + taskName + '"' -%} 
+
+{% set rootTaskName = tgtDb + '.' + tgtSch + '."' + desiredState.config.rootTask + '"' %}
+{% set predTaskList = desiredState.config.predTask.split(",") %}
+{% set predTasks = tgtDb + '.' + tgtSch + '.' + desiredState.config.predTask.replace(',', ',' + tgtDb + '.' + tgtSch + '.') %}
+
+{% set tblColid = desiredState.columns | map(attribute='id') | list %}
+{% set tblCol = desiredState.columns | map(attribute='name') | list %}
+{% set tblKey = desiredState.columns | selectattr('tblKey', 'defined') | map(attribute='name') | list %}
+{% set tblColUpd = tblCol | reject('in', tblKeys) | list %}
+{%- set tblKeyColStr = '"'+tblKey | join('", "')+'"' -%}
+{% set recTS = desiredState.columns | selectattr('tblChgTS', 'defined') | map(attribute='name') | first %}
+
+{{ stage('Create Stream') }}
+CREATE OR REPLACE STREAM {{ fqStrName }}
+    ON TABLE {{ fqSrcTblName }}
+    APPEND_ONLY = {% if desiredState.config.appendOnly == true %} TRUE {% else %} FALSE {% endif %}
+    SHOW_INITIAL_ROWS = {% if desiredState.config.initialRows == true %} TRUE {% else %} FALSE {% endif %}
+
+    
+{{ stage('Create Target Table') }}
+CREATE OR REPLACE TABLE {{ tgtTbl }}
+    (
+    {%- for col in desiredState.columns %}
+            "{{ col.name }}" {{ col.dataType }}
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            {%- if not loop.last -%}, {% endif %}
+    {%- endfor %}
+    )
+
+{%- if desiredState.config.schedulePeriodOption == 'Predecessor' -%} 
+    {{ stage('Suspend Root Task') }}
+    ALTER TASK {{ rootTaskName }} SUSPEND
+{%- endif -%}
+
+{{ stage('Create Task') }}
+    {# Task Type #}
+    {%- if desiredState.config.schedulingMode == 'Warehouse Task' -%} 
+        {%- set taskType = 'WAREHOUSE = ' + desiredState.config.whName -%} 
+    {%- else -%}
+        {%- set taskType = 'USER_TASK_MANAGED_INITIAL_WAREHOUSE_SIZE = ' + desiredState.config.serverlessSize -%} 
+    {%- endif -%}
+
+    {# Schedule Type #}
+    {%- if desiredState.config.schedulePeriodOption == 'Minutes' -%} 
+        {%- set whenRun = 'SCHEDULE = ' + "'" + desiredState.config.schedulePeriod + ' MINUTE' + "'" -%} 
+    {% elif desiredState.config.schedulePeriodOption == 'CRON' %}
+        {%- set whenRun = 'SCHEDULE = ' + "'" + 'USING CRON ' + desiredState.config.scheduleCRON %}
+    {%- else -%}
+        {%- set whenRun = 'AFTER ' + predTasks -%} 
+    {%- endif -%}
+
+    {# When Stream has data logic #}
+    {%- if desiredState.config.flagSrcStream == true -%} 
+        {%- set poll = "WHEN SYSTEM$STREAM_HAS_DATA('" + fqStrName + "')" -%} 
+    {%- endif -%}
+    
+    CREATE OR REPLACE TASK 
+        {{ fqTaskName }} 
+        {{ taskType}} 
+        {{ whenRun }} 
+        {{ poll }} 
+    AS 
+    {% if desiredState.config.loadType == 'Insert' -%} 
+    INSERT INTO {{ tgtTbl }}
+    SELECT {% for id in tblColid %}
+            {% set col = desiredState.sources[0].columns | selectattr('id', 'equalto', id) | map(attribute='name') | first -%}
+            {% set colTran = desiredState.sources[0].columns | selectattr('id', 'equalto', id) | map(attribute='transform') | first -%}
+            {%- if colTran == "" -%}
+              "{{ col }}" as "{{ col }}" {%- if not loop.last -%}, {%- endif -%}
+            {%- else -%}
+              {{ colTran | replace(srcTbl, strName) }} as "{{ col }}" {%- if not loop.last -%}, {%- endif -%}
+            {%- endif %}
+        {%- endfor %}
+     {{ strFrom }}
+    {% else -%}
+    MERGE INTO {{ tgtTbl }} tgt USING
+    -- Select Statement Preparing Data for Merge
+    (SELECT {% for id in tblColid %}
+            {% set col = desiredState.sources[0].columns | selectattr('id', 'equalto', id) | map(attribute='name') | first -%}
+            {% set colTran = desiredState.sources[0].columns | selectattr('id', 'equalto', id) | map(attribute='transform') | first -%}
+            {%- if colTran == "" -%}
+              "{{ col }}" as "{{ col }}" {%- if not loop.last -%}, {%- endif -%}
+            {%- else -%}
+              {{ colTran | replace(srcTbl, strName) }} as "{{ col }}" {%- if not loop.last -%}, {%- endif -%}
+            {%- endif %}
+        {%- endfor %}
+     {{ strFrom }}
+     QUALIFY ROW_NUMBER() over (partition by {{ tblKeyColStr }} order by 
+    {% if recTS | length > 0 %}
+        "{{ recTS }}" desc
+    {% else %}
+        "METADATA$ROW_ID" desc
+    {% endif %}
+    ) = 1) src
+     -- Join Condition
+     ON {% for col in tblKey -%}
+         src."{{ col }}" = tgt."{{ col }}"
+    {% if not loop.last %} AND {% endif %}
+        {%- endfor -%}
+    -- What to do if data is matched based on table key
+    WHEN MATCHED THEN UPDATE SET 
+        {%- for col in tblColUpd %}
+                tgt."{{ col }}" = src."{{ col }}"
+                {%- if not loop.last -%}, {%- endif %}
+        {%- endfor %}
+    -- What to do with new records based on table key
+    WHEN NOT MATCHED THEN INSERT 
+        (
+        {%- for col in desiredState.columns -%}
+                "{{ col.name }}"
+                {%- if not loop.last -%}, {% endif %}
+        {% endfor %}) 
+    VALUES (
+        {%- for col in desiredState.columns -%}
+                src."{{ col.name }}"
+                {%- if not loop.last -%}, {% endif %}
+        {% endfor %})
+    {%- endif -%}
+
+{{ stage('Resume Task') }}
+{%- if desiredState.config.schedulePeriodOption == 'Predecessor' -%} 
+    select system$task_dependents_enable('{{ rootTaskName }}');
+{%- else -%}
+    ALTER TASK {{ fqTaskName }} RESUME;
+{%- endif -%}
+
+{% elif currentState != undefined and desiredState == undefined %}
+
+{# Source Stream Location and Name #}
+{% set srcSchName = currentState.sources[0].dependencies[0].node.location.name %}
+{% set srcDb = currentState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='database') | first %}
+{% set srcSch = currentState.storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='schema') | first %}
+{% set srcTbl = currentState.sources[0].dependencies[0].node.name %}
+{% set strName = srcTbl + '_STREAM' %}
+{% set fqSrcTblName = '"' + srcDb + '"."' + srcSch + '"."' + srcTbl + '"' %}
+{% set fqStrName = '"' + srcDb + '"."' + srcSch + '"."' + strName + '"' %}
+{% set strFrom = currentState.sources[0].join | replace(srcTbl, strName) %}
+
+{# Target Table Info #}
+{% set tgtDb = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[0] %} 
+{% set tgtSch = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[1] %} 
+{% set tgtTbl = ref_no_link(currentState.node.location.name, currentState.node.name) %}
+
+{# Task Info #}
+{% set taskName = currentState.node.name + '_TASK'  %}
+{%- set fqTaskName = tgtDb + '.' + tgtSch + '."' + taskName + '"' -%} 
+
+{% set tblColid = currentState.columns | map(attribute='id') | list %}
+{% set tblCol = currentState.columns | map(attribute='name') | list %}
+{% set tblKey = currentState.columns | selectattr('tblKey', 'defined') | map(attribute='name') | list %}
+{% set tblColUpd = tblCol | reject('in', tblKeys) | list %}
+{%- set tblKeyColStr = '"'+tblKey | join('", "')+'"' -%}
+{% set recTS = currentState.columns | selectattr('tblChgTS', 'defined') | map(attribute='name') | first %}
+
+{{ stage('Drop Stream') }}
+DROP STREAM IF EXISTS {{ fqStrName }}
+{{ stage('Drop Table') }}
+DROP TABLE IF EXISTS {{ tgtTbl }}
+
+{%- if desiredState.config.schedulingPeriodOption == 'Predecessor' -%} 
+{{ stage('Suspend Root Task') }}
+    ALTER TASK IF EXISTS {{ rootTaskName }} SUSPEND
+{{ stage('Drop Current Task Task') }}
+    DROP TASK IF EXISTS {{ fqTaskName }} 
+{{ stage('Resume Root Task') }}
+    select system$task_dependents_enable('{{ rootTaskName }}');
+{%- else -%}
+    DROP TASK IF EXISTS {{ fqTaskName }} 
+{%- endif -%}
+
+{%- else -%}
+
+{{ stage('Nothing to do.') }}
+select 1 = 0
+
+{% endif %}
+

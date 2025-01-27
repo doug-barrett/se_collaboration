@@ -1,0 +1,51 @@
+fileVersion: 1
+id: "100"
+isDisabled: true
+metadata:
+  defaultStorageLocation: STAGE
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Task DAG Root Resume
+    short: TGRR
+    tagColor: green
+    plural: none
+
+    deployStrategy: advanced
+
+    config:
+    - groupName: Sceduling Options
+      items:
+      - displayName: Enter root task name
+        attributeName: rootTask
+        type: textBox
+        default: '"DATA_TRANSFORMATION_ROOT_TASK"'
+        isRequired: TRUE
+
+    - groupName: "Pre/Post SQL"
+      items: 
+      - displayName: Pre-SQL
+        attributeName: preSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+
+      - displayName: Post-SQL
+        attributeName: postSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+
+    systemColumns:
+    - displayName: DAG_RESUME_TIMESTAMP
+      transform: current_timestamp()::timestamp_ntz
+      dataType: timestamp_ntz
+      placement: start
+      attributeName: dagResumeTS
+
+    - displayName: DAG_ROOT_TASK_NAME
+      transform: desiredState.config.rootTask
+      dataType: string
+      placement: start
+      attributeName: dagResumeTS
+name: Task DAG Resume Root
+type: NodeType

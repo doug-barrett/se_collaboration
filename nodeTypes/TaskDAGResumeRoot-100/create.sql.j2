@@ -1,0 +1,14 @@
+{# Task Info #}
+{% set tgtDb = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[0] %} 
+{% set tgtSch = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[1] %} 
+{%- set fqRootTaskName = tgtDb + '.' + tgtSch + '.' + desiredState.config.rootTask -%} 
+
+{{ stage('Try Enable Root Task') }}
+begin
+    let sqlDml := 'select system$task_dependents_enable(''{{fqRootTaskName}}'')';
+    execute immediate sqlDml;
+    return 'Task resumed';
+        exception
+        when statement_error then
+            return 'Task already running';
+end;

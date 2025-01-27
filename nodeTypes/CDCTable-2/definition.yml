@@ -1,0 +1,103 @@
+fileVersion: 1
+id: "2"
+isDisabled: false
+metadata:
+  defaultStorageLocation: STAGE
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: CDC Table
+    short: "CDC"
+    tagColor: "#FF33CC"
+    plural: CDC Tables
+    config:
+    - groupName: Stream
+      items:
+      - displayName: Description
+        attributename: description
+        type: textBox
+        isRequired: false
+        default: "A CDC table consists of a few components:\n
+          1. A stream on the source node\n
+          2. The CDC table which contains a persistent replica of recent CDC records\n
+          3. A sequence to keep track of streams\n
+          4. Optional: a Task to replicate records from the Stream into the CDC table\n
+          "
+    - groupName: Task
+      items:
+      - displayName: Create Task
+        enableIf: {{config.cdcTableEnabled}}
+        attributeName: taskEnabled
+        type: toggleButton
+        default: false
+        isRequired: false
+
+      - displayName: Task Schedule
+        enableIf: "{{config.taskEnabled}}"
+        attributeName: taskSchedule
+        type: dropdownSelector
+        default: "Every 30 minutes"
+        options:
+        - "Every minute"
+        - "Every 5 minutes"
+        - "Every 30 minutes"
+        - "Every hour"
+        - "Every day"
+        - Every week
+        - Every Month
+        isRequired: false
+        
+      - displayName: Warehouse
+        enableIf: "{{config.taskEnabled}}"
+        attributeName: taskWarehouse
+        type: dropdownSelector
+        default: "COMPUTE_WH"
+        options:
+        - "COMPUTE_WH"
+        isRequired: false
+      - displayName: Custom Task Name
+        enableIf: "{{config.taskEnabled}}"
+        attributeName: taskCustomName
+        type: textBox
+        isRequired: false
+    - groupName: Hidden config
+      enableIf: "false"
+      items:
+      - displayName: Type
+        type: materializationSelector
+        default: table
+        options:
+        - table
+        isRequired: false
+    systemColumns:
+    - displayName: "METADATA$ACTION"
+      transform: "METADATA$ACTION"
+      dataType: STRING
+      placement: end
+      attributeName: isStreamMetadataAction
+      description: Indicates the DML operation (INSERT, DELETE) recorded.
+    - displayName: "METADATA$ISUPDATE"
+      transform: "METADATA$ISUPDATE"
+      dataType: STRING
+      placement: end
+      attributeName: isStreamMetadataIsUpdate
+      description: Indicates whether the operation was part of an UPDATE statement.
+    - displayName: "METADATA$ROW_ID"
+      transform: "METADATA$ROW_ID"
+      dataType: STRING
+      placement: end
+      attributeName: isStreamMetadataRowId
+      description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
+    - displayName: "CDC_ID"
+      transform: ""
+      dataType: INTEGER
+      placement: end
+      attributeName: isStreamMetadataCDCId
+      description: Medtronic specific CDC identifier based on a sequence.
+    - displayName: "CDC_TIMESTAMP"
+      transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      dataType: TIMESTAMP
+      placement: end
+      attributeName: isSystemCreateDate
+      description: Medtronic specific attribute containing the timestamp of storing the CDC record.
+name: CDC Table
+type: NodeType

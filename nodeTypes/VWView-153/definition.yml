@@ -1,0 +1,41 @@
+fileVersion: 1
+id: "153"
+isDisabled: false
+metadata:
+  defaultStorageLocation: TGT_HL
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Copy of View
+    short: VW
+    tagColor: 'blue'
+    isDisabled: true
+    plural: Views
+
+    config:
+      - groupName: Options
+        items: 
+        - type: materializationSelector
+          options:
+            - view
+          default: view
+          isRequired: true
+
+        - type: toggleButton
+          attributeName: selectDistinct
+          displayName: Distinct
+
+        - type: multisourceToggle
+
+        - type: overrideSQLToggle
+
+        - displayName: Multi Source Strategy
+          attributeName: insertStrategy
+          type: dropdownSelector
+          default: UNION
+          options:
+          - "UNION"
+          - "UNION ALL" 
+          isRequired: true
+          enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+name: VW View
+type: NodeType

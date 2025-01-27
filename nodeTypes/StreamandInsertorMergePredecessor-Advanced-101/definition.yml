@@ -1,0 +1,142 @@
+fileVersion: 1
+id: "101"
+isDisabled: true
+metadata:
+  defaultStorageLocation: STAGE
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: Copy of Copy of Stream and Insert or Merge
+    short: SIM
+    tagColor: black
+    plural: Streams and Merges
+
+    deployStrategy: advanced
+
+    config:
+    - groupName: Stream Options
+      items:
+      - displayName: Append Only Stream
+        attributeName: appendOnly
+        type: toggleButton
+        default: true
+        isRequired: true
+
+      - displayName: Show Initial Rows
+        attributeName: initialRows
+        type: toggleButton
+        default: true
+        isRequired: true
+
+    - groupName: Target Loading Options
+      items:
+      - displayName: Load Type
+        attributeName: loadType
+        type: dropdownSelector
+        default: Insert
+        options:
+          - Insert
+          - Merge
+        isRequired: true
+
+      - displayName: Table Key Column(s)
+        attributeName: tblKey
+        type: columnSelector
+        isRequired: false
+        enableIf: "{% if config.loadType == 'Merge' %} true {% else %} false {% endif %}"
+
+      - displayName: Row Update Timestamp Column
+        attributeName: tblChgTS
+        type: columnSelector
+        isRequired: false
+        enableIf: "{% if config.loadType == 'Merge' %} true {% else %} false {% endif %}"
+     
+    - groupName: Sceduling Options
+      items:
+      - displayName: Sceduling Options
+        attributeName: schedulingMode
+        type: dropdownSelector
+        default: Warehouse Task
+        options:
+          - Warehouse Task
+          - Serverless Task
+        isRequired: true
+
+      - displayName: When Source Stream has Data Flag
+        attributeName: flagSrcStream
+        type: toggleButton
+        isRequired: true
+
+      - displayName: Select Warehouse on which to run task
+        attributeName: whName
+        type: textBox
+        default: '<WAREHOUSE_NAME>'
+        isRequired: false
+        enableIf: "{% if config.schedulingMode == 'Warehouse Task' %} true {% else %} false {% endif %}"
+
+      - displayName: Select initial serverless Warehouse size
+        attributeName: serverlessSize
+        type: dropdownSelector
+        default: 'MEDIUM'
+        options:
+          - XSMALL
+          - SMALL
+          - MEDIUM
+          - LARGE
+          - XLARGE
+          - XXLARGE
+        isRequired: false
+        enableIf: "{% if config.schedulingMode == 'Serverless Task' %} true {% else %} false {% endif %}"
+
+      - displayName: Task Schedule
+        attributeName: schedulePeriodOption
+        type: dropdownSelector
+        default: Minutes
+        options:
+          - Minutes
+          - CRON
+          - Predecessor
+        isRequired: TRUE
+
+      - displayName: Enter task schedule using minutes
+        attributeName: schedulePeriod
+        type: textBox
+        default: '60'
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption == 'Minutes' %} true {% else %} false {% endif %}"
+
+      - displayName: Enter task schedule using CRON
+        attributeName: scheduleCRON
+        type: textBox
+        default: '5 0-23 * * * America/Los_Angeles'
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption == 'CRON' %} true {% else %} false {% endif %}"
+
+      - displayName: Enter predecessor task(s) seperated by a comma 
+        attributeName: predTask
+        type: textBox
+        default: ""
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption == 'Predecessor' %} true {% else %} false {% endif %}"
+
+      - displayName: Enter root task name
+        attributeName: rootTask
+        type: textBox
+        default: ""
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption == 'Predecessor' %} true {% else %} false {% endif %}"
+
+    - groupName: "Pre/Post SQL"
+      items: 
+      - displayName: Pre-SQL
+        attributeName: preSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+
+      - displayName: Post-SQL
+        attributeName: postSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+name: Stream and Insert or Merge Predecessor - Advanced
+type: NodeType

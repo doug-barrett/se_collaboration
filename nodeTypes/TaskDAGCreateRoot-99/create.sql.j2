@@ -1,0 +1,62 @@
+{% if (currentState == undefined and desiredState != undefined) or (currentState != undefined and desiredState != undefined ) %}
+
+{# Target Task Info #}
+{% set tgtDb = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[0] %} 
+{% set tgtSch = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[1] %} 
+{% set taskName =desiredState.node.name %}
+{%- set fqTaskName = tgtDb + '.' + tgtSch + '."' + taskName + '"' -%} 
+
+{# Task Type #}
+{%- if desiredState.config.schedulingMode == 'Warehouse Task' -%} 
+    {%- set taskType = 'WAREHOUSE = ' + desiredState.config.whName -%} 
+{%- else -%}
+    {%- set taskType = 'USER_TASK_MANAGED_INITIAL_WAREHOUSE_SIZE = ' + desiredState.config.serverlessSize -%} 
+{%- endif -%}
+
+{# Schedule Type #}
+{%- if desiredState.config.schedulePeriodOption == 'Minutes' -%} 
+    {%- set whenRun = 'SCHEDULE = ' + "'" + desiredState.config.schedulePeriod + ' MINUTE' + "'" -%} 
+{% else %}
+    {%- set whenRun = 'SCHEDULE = ' + "'" + 'USING CRON ' + desiredState.config.scheduleCRON %}
+{% endif %}
+
+{{ stage('Suspend Root Task') }}
+ALTER TASK IF EXISTS {{ fqTaskName }} SUSPEND
+
+{{ stage('Create Task') }}
+CREATE OR REPLACE TASK 
+        {{ fqTaskName }} 
+        {{ taskType}} 
+        {{ whenRun }} 
+    AS 
+{{desiredState.config.tskSql }} 
+
+{{ stage('Try Enable Root Task') }}
+begin
+    let sqlDml := 'select system$task_dependents_enable(''{{fqTaskName}}'')';
+    execute immediate sqlDml;
+    return 'Task resumed';
+        exception
+        when statement_error then
+            return 'Task already running';
+end;
+
+{% elif desiredState == undefined %}
+
+{% set tgtDb = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[0] %} 
+{% set tgtSch = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[1] %} 
+{% set taskName =currentState.node.name %}
+{%- set fqTaskName = tgtDb + '.' + tgtSch + '."' + taskName + '"' -%} 
+
+{{ stage('Suspend Root Task') }}
+    ALTER TASK IF EXISTS {{ fqTaskName }} SUSPEND
+{{ stage('Drop Current Task Task') }}
+    DROP TASK IF EXISTS {{ fqTaskName }} 
+
+{%- else -%}
+
+{{ stage('Nothing to do.') }}
+select 1 = 0
+
+{% endif %}
+
