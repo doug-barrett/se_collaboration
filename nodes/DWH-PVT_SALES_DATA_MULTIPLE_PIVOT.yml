@@ -1,0 +1,161 @@
+fileVersion: 1
+id: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+name: PVT_SALES_DATA_MULTIPLE_PIVOT
+operation:
+  config:
+    Colvol1: ""
+    aggfunc:
+      items:
+        - {}
+    aggfunc1:
+      items:
+        - {}
+    defaultval: ""
+    defvalue: false
+    excolval: false
+    exlcol:
+      items:
+        - {}
+    inferPivot: true
+    samKeyColval: false
+    sincol: false
+    subqueryval1: ""
+    tabKeyColumn:
+      items:
+        - keyColDropdown:
+            columnCounter: 5ddd5a40-d60f-419d-9424-a1ed5c785bc1
+            stepCounter: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+          keyColTextBox: QUARTER
+    tabValueColumn:
+      items:
+        - Colvol: "'Q1','Q2'"
+          funcname: SUM
+          valColDropdown:
+            columnCounter: ed9b4073-3e74-4ea4-9b4a-8495620d132b
+            stepCounter: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+          valColTextBox: UNITS_SOLD
+        - Colvol: "'Q1','Q2'"
+          funcname: SUM
+          valColDropdown:
+            columnCounter: f2253739-8ea1-4617-bac9-cc4d3ce8cb35
+            stepCounter: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+          valColTextBox: SALES_AMOUNT
+    testsEnabled: false
+    trunc: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41903a49-50c8-4389-8d05-d3cdf99b6a2b
+          stepCounter: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SALE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5acfac24-ed96-45ab-8d52-e5ef74279ce9
+                stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f2ec5003-7ccd-4e16-9e74-c1fccb60ab61
+          stepCounter: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: PRODUCT_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b000673e-8127-449d-bde0-6527633635c7
+                stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ebd421a-44f5-4d56-9221-e90e3b283cb9
+          stepCounter: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: REGION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 500cd1e4-4446-462e-8ecf-021bb89b4093
+                stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f2253739-8ea1-4617-bac9-cc4d3ce8cb35
+          stepCounter: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+        config: {}
+        dataType: NUMBER(10,2)
+        description: ""
+        name: SALES_AMOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 797d0386-11c9-410f-b7fe-4e4d7bec1369
+                stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed9b4073-3e74-4ea4-9b4a-8495620d132b
+          stepCounter: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: UNITS_SOLD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 648a28e1-2f94-4430-bb1f-172335edf70a
+                stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ddd5a40-d60f-419d-9424-a1ed5c785bc1
+          stepCounter: 0839f97e-391d-4960-b6a4-3ad915b1f97c
+        config: {}
+        dataType: VARCHAR(2)
+        description: ""
+        name: QUARTER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 21ea162e-ebf5-43e5-9166-a0be5dc8868c
+                stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_SALES_DATA: d1d754e7-a889-4c98-abf1-bf091c097000
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: STG_SALES_DATA
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'STG_SALES_DATA') }} "STG_SALES_DATA"
+
+            ORDER BY REGION
+        name: PVT_SALES_DATA_MULTIPLE_PIVOT
+        noLinkRefs: []
+  name: PVT_SALES_DATA_MULTIPLE_PIVOT
+  overrideSQL: false
+  schema: ""
+  sqlType: functional-nodes:::409
+  type: sql
+  version: 1
+type: Node

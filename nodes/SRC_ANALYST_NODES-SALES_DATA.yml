@@ -1,0 +1,134 @@
+fileVersion: 1
+id: 8827d0de-c05d-400c-91ec-b827299b0710
+name: SALES_DATA
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: ""
+  locationName: SRC_ANALYST_NODES
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 93d909ef-8cdf-42f4-9b79-eba27fad8449
+          stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: SALE_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cbfb3ae-e7ad-45ab-8a24-d9dcc8e5e17c
+          stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+        config: {}
+        dataType: VARCHAR(50)
+        defaultValue: ""
+        description: ""
+        name: PRODUCT_CATEGORY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 64dd552b-2286-43a4-b28f-ba3ecd70b341
+          stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+        config: {}
+        dataType: VARCHAR(50)
+        defaultValue: ""
+        description: ""
+        name: REGION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2926b0f9-fdae-45b0-9c4e-d1fc4ea3d72a
+          stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+        config: {}
+        dataType: NUMBER(10,2)
+        defaultValue: ""
+        description: ""
+        name: SALES_AMOUNT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7916ea7-a288-4eb6-952e-f6365ba461dc
+          stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: UNITS_SOLD
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ab9460dd-8c7f-4376-8743-70d130d15409
+          stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+        config: {}
+        dataType: VARCHAR(2)
+        defaultValue: ""
+        description: ""
+        name: QUARTER
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+    join:
+      joinCondition: FROM {{ ref('SRC_ANALYST_NODES', 'SALES_DATA') }}
+  name: SALES_DATA
+  schema: ""
+  sqlType: Source
+  table: SALES_DATA
+  type: sourceInput
+  version: 1
+type: Node

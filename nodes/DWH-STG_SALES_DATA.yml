@@ -1,0 +1,123 @@
+fileVersion: 1
+id: d1d754e7-a889-4c98-abf1-bf091c097000
+name: STG_SALES_DATA
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5acfac24-ed96-45ab-8d52-e5ef74279ce9
+          stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SALE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 93d909ef-8cdf-42f4-9b79-eba27fad8449
+                stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b000673e-8127-449d-bde0-6527633635c7
+          stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: PRODUCT_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5cbfb3ae-e7ad-45ab-8a24-d9dcc8e5e17c
+                stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 500cd1e4-4446-462e-8ecf-021bb89b4093
+          stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: REGION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 64dd552b-2286-43a4-b28f-ba3ecd70b341
+                stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 797d0386-11c9-410f-b7fe-4e4d7bec1369
+          stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+        config: {}
+        dataType: NUMBER(10,2)
+        description: ""
+        name: SALES_AMOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2926b0f9-fdae-45b0-9c4e-d1fc4ea3d72a
+                stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 648a28e1-2f94-4430-bb1f-172335edf70a
+          stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: UNITS_SOLD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7916ea7-a288-4eb6-952e-f6365ba461dc
+                stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 21ea162e-ebf5-43e5-9166-a0be5dc8868c
+          stepCounter: d1d754e7-a889-4c98-abf1-bf091c097000
+        config: {}
+        dataType: VARCHAR(2)
+        description: ""
+        name: QUARTER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab9460dd-8c7f-4376-8743-70d130d15409
+                stepCounter: 8827d0de-c05d-400c-91ec-b827299b0710
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_ANALYST_NODES
+            nodeName: SALES_DATA
+        join:
+          joinCondition: FROM {{ ref('SRC_ANALYST_NODES', 'SALES_DATA') }} "SALES_DATA"
+        name: STG_SALES_DATA
+        noLinkRefs: []
+  name: STG_SALES_DATA
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
