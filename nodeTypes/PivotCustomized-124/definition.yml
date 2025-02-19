@@ -1,0 +1,190 @@
+fileVersion: 1
+id: "124"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Pivot Customized
+    short: PVT
+    plural: PIVOTS
+    tagColor: '#29B2DB'
+
+    deployStrategy: advanced
+    isColumnResyncEnabled: true
+        
+    config:
+    - groupName: General Options
+      items: 
+      - displayName: Truncate Before
+        attributeName: trunc
+        type: toggleButton
+        default: true
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+      
+      - type: materializationSelector
+        isRequired: true
+        default: table
+        options:
+        - table
+        - view
+        - transient table
+
+      - displayName: Enable Tests
+        attributeName: testsEnabled
+        type: toggleButton
+        default: false
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+    - groupName: Pivot Options
+      items:
+      - displayName: Infer Structure of Pivot Data
+        attributeName: inferPivot
+        type: toggleButton
+        default: false
+      
+      - type: tabular
+        displayName: 'Pivot Column-(Cannot add multiple pivot columns)'
+        attributeName: tabKeyColumn
+        isRequired: true
+        columns:
+        
+        - displayName: Pivot Column
+          type: columnDropdownSelector
+          attributeName: keyColDropdown
+          isRequired: false
+          enableIf: "{% if config.inferPivot %} true {% else %} false {% endif %}"
+
+        - displayName: Pivot Column
+          type: textBox
+          attributeName: keyColTextBox
+          isRequired: true
+
+      - displayName: Single value column 
+        attributeName: sincol
+        type: toggleButton
+        default: true
+
+      - displayName: Pivot operation on same column values
+        attributeName: samKeyColval
+        type: toggleButton
+        enableIf: "{% if config.sincol %} false {% else %} true {% endif %}"
+        default: false
+
+      
+      - type: tabular
+        displayName: 'Value Column'
+        attributeName: tabValueColumn 
+        isRequired: true
+        columns:
+      
+        - displayName: Value Column
+          type: columnDropdownSelector
+          attributeName: valColDropdown
+          enableIf: "{% if config.inferPivot %} true {% else %} false {% endif %}"
+         
+        - displayName: Value Column
+          type: textBox
+          attributeName: valColTextBox
+          
+        -  type: dropdownSelector
+           displayName: Aggregate Functions
+           attributeName: funcname
+           enableIf: "{% if config.sincol %} false {% else %} true {% endif %}"
+           isRequired: false
+           default: table
+           options:
+           - AVG
+           - MAX
+           - MIN
+           - COUNT
+           - SUM
+           - MODE
+           - MEDIAN
+       
+        - displayName: Column Values(comma separated list of column values)
+          type: textBox
+          attributeName: Colvol
+          enableIf: "{% if config.samKeyColval == false and config.sincol == false%}  true{% else %} false {% endif %}" 
+         
+      - displayName: Aggregate functions
+        attributeName: aggfunc1
+        enableIf: "{% if config.sincol %} true {% else %} false {% endif %}"
+        isRequired: false
+        type: tabular
+        columns:
+
+        -  type: dropdownSelector
+           displayName: Functions
+           attributeName: funcname1
+           isRequired: false
+           options:
+           - AVG
+           - MAX
+           - MIN
+           - COUNT
+           - SUM
+           - MODE
+           - MEDIAN
+
+      - displayName: Subquery -PIVOT column values
+        type: textBox
+        attributeName: subqueryval1
+        enableIf: "{% if config.sincol%} true {% else %} false {% endif %}"
+
+      - displayName: Filter Column Values(comma separated list of column values-Ex 'Q1','Q2')
+        type: textBox
+        attributeName: Colvol1
+        enableIf: "{% if config.sincol == true or config.samKeyColval == true %} true {% else %} false {% endif %}"
+
+      - displayName: Exclude column from target table
+        attributeName: excolval
+        type: toggleButton
+        enableIf: "{% if config.sincol %} true {% else %} false {% endif %}"
+        default: false
+      
+      - displayName: Exclude columns from pivot query
+        attributeName: exlcol
+        isRequired: false
+        enableIf: "{% if config.excolval %} true {% else %} false {% endif %}"
+        type: tabular
+        columns:
+         
+        -  type: columnDropdownSelector
+           attributeName: exclcol1
+           isRequired: false
+           displayName: Exclude Columns
+           enableIf: "{% if config.inferPivot %} true {% else %} false {% endif %}"
+
+        -  type: textBox
+           attributeName: exclcoltxtBox       
+           isRequired: false
+           displayName: Exclude Columns
+        
+          
+      - displayName: Value Column
+        attributeName: aggfunc
+        isRequired: false
+        enableIf: "{% if config.sincol %} false {% else %} false {% endif %}"
+        type: tabular
+        columns:
+        
+        - displayName: Value Column
+          type: columnDropdownSelector
+          attributeName: valCol
+     
+        - displayName: Value Column
+          type: textBox
+          attributeName: valColbox
+             
+      - displayName: Default value for NULL
+        type: toggleButton
+        default: false
+        attributeName: defvalue
+      
+      - displayName: Default value
+        type: textBox
+        attributeName: defaultval
+        enableIf: "{% if config.defvalue %} true {% else %} false {% endif %}"
+name: Pivot Customized
+type: NodeType

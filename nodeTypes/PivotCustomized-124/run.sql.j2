@@ -1,0 +1,180 @@
+{#
+    Copyright (c) 2023 Coalesce. All rights reserved.
+This script and its associated documentation are confidential and proprietary to Coalesce.
+Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
+Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+does not permit copying or modification for any other purpose.  
+#}
+{# == Node Type Version        : 1  == #}
+{# == Node Type Name           : PIVOT NODE == #}
+{# == Node Type Description    : This node transforms a narrow table to wider table.It is particularly useful when you want to convert unique row values from one column into multiple columns in the output, aggregating data in the process == #}
+{#Release date:20250107 Version:1.0.0#}
+{#Release date:20250107 Version:1.0.0#}
+{#Release date:20250116 Version:2.0.1 Released By:AS  Description: Fix for insert query failure #}
+{#Release date:20250122 Version:3.0.0 Released By:AS  Description: Deployment and Redeployment changes for Pivot node #}
+
+
+{# Table or Transient table Name #}
+    {% set targetObjectDatabase = ref_no_link(node.location.name, node.name).split('.')[0] %} 
+    {% set targetObjectSchema = ref_no_link(node.location.name, node.name).split('.')[1] %} 
+    {% set fullyQualifiedTargetObjectName = ref_no_link(node.location.name, node.name) %}
+
+      {% set source = sources[0] %}
+      {%- set ns = namespace(saggfunctions=[],mggfunctions=[],funcdesc='',filcolval =[],cnt =1,i=0,exclclause =[],fexclclause ="",filcol =[]) %}
+
+{# == To run data quality tests before data insertion == #}
+
+    {% for test in node.tests if config.testsEnabled %}
+        {% if test.runOrder == 'Before' %}
+            {{ test_stage(test.name, test.continueOnFailure) }}
+            {{ test.templateString }}
+        {% endif %}
+    {% endfor %}
+
+{% if node.materializationType == 'table' or node.materializationType == 'transient table'  %}
+
+  {% set source = sources[0] %}
+         {%- set ns = namespace(keycol = "",pcolumn = [],saggfunctions=[],mggfunctions=[],funcdesc='',filcolval =[],cnt =1,i=0,exclclause =[],fexclclause ="",filcol =[]) %}
+
+
+     {# Infer Pivot true #}
+     {%if config.inferPivot == true %}
+			          {%set ns.keycol = config.tabKeyColumn.get('items') | map(attribute='keyColDropdown.name') | list|first%}
+                  {%set ns.pcolumn = config.tabValueColumn.get('items') | map(attribute='valColDropdown.name') | list%}
+                  {%if ns.keycol == null or ns.pcolumn == []%}
+                      {%set ns.keycol = config.tabKeyColumn.get('items') | map(attribute='keyColTextBox') | list|first%}
+                      {%set ns.pcolumn = config.tabValueColumn.get('items') | map(attribute='valColTextBox')|list%}
+                  {%endif%}
+      {%else%}
+			            {%set ns.keycol = config.tabKeyColumn.get('items') | map(attribute='keyColTextBox') | list|first%}
+                  {%set ns.pcolumn = config.tabValueColumn.get('items') | map(attribute='valColTextBox')|list%}
+      {%endif%}
+
+        {%if config.excolval == true%}
+         {%if  config.inferPivot == true and (config.exlcol.get('items') | map(attribute='exclcol1') | list|first != None)%}
+
+            {% set exclcol = config.exlcol.get('items') | map(attribute='exclcol1.name') | list%} 
+            {%for col in exclcol%}
+              {%set ns.exclclause = ns.exclclause + ['"'+col+'"'] %}
+            {%endfor%}
+            {%set ns.fexclclause = 'EXCLUDE('+ ns.exclclause | join(',') + ')' %}
+         {%else%}
+             
+             {% set exclcol = config.exlcol.get('items') | map(attribute='exclcoltxtBox') | list%} 
+
+            {%for col in exclcol%}
+              {%set ns.exclclause = ns.exclclause + ['"'+col+'"'] %}
+            {%endfor%}
+            {%set ns.fexclclause = 'EXCLUDE('+ ns.exclclause | join(',') + ')' %}
+
+          {%endif%}
+         {%endif%}
+     {%if config.trunc %}
+  			{{ stage('Truncate Pivot Table') }}
+			TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
+     {%endif%}
+
+      {%if config.sincol == true %}
+
+             {% set ns.saggfunctions = config.aggfunc1.get('items') | map(attribute='funcname1') | list%}
+         
+        {{ stage('Insert data into Pivot table') }}
+
+            INSERT INTO  {{ ref_no_link(node.location.name, node.name) }}
+             ( {%for func in ns.saggfunctions%}
+               {%if func == 'SUM'%} 
+                 {%set ns.funcdesc = "TOTAL "+ ns.pcolumn|first %}
+               {%elif func == 'AVG'%}
+                 {%set ns.funcdesc = "AVERAGE "+ ns.pcolumn|first%}
+               {%elif func == 'MAX'%}
+                 {%set ns.funcdesc = "MAXIMUM "+ ns.pcolumn|first%}
+               {%elif func == 'MIN'%}
+                 {%set ns.funcdesc = "MINIMUM "+ ns.pcolumn|first%}
+               {%elif func == 'COUNT'%}
+                 {%set ns.funcdesc = "COUNT OF "+ ns.pcolumn|first%}
+               {%elif func == 'MODE'%}
+                 {%set ns.funcdesc = "MODE OF "+ ns.pcolumn|first%}
+               {%elif func == 'MEDIAN'%}
+                 {%set ns.funcdesc = "MEDIAN OF "+ ns.pcolumn|first%}
+                {%endif%}
+                SELECT * FROM (SELECT * {%if ns.fexclclause != "" %} {{ ns.fexclclause}} {%endif%} {%if ns.saggfunctions | length >1 %},'{{ns.funcdesc}}' AS aggregate {%endif%}   
+                 {{ source.join }} )
+              PIVOT({{func}}({{ns.pcolumn|first}}) FOR {{ns.keycol}} IN ( {%if config.subqueryval1 !="" %}
+                 {{config.subqueryval1}}
+                {%elif config.Colvol1 != "" %}
+                   {{config.Colvol1}}  
+                {%else%}
+                ANY ORDER BY {{ns.keycol}}
+                {%endif%})
+                {%if config.defvalue == true%} DEFAULT ON NULL ({{config.defaultval}}) {%endif%}
+                ) 
+                {%- if not loop.last -%} UNION {% endif %}
+                {%endfor%}
+                )
+        {%else %}
+            {# Multiple Pivot Columns#}
+            {% set ns.mggfunctions = config.tabValueColumn.get('items') | map(attribute='funcname') | list%}
+                  
+            {#Filter column list#}
+              
+           {%if config.samKeyColval == true%} 
+               {%for col in ns.pcolumn%}
+                  {%set ns.filcol = ns.filcol + [config.Colvol1] %}
+               {%endfor%}
+
+            {%else%}
+                {%set ns.filcol = config.tabValueColumn.get('items') | map(attribute='Colvol') | list%}
+            {%endif%}          
+         
+            {{ stage('Insert data into Pivot table') }}      
+
+            INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+             
+             ( 
+                SELECT 
+                {%for func in ns.mggfunctions %}
+                       {%for val1 in ns.filcol[ns.i].split(',') %}
+                        {% set val = val1.strip() %}
+                      {{func}}(${{ns.cnt}}) AS {{func}}_{{val.replace("'", "")}}_{{ns.pcolumn[ns.i]}}
+                      {%set ns.cnt = ns.cnt +1%}
+                      {%if not loop.last %},{%endif%}
+				           {%endfor%}
+                   {%set ns.i = ns.i+1%}
+                   {%if not loop.last%},{%endif%}
+                {%endfor%}
+                 FROM
+              (SELECT
+              {%for col in ns.pcolumn%}
+                 {{col}},
+                 {{ns.keycol}} AS {{ns.keycol}}_{{col}}
+                 {%if not loop.last%},{%endif%}
+              {%endfor%}
+              {{ source.join }})
+              {%for col in ns.pcolumn%} 
+                PIVOT({{ns.mggfunctions[loop.index0]}}({{col}}) FOR {{ns.keycol}}_{{col}} IN ( 
+                {%if ns.filcol[loop.index0] != None %}
+                   {{ns.filcol[loop.index0]}}  
+                {%else%}
+                   ANY ORDER BY {{ns.keycol}}
+                {%endif%}){%if config.defvalue == true%} DEFAULT ON NULL ({{config.defaultval}}) {%endif%})
+			      {%endfor%})
+        {%endif%}   
+{%endif%}
+
+{# == To run data quality tests after data insertion == #}
+
+{% if config.testsEnabled %}
+	{% for test in node.tests %}
+		{% if test.runOrder == 'After' %}
+			{{ test_stage(test.name, test.continueOnFailure) }}
+			{{ test.templateString }}
+        {% endif %}
+	{% endfor %}
+
+	{% for column in columns %}
+		{% for test in column.tests %}
+			{{ test_stage(column.name + ": " + test.name) }}
+			{{ test.templateString }}
+		{% endfor %}
+	{% endfor %}
+{% endif %}
