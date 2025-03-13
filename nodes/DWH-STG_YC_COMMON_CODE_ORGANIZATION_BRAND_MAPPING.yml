@@ -1,0 +1,116 @@
+fileVersion: 1
+id: 3513d688-a43f-48ac-b61b-f7b6dc4717a1
+name: STG_YC_COMMON_CODE_ORGANIZATION_BRAND_MAPPING
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1075c01-a2b3-4721-bafb-5f611c8f5568
+          stepCounter: 3513d688-a43f-48ac-b61b-f7b6dc4717a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ORGANIZATION_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a6dafeb-dba0-4580-ad78-182ad49991ef
+                stepCounter: 11e80822-5050-4a48-b96a-10f1f2474fbd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 42d601cd-478c-4b25-93d0-ef5194b78211
+          stepCounter: 3513d688-a43f-48ac-b61b-f7b6dc4717a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ERROR_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e035f3b0-aaa5-46fb-8cb8-79c0af3ecb3f
+                stepCounter: 11e80822-5050-4a48-b96a-10f1f2474fbd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 310887ca-c07e-471c-8db0-3d78239006fb
+          stepCounter: 3513d688-a43f-48ac-b61b-f7b6dc4717a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ERROR_CODE_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7373b19-109d-4d43-bfe5-85b1b16cdd09
+                stepCounter: 11e80822-5050-4a48-b96a-10f1f2474fbd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f84a1de4-1114-4a6b-b6f2-d8bb4ae265af
+          stepCounter: 3513d688-a43f-48ac-b61b-f7b6dc4717a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ERROR_CODE_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7a6d2d28-3924-4f70-95c7-d9fdb205364b
+                stepCounter: 11e80822-5050-4a48-b96a-10f1f2474fbd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4cb78378-0752-4566-b427-aca5d2bc9b90
+          stepCounter: 3513d688-a43f-48ac-b61b-f7b6dc4717a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: BRAND_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9689bbc3-cc58-4ee8-87b8-d6caff7dc67e
+                stepCounter: 367aeb54-528c-42d6-be12-6c2c38f207ea
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          ORGANIZATION_BRAND_MAPPING: 367aeb54-528c-42d6-be12-6c2c38f207ea
+          YC_COMMON_CODE: 11e80822-5050-4a48-b96a-10f1f2474fbd
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_ANALYST_NODES
+            nodeName: ORGANIZATION_BRAND_MAPPING
+          - locationName: SRC_ANALYST_NODES
+            nodeName: YC_COMMON_CODE
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_ANALYST_NODES', 'YC_COMMON_CODE') }} "YC_COMMON_CODE"
+            INNER JOIN {{ ref('SRC_ANALYST_NODES', 'ORGANIZATION_BRAND_MAPPING') }} "ORGANIZATION_BRAND_MAPPING"
+            ON "YC_COMMON_CODE"."ORGANIZATION_CODE" = "ORGANIZATION_BRAND_MAPPING"."ORGANIZATION_CODE"
+        name: STG_YC_COMMON_CODE_ORGANIZATION_BRAND_MAPPING
+        noLinkRefs: []
+  name: STG_YC_COMMON_CODE_ORGANIZATION_BRAND_MAPPING
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
