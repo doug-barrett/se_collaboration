@@ -1,0 +1,109 @@
+fileVersion: 1
+id: 11719a04-7b60-4ae1-a4fe-6a67ae0cbdc6
+name: STG_SAMPLE_USER_DATA
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e908bd98-54cf-4665-9273-415d49135a6a
+          stepCounter: 11719a04-7b60-4ae1-a4fe-6a67ae0cbdc6
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: USERS_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af1ae591-49d5-414e-8f90-2f7bec0601d7
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5882fe37-c418-437a-970c-1a8ae1384825
+          stepCounter: 11719a04-7b60-4ae1-a4fe-6a67ae0cbdc6
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: VALUES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ce83d25-1ce8-4f1f-a35c-6b392f5fcdc7
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6e1b25f3-6c94-4590-99bc-ca790f4783b4
+          stepCounter: 11719a04-7b60-4ae1-a4fe-6a67ae0cbdc6
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 71a04941-d917-43ee-8ccd-efdd3f5489a5
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9bb128e2-2ff6-4d09-a0ad-8d173241d058
+          stepCounter: 11719a04-7b60-4ae1-a4fe-6a67ae0cbdc6
+        config: {}
+        dataType: BOOLEAN
+        description: ""
+        name: _FIVETRAN_DELETED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 33484b3a-81de-40f7-b69f-ceb61388d526
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: df5f2882-a1e7-4c65-b937-84568c962d16
+          stepCounter: 11719a04-7b60-4ae1-a4fe-6a67ae0cbdc6
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: _FIVETRAN_SYNCED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d426a281-d4be-4eef-91ce-9538cf36b29f
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_ANALYST_NODES
+            nodeName: SAMPLE_USER_DATA
+        join:
+          joinCondition: FROM {{ ref('SRC_ANALYST_NODES', 'SAMPLE_USER_DATA') }} "SAMPLE_USER_DATA"
+        name: STG_SAMPLE_USER_DATA
+        noLinkRefs: []
+  name: STG_SAMPLE_USER_DATA
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 11e80822-5050-4a48-b96a-10f1f2474fbd
-name: YC_COMMON_CODE
+id: d0169ab3-900a-45bf-be9c-74fe454364b5
+name: SAMPLE_USER_DATA
 operation:
   database: ""
   deployEnabled: true
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2a6dafeb-dba0-4580-ad78-182ad49991ef
-          stepCounter: 11e80822-5050-4a48-b96a-10f1f2474fbd
+          columnCounter: af1ae591-49d5-414e-8f90-2f7bec0601d7
+          stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: VARCHAR(255)
         defaultValue: ""
         description: ""
-        name: ORGANIZATION_CODE
+        name: USERS_ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: e035f3b0-aaa5-46fb-8cb8-79c0af3ecb3f
-          stepCounter: 11e80822-5050-4a48-b96a-10f1f2474fbd
+          columnCounter: 0ce83d25-1ce8-4f1f-a35c-6b392f5fcdc7
+          stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: VARCHAR(255)
         defaultValue: ""
         description: ""
-        name: ERROR_CODE
+        name: VALUES
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: e7373b19-109d-4d43-bfe5-85b1b16cdd09
-          stepCounter: 11e80822-5050-4a48-b96a-10f1f2474fbd
+          columnCounter: 71a04941-d917-43ee-8ccd-efdd3f5489a5
+          stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: VARCHAR(255)
         defaultValue: ""
         description: ""
-        name: ERROR_CODE_NAME
+        name: NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +70,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7a6d2d28-3924-4f70-95c7-d9fdb205364b
-          stepCounter: 11e80822-5050-4a48-b96a-10f1f2474fbd
+          columnCounter: 33484b3a-81de-40f7-b69f-ceb61388d526
+          stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: BOOLEAN
         defaultValue: ""
         description: ""
-        name: ERROR_CODE_STATUS
+        name: _FIVETRAN_DELETED
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -84,7 +84,26 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: YC_COMMON_CODE
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d426a281-d4be-4eef-91ce-9538cf36b29f
+          stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: _FIVETRAN_SYNCED
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: SAMPLE_USER_DATA
   schema: ""
   sqlType: Source
   type: sourceInput

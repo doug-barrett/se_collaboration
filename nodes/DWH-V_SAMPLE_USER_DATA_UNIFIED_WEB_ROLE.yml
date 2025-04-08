@@ -1,0 +1,109 @@
+fileVersion: 1
+id: 20eb13b2-0e46-4d01-800c-e65a6aec47fa
+name: V_SAMPLE_USER_DATA_UNIFIED_WEB_ROLE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85b384fe-14f2-47db-bb99-069ff43da7b6
+          stepCounter: 20eb13b2-0e46-4d01-800c-e65a6aec47fa
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: USERS_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af1ae591-49d5-414e-8f90-2f7bec0601d7
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc3e2024-9f4b-4e0c-9e1b-31d0d9b602be
+          stepCounter: 20eb13b2-0e46-4d01-800c-e65a6aec47fa
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: VALUES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ce83d25-1ce8-4f1f-a35c-6b392f5fcdc7
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 24aec1d6-a163-4959-9123-1bf848cd259b
+          stepCounter: 20eb13b2-0e46-4d01-800c-e65a6aec47fa
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 71a04941-d917-43ee-8ccd-efdd3f5489a5
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03a2fb9b-8d08-434d-87d9-52829ce722ae
+          stepCounter: 20eb13b2-0e46-4d01-800c-e65a6aec47fa
+        config: {}
+        dataType: BOOLEAN
+        description: ""
+        name: _FIVETRAN_DELETED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 33484b3a-81de-40f7-b69f-ceb61388d526
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d784fc8-add4-44cb-9133-84239de76ade
+          stepCounter: 20eb13b2-0e46-4d01-800c-e65a6aec47fa
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: _FIVETRAN_SYNCED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d426a281-d4be-4eef-91ce-9538cf36b29f
+                stepCounter: d0169ab3-900a-45bf-be9c-74fe454364b5
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          SAMPLE_USER_DATA: d0169ab3-900a-45bf-be9c-74fe454364b5
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_ANALYST_NODES
+            nodeName: SAMPLE_USER_DATA
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_ANALYST_NODES', 'SAMPLE_USER_DATA') }} "SAMPLE_USER_DATA"
+            WHERE NAME = 'unifiedWebRole'
+        name: V_SAMPLE_USER_DATA_UNIFIED_WEB_ROLE
+        noLinkRefs: []
+  name: V_SAMPLE_USER_DATA_UNIFIED_WEB_ROLE
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
