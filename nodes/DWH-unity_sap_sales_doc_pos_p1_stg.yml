@@ -1,0 +1,1420 @@
+fileVersion: 1
+id: f3490556-9274-41aa-82e1-5079bc85541e
+name: unity_sap_sales_doc_pos_p1_stg
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Sales document position data enriched with descriptions.
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 65b7dd20-2397-46c0-91b4-620f23d0cd2b
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PK_VBAP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bfe7ac52-5d5a-4436-8a92-5eab02532a6f
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 0db6e5c6-87e5-402a-82d3-4e47780e5074
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 9a920ef5-8956-4c5a-adc3-f77d7fdc0ba1
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: bfe7ac52-5d5a-4436-8a92-5eab02532a6f
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 0db6e5c6-87e5-402a-82d3-4e47780e5074
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 9a920ef5-8956-4c5a-adc3-f77d7fdc0ba1
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.MANDT is null or VBAP.VBELN is null or VBAP.POSNR is null then null else concat_ws('~',VBAP.MANDT,VBAP.VBELN,VBAP.POSNR) end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc1e6896-44e8-48ac-b16f-b659346d0d90
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bfe7ac52-5d5a-4436-8a92-5eab02532a6f
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: VBAP.MANDT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa433dff-d2c4-4f7b-ab6a-b4c6cf311583
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_VBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0db6e5c6-87e5-402a-82d3-4e47780e5074
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: VBAP.VBELN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7593fefb-010b-436c-b931-91b059f339da
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_POSNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9a920ef5-8956-4c5a-adc3-f77d7fdc0ba1
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: VBAP.POSNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8829fbf-8777-4ef6-8616-d71a5139b4ca
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_MATNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b1de492-b29c-4759-a8b8-5b1fb82280b7
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: VBAP.MATNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4ab85c2b-eee9-407f-b938-90058ee9c7d5
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_MATWA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 56989edf-a22c-49bf-bb38-71a49359d8a1
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: VBAP.MATWA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0758f629-a65a-4b04-8142-701c19b11215
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PMATN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2e450915-454a-43c8-a35b-c81aa86e48e5
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 2e450915-454a-43c8-a35b-c81aa86e48e5
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.PMATN = ' ' then null else VBAP.PMATN end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f4dd5bac-3bd8-4ba7-a442-d141438d885c
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_CHARG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a1d2cad-94cd-436c-b73e-565b669cd56e
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 2a1d2cad-94cd-436c-b73e-565b669cd56e
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.CHARG = ' ' then null else VBAP.CHARG end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8caaa0b4-3038-4df5-acf8-c5de3f29da3d
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_MATKL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b3905299-94a9-413a-be70-7be583f997a1
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: VBAP.MATKL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 012b5d50-fd6f-4250-acb6-e2638ea215e0
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_MATKL_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 012b5d50-fd6f-4250-acb6-e2638ea215e0
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: " cast(null as string)"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 020b8cae-4d68-467f-8e14-94fbdf7378b1
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ARKTX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2440c38e-1e77-4847-a120-a28b2f61d308
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 2440c38e-1e77-4847-a120-a28b2f61d308
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.ARKTX = ' ' then null else VBAP.ARKTX end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 69e69c50-5acd-477c-b3e1-eb6be7212681
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PSTYV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c717a418-0a86-4432-8436-db020eb93cb3
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: VBAP.PSTYV
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 835684f7-e588-42b9-94c0-e0f346552322
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PSTYV_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 835684f7-e588-42b9-94c0-e0f346552322
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: cast(null as string)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25731965-15cc-4f99-aeea-0cdd42fffc9d
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_POSAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6b6661d-bc58-41f6-95ac-f864f7c1aa73
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: VBAP.POSAR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: af190a68-47a3-4894-ab12-f621bf34a425
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_LFREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8e21368-5f0b-4f9d-a8f3-b7c4be1a8004
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: c8e21368-5f0b-4f9d-a8f3-b7c4be1a8004
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.LFREL = ' ' then null else VBAP.LFREL end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36c32e26-81b0-4700-8a2d-2281d28da9cf
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_FKREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aa558c0d-656c-474a-8c93-3d53578b8de6
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: aa558c0d-656c-474a-8c93-3d53578b8de6
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.FKREL = ' ' then null else VBAP.FKREL end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7fc53fbb-484b-48b6-8267-8fb0f47e7498
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_UEPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 19bf893a-8096-4cc5-979e-0bd49ac4a2d8
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 19bf893a-8096-4cc5-979e-0bd49ac4a2d8
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.UEPOS = '000000' then null else VBAP.UEPOS end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 498b4450-5a9c-4c96-8bd0-69710a1f3a1c
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_GRPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ff0a4bfd-3d56-4fd7-87c3-5f23b18d49be
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: ff0a4bfd-3d56-4fd7-87c3-5f23b18d49be
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.GRPOS = '000000' then null else VBAP.GRPOS end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 81a6ae09-5d3f-43a5-9b2f-9dc74a4bdff7
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ABGRU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c6840a0-5864-4fbb-bf00-fc5045181f4c
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 2c6840a0-5864-4fbb-bf00-fc5045181f4c
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.ABGRU = ' ' then null else VBAP.ABGRU end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8b340d9-7d93-438a-8739-10bc46929b41
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ABGRU_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4ff812bb-3e04-43f1-9d9e-3597034f9d33
+                stepCounter: 0c29a5d0-58a7-496a-9ce8-9f86bb6ba340
+            transform: TVAGT.BEZEI
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca01aeca-d349-490a-8a30-695298855933
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8cf32548-32e8-4af9-a46c-6e6010ad6470
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 8cf32548-32e8-4af9-a46c-6e6010ad6470
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.PRODH = ' ' then null else VBAP.PRODH end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 846cfe65-1336-4a68-9621-b765568c2f08
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2da64e04-a00b-42ef-832f-f582a8575aec
+                stepCounter: aebd6961-f040-4cc3-beac-93dd0e4562f5
+            transform: T179T_PRODH.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cfcf4e32-4aaf-4b9e-bba5-c6f49db88421
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBAP_ZWERT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: df0e352b-f0fa-4e16-a1ca-5addc6e04ace
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: cast(VBAP.ZWERT as decimal(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b299c31-42a1-4c5c-8d0a-22df9701f988
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBAP_ZMENG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cea0b467-ad9f-44f6-9d4a-ab86df8f1836
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: cast(VBAP.ZMENG as decimal(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d1d21cdc-759e-41b5-9c93-8e49703f2ba6
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZIEME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 49ca7178-0785-4212-a540-3658e4a986b3
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 49ca7178-0785-4212-a540-3658e4a986b3
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.ZIEME = ' ' then null else VBAP.ZIEME end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 18c6f8f0-bff7-4a5c-9e4f-10d69c33edac
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZIEME_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bf0ea1ca-65fd-4207-b4b9-0bbf549295dd
+                stepCounter: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+            transform: t006A_zieme.MSEHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 309cfdc2-4cde-411f-bb16-f8f9f5fec2af
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBAP_UMZIZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f856839-980d-464d-b279-a57c5bdd13bb
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: cast(VBAP.UMZIZ as DECIMAL(5,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15b4f019-83a1-46ac-97d0-2c5b11ca5787
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBAP_UMZIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bb53dd8b-1fba-4cef-a7ec-910bf7bb37a4
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: cast(VBAP.UMZIN as DECIMAL(5,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eac07a64-5761-422a-bc59-cc3b8d2a9a04
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_MEINS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9f0ec04f-2f7c-48be-ad12-b1ade126cf8c
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: VBAP.MEINS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa08c97e-3f5e-4cda-85ac-ad1c63f1bd7e
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_MEINS_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bf0ea1ca-65fd-4207-b4b9-0bbf549295dd
+                stepCounter: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+            transform: t006A_meins.MSEHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 92a10ba3-a347-48c5-9f0c-30a54ec42fe1
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBAP_ABLFZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1311a77f-ada0-47df-bf01-5ceb98d86e3c
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: cast(VBAP.ABLFZ as decimal(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97f62b6d-f5d6-4553-843b-cbd1bb3c957d
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_POSEX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c25d851-1dea-4457-a90d-253309e93a48
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 2c25d851-1dea-4457-a90d-253309e93a48
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.POSEX = ' ' then null else VBAP.POSEX end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b0c491f8-78de-4f99-9423-5cb936d2e2a9
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_KDMAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 50ece1c2-31ee-41d4-b201-c00db110f360
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 50ece1c2-31ee-41d4-b201-c00db110f360
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.KDMAT = ' ' then null else VBAP.KDMAT end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b12f1c16-cb7b-48b3-828b-ffa7b57fbb30
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_VKGRU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02dafc97-dac7-417d-8b0b-49247cffa0b8
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 02dafc97-dac7-417d-8b0b-49247cffa0b8
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.VKGRU = ' ' then null else VBAP.VKGRU end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3dca7dc7-415d-4427-ac9a-3185114abfda
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_VKAUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a457a7d9-903a-4cbe-862d-1d36a2f1afb0
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: a457a7d9-903a-4cbe-862d-1d36a2f1afb0
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.VKAUS = ' ' then null else VBAP.VKAUS end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae948bcd-aea2-4716-b6be-ff49ae0f8b04
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_VKAUS_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ae948bcd-aea2-4716-b6be-ff49ae0f8b04
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: " cast(null as string)"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 45e2e8d1-1765-4c90-bb21-1c277110f97c
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_GRKOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3481b126-3066-42cd-aa35-cd563e1e3c45
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 3481b126-3066-42cd-aa35-cd563e1e3c45
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.GRKOR = '000' then null else VBAP.GRKOR end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b6f6bb8-c02e-42fb-938c-7ec1f029315e
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_FMENG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0fa83856-ed3e-4289-9472-c32079bf3311
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 0fa83856-ed3e-4289-9472-c32079bf3311
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.FMENG = ' ' then null else VBAP.FMENG end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 874737d8-cd94-4047-9af6-616c0d1f7a2b
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_UEBTK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 65a99cfe-0640-4e62-b264-dfd0d63f6072
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+              - columnCounter: 65a99cfe-0640-4e62-b264-dfd0d63f6072
+                stepCounter: 39c3d665-0c43-42ba-8d8d-a7721d862762
+            transform: case when VBAP.UEBTK = ' ' then null else VBAP.UEBTK end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2041a538-a6d2-4989-93a0-388bce385b45
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBAP_MWSBP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2041a538-a6d2-4989-93a0-388bce385b45
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: cast(VBAP.MWSBP as decimal(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d687bf30-703c-470d-8eb0-24e925f74e89
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PCTRF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d687bf30-703c-470d-8eb0-24e925f74e89
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.PCTRF = ' ' then null else VBAP.PCTRF end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3527753d-a32b-4c9f-992f-9cdbe753b920
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_LOGSYS_EXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3527753d-a32b-4c9f-992f-9cdbe753b920
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.LOGSYS_EXT = ' ' then null else VBAP.LOGSYS_EXT end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 46607ced-9e88-4560-83ac-911484aaaeb7
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_J_1BTAXLW4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 46607ced-9e88-4560-83ac-911484aaaeb7
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.J_1BTAXLW4 = ' ' then null else VBAP.J_1BTAXLW4 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dbfd9eb2-d141-4d73-b13f-caec0498b49d
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_J_1BTAXLW5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dbfd9eb2-d141-4d73-b13f-caec0498b49d
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.J_1BTAXLW5 = ' ' then null else VBAP.J_1BTAXLW5 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f2bd649c-fda6-49eb-bd6e-0eb0c867fb56
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_KOSTL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f2bd649c-fda6-49eb-bd6e-0eb0c867fb56
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.KOSTL = ' ' then null else VBAP.KOSTL end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd5f2a3a-be2e-44ad-8b07-d917245279c9
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZZCATNO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd5f2a3a-be2e-44ad-8b07-d917245279c9
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZZCATNO = ' ' then null else VBAP.ZZCATNO end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a391f1f-4691-4887-aa8b-339e3383194f
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZEUMSEG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6a391f1f-4691-4887-aa8b-339e3383194f
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZEUMSEG = ' ' then null else VBAP.ZEUMSEG end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2495da05-9df9-484c-aa9a-f65dbf509409
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZEUMSUBSEG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2495da05-9df9-484c-aa9a-f65dbf509409
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZEUMSUBSEG = ' ' then null else VBAP.ZEUMSUBSEG end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6faf009f-ef6c-4a1e-bd63-356d32a37fce
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZAPP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6faf009f-ef6c-4a1e-bd63-356d32a37fce
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZAPP = ' ' then null else VBAP.ZAPP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa0ad39b-f345-4c2a-8228-9bb7f0491e49
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZSUBAPP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aa0ad39b-f345-4c2a-8228-9bb7f0491e49
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZSUBAPP = ' ' then null else VBAP.ZSUBAPP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d08dc410-9c89-4595-b415-5a30773af1bd
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZEACTTP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d08dc410-9c89-4595-b415-5a30773af1bd
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZEACTTP = ' ' then null else VBAP.ZEACTTP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eedb6fd1-d916-4d7c-91c3-d531411df18a
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZEACTSUBTP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eedb6fd1-d916-4d7c-91c3-d531411df18a
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZEACTSUBTP = ' ' then null else VBAP.ZEACTSUBTP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 982609c9-66f7-46b5-8b90-8fbfcccbd6f2
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 982609c9-66f7-46b5-8b90-8fbfcccbd6f2
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.PRODH1 = ' ' then null else VBAP.PRODH1 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 75a3d826-af19-426f-806c-dae537dc8757
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH1_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 75a3d826-af19-426f-806c-dae537dc8757
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T179T_L1.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3212e9c2-f911-4b90-b9cc-04a512a00f02
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3212e9c2-f911-4b90-b9cc-04a512a00f02
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.PRODH2 = ' ' then null else VBAP.PRODH2 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8e71532-a738-40c9-a869-0d23bd96f757
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH2_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e8e71532-a738-40c9-a869-0d23bd96f757
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T179T_L2.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ce5745bb-0050-4769-b030-43423e529897
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ce5745bb-0050-4769-b030-43423e529897
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.PRODH3 = ' ' then null else VBAP.PRODH3 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aeaf1487-7ef3-4199-a266-d55414330b54
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aeaf1487-7ef3-4199-a266-d55414330b54
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T179T_L3.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c2bee902-3fa0-40ec-948e-78a3192bb419
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c2bee902-3fa0-40ec-948e-78a3192bb419
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.PRODH4 = ' ' then null else VBAP.PRODH4 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a93fc53-2e2c-43b0-a709-198794d065c5
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH4_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4a93fc53-2e2c-43b0-a709-198794d065c5
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T179T_L4.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f808dd80-388f-4f83-a282-63f59ad086c7
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f808dd80-388f-4f83-a282-63f59ad086c7
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.PRODH5 = ' ' then null else VBAP.PRODH5 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fad0e450-f0d6-453d-b138-5a799889463c
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH5_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fad0e450-f0d6-453d-b138-5a799889463c
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T179T_L5.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 126de4ac-dad0-48f7-9044-b55cd212f2e4
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH6
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 126de4ac-dad0-48f7-9044-b55cd212f2e4
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.PRODH6 = ' ' then null else VBAP.PRODH6 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1c067e4-473a-4c4d-be11-34329a82c4cc
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH6_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1c067e4-473a-4c4d-be11-34329a82c4cc
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T179T_L6.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6adbbfea-7492-4404-b564-64bf41ae2fbc
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH7
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6adbbfea-7492-4404-b564-64bf41ae2fbc
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.PRODH7 = ' ' then null else VBAP.PRODH7 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa17a8be-f198-46bf-8fa6-409bdeb029c8
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_PRODH7_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fa17a8be-f198-46bf-8fa6-409bdeb029c8
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T179T_L7.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae1827eb-1a42-41de-9dcb-c24b1be14d08
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZZGERNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ae1827eb-1a42-41de-9dcb-c24b1be14d08
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZZGERNR = ' ' then null else VBAP.ZZGERNR end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a072ce85-a0ec-4406-b16f-9eb03abe7a2e
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZPROMDELDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a072ce85-a0ec-4406-b16f-9eb03abe7a2e
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZPROMDELDT = '00000000' then null else VBAP.ZZPROMDELDT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6b3245e-2c64-4496-b5aa-33d16caa4582
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZNOTDELDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6b3245e-2c64-4496-b5aa-33d16caa4582
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZNOTDELDT = '00000000' then null else VBAP.ZZNOTDELDT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cad09f1c-696e-4e07-8f2d-05ca95d2ed76
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZRETDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cad09f1c-696e-4e07-8f2d-05ca95d2ed76
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZRETDAT = '00000000' then null else VBAP.ZZRETDAT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cbefebb-6923-486a-bbcd-c1c2b57c2959
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZRWADAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5cbefebb-6923-486a-bbcd-c1c2b57c2959
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZRWADAT = '00000000' then null else VBAP.ZZRWADAT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e87d9e0b-fa04-49bf-a92b-a6cedc8e8c0f
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZOCETDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e87d9e0b-fa04-49bf-a92b-a6cedc8e8c0f
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZOCETDAT = '00000000' then null else VBAP.ZZOCETDAT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6de7f8dc-8ef8-44f8-a90c-4f5bcd02fcf2
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZOCWADAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6de7f8dc-8ef8-44f8-a90c-4f5bcd02fcf2
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZOCWADAT = '00000000' then null else VBAP.ZZOCWADAT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 983c83ab-8e66-4d56-bcbc-e3460580f070
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZOCLDDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 983c83ab-8e66-4d56-bcbc-e3460580f070
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZOCLDDAT = '00000000' then null else VBAP.ZZOCLDDAT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25d79f7c-824c-460f-8866-bdefef9fc114
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZOCMBDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25d79f7c-824c-460f-8866-bdefef9fc114
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZOCMBDAT = '00000000' then null else VBAP.ZZOCMBDAT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87310f27-5b6e-48a7-9b6a-83423d1abce3
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZOCTDDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87310f27-5b6e-48a7-9b6a-83423d1abce3
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZOCTDDAT = '00000000' then null else VBAP.ZZOCTDDAT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9cbe3caf-a6d3-4362-a85c-3eec9a28ee5e
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZZDISGR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9cbe3caf-a6d3-4362-a85c-3eec9a28ee5e
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZZDISGR = ' ' then null else VBAP.ZZDISGR end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 75195e7a-4d16-4d5e-8045-b5b151860bb1
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZZATPLOGIC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 75195e7a-4d16-4d5e-8045-b5b151860bb1
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: case when VBAP.ZZATPLOGIC = ' ' then null else VBAP.ZZATPLOGIC end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 42377d69-8a6e-4bce-a9fb-31dd5832e5b6
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZPRIORCMTDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42377d69-8a6e-4bce-a9fb-31dd5832e5b6
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZPRIORCMTDT = '00000000' then null else VBAP.ZZPRIORCMTDT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8589afe9-fbd8-4925-b9f3-7bb201bba801
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBAP_ZZOETDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8589afe9-fbd8-4925-b9f3-7bb201bba801
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: try_to_timestamp(case when VBAP.ZZOETDAT = '00000000' then null else VBAP.ZZOETDAT end,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e458bbaf-b989-4737-a6a2-5c0bbc7cd377
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_SLT_DELETE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e458bbaf-b989-4737-a6a2-5c0bbc7cd377
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: VBAP.SLT_DELETE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0abc0c23-a669-417e-a965-129c98e9d1cf
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBAP_SLT_UPDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0abc0c23-a669-417e-a965-129c98e9d1cf
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: cast(VBAP.SLT_UPDATE as decimal(21,7))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 289c90a3-a2e0-45e1-8346-54be313d0d10
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_WERKS_NAME1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 289c90a3-a2e0-45e1-8346-54be313d0d10
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T001W.NAME1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ff788c48-aeae-4460-bb99-0f598cece141
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_WERKS_BWKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ff788c48-aeae-4460-bb99-0f598cece141
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T001W.BWKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d177c44-2ff9-4532-a242-1dad5075627d
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_WERKS_BWKEY_BUKRS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d177c44-2ff9-4532-a242-1dad5075627d
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: T001K.BUKRS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7ef5df1-6905-4074-91c4-bc7bae003ae6
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_MATNR_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f7ef5df1-6905-4074-91c4-bc7bae003ae6
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: makt.MAKTX
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b3c2bae0-ba2b-483a-a4b6-3f1171fa1610
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZZPRDH6SUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b3c2bae0-ba2b-483a-a4b6-3f1171fa1610
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: vbap.ZZPRDH6SUM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb7a507c-d90c-42dd-b911-311786b6964e
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZZPRDH5SUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bb7a507c-d90c-42dd-b911-311786b6964e
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: vbap.ZZPRDH5SUM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 21f2bb87-69eb-41b2-b632-f15ec2300f71
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZZPRDH4SUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 21f2bb87-69eb-41b2-b632-f15ec2300f71
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: vbap.ZZPRDH4SUM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 177a6b17-1151-4d06-bf96-32a6717c415a
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZZPRDH3SUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 177a6b17-1151-4d06-bf96-32a6717c415a
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: vbap.ZZPRDH3SUM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a24fc79-f361-48a5-82ea-6667b75ad07d
+          stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBAP_ZZPRDH2SUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8a24fc79-f361-48a5-82ea-6667b75ad07d
+                stepCounter: f3490556-9274-41aa-82e1-5079bc85541e
+            transform: vbap.ZZPRDH2SUM
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          MAKT: 1b022d41-7f66-44ad-aa93-1baea02e1875
+          T001K: 7cb9cd36-773c-4524-b474-dd612dfecb55
+          T001W: 1df95e45-0fd0-4dac-9f27-934a18cdeac6
+          T006A_GEWEI: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_KMEIN: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_MEINS: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_PRBME: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_VOLEH: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_VRKME: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_ZIEME: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T179T_L1: aebd6961-f040-4cc3-beac-93dd0e4562f5
+          T179T_L2: aebd6961-f040-4cc3-beac-93dd0e4562f5
+          T179T_L3: aebd6961-f040-4cc3-beac-93dd0e4562f5
+          T179T_L4: aebd6961-f040-4cc3-beac-93dd0e4562f5
+          T179T_L5: aebd6961-f040-4cc3-beac-93dd0e4562f5
+          T179T_L6: aebd6961-f040-4cc3-beac-93dd0e4562f5
+          T179T_L7: aebd6961-f040-4cc3-beac-93dd0e4562f5
+          T179T_PRODH: aebd6961-f040-4cc3-beac-93dd0e4562f5
+          TVAGT: 0c29a5d0-58a7-496a-9ce8-9f86bb6ba340
+          TVM1T: 68c027c4-6d6b-4de7-861f-f06e23e906c8
+          TVSTT: 3b5d14f9-acb4-4e05-9332-e0ad9318ad52
+          VBAP: 39c3d665-0c43-42ba-8d8d-a7721d862762
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: STG_MAKT
+          - locationName: DWH
+            nodeName: STG_T006A
+          - locationName: DWH
+            nodeName: STG_T179T
+          - locationName: DWH
+            nodeName: STG_TVAGT
+          - locationName: DWH
+            nodeName: STG_TVM1T
+          - locationName: DWH
+            nodeName: STG_TVSTT
+          - locationName: SRC_SAP
+            nodeName: T001K
+          - locationName: SRC_SAP
+            nodeName: T001W
+          - locationName: SRC_SAP
+            nodeName: VBAP
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'VBAP') }} 
+            left outer join {{ ref('SRC_SAP', 'T001W') }}  on vbap.mandt = t001w.mandt and vbap.werks = t001w.werks 
+            left outer join {{ ref('DWH', 'STG_TVAGT') }} AS TVAGT on vbap.mandt = TVAGT.mandt and vbap.abgru = TVAGT.abgru 
+            left outer join {{ ref('SRC_SAP', 'T001K') }}  on t001w.mandt = t001k.mandt and t001w.bwkey = t001k.bwkey 
+            left outer join {{ ref('DWH', 'STG_TVM1T') }} AS TVM1T on vbap.mandt = TVM1T.mandt and vbap.MVGR1 = TVM1T.MVGR1 
+            left outer join {{ ref('DWH', 'STG_TVSTT') }} AS TVSTT on vbap.mandt = TVSTT.mandt and vbap.VSTEL = tvstt.vstel 
+            left outer join {{ ref('DWH', 'STG_T006A') }} as t006a_zieme on vbap.mandt = t006a_zieme.mandt and vbap.zieme = t006a_zieme.MSEHI 
+            left outer join {{ ref('DWH', 'STG_T006A') }} as t006a_MEINS on vbap.mandt = t006a_MEINS.mandt and vbap.MEINS = t006a_MEINS.MSEHI 
+            left outer join {{ ref('DWH', 'STG_T006A') }} as t006a_VRKME on vbap.mandt = t006a_VRKME.mandt and vbap.VRKME = t006a_VRKME.MSEHI 
+            left outer join {{ ref('DWH', 'STG_T006A') }} as t006a_GEWEI on vbap.mandt = t006a_GEWEI.mandt and vbap.GEWEI = t006a_GEWEI.MSEHI 
+            left outer join {{ ref('DWH', 'STG_T006A') }} as t006a_VOLEH on vbap.mandt = t006a_VOLEH.mandt and vbap.VOLEH = t006a_VOLEH.MSEHI 
+            left outer join {{ ref('DWH', 'STG_T006A') }} as t006a_KMEIN on vbap.mandt = t006a_KMEIN.mandt and vbap.KMEIN = t006a_KMEIN.MSEHI 
+            left outer join {{ ref('DWH', 'STG_T006A') }} as t006a_PRBME on vbap.mandt = t006a_PRBME.mandt and vbap.PRBME = t006a_PRBME.MSEHI 
+            left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_PRODH on vbap.mandt = t179T_PRODH.mandt and VBAP.PRODH = t179t_PRODH.PRODH 
+            left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_L1 on vbap.mandt = t179T_L1.mandt and VBAP.PRODH = t179t_l1.PRODH 
+            left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_L2 on vbap.mandt =T179T_L2.mandt and concat(VBAP.PRODH1,VBAP.PRODH2) = T179T_L2.PRODH 
+            left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_L3 on vbap.mandt =T179T_L3.mandt and concat(VBAP.PRODH1,VBAP.PRODH2,VBAP.PRODH3) = T179T_L3.PRODH 
+            left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_L4 on vbap.mandt =T179T_L4.mandt and concat(VBAP.PRODH1,VBAP.PRODH2,VBAP.PRODH3,VBAP.PRODH4) = T179T_L4.PRODH 
+            left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_L5 on vbap.mandt =T179T_L5.mandt and concat(VBAP.PRODH1,VBAP.PRODH2,VBAP.PRODH3,VBAP.PRODH4,VBAP.PRODH5) = T179T_L5.PRODH 
+            left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_L6 on vbap.mandt =T179T_L6.mandt and concat(VBAP.PRODH1,VBAP.PRODH2,VBAP.PRODH3,VBAP.PRODH4,VBAP.PRODH5,VBAP.PRODH6) = T179T_L6.PRODH 
+            left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_L7 on vbap.mandt =T179T_L7.mandt and concat(VBAP.PRODH1,VBAP.PRODH2,VBAP.PRODH3,VBAP.PRODH4,VBAP.PRODH5,VBAP.PRODH6,VBAP.PRODH7) = T179T_L7.PRODH 
+            left outer join {{ ref('DWH', 'STG_MAKT') }} AS makt on vbap.mandt = makt.mandt and vbap.matnr = makt.matnr
+        name: unity_sap_sales_doc_pos_p1_stg
+        noLinkRefs: []
+  name: unity_sap_sales_doc_pos_p1_stg
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,2020 @@
+fileVersion: 1
+id: 9fff719e-c427-4bec-853f-6cae9313d1fe
+name: unity_sap_sales_doc_pos_p2_stg
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Generated stage node from provided SQL.
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e328c56-70de-4b7c-ab91-c6b308a19401
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PK_VBUP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2e328c56-70de-4b7c-ab91-c6b308a19401
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBUP.MANDT is null or VBUP.VBELN is null or VBUP.POSNR is null then null else concat_ws('~',VBUP.MANDT,VBUP.VBELN,VBUP.POSNR) end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d88571f7-5c2b-4d29-a640-f37807fbf0cd
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d88571f7-5c2b-4d29-a640-f37807fbf0cd
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.MANDT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dbba83db-7ede-4442-bcab-f2ec6d366197
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_VBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dbba83db-7ede-4442-bcab-f2ec6d366197
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.VBELN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 37336d9c-2f42-42eb-8c99-0eb2526e3ca2
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_POSNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 37336d9c-2f42-42eb-8c99-0eb2526e3ca2
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.POSNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d6c6024-fff3-4e3b-a95c-90841a39efd1
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_KTGRD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d6c6024-fff3-4e3b-a95c-90841a39efd1
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.KTGRD = ' ' then null else VBKD_P.KTGRD end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5a85c35e-88cc-4589-8249-4e7057e87285
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_BEMOT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a85c35e-88cc-4589-8249-4e7057e87285
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.BEMOT = ' ' then null else VBKD_P.BEMOT end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 481085d8-bdf0-4c01-a25f-1b5c09c92b5d
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_VALTG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 481085d8-bdf0-4c01-a25f-1b5c09c92b5d
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.VALTG = '00' then null else VBKD_P.VALTG end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97df0520-116a-481f-a346-1e920e596aee
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_DELCO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 97df0520-116a-481f-a346-1e920e596aee
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.DELCO = ' ' then null else VBKD_P.DELCO end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7895f512-8983-4fad-8612-848ebc40153a
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_FKDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7895f512-8983-4fad-8612-848ebc40153a
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.FKDAT = '00000000' then null else VBKD_P.FKDAT end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b33668dd-d330-499b-bf06-9c823baac2eb
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_FPLNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b33668dd-d330-499b-bf06-9c823baac2eb
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.FPLNR = ' ' then null else VBKD_P.FPLNR end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8ec1a038-1833-4be5-908a-a11e7414cea1
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_BSTDK_E
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ec1a038-1833-4be5-908a-a11e7414cea1
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.BSTDK_E = '00000000' then null else VBKD_P.BSTDK_E end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e186157d-118c-42f4-bcd5-98a96c4c5ba9
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_COMPREAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e186157d-118c-42f4-bcd5-98a96c4c5ba9
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.COMPREAS = ' ' then null else VBKD_P.COMPREAS end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9839a1fc-8fb9-4542-9dd3-30a692c2e82a
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_STEUC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9839a1fc-8fb9-4542-9dd3-30a692c2e82a
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.STEUC = ' ' then null else VBKD_P.STEUC end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1cca4cb1-afe7-4cf3-a228-d22cba311fd5
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_KDKG1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1cca4cb1-afe7-4cf3-a228-d22cba311fd5
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.KDKG1 = ' ' then null else VBKD_P.KDKG1 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 439e5502-554c-4d8d-8c89-d421c652cce7
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_KDKG2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 439e5502-554c-4d8d-8c89-d421c652cce7
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.KDKG2 = ' ' then null else VBKD_P.KDKG2 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e03aaac6-f12a-4fcf-a47d-de3414764131
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_KDKG3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e03aaac6-f12a-4fcf-a47d-de3414764131
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.KDKG3 = ' ' then null else VBKD_P.KDKG3 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e56ab4f3-625c-494c-a952-f86d43495613
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_KDKG4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e56ab4f3-625c-494c-a952-f86d43495613
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.KDKG4 = ' ' then null else VBKD_P.KDKG4 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b6787e77-e2aa-464e-a3a2-b298ceda31de
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_KDKG5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6787e77-e2aa-464e-a3a2-b298ceda31de
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.KDKG5 = ' ' then null else VBKD_P.KDKG5 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5077e8cd-6483-47c5-8a65-d82b5c918e41
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_IHREZ_E
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5077e8cd-6483-47c5-8a65-d82b5c918e41
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.IHREZ_E = ' ' then null else VBKD_P.IHREZ_E end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae8e17c8-21c9-4119-8cf5-ed2370a2a400
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_BSTKD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ae8e17c8-21c9-4119-8cf5-ed2370a2a400
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.BSTKD = ' ' then null else VBKD_P.BSTKD end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 65497135-2f26-47be-b349-85f9c68ee504
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_MANSP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 65497135-2f26-47be-b349-85f9c68ee504
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.MANSP = ' ' then null else VBKD_P.MANSP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1cb787e3-c668-46f1-99d5-9ecf4b4bb808
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_MSCHL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1cb787e3-c668-46f1-99d5-9ecf4b4bb808
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.MSCHL = ' ' then null else VBKD_P.MSCHL end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3774ccf0-6dff-4895-b58f-78e8fbe9d831
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_FFPRF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3774ccf0-6dff-4895-b58f-78e8fbe9d831
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.FFPRF = ' ' then null else VBKD_P.FFPRF end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 07f3ddc1-9e0a-42ad-a3fd-49882ff92906
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBKD_VBAP_WKKUR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 07f3ddc1-9e0a-42ad-a3fd-49882ff92906
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: cast(VBKD_P.WKKUR as decimal(28,10))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f133366a-ff2c-4685-ba82-1377ca3915bc
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBKD_VBAP_KURSK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f133366a-ff2c-4685-ba82-1377ca3915bc
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: cast(VBKD_P.KURSK as decimal(28,10))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4755468a-e7f6-4386-921f-cbbab8b4b89e
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBKD_VBAP_KURRF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4755468a-e7f6-4386-921f-cbbab8b4b89e
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: cast(VBKD_P.KURRF as decimal(28,10))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ece2aff3-73cc-4d12-b60a-f46ed960815a
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBKD_VBAP_VALDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ece2aff3-73cc-4d12-b60a-f46ed960815a
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: try_to_timestamp(VBKD_P.VALDT,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b38beca7-5200-4083-b6a7-8cedde5acfbb
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBKD_VBAP_PRSDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b38beca7-5200-4083-b6a7-8cedde5acfbb
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: try_to_timestamp(VBKD_P.PRSDT,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27c6208e-280d-4e16-8241-5ac86b804670
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_INCO1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 27c6208e-280d-4e16-8241-5ac86b804670
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.INCO1 = ' ' then null else VBKD_P.INCO1 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: feea5610-2fce-4271-bf34-29647a49b6d3
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_INCO2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: feea5610-2fce-4271-bf34-29647a49b6d3
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.INCO2 = ' ' then null else VBKD_P.INCO2 end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49e270aa-8cb0-4ab5-a51e-570e43ab8468
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBKD_VBAP_J_1AIDATEP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 49e270aa-8cb0-4ab5-a51e-570e43ab8468
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: try_to_timestamp(VBKD_P.J_1AIDATEP,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9757185e-246d-419a-ba9f-b546de492afa
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_J_1AINDXP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9757185e-246d-419a-ba9f-b546de492afa
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.J_1AINDXP = ' ' then null else VBKD_P.J_1AINDXP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4d3273b4-e23f-4485-b601-5083625da67a
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_PERFK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4d3273b4-e23f-4485-b601-5083625da67a
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.PERFK = ' ' then null else VBKD_P.PERFK end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6d958c82-8dcc-495a-9d0d-8fd962bc80f5
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_PERRL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6d958c82-8dcc-495a-9d0d-8fd962bc80f5
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.PERRL = ' ' then null else VBKD_P.PERRL end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 72c41fb6-ef7b-4e18-a2c0-d52d5a7aa2ca
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_STCODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 72c41fb6-ef7b-4e18-a2c0-d52d5a7aa2ca
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.STCODE = ' ' then null else VBKD_P.STCODE end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4367a9ca-a632-4d3b-b352-4bd8c4e31102
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_MRNKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4367a9ca-a632-4d3b-b352-4bd8c4e31102
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.MRNKZ = ' ' then null else VBKD_P.MRNKZ end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a438760d-4c4a-410a-9981-223ca329057d
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_TRMTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a438760d-4c4a-410a-9981-223ca329057d
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.TRMTYP = ' ' then null else VBKD_P.TRMTYP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 580b06de-bad7-4536-9757-2f2362b12998
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_TRATY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 580b06de-bad7-4536-9757-2f2362b12998
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.TRATY = ' ' then null else VBKD_P.TRATY end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 287c703b-9021-496d-9052-84255a8437e4
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_KZAZU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 287c703b-9021-496d-9052-84255a8437e4
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.KZAZU = ' ' then null else VBKD_P.KZAZU end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 02d3d251-7e2b-4dd1-8e9e-f9b423b232c7
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_ABSSC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02d3d251-7e2b-4dd1-8e9e-f9b423b232c7
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.ABSSC = ' ' then null else VBKD_P.ABSSC end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9128dff9-7e3b-4111-ae4b-a4a7269bd1d8
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_ZLSCH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9128dff9-7e3b-4111-ae4b-a4a7269bd1d8
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.ZLSCH = ' ' then null else VBKD_P.ZLSCH end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 218c4ea4-6f03-48b9-ae6e-20db6464ebf1
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAK_PAYMENT_TERM_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 218c4ea4-6f03-48b9-ae6e-20db6464ebf1
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: " cast(null as string)"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78c88184-c670-4e6b-8441-ab19c728a773
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_WMINR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78c88184-c670-4e6b-8441-ab19c728a773
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.WMINR = ' ' then null else VBKD_P.WMINR end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 63e2cfcc-1c4a-4da7-b7a8-f1497e0108db
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBKD_VBAP_ACDATV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 63e2cfcc-1c4a-4da7-b7a8-f1497e0108db
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: try_to_timestamp(VBKD_P.ACDATV,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 43d99a20-5ff6-4712-aa0a-1c1ac3cd9820
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_J_1ARFZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 43d99a20-5ff6-4712-aa0a-1c1ac3cd9820
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.J_1ARFZ = ' ' then null else VBKD_P.J_1ARFZ end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 11ce7a93-99f8-431d-865e-10eed052d890
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_EMPST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 11ce7a93-99f8-431d-865e-10eed052d890
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.EMPST = ' ' then null else VBKD_P.EMPST end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f00a7ca-9c4c-4988-a255-0caef67e29a7
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_J_1AREGIO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f00a7ca-9c4c-4988-a255-0caef67e29a7
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.J_1AREGIO = ' ' then null else VBKD_P.J_1AREGIO end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9de7efff-68bb-4fe8-9185-de05198ed59d
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_PODKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9de7efff-68bb-4fe8-9185-de05198ed59d
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.PODKZ = ' ' then null else VBKD_P.PODKZ end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dadce4c6-8c9c-4bad-895f-023e938b6adc
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_REVSP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dadce4c6-8c9c-4bad-895f-023e938b6adc
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.REVSP = ' ' then null else VBKD_P.REVSP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4d580182-ee50-425d-9f99-1933e33cf0bf
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_RRREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4d580182-ee50-425d-9f99-1933e33cf0bf
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.RRREL = ' ' then null else VBKD_P.RRREL end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 44f759f5-0105-4f3b-bdc2-a6e5b39dce52
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBKD_VBAP_FBUDA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 44f759f5-0105-4f3b-bdc2-a6e5b39dce52
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: try_to_timestamp(VBKD_P.FBUDA,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba04be4f-c239-4784-919b-7c5c6954c513
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_BSARK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba04be4f-c239-4784-919b-7c5c6954c513
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.BSARK = ' ' then  'MANUAL' else VBKD_P.BSARK end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 952e67d4-be3a-40c3-92d2-a7aa41f086f8
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_BSARK_E
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 952e67d4-be3a-40c3-92d2-a7aa41f086f8
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.BSARK_E = ' ' then null else VBKD_P.BSARK_E end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 725d417a-395c-42b2-a13d-99cbfd1ac63a
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_WE_PO_TYPE_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 725d417a-395c-42b2-a13d-99cbfd1ac63a
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: " cast(null as string)"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d505cf44-9a5d-46f0-835c-2b8fb8942404
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_BSTKD_E
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d505cf44-9a5d-46f0-835c-2b8fb8942404
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.BSTKD_E = ' ' then null else VBKD_P.BSTKD_E end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1bf2472a-04d3-4e5d-a78a-784014f317ca
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_VSART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1bf2472a-04d3-4e5d-a78a-784014f317ca
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.VSART = ' ' then null else VBKD_P.VSART end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b5a4976b-f704-47e1-9827-31e74e0c27bb
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_SDABW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5a4976b-f704-47e1-9827-31e74e0c27bb
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.SDABW = ' ' then null else VBKD_P.SDABW end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba2f59a8-3ed2-4c2f-85fa-78056aa390c2
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_J_1ATXREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba2f59a8-3ed2-4c2f-85fa-78056aa390c2
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.J_1ATXREL = ' ' then null else VBKD_P.J_1ATXREL end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 92c432ce-c483-47be-8461-b8c0acdea978
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_J_1AFITP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 92c432ce-c483-47be-8461-b8c0acdea978
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.J_1AFITP = ' ' then null else VBKD_P.J_1AFITP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7022394b-9cfe-431a-b972-7c6c75f319e2
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBKD_VBAP_KURRF_DAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7022394b-9cfe-431a-b972-7c6c75f319e2
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: try_to_timestamp(VBKD_P.KURRF_DAT,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3141765d-c313-4bb2-ada0-3b4237da4987
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VBKD_VBAP_KURSK_DAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3141765d-c313-4bb2-ada0-3b4237da4987
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: try_to_timestamp(VBKD_P.KURSK_DAT,'yyyyMMdd')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c0a9208a-0b9d-4491-af41-c3ab913a0fa3
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_POSEX_E
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c0a9208a-0b9d-4491-af41-c3ab913a0fa3
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.POSEX_E = ' ' then null else VBKD_P.POSEX_E end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e69027e7-a052-4f8e-9b45-b1150cfa289a
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_WKWAE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e69027e7-a052-4f8e-9b45-b1150cfa289a
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.WKWAE = ' ' then null else VBKD_P.WKWAE end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e1e2469b-a4de-4e28-b0e1-9b157ea788e2
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_IHREZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1e2469b-a4de-4e28-b0e1-9b157ea788e2
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.IHREZ = ' ' then null else VBKD_P.IHREZ end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60ac8339-4423-4524-8607-7773fac29cba
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_PLTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 60ac8339-4423-4524-8607-7773fac29cba
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.PLTYP = ' ' then null else VBKD_P.PLTYP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: da5b5f6a-f02d-4cbc-94b8-58d8c899db01
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_KONDA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: da5b5f6a-f02d-4cbc-94b8-58d8c899db01
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.KONDA = ' ' then null else VBKD_P.KONDA end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ba867b3-ebaf-4517-af9a-5c5fe135077d
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBKD_VBAP_KDGRP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3ba867b3-ebaf-4517-af9a-5c5fe135077d
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBKD_P.KDGRP = ' ' then null else VBKD_P.KDGRP end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b9a1d92-715c-4aaa-99bb-9c53f75ad98e
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_RFSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6b9a1d92-715c-4aaa-99bb-9c53f75ad98e
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.RFSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 987905e9-9970-40c0-aacb-db60849c889f
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_RFGSA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 987905e9-9970-40c0-aacb-db60849c889f
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.RFGSA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38e43f11-402d-4d61-a572-073bd5bc4d81
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_BESTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 38e43f11-402d-4d61-a572-073bd5bc4d81
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.BESTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3b3b4e40-7486-4339-b827-ed758a6fc502
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_LFSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b3b4e40-7486-4339-b827-ed758a6fc502
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.LFSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ffcec25-ce4b-44c3-83dc-c3137dcf67bf
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_LFGSA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5ffcec25-ce4b-44c3-83dc-c3137dcf67bf
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.LFGSA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 51b6e974-744d-4483-a75a-4f4a8546ba09
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_WBSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 51b6e974-744d-4483-a75a-4f4a8546ba09
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.WBSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 661dbd14-a6d4-4a93-a262-1395e2a39e89
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_FKSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 661dbd14-a6d4-4a93-a262-1395e2a39e89
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.FKSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: af0827c7-2f72-466d-90e4-a8ce74af91ae
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_FKSAA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af0827c7-2f72-466d-90e4-a8ce74af91ae
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.FKSAA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 511cc173-e6c8-448e-80a8-34170414f99f
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_ABSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 511cc173-e6c8-448e-80a8-34170414f99f
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.ABSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3b8b90ea-9315-4291-ae8d-1dce78d4fbd3
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_GBSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b8b90ea-9315-4291-ae8d-1dce78d4fbd3
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.GBSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78ef1df1-485e-4f2e-9a63-f7b4721cf839
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_KOSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78ef1df1-485e-4f2e-9a63-f7b4721cf839
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.KOSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 025ec8b1-b370-4657-9674-489c0f6ce901
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_LVSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 025ec8b1-b370-4657-9674-489c0f6ce901
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.LVSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b1a6201f-c33c-4f00-931a-cc3498b5a743
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVALL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b1a6201f-c33c-4f00-931a-cc3498b5a743
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVALL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0689405a-4547-4af8-9868-63199014a6f3
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVVLK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0689405a-4547-4af8-9868-63199014a6f3
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVVLK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fe1a96c9-6dd7-43e0-92e3-d1fce3a8fd52
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVFAK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe1a96c9-6dd7-43e0-92e3-d1fce3a8fd52
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVFAK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04140e06-67ea-4ab4-9b04-3ef7d921760a
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVPRS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 04140e06-67ea-4ab4-9b04-3ef7d921760a
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVPRS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 533657c8-745e-4faa-95d6-ecce3b973efc
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_FKIVP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 533657c8-745e-4faa-95d6-ecce3b973efc
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.FKIVP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fbd30a61-dc36-4045-83fb-66ecccf35b06
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVP01
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fbd30a61-dc36-4045-83fb-66ecccf35b06
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVP01
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4de67f6c-7c6c-4196-9b5d-713852a2606f
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVP02
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4de67f6c-7c6c-4196-9b5d-713852a2606f
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVP02
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ddfe507-916d-40ce-a09e-38329526a2c7
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVP03
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ddfe507-916d-40ce-a09e-38329526a2c7
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVP03
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8544b0ac-1966-403c-8ced-51c13d8bf16b
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVP04
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8544b0ac-1966-403c-8ced-51c13d8bf16b
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVP04
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9864ad3d-d90c-4c8f-bde6-fd7c8698a46b
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVP05
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9864ad3d-d90c-4c8f-bde6-fd7c8698a46b
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVP05
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fe1a0b62-4e59-4836-acb4-8c08a49080d4
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_PKSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe1a0b62-4e59-4836-acb4-8c08a49080d4
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.PKSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f883c54d-e1b3-487b-ae0f-d963c280302f
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_KOQUA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f883c54d-e1b3-487b-ae0f-d963c280302f
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.KOQUA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 982b3988-de02-4b20-ab27-97a90d5b68e2
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_COSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 982b3988-de02-4b20-ab27-97a90d5b68e2
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.COSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9bcb2d6c-aab1-4926-805e-bbfc8d6c7039
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_CMPPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9bcb2d6c-aab1-4926-805e-bbfc8d6c7039
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.CMPPI
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8c95537-95e0-4b42-a24d-a5f51093ed5d
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_CMPPJ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e8c95537-95e0-4b42-a24d-a5f51093ed5d
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.CMPPJ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76e149e0-3416-4bb0-8c94-4a163a0fe10e
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVPIK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76e149e0-3416-4bb0-8c94-4a163a0fe10e
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVPIK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb061fa9-a13e-4cbe-8e9a-f67a572a7b79
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVPAK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bb061fa9-a13e-4cbe-8e9a-f67a572a7b79
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVPAK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3145291-c31b-41b2-967e-8c6aaca60914
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_UVWAK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c3145291-c31b-41b2-967e-8c6aaca60914
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.UVWAK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 73997031-042e-4c9b-b305-1413bae5493f
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_DCSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 73997031-042e-4c9b-b305-1413bae5493f
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.DCSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0065e236-6e43-4c93-87ef-2a8bafe196e5
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_RRSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0065e236-6e43-4c93-87ef-2a8bafe196e5
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.RRSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b81245d0-9940-4a76-8839-21aab667573c
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_VLSTP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b81245d0-9940-4a76-8839-21aab667573c
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.VLSTP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d038db46-5832-4b50-bffb-a962781c8864
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_FSSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d038db46-5832-4b50-bffb-a962781c8864
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.FSSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 72589c87-baca-4725-9330-87117f2c7ba6
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_LSSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 72589c87-baca-4725-9330-87117f2c7ba6
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: case when VBUP.LSSTA = ' ' then null else VBUP.LSSTA end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd5740d6-2ad2-4b5c-a5d0-61e1b882e4c6
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_PDSTA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cd5740d6-2ad2-4b5c-a5d0-61e1b882e4c6
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.PDSTA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 886bbd60-d1c6-49f6-b82d-184610490e09
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_MANEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 886bbd60-d1c6-49f6-b82d-184610490e09
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.MANEK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83dd7da3-848d-40e6-913a-0d96e29a8361
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_HDALL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 83dd7da3-848d-40e6-913a-0d96e29a8361
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.HDALL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: da2b9fbe-9830-44d3-a14d-e5bbd0a59342
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBUP_LTSPS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: da2b9fbe-9830-44d3-a14d-e5bbd0a59342
+                stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+            transform: VBUP.LTSPS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e706ac4-8e68-4205-bbd2-47dd1e0a0e87
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: NUMBER(5,2)
+        description: ""
+        name: AKPRZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9463a0fc-74f9-468c-af4b-869462a8adfb
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd7da7c9-9ec1-424d-9547-a85c96ab01a5
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(5)
+        description: ""
+        name: J_1AINDXP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1180067e-eca6-4045-9a0f-c75ba3d1e1c7
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36383b99-dcbf-48d3-9e64-0420dd23addd
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: J_1AIDATEP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 93f4c6f0-7041-4326-a589-3d728f56cdbc
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: acb24aa7-537d-4000-b124-923487fcb4cb
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(35)
+        description: ""
+        name: BSTKD_M
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 613be3a3-0988-43bd-b94d-9f7ad2f663f1
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8185b980-1af3-4ccf-8520-fc2d893735cb
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: DELCO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 99cd9e2c-c048-4621-a199-ddd0d75fef5c
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79d47155-8ae2-4aad-b403-1b4ec86f57f6
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(8)
+        description: ""
+        name: FFPRF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d39553c-262c-45e1-bc1a-92bd61e69771
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a3493282-12c3-499c-947b-e02069e69cfa
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(2)
+        description: ""
+        name: BEMOT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1ea9d52b-fe05-468f-94b8-1e144ffe110e
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7b8d6144-232c-4dcd-9836-d4f05658a5af
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(2)
+        description: ""
+        name: FAKTF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c999c2d5-b20d-48b3-a161-90ddb6b989a9
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7820253d-0673-41f2-be01-bddbf5941637
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: RRREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 502439cb-8bf1-4b17-bff6-10bcc4da4272
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f9eb04cc-2e39-417c-872c-9a2642d2a1fd
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: ACDATV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 20cad14d-fcd5-41fa-9cac-76623d7bf2fa
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c582ee1b-2817-4a8c-a040-01b5ff618ce0
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(2)
+        description: ""
+        name: VSART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f8e2330-1340-4409-94cc-2dfb6fe607e3
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb13e393-1ab8-43e9-8fdc-6fd988873d3b
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: TRATY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7b7d470b-96a9-45a8-8bd2-63a5b947316b
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 62ed21f4-bc87-40e5-b20b-1957347bde7a
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(18)
+        description: ""
+        name: TRMTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: be7f5e03-11ad-4b1c-b63f-8fb57391f2d4
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87416286-130b-4e76-bb64-31de449f708d
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: SDABW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b4a5bd5-f054-4bc3-904c-ce8d05527005
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 81b6ea53-6bf6-453c-8e1c-b4e612fff891
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: WMINR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 087445e2-0db1-4fc4-b38b-7e449c8ad893
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 405ca66a-4ceb-4edc-baec-790dae53583e
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(16)
+        description: ""
+        name: FKBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6f9d57b0-31fc-4a68-b611-301d7b1d80c9
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2332ae96-1dac-4d0a-bf1a-303e3cad7fb3
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: PODKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e70df155-f00f-402a-a3b2-55f2b05ba697
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b4b7ff61-422c-4843-9c4d-11365c3b2e69
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: BINARY(32)
+        description: ""
+        name: CAMPAIGN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c66d59c2-0461-4e31-ac5c-cb7ab973139f
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f37e21fc-9499-4d7e-b493-d36cd23b57e7
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(12)
+        description: ""
+        name: VKONT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8393a28f-f12b-4c9b-913f-15c79d000b29
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0663e1f9-6506-4880-a28e-785f4f4ef4a8
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: DPBP_REF_FPLNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42ce6913-bd1a-49fb-a49e-471089fec717
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9256448b-d69d-4532-90eb-51ed7b66154d
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: DPBP_REF_FPLTR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 79a9f181-a1c4-4982-be40-1bdb03c0da77
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6798bb7c-afff-4ddb-85e8-517774e5b392
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: STCODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02ec7bac-e5ef-44fe-9439-9dd5caa24432
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 417086e3-f1e7-4429-9b8d-6d80b9c44a22
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: FORMC1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aca2f4a7-a1f2-4da3-a824-c1c09a856bd3
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3595a9e-8394-41ef-a947-6acf6021bf2c
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: FORMC2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 70a3ea99-8f1e-4b8f-b1ff-ea8f2c44f472
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1bd6f7ef-9756-40a3-a40d-abae20b9a9b2
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(16)
+        description: ""
+        name: STEUC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 00a5b13b-9001-4555-a748-ea1da74948eb
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a4e3232-c8ad-43ea-9fcd-735d6635a3b7
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: REVSP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 284a93f7-39a6-43b0-a396-330b9cde9bc4
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0cfc287-ccbe-412a-90bb-f178b924cf5d
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: REVEVTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6bd19531-66c2-429e-a85f-64418851f652
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 565782e0-0b5c-4f82-a2dd-72a74f53d71c
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: VTREF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2e2e545d-0deb-4ed0-94e8-7979a6846f29
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f7d0134-bc7a-4cf5-a0f6-5f3d873e1609
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: PEROP_BEG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8614cee7-faff-4d5a-a74e-20c5e1da755d
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41f50b43-c617-42da-b449-cde96dca39c4
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: PEROP_END
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 981e9a26-3275-417a-8f1a-646d087978d5
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a38d8c2d-0370-43fc-9fc2-267e21498b28
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: COMPREAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 50145c4e-5053-48bb-a7a7-88203d4cca34
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5704cd38-17ca-4469-bf5f-63d85999bd7a
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: ARCHIVE_FLAG$
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f1b792b2-819e-43f9-91a2-aa3ac9cfd3e8
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2fed7844-90d8-4e15-865d-9b6254bb8a03
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: ARCHIVE_TIMESTAMP$
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1a05f5ad-265d-4ad0-a100-37f70ae0f04b
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a53ef3f6-4bbd-48e7-beea-80845466f027
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c67e4bd3-6a6b-4f2a-a354-5e8d5de5226c
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 18cb7171-bf1f-4321-a65f-84da6aca4dce
+          stepCounter: 9fff719e-c427-4bec-853f-6cae9313d1fe
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: SOURCE_UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 283611e3-3410-40f4-a648-1787bc55cf09
+                stepCounter: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+            transform: ""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          VBKD_P: 7895ae77-b2ae-475b-b8f1-047f5c553a3e
+          VBUP: 34bb0b6b-846e-442b-bef3-848585c30f84
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: VBKD
+          - locationName: SRC_SAP
+            nodeName: VBUP
+        join:
+          joinCondition: FROM {{ ref('SRC_SAP', 'VBUP') }} left outer join {{ ref('SRC_SAP', 'VBKD') }} VBKD_P on VBUP.MANDT = VBKD_P.MANDT and VBUP.VBELN = VBKD_P.VBELN and VBUP.POSNR = VBKD_P.POSNR
+        name: unity_sap_sales_doc_pos_p2_stg
+        noLinkRefs: []
+  name: unity_sap_sales_doc_pos_p2_stg
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

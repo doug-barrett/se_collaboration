@@ -1,0 +1,808 @@
+fileVersion: 1
+id: c3960afa-3276-4887-b79d-e31609c52c70
+name: unity_sap_dd07t
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Generated stage node from the provided SQL.
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3a7ab86-bfc8-437f-9b27-90c09f18fdf9
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: data_source_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c3a7ab86-bfc8-437f-9b27-90c09f18fdf9
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: cast( 5 as int )
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 99ffd62a-ce47-46be-979b-670247bf3a7d
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: pk_dd07t
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 99ffd62a-ce47-46be-979b-670247bf3a7d
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: concat_ws('~','5',DOMNAME,AS4LOCAL,VALPOS,AS4VERS)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 37267733-11e4-49b2-8ccc-76f30d64099a
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: DOMNAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 37267733-11e4-49b2-8ccc-76f30d64099a
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: dd07t.DOMNAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 44c4f9c3-768b-4c0a-81ae-c72466c48539
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: AS4LOCAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 44c4f9c3-768b-4c0a-81ae-c72466c48539
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: dd07t.AS4LOCAL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 724dc702-5c9d-44dd-8153-c4e7e0791b86
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: VALPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 724dc702-5c9d-44dd-8153-c4e7e0791b86
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: dd07t.VALPOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53925e5e-18de-4727-ae08-979d518e846f
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: AS4VERS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53925e5e-18de-4727-ae08-979d518e846f
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: dd07t.AS4VERS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ab9bcc3-58e2-4722-a738-d880aafdb3e2
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: DOMVAL_LD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5ab9bcc3-58e2-4722-a738-d880aafdb3e2
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: dd07t.DOMVAL_LD
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97a012d3-2add-42f7-b129-efcf67673f8a
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: DOMVAL_HD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 97a012d3-2add-42f7-b129-efcf67673f8a
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: dd07t.DOMVAL_HD
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 092433c7-ad9b-4dcf-b4a6-d8602da6074b
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: DOMVALUE_L
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 092433c7-ad9b-4dcf-b4a6-d8602da6074b
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: dd07t.DOMVALUE_L
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4092e09d-de00-41ab-9694-a682745ec190
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_afrikaans
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4092e09d-de00-41ab-9694-a682745ec190
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'a' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7b76a3c0-a574-4af7-9b91-f35f5dd754a9
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_arabic
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7b76a3c0-a574-4af7-9b91-f35f5dd754a9
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'A' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cdc92f3-5d80-4e56-bd90-497f453121ed
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_bulgarian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5cdc92f3-5d80-4e56-bd90-497f453121ed
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'W' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd5cd976-17c6-436a-8393-4b778f3cf626
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_catalan
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd5cd976-17c6-436a-8393-4b778f3cf626
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'c' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d09a157-32cc-4dd6-bdf4-bb678ff9d62c
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_chinese
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d09a157-32cc-4dd6-bdf4-bb678ff9d62c
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '1' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b7b83a0-c3cc-4fb0-880e-41b108fe99cf
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_chinese_trad
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5b7b83a0-c3cc-4fb0-880e-41b108fe99cf
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'M' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 664f4f31-7e2a-492d-8647-0fc1c4df3e9b
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_croatian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 664f4f31-7e2a-492d-8647-0fc1c4df3e9b
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '6' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a5e156bf-0de0-459f-9d1c-aba1747dbb03
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_customer_reserve
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a5e156bf-0de0-459f-9d1c-aba1747dbb03
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'Z' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa009f82-8fd4-4cdf-90de-7f257b41b6a5
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_czech
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fa009f82-8fd4-4cdf-90de-7f257b41b6a5
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'C' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6c3055cf-2697-483d-97d6-295b87613e46
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_danish
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6c3055cf-2697-483d-97d6-295b87613e46
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'K' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a97fcd83-010c-4471-9de4-1ec91d04a60c
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_dutch
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a97fcd83-010c-4471-9de4-1ec91d04a60c
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'N' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e1698781-c7af-43eb-899c-89e464247287
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_english
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1698781-c7af-43eb-899c-89e464247287
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'E' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 130ac353-9d80-4773-8b9e-ad325ab954c5
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_estonian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 130ac353-9d80-4773-8b9e-ad325ab954c5
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '9' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2dbf4188-315d-48d6-92b1-3e219f90209c
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_finnish
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2dbf4188-315d-48d6-92b1-3e219f90209c
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'U' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6383eb9d-8c1c-43e7-b22f-0f5b3b61a3b1
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_french
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6383eb9d-8c1c-43e7-b22f-0f5b3b61a3b1
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'F' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cf64930d-9bfe-469a-9ee5-a2e02c567598
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_german
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cf64930d-9bfe-469a-9ee5-a2e02c567598
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'D' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96c507bc-5cc5-4ae6-bdf1-1e730d3db63b
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_greek
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 96c507bc-5cc5-4ae6-bdf1-1e730d3db63b
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'G' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 31f493d3-df74-4256-bc53-df682e7e9ce8
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_hebrew
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 31f493d3-df74-4256-bc53-df682e7e9ce8
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'B' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 93f77831-f806-4a45-bc93-68c50215892f
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_hungarian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 93f77831-f806-4a45-bc93-68c50215892f
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'H' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 21427284-8954-45b5-8f32-875b26c76e0c
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_icelandic
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 21427284-8954-45b5-8f32-875b26c76e0c
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'b' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fec6ab13-8990-46af-a7d4-5259c4eef4ec
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_indonesian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fec6ab13-8990-46af-a7d4-5259c4eef4ec
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'i' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a59e8d7b-d16e-4546-9b01-f9bb3d59dfe4
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_italian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a59e8d7b-d16e-4546-9b01-f9bb3d59dfe4
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'I' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 610c7c66-b5b5-429c-8bb1-6b23684fbd26
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_japanese
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 610c7c66-b5b5-429c-8bb1-6b23684fbd26
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'J' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: abb3f9b9-38df-49ac-96a0-14ec0cabca98
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_korean
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: abb3f9b9-38df-49ac-96a0-14ec0cabca98
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '3' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 80b46017-c7f7-482f-b8d1-cffc135eeb25
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_latvian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 80b46017-c7f7-482f-b8d1-cffc135eeb25
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'Y' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b23d1c5-daad-4a34-a790-f7713f4f3b8d
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_lithuanian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b23d1c5-daad-4a34-a790-f7713f4f3b8d
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'X' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e6241ad7-33ed-4385-b6ce-246b66a9d895
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_malaysian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e6241ad7-33ed-4385-b6ce-246b66a9d895
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '7' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b16a9fd1-c6ec-4711-9af7-9e75fb428dfb
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_norwegian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b16a9fd1-c6ec-4711-9af7-9e75fb428dfb
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'O' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26e37577-4e82-407a-8d2a-7103aad5eea9
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_polish
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 26e37577-4e82-407a-8d2a-7103aad5eea9
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'L' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d7702b64-0918-4a35-9c00-62ffa4ec0166
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_portuguese
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d7702b64-0918-4a35-9c00-62ffa4ec0166
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'P' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ca700d6-5f25-4fe2-8a46-ba9cd7fcbed4
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_romanian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3ca700d6-5f25-4fe2-8a46-ba9cd7fcbed4
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '4' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7af228bb-023f-4850-926b-8645c015254e
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_russian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7af228bb-023f-4850-926b-8645c015254e
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'R' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25bfff59-6a7c-43a2-96f1-3fdf6156ab3b
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_serbian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25bfff59-6a7c-43a2-96f1-3fdf6156ab3b
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '0' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5de7212d-41fb-4e80-8c64-819bbf4c2b50
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_serbian_latin
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5de7212d-41fb-4e80-8c64-819bbf4c2b50
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'd' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d465e72f-ff84-4c78-8483-a53806bde66f
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_slovakian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d465e72f-ff84-4c78-8483-a53806bde66f
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'Q' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e26b5c4d-cddd-4ae1-a517-79370b16c45e
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_slovenian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e26b5c4d-cddd-4ae1-a517-79370b16c45e
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '5' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ff68a94-e7cd-45b4-8b0a-1855777a5274
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_spanish
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ff68a94-e7cd-45b4-8b0a-1855777a5274
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'S' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 56e5c9da-a223-40f2-b279-eb6036cb76b7
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_swedish
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 56e5c9da-a223-40f2-b279-eb6036cb76b7
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'V' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae55ec3b-a6a6-4c1b-b2f3-381245d9e474
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_thai
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ae55ec3b-a6a6-4c1b-b2f3-381245d9e474
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '2' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc166baf-0b50-43eb-b5c1-543150c82c30
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_turkish
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fc166baf-0b50-43eb-b5c1-543150c82c30
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = 'T' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2304e605-3b28-46c6-ae4b-af6c6e16bfd4
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ddtext_desc_ukrainian
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2304e605-3b28-46c6-ae4b-af6c6e16bfd4
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: MAX(case when dd07t.DDLANGUAGE = '8' then ddtext else null end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d1bb523-4d6f-47d1-9d41-8e83fe2b22ad
+          stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: SLT_UPDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1d1bb523-4d6f-47d1-9d41-8e83fe2b22ad
+                stepCounter: c3960afa-3276-4887-b79d-e31609c52c70
+            transform: cast( max(dd07t.SLT_UPDATE) as decimal(21,7) )
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          DD07T: bb0185c7-5498-421e-9cdf-e9dde93e1953
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: DD07T
+        join:
+          joinCondition: from {{ ref('SRC_SAP', 'DD07T') }} where DD07T.AS4LOCAL = 'A' and DD07T.slt_delete = ' ' Group By DD07T.DOMNAME, DD07T.AS4LOCAL, DD07T.VALPOS, DD07T.AS4VERS, DD07T.DOMVAL_LD, DD07T.DOMVAL_HD, DD07T.DOMVALUE_L
+        name: unity_sap_dd07t
+        noLinkRefs: []
+  name: unity_sap_dd07t
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

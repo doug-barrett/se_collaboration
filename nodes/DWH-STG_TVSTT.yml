@@ -1,0 +1,98 @@
+fileVersion: 1
+id: 3b5d14f9-acb4-4e05-9332-e0ad9318ad52
+name: STG_TVSTT
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88bddde9-08df-4644-a22f-e11563940b94
+          stepCounter: 3b5d14f9-acb4-4e05-9332-e0ad9318ad52
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: SPRAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ad108a6f-f689-41c9-8dd7-f09f637ac1ec
+                stepCounter: 40e096c8-b035-4b61-afc1-f5226d44befb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a87bc1a3-f16e-4250-babd-3081ecfd59ca
+          stepCounter: 3b5d14f9-acb4-4e05-9332-e0ad9318ad52
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: VTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9407241f-f16a-454b-80d5-9f84dbed7f92
+                stepCounter: 40e096c8-b035-4b61-afc1-f5226d44befb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e0e71511-b26a-41bd-92bc-46f19284a86c
+          stepCounter: 3b5d14f9-acb4-4e05-9332-e0ad9318ad52
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 031db584-3064-4c40-bcdd-9f7b6aecf8e6
+                stepCounter: 40e096c8-b035-4b61-afc1-f5226d44befb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b0e5865-2fb7-4868-8589-8a35ee8c7c42
+          stepCounter: 3b5d14f9-acb4-4e05-9332-e0ad9318ad52
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: VSTEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ca0d2ff-0dc9-4319-a3c2-d95aa3e1445f
+                stepCounter: 40e096c8-b035-4b61-afc1-f5226d44befb
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          TVSTT: 40e096c8-b035-4b61-afc1-f5226d44befb
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: TVSTT
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'TVSTT') }} "TVSTT"
+            WHERE SPRAS = 'E'
+        name: STG_TVSTT
+        noLinkRefs: []
+  name: STG_TVSTT
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

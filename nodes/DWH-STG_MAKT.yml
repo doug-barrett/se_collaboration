@@ -1,0 +1,140 @@
+fileVersion: 1
+id: 1b022d41-7f66-44ad-aa93-1baea02e1875
+name: STG_MAKT
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9297ed83-3624-4ea2-992d-8e2cc7ba0a7d
+          stepCounter: 1b022d41-7f66-44ad-aa93-1baea02e1875
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f5e4f05a-8548-4a0a-a2f6-f0b695d969d5
+                stepCounter: 5407c89d-1f64-4f24-9aa1-5acfca29181d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b7251005-4d79-4450-8319-b2883fda9a46
+          stepCounter: 1b022d41-7f66-44ad-aa93-1baea02e1875
+        config: {}
+        dataType: VARCHAR(18)
+        description: ""
+        name: MATNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fcd07cd9-7323-43dd-941a-b2960c4f9d09
+                stepCounter: 5407c89d-1f64-4f24-9aa1-5acfca29181d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c15d2840-0f8e-49d4-9367-6b490d9fba4d
+          stepCounter: 1b022d41-7f66-44ad-aa93-1baea02e1875
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: SPRAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 84a50d99-fbeb-4fd7-9919-b8360f12382c
+                stepCounter: 5407c89d-1f64-4f24-9aa1-5acfca29181d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f515eb63-7d13-41c9-a2e0-2aac39c56f9f
+          stepCounter: 1b022d41-7f66-44ad-aa93-1baea02e1875
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: MAKTX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a98e2d85-3f70-424c-8ac3-671d85c0226a
+                stepCounter: 5407c89d-1f64-4f24-9aa1-5acfca29181d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b825a0f-1582-4757-a412-e21fa7bdb2b7
+          stepCounter: 1b022d41-7f66-44ad-aa93-1baea02e1875
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: MAKTG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 801b2e2d-476e-4341-810b-b101004ba833
+                stepCounter: 5407c89d-1f64-4f24-9aa1-5acfca29181d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b25f59e-38a0-4a6a-a340-82833e898bd3
+          stepCounter: 1b022d41-7f66-44ad-aa93-1baea02e1875
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe90210a-eb1c-4100-9967-625c0d7ec986
+                stepCounter: 5407c89d-1f64-4f24-9aa1-5acfca29181d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e1ab0e73-8eb2-4263-ae9d-f87879c7829b
+          stepCounter: 1b022d41-7f66-44ad-aa93-1baea02e1875
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: SOURCE_UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3fc62429-8d1f-46ce-8a02-08c9804bcddc
+                stepCounter: 5407c89d-1f64-4f24-9aa1-5acfca29181d
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          MAKT: 5407c89d-1f64-4f24-9aa1-5acfca29181d
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: MAKT
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'MAKT') }} "MAKT"
+            WHERE SPRAS = 'E'
+        name: STG_MAKT
+        noLinkRefs: []
+  name: STG_MAKT
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
