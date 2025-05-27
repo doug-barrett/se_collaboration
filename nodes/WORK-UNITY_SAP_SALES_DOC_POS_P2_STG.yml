@@ -1,6 +1,6 @@
 fileVersion: 1
 id: 9fff719e-c427-4bec-853f-6cae9313d1fe
-name: unity_sap_sales_doc_pos_p2_stg
+name: UNITY_SAP_SALES_DOC_POS_P2_STG
 operation:
   config:
     insertStrategy: INSERT
@@ -12,7 +12,7 @@ operation:
   deployEnabled: true
   description: Generated stage node from provided SQL.
   isMultisource: false
-  locationName: DWH
+  locationName: WORK
   materializationType: table
   metadata:
     appliedNodeTests: []
@@ -2008,10 +2008,13 @@ operation:
           - locationName: SRC_SAP
             nodeName: VBUP
         join:
-          joinCondition: FROM {{ ref('SRC_SAP', 'VBUP') }} left outer join {{ ref('SRC_SAP', 'VBKD') }} VBKD_P on VBUP.MANDT = VBKD_P.MANDT and VBUP.VBELN = VBKD_P.VBELN and VBUP.POSNR = VBKD_P.POSNR
-        name: unity_sap_sales_doc_pos_p2_stg
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'VBUP') }} 
+            left outer join {{ ref('SRC_SAP', 'VBKD') }} VBKD_P 
+            on VBUP.MANDT = VBKD_P.MANDT and VBUP.VBELN = VBKD_P.VBELN and VBUP.POSNR = VBKD_P.POSNR
+        name: UNITY_SAP_SALES_DOC_POS_P2_STG
         noLinkRefs: []
-  name: unity_sap_sales_doc_pos_p2_stg
+  name: UNITY_SAP_SALES_DOC_POS_P2_STG
   overrideSQL: false
   schema: ""
   sqlType: Stage

@@ -1,0 +1,154 @@
+fileVersion: 1
+id: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+name: STG_TINCT
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 80511967-89d9-4432-a3b3-942488c2e840
+          stepCounter: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fce41e57-ab4e-4b8d-9e69-e4bf10788af1
+                stepCounter: c2f30bb5-8f4a-402a-a45e-456166a59faa
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b9157b1f-d266-4516-a909-54cc74cb8c52
+          stepCounter: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: SPRAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ff692ba-de28-4926-8f91-f31381be99ff
+                stepCounter: c2f30bb5-8f4a-402a-a45e-456166a59faa
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 190b8492-de41-40d9-851b-69d069221db2
+          stepCounter: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: INCO1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a99427b-632b-435d-b516-e4aa6cf0dc41
+                stepCounter: c2f30bb5-8f4a-402a-a45e-456166a59faa
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a083b78-b1a4-46d1-9b35-9c5d108b6a6f
+          stepCounter: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+        config: {}
+        dataType: VARCHAR(30)
+        description: ""
+        name: BEZEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 32ad64e5-61ca-482d-9bca-3227fa8d5504
+                stepCounter: c2f30bb5-8f4a-402a-a45e-456166a59faa
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa239124-b561-4b30-9700-e97e8ee7ae04
+          stepCounter: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: ARCHIVE_FLAG$
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a97442c-33e0-4a37-a53f-01ed199ff987
+                stepCounter: c2f30bb5-8f4a-402a-a45e-456166a59faa
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c8a598f-994b-4624-91a4-a930371ff190
+          stepCounter: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: ARCHIVE_TIMESTAMP$
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87e4299f-5f10-4b48-a30c-c155f779ba76
+                stepCounter: c2f30bb5-8f4a-402a-a45e-456166a59faa
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c80484e-ad21-4b8e-8463-2b0004ab59b2
+          stepCounter: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 83a41840-42fa-49fc-a8d9-80778ad41bb6
+                stepCounter: c2f30bb5-8f4a-402a-a45e-456166a59faa
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 64039bf9-e213-4b6b-99c7-0bc57016e80b
+          stepCounter: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: SOURCE_UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36d1a980-4ed1-45de-9281-4098fee76ee2
+                stepCounter: c2f30bb5-8f4a-402a-a45e-456166a59faa
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          TINCT: c2f30bb5-8f4a-402a-a45e-456166a59faa
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: TINCT
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'TINCT') }} "TINCT"
+            WHERE SPRAS = 'E'
+        name: STG_TINCT
+        noLinkRefs: []
+  name: STG_TINCT
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

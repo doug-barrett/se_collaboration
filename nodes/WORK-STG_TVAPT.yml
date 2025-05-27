@@ -1,0 +1,126 @@
+fileVersion: 1
+id: a607fc32-fed6-49eb-850c-f0ca3ef3b2bd
+name: STG_TVAPT
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8790f382-188d-4b7c-9925-e7eded9558e7
+          stepCounter: a607fc32-fed6-49eb-850c-f0ca3ef3b2bd
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bdf4824e-2c4a-4104-9014-aa554d9058d5
+                stepCounter: d9e5617b-9631-4649-859e-a03544c58ab7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e82957ce-bbd8-48c1-a448-f4b555803640
+          stepCounter: a607fc32-fed6-49eb-850c-f0ca3ef3b2bd
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: SPRAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4e21835c-a48d-454c-87fa-77c7a0e354bd
+                stepCounter: d9e5617b-9631-4649-859e-a03544c58ab7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aeb3560d-640e-4ca8-b1fe-9ff921237723
+          stepCounter: a607fc32-fed6-49eb-850c-f0ca3ef3b2bd
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: PSTYV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5091ae21-8c7a-4d8d-86e1-d54f1c41745b
+                stepCounter: d9e5617b-9631-4649-859e-a03544c58ab7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39ebdee2-02c5-4819-8777-5135f66bc43a
+          stepCounter: a607fc32-fed6-49eb-850c-f0ca3ef3b2bd
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: VTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd86f27e-53e2-46fc-996b-b13c9660c28d
+                stepCounter: d9e5617b-9631-4649-859e-a03544c58ab7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03b39eb6-a1f2-4b8a-893e-bc7d88f73a70
+          stepCounter: a607fc32-fed6-49eb-850c-f0ca3ef3b2bd
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 08765fbd-64fc-4434-b745-a0a17bc6ac99
+                stepCounter: d9e5617b-9631-4649-859e-a03544c58ab7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c9f05fe-d8e4-4349-8aba-fc9ec7d9aaf2
+          stepCounter: a607fc32-fed6-49eb-850c-f0ca3ef3b2bd
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: SOURCE_UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4e51b86f-d9f3-49ab-9015-a3b740fc5e1c
+                stepCounter: d9e5617b-9631-4649-859e-a03544c58ab7
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          TVAPT: d9e5617b-9631-4649-859e-a03544c58ab7
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: TVAPT
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'TVAPT') }} "TVAPT"
+            WHERE SPRAS = 'E' AND SLT_DELETE = ' '
+        name: STG_TVAPT
+        noLinkRefs: []
+  name: STG_TVAPT
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

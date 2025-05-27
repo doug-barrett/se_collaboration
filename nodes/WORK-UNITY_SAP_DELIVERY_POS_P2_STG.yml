@@ -1,0 +1,109 @@
+fileVersion: 1
+id: 28dd72ba-1ae9-4f29-a1ca-7c92c35e3ace
+name: UNITY_SAP_DELIVERY_POS_P2_STG
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Contains aggregated delivery position data from SAP.
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 492931fd-4416-46bb-aeb5-4c5b7a66ad95
+          stepCounter: 28dd72ba-1ae9-4f29-a1ca-7c92c35e3ace
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 492931fd-4416-46bb-aeb5-4c5b7a66ad95
+                stepCounter: 28dd72ba-1ae9-4f29-a1ca-7c92c35e3ace
+            transform: VEPO.MANDT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 847c8053-ceab-45d4-9a51-03580213ff76
+          stepCounter: 28dd72ba-1ae9-4f29-a1ca-7c92c35e3ace
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: VBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 847c8053-ceab-45d4-9a51-03580213ff76
+                stepCounter: 28dd72ba-1ae9-4f29-a1ca-7c92c35e3ace
+            transform: VEPO.VBELN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 433bc80c-9c05-4e69-89f1-2ff339511cf0
+          stepCounter: 28dd72ba-1ae9-4f29-a1ca-7c92c35e3ace
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: POSNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 433bc80c-9c05-4e69-89f1-2ff339511cf0
+                stepCounter: 28dd72ba-1ae9-4f29-a1ca-7c92c35e3ace
+            transform: VEPO.POSNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 952dfdea-a818-41ad-80f5-2b2980fd3ea6
+          stepCounter: 28dd72ba-1ae9-4f29-a1ca-7c92c35e3ace
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: VEKP_ERDAT_ERUHR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 952dfdea-a818-41ad-80f5-2b2980fd3ea6
+                stepCounter: 28dd72ba-1ae9-4f29-a1ca-7c92c35e3ace
+            transform: TRY_TO_TIMESTAMP(MAX(CONCAT(VEKP.ERDAT,VEKP.ERUHR)),'YYYYMMDDHHMMSS')
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          VEKP: f7a8c950-c194-4b83-8eba-49c20eb3a0c8
+          VEPO: a98fa592-ba40-4994-b128-53b87e4fefa0
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: VEKP
+          - locationName: SRC_SAP
+            nodeName: VEPO
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'VEPO') }} 
+            INNER JOIN {{ ref('SRC_SAP', 'VEKP') }} ON VEPO.MANDT = VEKP.MANDT AND VEPO.VENUM = VEKP.VENUM 
+            GROUP BY VEPO.MANDT, VEPO.VBELN, VEPO.POSNR
+        name: UNITY_SAP_DELIVERY_POS_P2_STG
+        noLinkRefs: []
+  name: UNITY_SAP_DELIVERY_POS_P2_STG
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,4344 @@
+fileVersion: 1
+id: 1d025dcc-cb21-4207-9625-0e2f989152cb
+name: UNITY_SAP_DELIVERY_POS_P1_STGa
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: This stage table is created from LIPS and other staging tables.
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d1bb5ce-60ff-4b58-aad9-90d5d0e33b43
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d1bb5ce-60ff-4b58-aad9-90d5d0e33b43
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MANDT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3076c88-bca3-434e-9516-9adc2a2c2100
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3076c88-bca3-434e-9516-9adc2a2c2100
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VBELN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d889f9f-73bd-4601-8d52-f2bea31fd638
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: POSNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d889f9f-73bd-4601-8d52-f2bea31fd638
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.POSNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 452e2976-c375-4f9e-b874-492963ab9786
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PSTYV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 452e2976-c375-4f9e-b874-492963ab9786
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PSTYV
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7824752-1478-4878-8197-96dc40b67d60
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: TVAPT_VTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7824752-1478-4878-8197-96dc40b67d60
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: TVAPT.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f921dd18-ddf3-4779-9e4b-1a34fef27472
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ERNAM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f921dd18-ddf3-4779-9e4b-1a34fef27472
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ERNAM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b4d42c3-84d8-47d9-88f2-a0ff6a6bfb40
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ERZET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b4d42c3-84d8-47d9-88f2-a0ff6a6bfb40
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ERZET
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec17be8a-97e0-4632-a2fe-d230236e3d89
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: ERDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ec17be8a-97e0-4632-a2fe-d230236e3d89
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: TRY_TO_TIMESTAMP(LIPS.ERDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85488f02-7f78-4965-97d5-5e926b261edb
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MATNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 85488f02-7f78-4965-97d5-5e926b261edb
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MATNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ba2be7b-5f90-4e14-af1a-72c3944179a9
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MATWA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3ba2be7b-5f90-4e14-af1a-72c3944179a9
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MATWA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7cd54c3-08b2-4888-84a3-6ef69d9f724a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MATKL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7cd54c3-08b2-4888-84a3-6ef69d9f724a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MATKL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1dd1f84b-e9d6-42e1-8880-3f629a7a8f4c
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: WERKS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1dd1f84b-e9d6-42e1-8880-3f629a7a8f4c
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.WERKS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bfbb1254-8a1d-46cd-806e-dea823dffed5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: WERKS_NAME1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bfbb1254-8a1d-46cd-806e-dea823dffed5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: T001W.NAME1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd733302-5b0e-4a8c-ba42-b2992c90ea7b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LGORT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd733302-5b0e-4a8c-ba42-b2992c90ea7b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LGORT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c24af666-071d-4768-828b-36d47ab89200
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CHARG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c24af666-071d-4768-828b-36d47ab89200
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.CHARG
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b19d5314-b053-4a1c-8f6d-74cad9c01fcb
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LICHN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b19d5314-b053-4a1c-8f6d-74cad9c01fcb
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LICHN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c907366a-ee5d-485c-9276-7404d63754fc
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KDMAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c907366a-ee5d-485c-9276-7404d63754fc
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KDMAT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c146732f-3a46-4ac6-8a63-d4908034a5ff
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PRODH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c146732f-3a46-4ac6-8a63-d4908034a5ff
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PRODH
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc55f2c1-1dcb-40a9-b39d-43baa476ce05
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PRODH_VTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc55f2c1-1dcb-40a9-b39d-43baa476ce05
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: T179T.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 37339081-c7a2-441e-b914-8d6c8bed372b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LFIMG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 37339081-c7a2-441e-b914-8d6c8bed372b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.LFIMG AS DECIMAL(17,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b80f68a-25cd-4765-8f60-e89fd2bb678f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MEINS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5b80f68a-25cd-4765-8f60-e89fd2bb678f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MEINS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7275360f-6cfb-435c-ac5b-704639cdb03e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MEINS_MSEHL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7275360f-6cfb-435c-ac5b-704639cdb03e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: T006A_MEINS.MSEHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 93b4444d-f895-4503-adf7-f32e06d96225
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VRKME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 93b4444d-f895-4503-adf7-f32e06d96225
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VRKME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c9347b3-56c0-45d9-a31d-be2687fd0847
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VRKME_MSEHL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c9347b3-56c0-45d9-a31d-be2687fd0847
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: T006A_VRKME.MSEHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8093d808-24bb-4653-a480-309c50eabd50
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UMVKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8093d808-24bb-4653-a480-309c50eabd50
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.UMVKZ AS DECIMAL(6,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f071fa47-0ce2-498a-ae72-45ba432a8ce3
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UMVKN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f071fa47-0ce2-498a-ae72-45ba432a8ce3
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.UMVKN AS DECIMAL(6,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f4c33289-1134-4558-aba4-6a5a4f0e15e1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: NTGEW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f4c33289-1134-4558-aba4-6a5a4f0e15e1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.NTGEW AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a8322b4e-0797-4fa8-8147-ea2ca1d8c5ee
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: BRGEW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a8322b4e-0797-4fa8-8147-ea2ca1d8c5ee
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.BRGEW AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0cb459e1-1e63-4120-8eda-a3a61d8b6486
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GEWEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0cb459e1-1e63-4120-8eda-a3a61d8b6486
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.GEWEI
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f952d7cb-167f-4101-bcf5-bc58d4612014
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GEWEI_MSEHL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f952d7cb-167f-4101-bcf5-bc58d4612014
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: T006A_GEWEI.MSEHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 64152343-f024-4c35-82be-1d7af251a028
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VOLUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 64152343-f024-4c35-82be-1d7af251a028
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.VOLUM AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9a8c464d-a5f8-4825-ba95-0b036612cb30
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VOLEH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9a8c464d-a5f8-4825-ba95-0b036612cb30
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VOLEH
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac19668f-1a70-46bc-b92a-48b2857b7a69
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VOLEH_MSEHL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac19668f-1a70-46bc-b92a-48b2857b7a69
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: T006A_VOLEH.MSEHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f67c9db2-c55c-4b19-abc1-5332e1575d3f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZTLF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f67c9db2-c55c-4b19-abc1-5332e1575d3f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZTLF
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca4312fa-2c01-40a5-9667-47c5ff8c2968
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UEBTK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ca4312fa-2c01-40a5-9667-47c5ff8c2968
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UEBTK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a56113ac-8ccf-4cd2-9643-8b51244177a5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UEBTO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a56113ac-8ccf-4cd2-9643-8b51244177a5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.UEBTO AS DECIMAL(4,1))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d039a29d-1a98-4753-a967-6b664693c94e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UNTTO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d039a29d-1a98-4753-a967-6b664693c94e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.UNTTO AS DECIMAL(4,1))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6093694b-cdce-4353-a6c7-921f2104bb05
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CHSPL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6093694b-cdce-4353-a6c7-921f2104bb05
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.CHSPL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 73ca1c74-328c-4d01-863a-2a970912cb04
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FAKSP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 73ca1c74-328c-4d01-863a-2a970912cb04
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.FAKSP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36b73ccf-56ef-4ee1-a16f-5a820991e65c
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: MBDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36b73ccf-56ef-4ee1-a16f-5a820991e65c
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: TRY_TO_TIMESTAMP(LIPS.MBDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 049eeb35-a432-4adb-805a-cd0b54a457cf
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LGMNG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 049eeb35-a432-4adb-805a-cd0b54a457cf
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.LGMNG AS DECIMAL(17,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d8ba0f5-a5fb-4d3c-9f0e-db8b6e7b8b75
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ARKTX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9d8ba0f5-a5fb-4d3c-9f0e-db8b6e7b8b75
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ARKTX
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: febbf84e-bf14-4717-a2e1-ad9b651fb459
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LGPBE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: febbf84e-bf14-4717-a2e1-ad9b651fb459
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LGPBE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7e9f600d-c6e3-4ebc-abb0-26c0bdde072d
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBELV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7e9f600d-c6e3-4ebc-abb0-26c0bdde072d
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VBELV
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: abf852d2-3947-4c2f-b83a-dec42503b0ec
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: POSNV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: abf852d2-3947-4c2f-b83a-dec42503b0ec
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.POSNV
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ff053d1f-4053-4912-8216-dacd64132be4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBTYV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ff053d1f-4053-4912-8216-dacd64132be4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VBTYV
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e6d8638-32db-4ecf-9626-0f6040769b63
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VGSYS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0e6d8638-32db-4ecf-9626-0f6040769b63
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VGSYS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c9ec1c29-d29d-4441-8a80-0928f13d5b95
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VGBEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9ec1c29-d29d-4441-8a80-0928f13d5b95
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VGBEL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 384a726e-f217-4685-8624-06394ac9966b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VGPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 384a726e-f217-4685-8624-06394ac9966b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VGPOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 964fb6dc-0d47-4724-aec8-1b5662ad4fb6
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UPFLU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 964fb6dc-0d47-4724-aec8-1b5662ad4fb6
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UPFLU
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f89c24f-0343-47fe-9f82-713b06840432
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UEPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7f89c24f-0343-47fe-9f82-713b06840432
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CASE WHEN LIPS.UEPOS = '000000' THEN NULL ELSE LIPS.UEPOS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b82e139d-46f5-46fd-bbe0-ca9d1545c70f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FKREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b82e139d-46f5-46fd-bbe0-ca9d1545c70f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.FKREL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9a4615f0-51c5-4d41-aedd-25d07d0cccf8
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LADGR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9a4615f0-51c5-4d41-aedd-25d07d0cccf8
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LADGR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 588740d8-5d53-4eca-bc0e-2bb670171b8a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: TRAGR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 588740d8-5d53-4eca-bc0e-2bb670171b8a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.TRAGR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0aed939d-9d31-4728-86d6-1faf3b794906
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KOMKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0aed939d-9d31-4728-86d6-1faf3b794906
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KOMKZ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c3de624-da1d-40d2-8251-d64e67634234
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LGNUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7c3de624-da1d-40d2-8251-d64e67634234
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LGNUM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 987dd243-e20a-4cb7-bb90-97d65c5ca836
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LISPL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 987dd243-e20a-4cb7-bb90-97d65c5ca836
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LISPL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7e8d2d0c-abe6-4c11-8445-ab8389c2a885
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LGTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7e8d2d0c-abe6-4c11-8445-ab8389c2a885
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LGTYP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ef51f66f-85ca-4335-99dc-1b9ae00910c4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LGPLA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ef51f66f-85ca-4335-99dc-1b9ae00910c4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LGPLA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1eb62fe1-96f6-4381-922d-dfd23af8918a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BWTEX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1eb62fe1-96f6-4381-922d-dfd23af8918a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BWTEX
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b318c5d-74de-4445-8577-b263ac9725fa
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BWART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b318c5d-74de-4445-8577-b263ac9725fa
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BWART
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: efa8bca7-a24c-43f4-9e3e-a373a13e65ce
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BWLVS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: efa8bca7-a24c-43f4-9e3e-a373a13e65ce
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BWLVS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 290233a5-be50-41e3-8f3a-689feb15456c
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZDLG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 290233a5-be50-41e3-8f3a-689feb15456c
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZDLG
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: feb2ae18-0a29-4464-9931-fbc80fefadcb
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BDART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: feb2ae18-0a29-4464-9931-fbc80fefadcb
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BDART
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 192443e8-fc24-4dae-8c6a-48bc844c42b5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PLART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 192443e8-fc24-4dae-8c6a-48bc844c42b5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PLART
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a2792761-65bc-445e-b1cd-109bd5a7e3a8
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MTART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a2792761-65bc-445e-b1cd-109bd5a7e3a8
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MTART
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f8fa182b-0a91-4a4c-b931-f9e29d75328c
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: XCHPF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8fa182b-0a91-4a4c-b931-f9e29d75328c
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.XCHPF
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 076cba60-e2d7-45bb-b777-4c9e13cd3ff9
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: XCHAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 076cba60-e2d7-45bb-b777-4c9e13cd3ff9
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.XCHAR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ef3de88e-dca2-4cd0-9091-98708e71f071
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VGREF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ef3de88e-dca2-4cd0-9091-98708e71f071
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VGREF
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f47f807-817c-4eb9-b547-edfce2caf161
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: POSAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f47f807-817c-4eb9-b547-edfce2caf161
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.POSAR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b2f6335-3bbe-45dc-8b7a-8229cdb0eed1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BWTAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b2f6335-3bbe-45dc-8b7a-8229cdb0eed1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BWTAR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f0ca2cc9-9eaa-4381-8616-d2903e9fdc54
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUMBD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0ca2cc9-9eaa-4381-8616-d2903e9fdc54
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SUMBD
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8dc5f5a-6a12-4258-a87c-4dc37bdf00c5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MTVFP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d8dc5f5a-6a12-4258-a87c-4dc37bdf00c5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MTVFP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd2e1ccb-0e57-4427-94de-ce1a5f6220a2
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EANNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd2e1ccb-0e57-4427-94de-ce1a5f6220a2
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.EANNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1779b8f6-4506-4757-9f86-b1ca5526ae5f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GSBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1779b8f6-4506-4757-9f86-b1ca5526ae5f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.GSBER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b2eb8903-f54c-4108-a013-a11107948cbe
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VKBUR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b2eb8903-f54c-4108-a013-a11107948cbe
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VKBUR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: de5afc1b-42d9-41bd-8347-fd6338f417ed
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VKGRP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: de5afc1b-42d9-41bd-8347-fd6338f417ed
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VKGRP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7545a4c-80f0-40ba-9072-b3711c905618
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VTWEG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7545a4c-80f0-40ba-9072-b3711c905618
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VTWEG
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d68579e-62f3-4b1e-9910-eda97f7969c8
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VTWEG_VTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9d68579e-62f3-4b1e-9910-eda97f7969c8
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36375b1d-53d8-4ef1-9752-6c9d54b0b3d9
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36375b1d-53d8-4ef1-9752-6c9d54b0b3d9
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPART
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c40a89d7-9a36-4896-b570-2cdbe4425477
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPART_VTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c40a89d7-9a36-4896-b570-2cdbe4425477
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 00c56bde-df88-4a89-8fad-d05373df8eef
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GRKOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 00c56bde-df88-4a89-8fad-d05373df8eef
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.GRKOR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 121b88a4-95da-46be-b106-d6e778a24f46
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FMENG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 121b88a4-95da-46be-b106-d6e778a24f46
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.FMENG
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7238cea3-3823-4713-8532-5443640c8fed
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ANTLF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7238cea3-3823-4713-8532-5443640c8fed
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.ANTLF AS DECIMAL(1,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 752f4c07-b11b-4e54-a3ab-ddd1db6f00b5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBEAF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 752f4c07-b11b-4e54-a3ab-ddd1db6f00b5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.VBEAF AS DECIMAL(6,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 73275931-8c36-4369-a6ce-a3d4abb00ef7
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VBEAV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 73275931-8c36-4369-a6ce-a3d4abb00ef7
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.VBEAV AS DECIMAL(6,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bea8b9b7-e086-4d67-bd2c-74386fc7191f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: STAFO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bea8b9b7-e086-4d67-bd2c-74386fc7191f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.STAFO
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 042c3fa0-bae5-4776-bbe2-a119b0c2f0c7
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: WAVWR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 042c3fa0-bae5-4776-bbe2-a119b0c2f0c7
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.WAVWR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1c527f57-d101-4d31-b1c6-93f2f80af652
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZWI1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1c527f57-d101-4d31-b1c6-93f2f80af652
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZWI1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a1d617bf-b520-40a7-83af-586c05def15b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZWI2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1d617bf-b520-40a7-83af-586c05def15b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZWI2
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 405f7445-1897-4ce4-9239-16b356920268
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZWI3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 405f7445-1897-4ce4-9239-16b356920268
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZWI3
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 42217877-0699-4d78-b751-e80b8e768f58
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZWI4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42217877-0699-4d78-b751-e80b8e768f58
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZWI4
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ea07fa9d-bb43-4a84-ab78-9e6d9bdf290a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZWI5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ea07fa9d-bb43-4a84-ab78-9e6d9bdf290a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZWI5
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4b7d7d6f-f374-4d87-ae32-88a9bb1f135e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZWI6
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b7d7d6f-f374-4d87-ae32-88a9bb1f135e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZWI6
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 59078321-21d2-49dc-9d9f-c7e9abbcf0ea
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOBKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 59078321-21d2-49dc-9d9f-c7e9abbcf0ea
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SOBKZ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 353b650b-f55b-4926-bb90-121106d10d36
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: AEDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 353b650b-f55b-4926-bb90-121106d10d36
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: TRY_TO_TIMESTAMP(LIPS.AEDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 75ce4641-4b4f-424d-b8a2-3f2f445f2306
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EAN11
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 75ce4641-4b4f-424d-b8a2-3f2f445f2306
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.EAN11
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f843990-69c1-4a1d-8930-64890687db0d
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KVGR1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7f843990-69c1-4a1d-8930-64890687db0d
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KVGR1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3b36770-f62e-4d2e-847b-b02640d76a83
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KVGR2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f3b36770-f62e-4d2e-847b-b02640d76a83
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KVGR2
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7aebabcd-b41d-4bfe-83e2-b66bd1605b05
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KVGR3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7aebabcd-b41d-4bfe-83e2-b66bd1605b05
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KVGR3
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: be8d5183-bb1d-4757-be3c-7b4685025bcc
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KVGR4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: be8d5183-bb1d-4757-be3c-7b4685025bcc
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KVGR4
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6093b66-81b7-4a3f-8fc0-e543ca6fe54d
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KVGR5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c6093b66-81b7-4a3f-8fc0-e543ca6fe54d
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KVGR5
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: edfeda08-6332-44e4-b8cc-65f2eb0e707a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: edfeda08-6332-44e4-b8cc-65f2eb0e707a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MVGR1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4fed13ca-8535-4b85-abd4-4cfc7ff817b4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR1_BEZEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4fed13ca-8535-4b85-abd4-4cfc7ff817b4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: TVM1T.BEZEI
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 56b8717b-fdf8-4c87-a45e-8e7082a191a5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 56b8717b-fdf8-4c87-a45e-8e7082a191a5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MVGR2
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed89e474-fba6-41c9-9a39-ef777a3a6faf
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR2_BEZEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ed89e474-fba6-41c9-9a39-ef777a3a6faf
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f34e293e-acdd-4412-88bc-6451950ec77a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f34e293e-acdd-4412-88bc-6451950ec77a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MVGR3
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ecb98e9-679d-45eb-ba8c-ac7ba2463d5f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR3_BEZEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5ecb98e9-679d-45eb-ba8c-ac7ba2463d5f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e420acf5-e6e7-42ce-a7b2-fbb75c9c0656
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e420acf5-e6e7-42ce-a7b2-fbb75c9c0656
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MVGR4
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41acefc8-3f4b-4ec4-a41e-107dfdff8770
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR4_BEZEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 41acefc8-3f4b-4ec4-a41e-107dfdff8770
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 822fb325-7853-4f2a-a7a6-b288aa2b1956
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 822fb325-7853-4f2a-a7a6-b288aa2b1956
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MVGR5
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2682c323-faae-47f3-85b6-093d76b4757f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MVGR5_BEZEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2682c323-faae-47f3-85b6-093d76b4757f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e0e2165-0197-4264-8cf9-bc6026ac2b29
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VPZUO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0e0e2165-0197-4264-8cf9-bc6026ac2b29
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VPZUO
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a0dd4785-5bc2-4c9c-808a-870e043f5d22
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VGTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a0dd4785-5bc2-4c9c-808a-870e043f5d22
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VGTYP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 11943c08-4ee1-4e4f-878e-f3a9382e2b1a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RFVGTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 11943c08-4ee1-4e4f-878e-f3a9382e2b1a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.RFVGTYP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ffb9e3b3-9eb1-4b6f-92aa-9a6da60d9dbc
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KOSTL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ffb9e3b3-9eb1-4b6f-92aa-9a6da60d9dbc
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KOSTL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5faa00af-17e0-46d9-94e4-122d4676e9a1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KOKRS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5faa00af-17e0-46d9-94e4-122d4676e9a1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KOKRS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2709aeb3-f2aa-48da-a359-cebeb36a0bdd
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PAOBJNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2709aeb3-f2aa-48da-a359-cebeb36a0bdd
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PAOBJNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c7b349a8-8431-4c1d-8706-66e049cf3a6b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PRCTR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c7b349a8-8431-4c1d-8706-66e049cf3a6b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PRCTR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 99634f0c-6a23-4daf-b757-8998e42def47
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PS_PSP_PNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 99634f0c-6a23-4daf-b757-8998e42def47
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PS_PSP_PNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 21832971-8b95-4a7c-85c8-fbd1a4c6209b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: AUFNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 21832971-8b95-4a7c-85c8-fbd1a4c6209b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.AUFNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f8fa42f2-a3e4-4430-b954-ffd6f446c11e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: POSNR_PP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8fa42f2-a3e4-4430-b954-ffd6f446c11e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.POSNR_PP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 17921aae-3e7a-4f9e-ae61-394f023e5cb4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KDAUF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 17921aae-3e7a-4f9e-ae61-394f023e5cb4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KDAUF
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 82f05fe4-2494-43a8-a04f-c5f928a44fdb
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KDPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 82f05fe4-2494-43a8-a04f-c5f928a44fdb
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KDPOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f569b2dc-3c91-4888-84a1-7b9386923201
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VPMAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f569b2dc-3c91-4888-84a1-7b9386923201
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VPMAT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 51229901-4d23-4a7d-a71d-747d9a70427c
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VPWRK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 51229901-4d23-4a7d-a71d-747d9a70427c
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VPWRK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 562dfd15-44d0-4e3f-8389-93beef9e9605
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PRBME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 562dfd15-44d0-4e3f-8389-93beef9e9605
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PRBME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27bd8e7e-12f7-4d79-b068-f93efe9d1f77
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UMREF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 27bd8e7e-12f7-4d79-b068-f93efe9d1f77
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.UMREF AS DECIMAL(38,16))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53573d75-ac8d-42a4-9dca-5d5860d74793
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KNTTP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53573d75-ac8d-42a4-9dca-5d5860d74793
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KNTTP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 166c3aec-8353-4e41-9d1d-9c489af22da4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZVBR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 166c3aec-8353-4e41-9d1d-9c489af22da4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZVBR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0800608c-dc23-4538-a478-7d1af26746e3
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FIPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0800608c-dc23-4538-a478-7d1af26746e3
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.FIPOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 20dbca25-fd6a-40a4-af9f-1d5ed45ca41b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FISTL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 20dbca25-fd6a-40a4-af9f-1d5ed45ca41b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.FISTL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b17606b8-11e2-49ce-8b76-d0ea68bfa954
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GEBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b17606b8-11e2-49ce-8b76-d0ea68bfa954
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.GEBER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cfd6b0b4-aa80-4a84-a015-606de1754bb2
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PCKPF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cfd6b0b4-aa80-4a84-a015-606de1754bb2
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PCKPF
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7b49d3eb-58f9-4b50-bb0d-8d0f3a571d86
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BEDAR_LF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7b49d3eb-58f9-4b50-bb0d-8d0f3a571d86
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BEDAR_LF
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b05b54b5-483d-4d0a-b4f5-c6fb50608ffb
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CMPNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b05b54b5-483d-4d0a-b4f5-c6fb50608ffb
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.CMPNT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 33a87e81-6b57-4556-8ccb-1ff80ffdc5d6
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KCMENG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 33a87e81-6b57-4556-8ccb-1ff80ffdc5d6
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.KCMENG AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79a3f9c3-ed4f-4cf8-887e-0f9e6c6b7742
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KCBRGEW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 79a3f9c3-ed4f-4cf8-887e-0f9e6c6b7742
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.KCBRGEW AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d1ce93a4-1d1c-4d2a-8d6a-06de247b45df
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KCNTGEW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d1ce93a4-1d1c-4d2a-8d6a-06de247b45df
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.KCNTGEW AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cf72ff38-6e5e-403c-a7f7-d7d7d50f07f0
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KCVOLUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cf72ff38-6e5e-403c-a7f7-d7d7d50f07f0
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.KCVOLUM AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c7a3c5e0-f0dc-40f9-93af-6e94e868dcc7
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UECHA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c7a3c5e0-f0dc-40f9-93af-6e94e868dcc7
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UECHA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc2b1ef0-1bc1-4d2e-b9a8-453482ea1d47
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CUOBJ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cc2b1ef0-1bc1-4d2e-b9a8-453482ea1d47
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.CUOBJ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b64549eb-8846-4898-ab5d-da37cca0c1b3
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CUOBJ_CH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b64549eb-8846-4898-ab5d-da37cca0c1b3
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.CUOBJ_CH
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 23963b29-789f-4353-9a50-9a2f924255b1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ANZSN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 23963b29-789f-4353-9a50-9a2f924255b1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.ANZSN AS INT)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac7157d9-6b83-4d3b-a350-871e7cb86b30
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SERAIL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac7157d9-6b83-4d3b-a350-871e7cb86b30
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SERAIL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec0b4842-c1b9-4a01-bbbf-0afdb01ffadf
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KCGEWEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ec0b4842-c1b9-4a01-bbbf-0afdb01ffadf
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KCGEWEI
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f07f11e-ffd4-499d-83fb-b6f3effc26f4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KCVOLEH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f07f11e-ffd4-499d-83fb-b6f3effc26f4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KCVOLEH
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6cc216c0-0015-4c2a-91e9-482376e0e387
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SERNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6cc216c0-0015-4c2a-91e9-482376e0e387
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SERNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 58359571-fa99-4622-aa05-89fc935e6dac
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABRLI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 58359571-fa99-4622-aa05-89fc935e6dac
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ABRLI
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3dd9852d-7b56-4e10-86a7-da07735e8105
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3dd9852d-7b56-4e10-86a7-da07735e8105
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ABART
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a6558744-d258-4efb-87b1-d52d07365e5d
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABRVW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a6558744-d258-4efb-87b1-d52d07365e5d
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ABRVW
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 960347bf-7d7e-49e8-b0e6-bea6a250b531
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABRVW_BEZEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 960347bf-7d7e-49e8-b0e6-bea6a250b531
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e693ab43-7dba-43ec-a555-5739984af04a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: QPLOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e693ab43-7dba-43ec-a555-5739984af04a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.QPLOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 61d7dc10-110c-4001-bee5-f812cc92ca48
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: QTLOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 61d7dc10-110c-4001-bee5-f812cc92ca48
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.QTLOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cfff7266-42a9-4c95-b697-74d7fe8837f5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NACHL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cfff7266-42a9-4c95-b697-74d7fe8837f5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.NACHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9851121b-628c-45d1-b303-e3d069e8b972
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MAGRV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9851121b-628c-45d1-b303-e3d069e8b972
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MAGRV
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 62189d41-9ba0-42f6-95e5-e94e5fbd49bc
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJKO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 62189d41-9ba0-42f6-95e5-e94e5fbd49bc
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.OBJKO
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1049c9ea-82c2-4119-a16f-15c4ff9604e1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJPO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1049c9ea-82c2-4119-a16f-15c4ff9604e1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.OBJPO
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4aa77f6c-8337-4433-8555-02a582be74a5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: AESKD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4aa77f6c-8337-4433-8555-02a582be74a5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.AESKD
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca56cba5-43c8-4f95-b202-0862bfb20243
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHKZG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ca56cba5-43c8-4f95-b202-0862bfb20243
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SHKZG
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1814bb05-23ce-4b70-9047-d56bc0406d0b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PROSA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1814bb05-23ce-4b70-9047-d56bc0406d0b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PROSA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39b25210-b748-45ac-bbf8-fe20983e3bc5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UEPVW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39b25210-b748-45ac-bbf8-fe20983e3bc5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UEPVW
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cbc24c8e-a2c1-4f63-93bb-1bee29848975
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EMPST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cbc24c8e-a2c1-4f63-93bb-1bee29848975
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.EMPST
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: af7fdea6-9928-451c-9657-30770adc63aa
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABTNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af7fdea6-9928-451c-9657-30770adc63aa
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ABTNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c4ad71e7-ce6c-4774-9f0e-a118f6909443
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KOQUI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c4ad71e7-ce6c-4774-9f0e-a118f6909443
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KOQUI
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c11c268-4fb1-4843-824a-cc239a9bedf0
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: STADAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c11c268-4fb1-4843-824a-cc239a9bedf0
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: TRY_TO_TIMESTAMP(LIPS.STADAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4deaabd6-b8fc-433c-b7a8-78d5238592a0
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: AKTNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4deaabd6-b8fc-433c-b7a8-78d5238592a0
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.AKTNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3e5fc628-6c52-4129-9e18-924f1ea9803e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KNUMH_CH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3e5fc628-6c52-4129-9e18-924f1ea9803e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KNUMH_CH
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8cbfe4e0-3355-4557-9015-1aaa77d782a1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PREFE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8cbfe4e0-3355-4557-9015-1aaa77d782a1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PREFE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d7b713ae-dd80-4099-b495-af217df7c830
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EXART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d7b713ae-dd80-4099-b495-af217df7c830
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.EXART
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9f8b83e5-6c5c-4641-b0cb-82101c77a67a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CLINT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9f8b83e5-6c5c-4641-b0cb-82101c77a67a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.CLINT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8870761-2b20-4cf0-8bbe-f1a4110bd508
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CHMVS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e8870761-2b20-4cf0-8bbe-f1a4110bd508
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.CHMVS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d8d9353-b2a0-4a3f-92f0-371571116680
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9d8d9353-b2a0-4a3f-92f0-371571116680
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ABELN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 64fabf36-30da-4d86-8cb5-716e735d13dd
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABELP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 64fabf36-30da-4d86-8cb5-716e735d13dd
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ABELP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 08800353-b708-40fb-be25-00aac91a0062
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LFIMG_FLO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 08800353-b708-40fb-be25-00aac91a0062
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.LFIMG_FLO AS DECIMAL(38,16))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85124ca9-a32b-4924-8826-b1cef574c4ce
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LGMNG_FLO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 85124ca9-a32b-4924-8826-b1cef574c4ce
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.LGMNG_FLO AS DECIMAL(38,16))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a77d0ce8-2dd6-4069-9234-4a7beee6cc10
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KCMENG_FLO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a77d0ce8-2dd6-4069-9234-4a7beee6cc10
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.KCMENG_FLO AS DECIMAL(38,16))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25f72347-ec35-4297-802e-9d0ad8b8e0d1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZUMW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25f72347-ec35-4297-802e-9d0ad8b8e0d1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZUMW
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 17f1aa63-7a3c-444d-b2ed-192e4bfd1ce0
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KMPMG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 17f1aa63-7a3c-444d-b2ed-192e4bfd1ce0
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.KMPMG AS DECIMAL(18,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 23c78b8b-6367-4571-bbd6-cb6a6df7bd0b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: AUREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 23c78b8b-6367-4571-bbd6-cb6a6df7bd0b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.AUREL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 739b8cb0-05aa-4922-a7b2-f00e41b5c6d4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KPEIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 739b8cb0-05aa-4922-a7b2-f00e41b5c6d4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.KPEIN AS DECIMAL(5,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ba0563c-60a9-4d5d-b1b5-02dcf1fe5c85
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KMEIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ba0563c-60a9-4d5d-b1b5-02dcf1fe5c85
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KMEIN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5bf719e8-64d6-4c7e-a421-cf800ed7f386
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KMEIN_MSEHL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5bf719e8-64d6-4c7e-a421-cf800ed7f386
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: T006A_KMEIN.MSEHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b317c2f-3050-472d-a69d-8b482b6bae09
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: NETPR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6b317c2f-3050-472d-a69d-8b482b6bae09
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.NETPR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e64efd9b-5c56-4ef6-93ba-dcf7e298ce66
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: NETWR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e64efd9b-5c56-4ef6-93ba-dcf7e298ce66
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.NETWR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 593c13fa-7824-4cb1-b0d5-436a16b05570
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KOWRR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 593c13fa-7824-4cb1-b0d5-436a16b05570
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KOWRR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 80c052e0-9c4b-4c6d-9faa-de8e44ce9b47
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZBEW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 80c052e0-9c4b-4c6d-9faa-de8e44ce9b47
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZBEW
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14b85764-e62f-426d-9bab-b1f60ab7af7e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MFRGR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 14b85764-e62f-426d-9bab-b1f60ab7af7e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MFRGR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aead786e-52fa-48bf-83c4-28841e8c8a13
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CHHQV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aead786e-52fa-48bf-83c4-28841e8c8a13
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.CHHPV
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e9bd42ec-7cbd-48a6-a1e6-a15d6845deaf
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABFOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e9bd42ec-7cbd-48a6-a1e6-a15d6845deaf
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.ABFOR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7e066a7-d979-4e9e-8823-b26dae0a20ba
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ABGES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7e066a7-d979-4e9e-8823-b26dae0a20ba
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.ABGES AS DECIMAL(38,16))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7793def9-f997-4f5a-8cad-bd7f4bfe1bf1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MBUHR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7793def9-f997-4f5a-8cad-bd7f4bfe1bf1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MBUHR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f7cfe20-b48b-4110-bb2c-20c570d64e75
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: WKTNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2f7cfe20-b48b-4110-bb2c-20c570d64e75
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.WKTNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2c7c853-c5ed-41c2-bff9-de59a60b6e20
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: WKTPS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d2c7c853-c5ed-41c2-bff9-de59a60b6e20
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.WKTPS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a994040-00c0-4eba-8868-ad47170009a9
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: J_1BCFOP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8a994040-00c0-4eba-8868-ad47170009a9
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.J_1BCFOP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a608cc1-43e1-4016-8d07-75a407a63486
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: J_1BTAXLW1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3a608cc1-43e1-4016-8d07-75a407a63486
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.J_1BTAXLW1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3947539c-226f-4b8c-93be-e5dc0bffa56f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: J_1BTAXLW2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3947539c-226f-4b8c-93be-e5dc0bffa56f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.J_1BTAXLW2
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7347547-eb14-469d-b4f3-bc6c067516e6
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: J_1BTXSDC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7347547-eb14-469d-b4f3-bc6c067516e6
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.J_1BTXSDC
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f37ab7e0-d530-4ad2-a143-daa2f90a4e3e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SITUA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f37ab7e0-d530-4ad2-a143-daa2f90a4e3e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SITUA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 044b4f25-902b-4764-954b-8c033e623449
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RSNUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 044b4f25-902b-4764-954b-8c033e623449
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.RSNUM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5a8903c9-468d-4510-8984-0f3ee09044c4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RSPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a8903c9-468d-4510-8984-0f3ee09044c4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.RSPOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c62071e4-e5a4-4d53-91f0-98ce5ebcc4d4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RSART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c62071e4-e5a4-4d53-91f0-98ce5ebcc4d4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.RSART
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d7e14865-17a0-4df1-84b3-a71827e3c191
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KANNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d7e14865-17a0-4df1-84b3-a71827e3c191
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KANNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6d6de29e-fb1e-4d44-bfe4-62b9ed05dc0a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZFME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6d6de29e-fb1e-4d44-bfe4-62b9ed05dc0a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZFME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0deb1e6c-dba0-45ee-8d0b-c94f4de6e634
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PROFL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0deb1e6c-dba0-45ee-8d0b-c94f4de6e634
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PROFL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 50021bd0-bdd1-48b9-8065-320b7b0cfb72
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KCMENGVME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 50021bd0-bdd1-48b9-8065-320b7b0cfb72
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.KCMENGVME AS DECIMAL(20,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4d25bfb4-ef52-4e7d-8b77-ee0de33ff667
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: KCMENGVMEF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4d25bfb4-ef52-4e7d-8b77-ee0de33ff667
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.KCMENGVMEF AS DECIMAL(38,16))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8ebbbe1d-ccad-4f21-b4f2-227cc7cf306a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZBWS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ebbbe1d-ccad-4f21-b4f2-227cc7cf306a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZBWS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6e0f80a-77dc-4b02-a332-5cee3752b947
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PSPNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6e0f80a-77dc-4b02-a332-5cee3752b947
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PSPNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 40f6d761-7537-44c3-bb7d-c60a1173ec84
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EPRIO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 40f6d761-7537-44c3-bb7d-c60a1173ec84
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.EPRIO
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c0d33ce6-0b93-42c5-8e8e-eddcf879e9f3
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RULES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c0d33ce6-0b93-42c5-8e8e-eddcf879e9f3
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.RULES
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2fd634b-fc75-4a9b-aeae-cee9742ad01d
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZBEF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e2fd634b-fc75-4a9b-aeae-cee9742ad01d
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZBEF
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e1d422e-33de-4633-a2c3-f62e68760d8a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MPROF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e1d422e-33de-4633-a2c3-f62e68760d8a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.MPROF
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3c656b6d-874f-4787-85ef-f963068294c6
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EMATN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c656b6d-874f-4787-85ef-f963068294c6
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.EMATN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 819420ee-19ff-4326-b189-43828c1ec6ed
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LGBZO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 819420ee-19ff-4326-b189-43828c1ec6ed
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LGBZO
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c36be56-6fb5-4cce-a07c-1734bde4fbf1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: HANDLE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c36be56-6fb5-4cce-a07c-1734bde4fbf1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.HANDLE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a42e4d8-f621-4fd0-bda2-456347edb0dd
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VERURPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3a42e4d8-f621-4fd0-bda2-456347edb0dd
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VERURPOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 35425186-a57e-46f7-939a-2329b7f75988
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LIFEXPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 35425186-a57e-46f7-939a-2329b7f75988
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LIFEXPOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aae3d1e0-faea-4adc-8950-5367c1709678
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NOATP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aae3d1e0-faea-4adc-8950-5367c1709678
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.NOATP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a9704d68-964b-43bd-b438-80fea2efb986
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NOPCK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a9704d68-964b-43bd-b438-80fea2efb986
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.NOPCK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97b9b813-c466-43df-a83a-c5b2694b9bac
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RBLVS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 97b9b813-c466-43df-a83a-c5b2694b9bac
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.RBLVS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6556031d-180b-469d-8741-3fbedea317f5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BERID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6556031d-180b-469d-8741-3fbedea317f5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BERID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 52e96c95-2757-47ca-abc9-822a7650c96f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BESTQ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 52e96c95-2757-47ca-abc9-822a7650c96f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BESTQ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1bc06de9-0ead-4bc2-ade6-045b1e34bea3
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UMBSQ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1bc06de9-0ead-4bc2-ade6-045b1e34bea3
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UMBSQ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b9113fb3-286c-4780-a435-e8c04bf5d339
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UMMAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b9113fb3-286c-4780-a435-e8c04bf5d339
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UMMAT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d98a6c93-0056-4c66-81f8-98d506f1b1cd
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UMWRK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d98a6c93-0056-4c66-81f8-98d506f1b1cd
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UMWRK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ff142f4d-46be-424b-80dd-d85938f61aec
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UMLGO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ff142f4d-46be-424b-80dd-d85938f61aec
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UMLGO
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7fa4d247-acbf-461f-a5ef-59d81a049a83
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UMCHA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7fa4d247-acbf-461f-a5ef-59d81a049a83
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UMCHA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac9120c6-84d4-468b-a35f-4e22fd9cd5bb
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UMBAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac9120c6-84d4-468b-a35f-4e22fd9cd5bb
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UMBAR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f9c4c53-0ad1-4469-8657-0ae45516dad1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UMSOK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2f9c4c53-0ad1-4469-8657-0ae45516dad1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UMSOK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7fa991e2-cdd8-4008-a46d-f8a69241b6be
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SONUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7fa991e2-cdd8-4008-a46d-f8a69241b6be
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SONUM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fe73f2c4-b54a-4b39-83a1-520ecd1e9321
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: USONU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe73f2c4-b54a-4b39-83a1-520ecd1e9321
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.USONU
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4d208eb0-050e-43a9-90b6-dce25eac87a0
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: AKKUR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4d208eb0-050e-43a9-90b6-dce25eac87a0
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.AKKUR AS DECIMAL(12,5))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 91c05b02-3d06-4968-8cc5-75ca8da9618a
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: AKMNG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 91c05b02-3d06-4968-8cc5-75ca8da9618a
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.AKMNG
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 89cf1b93-374b-4e86-b677-2f65852a6454
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VKGRU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 89cf1b93-374b-4e86-b677-2f65852a6454
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.VKGRU
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f77e1981-bab9-4a2d-a2ea-5a571ba32e08
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHKZG_UM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f77e1981-bab9-4a2d-a2ea-5a571ba32e08
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SHKZG_UM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8ee8c6cc-80a0-4212-883e-bc0435db50b6
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INSMK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ee8c6cc-80a0-4212-883e-bc0435db50b6
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.INSMK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d497e676-e1ac-413b-923f-11171d48ba72
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZECH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d497e676-e1ac-413b-923f-11171d48ba72
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZECH
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b5129a38-0c8e-43ad-8be7-a7dea9a82008
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FLGWM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5129a38-0c8e-43ad-8be7-a7dea9a82008
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.FLGWM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca22c98d-af13-4289-b4aa-9ca99a908382
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BERKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ca22c98d-af13-4289-b4aa-9ca99a908382
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BERKZ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d26529b0-6363-47e1-a5dc-64431e99e061
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: HUPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d26529b0-6363-47e1-a5dc-64431e99e061
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.HUPOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c1ba1fc-3a19-4f88-b6ab-432b33e224d1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NOWAB
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7c1ba1fc-3a19-4f88-b6ab-432b33e224d1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.NOWAB
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0fb00c32-70c6-41b4-bda1-904f5e772632
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KONTO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0fb00c32-70c6-41b4-bda1-904f5e772632
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KONTO
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d441db30-01d4-4679-a483-acd018cb813d
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d441db30-01d4-4679-a483-acd018cb813d
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZEAR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eae1a46e-c111-4b9d-bd10-12eb4cb9a9b5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: HSDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eae1a46e-c111-4b9d-bd10-12eb4cb9a9b5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: TRY_TO_TIMESTAMP(LIPS.HSDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 112fae2b-2ad7-402e-8319-62f489f0a302
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: VFDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 112fae2b-2ad7-402e-8319-62f489f0a302
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: TRY_TO_TIMESTAMP(LIPS.VFDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8bebbe55-4aec-439c-a074-b7739d53f22e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LFGJA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8bebbe55-4aec-439c-a074-b7739d53f22e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LFGJA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6dbc9fc6-59ae-4911-919e-687a77dbd3a0
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LFBNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6dbc9fc6-59ae-4911-919e-687a77dbd3a0
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LFBNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b5bdbad-469d-4f9c-b4e5-db0898c6d0d0
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LFPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5b5bdbad-469d-4f9c-b4e5-db0898c6d0d0
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LFPOS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b970dee0-6c8a-413c-956b-659e34ae0efa
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GRUND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b970dee0-6c8a-413c-956b-659e34ae0efa
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.GRUND
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 23d010ec-c125-4bea-af6e-a8fa66c65416
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FOBWA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 23d010ec-c125-4bea-af6e-a8fa66c65416
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.FOBWA
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa1e28f6-c1ef-4a7a-b686-2aaea4ff06d4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DLVTP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aa1e28f6-c1ef-4a7a-b686-2aaea4ff06d4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.DLVTP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9692708e-d109-412f-9a79-360c3b10690b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EXBWR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9692708e-d109-412f-9a79-360c3b10690b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.EXBWR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3df616f8-0d9a-4ce1-bf7d-4882519df0a7
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: BPMNG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3df616f8-0d9a-4ce1-bf7d-4882519df0a7
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.BPMNG AS DECIMAL(17,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bcc3711e-2d80-44b7-8aae-581313bb8678
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EXVKW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcc3711e-2d80-44b7-8aae-581313bb8678
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.EXVKW
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 290f1972-8846-49de-a695-e60b72cb359f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CMPRE_FLT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 290f1972-8846-49de-a695-e60b72cb359f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.CMPRE_FLT AS DECIMAL(38,16))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f3a4dd7-4c46-43f2-9532-80419bee4eaa
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZPOD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f3a4dd7-4c46-43f2-9532-80419bee4eaa
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZPOD
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87a80dfe-a975-42ed-b0d7-09a313a14d3f
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LFDEZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87a80dfe-a975-42ed-b0d7-09a313a14d3f
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.LFDEZ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1c6102b1-3e49-4eef-9e2f-b19d75c8dfd1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UMREV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1c6102b1-3e49-4eef-9e2f-b19d75c8dfd1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.UMREV AS DECIMAL(38,16))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f84bf843-03e5-40b1-a625-c508cc36eac7
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PODREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f84bf843-03e5-40b1-a625-c508cc36eac7
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PODREL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb76e40e-49f2-4cc8-a82e-9da5f966708c
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZUML
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bb76e40e-49f2-4cc8-a82e-9da5f966708c
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZUML
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 402352b9-6e0d-40ca-8832-0af93e1c8dcf
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FKBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 402352b9-6e0d-40ca-8832-0af93e1c8dcf
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.FKBER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c39fccb0-bb38-4346-b6ca-32be44c1d633
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GRANT_NBR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c39fccb0-bb38-4346-b6ca-32be44c1d633
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.GRANT_NBR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a333469f-5cc3-48a3-a81b-b73b282459fa
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KZWSO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a333469f-5cc3-48a3-a81b-b73b282459fa
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KZWSO
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 175a3ace-17a5-4936-bc93-5b9a0a7c9c22
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GMCONTROL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 175a3ace-17a5-4936-bc93-5b9a0a7c9c22
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.GMCONTROL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d619ecd-3948-4025-8844-36b4b73b8c75
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: POSTING_CHANGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d619ecd-3948-4025-8844-36b4b73b8c75
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.POSTING_CHANGE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f118727-0b5d-486f-ab85-742b5eb34ef1
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UM_PS_PSP_PNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6f118727-0b5d-486f-ab85-742b5eb34ef1
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.UM_PS_PSP_PNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 18013094-ffbd-4fd9-924b-bf43b599c8e0
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PRE_VL_ETENS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18013094-ffbd-4fd9-924b-bf43b599c8e0
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.PRE_VL_ETENS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5dd9351b-2935-4ccf-9d55-bdfde6567561
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_GEN_ELIKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5dd9351b-2935-4ccf-9d55-bdfde6567561
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_GEN_ELIKZ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b9386660-645c-408c-9f6a-9d0c3d95441b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_SCRAP_IND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b9386660-645c-408c-9f6a-9d0c3d95441b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_SCRAP_IND
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 488cde8d-036b-410f-9ee1-1d5818d8c8cb
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_AUTH_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 488cde8d-036b-410f-9ee1-1d5818d8c8cb
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_AUTH_NUMBER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 61fd0f6c-aae9-41d9-84af-211e9427d8b0
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_INSPOUT_GUID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 61fd0f6c-aae9-41d9-84af-211e9427d8b0
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_INSPOUT_GUID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6888935-896e-4fc3-8471-3ce9543b828e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_FOLLOW_UP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d6888935-896e-4fc3-8471-3ce9543b828e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_FOLLOW_UP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: be826631-05bf-42d5-85d8-8e6763ee98de
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SPE_EXP_DATE_EXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: be826631-05bf-42d5-85d8-8e6763ee98de
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SPE_EXP_DATE_EXT AS DECIMAL(19,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97055c23-7d22-4cfe-9e18-fbb91b0ac45b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SPE_EXP_DATE_INT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 97055c23-7d22-4cfe-9e18-fbb91b0ac45b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SPE_EXP_DATE_INT AS DECIMAL(19,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 360deb6b-3236-4c8c-9418-a3c722b13609
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_AUTH_COMPLET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 360deb6b-3236-4c8c-9418-a3c722b13609
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_AUTH_COMPLET
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a952933-da0c-4aef-84e7-516c4b8ef44e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORMNG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1a952933-da0c-4aef-84e7-516c4b8ef44e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.ORMNG AS DECIMAL(17,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8960d735-fa66-43f1-aa89-42b7d19c0876
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SPE_ATP_TMSTMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8960d735-fa66-43f1-aa89-42b7d19c0876
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SPE_ATP_TMSTMP AS DECIMAL(19,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 594c3d67-884e-4287-b717-1df6fe2e5aaf
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_ORIG_SYS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 594c3d67-884e-4287-b717-1df6fe2e5aaf
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_ORIG_SYS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1851aa29-3200-4efe-b11b-a6b9c44c2a59
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SPE_LIEFFZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1851aa29-3200-4efe-b11b-a6b9c44c2a59
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SPE_LIEFFZ AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: daedabd1-f029-4364-82fc-2217061708cf
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_IMWRK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: daedabd1-f029-4364-82fc-2217061708cf
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_IMWRK
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4375e8b4-e6ea-4137-8788-f161f89343b9
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_LIFEXPOS2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4375e8b4-e6ea-4137-8788-f161f89343b9
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_LIFEXPOS2
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28641731-f309-4c10-b66f-f3d290f2a2eb
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_EXCEPT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 28641731-f309-4c10-b66f-f3d290f2a2eb
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_EXCEPT_CODE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f6dc8eb-e0a4-45cb-97fa-7b25e7861d2b
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SPE_KEEP_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f6dc8eb-e0a4-45cb-97fa-7b25e7861d2b
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SPE_KEEP_QTY AS DECIMAL(17,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4aab753d-cbb4-47ff-8638-cc107ef8771d
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_ALTERNATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4aab753d-cbb4-47ff-8638-cc107ef8771d
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_ALTERNATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c425b07-3b8f-4cd6-bf2e-8095c142a8ab
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_MAT_SUBST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c425b07-3b8f-4cd6-bf2e-8095c142a8ab
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_MAT_SUBST
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 647335a9-8de5-4d46-81de-ec827cc84c4d
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_STRUC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 647335a9-8de5-4d46-81de-ec827cc84c4d
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_STRUC
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc443c92-4229-440a-a38c-ca29e5e66516
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SPE_APO_QNTYFAC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fc443c92-4229-440a-a38c-ca29e5e66516
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SPE_APO_QNTYFAC AS DECIMAL(6,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c094af4c-ef70-4175-b0b0-c6734c32c0b2
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SPE_APO_QNTYDIV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c094af4c-ef70-4175-b0b0-c6734c32c0b2
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SPE_APO_QNTYDIV AS DECIMAL(6,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1969338a-da3a-4f88-b3ff-b24e86faf3da
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_HERKL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1969338a-da3a-4f88-b3ff-b24e86faf3da
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_HERKL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bfffb93a-e8e6-4239-8413-3825926f8f90
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SPE_BXP_DATE_EXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bfffb93a-e8e6-4239-8413-3825926f8f90
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SPE_BXP_DATE_EXT AS DECIMAL(19,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a913e2a-6c11-40de-88d5-0ac3a14b18a5
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7a913e2a-6c11-40de-88d5-0ac3a14b18a5
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_VERSION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ac9e9d7-d1dc-4593-9428-df779e5590a6
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SPE_COMPL_MVT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ac9e9d7-d1dc-4593-9428-df779e5590a6
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SPE_COMPL_MVT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1079de45-69d8-48a0-b1eb-08b917f4d0cb
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: J_1BTAXLW4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1079de45-69d8-48a0-b1eb-08b917f4d0cb
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.J_1BTAXLW4
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2899286d-49af-4d64-a116-b8f7df3099ca
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: J_1BTAXLW5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2899286d-49af-4d64-a116-b8f7df3099ca
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.J_1BTAXLW5
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 16fbb316-b03e-4aac-bef6-3f635202f3c8
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: J_1BTAXLW3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 16fbb316-b03e-4aac-bef6-3f635202f3c8
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.J_1BTAXLW3
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0860779c-00cb-4bbf-bfb3-b2cda5695f30
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: BUDGET_PD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0860779c-00cb-4bbf-bfb3-b2cda5695f30
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.BUDGET_PD
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e80dd6cc-f3e2-4e09-bbe8-d704ec394ac6
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: KBNKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e80dd6cc-f3e2-4e09-bbe8-d704ec394ac6
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.KBNKZ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d809bb25-5212-4a4f-8808-95fa912862e4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FARR_RELTYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d809bb25-5212-4a4f-8808-95fa912862e4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.FARR_RELTYPE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 409822c2-4134-4892-b2f1-27eb63b2d889
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SITKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 409822c2-4134-4892-b2f1-27eb63b2d889
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SITKZ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7e8b5ef-199d-45f5-9693-7cc28998721c
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SGT_RCAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f7e8b5ef-199d-45f5-9693-7cc28998721c
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SGT_RCAT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4af2f183-69ee-4919-a090-9b5357ba852e
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SGT_SCAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4af2f183-69ee-4919-a090-9b5357ba852e
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.SGT_SCAT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77494dad-8b0f-4f24-a538-dabf9f28eb99
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CONS_ORDER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 77494dad-8b0f-4f24-a538-dabf9f28eb99
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: LIPS.CONS_ORDER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3e89a6df-4404-4b4d-959a-5652e2b041dd
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SLT_DELETE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3e89a6df-4404-4b4d-959a-5652e2b041dd
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SLT_DELETE AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6c5be6c8-10e6-42a6-8f4f-127528a3bfb4
+          stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SLT_UPDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6c5be6c8-10e6-42a6-8f4f-127528a3bfb4
+                stepCounter: 1d025dcc-cb21-4207-9625-0e2f989152cb
+            transform: CAST(LIPS.SLT_UPDATE AS DECIMAL(22,7))
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          LIPS: 5440bf71-28b6-4035-9a9e-3bc91cb47621
+          T001W: 1df95e45-0fd0-4dac-9f27-934a18cdeac6
+          T006A_GEWEI: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_KMEIN: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_MEINS: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_VOLEH: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_VRKME: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T179T: aebd6961-f040-4cc3-beac-93dd0e4562f5
+          TVAPT: a607fc32-fed6-49eb-850c-f0ca3ef3b2bd
+          TVM1T: 68c027c4-6d6b-4de7-861f-f06e23e906c8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: LIPS
+          - locationName: SRC_SAP
+            nodeName: T001W
+          - locationName: WORK
+            nodeName: STG_T006A
+          - locationName: WORK
+            nodeName: STG_T179T
+          - locationName: WORK
+            nodeName: STG_TVAPT
+          - locationName: WORK
+            nodeName: STG_TVM1T
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'LIPS') }} 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T006A') }} AS T006A_MEINS ON LIPS.MANDT = T006A_MEINS.MANDT AND LIPS.MEINS = T006A_MEINS.MSEHI 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T006A') }} AS T006A_VRKME ON LIPS.MANDT = T006A_VRKME.MANDT AND LIPS.VRKME = T006A_VRKME.MSEHI 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T006A') }} AS T006A_GEWEI ON LIPS.MANDT = T006A_GEWEI.MANDT AND LIPS.GEWEI = T006A_GEWEI.MSEHI 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T006A') }} AS T006A_VOLEH ON LIPS.MANDT = T006A_VOLEH.MANDT AND LIPS.VOLEH = T006A_VOLEH.MSEHI 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T006A') }} AS T006A_KMEIN ON LIPS.MANDT = T006A_KMEIN.MANDT AND LIPS.KMEIN = T006A_KMEIN.MSEHI 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_TVM1T') }} TVM1T ON LIPS.MANDT = TVM1T.MANDT AND LIPS.MVGR1 = TVM1T.MVGR1 
+            LEFT OUTER JOIN {{ ref('SRC_SAP', 'T001W') }} ON LIPS.MANDT = T001W.MANDT AND LIPS.WERKS = T001W.WERKS 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_TVAPT') }} TVAPT ON LIPS.MANDT = TVAPT.MANDT AND LIPS.PSTYV = TVAPT.PSTYV 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T179T') }} T179T ON LIPS.MANDT = T179T.MANDT AND LIPS.PRODH = T179T.PRODH 
+
+            WHERE LIPS.SLT_DELETE = ' '
+        name: UNITY_SAP_DELIVERY_POS_P1_STGa
+        noLinkRefs: []
+  name: UNITY_SAP_DELIVERY_POS_P1_STGa
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

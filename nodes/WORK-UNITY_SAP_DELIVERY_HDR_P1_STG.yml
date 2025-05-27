@@ -1,0 +1,3050 @@
+fileVersion: 1
+id: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+name: UNITY_SAP_DELIVERY_HDR_P1_STG
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Contains delivery header information from SAP.
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a617288-280d-4094-9772-1db859787277
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: mandt
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42bf7cdb-50eb-453e-ad73-6ffcb39bbfd8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 00aba117-c3e0-481b-be0d-bced44f9be1a
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vbeln
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f2a192fc-c3ca-4271-b398-8a4f83f1d459
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 89116685-40da-4d3c-b738-a85a997d2389
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ernam
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d49d120f-9094-432f-9abc-56cef394b939
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 20b7d218-c030-42fd-858b-69e0ba8ba611
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: erzet
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22e365bb-efaf-4921-9920-438f0b7d7464
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec1373ab-4828-41bc-be10-0caa90048bd8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: erdat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fb5778b7-a030-4b24-aa7d-322a549b7c8c
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.ERDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d34bb849-8f82-47b0-a3b9-440d1a4bf3b9
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: bzirk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 481a2156-3c69-4bee-a18c-ed0d9908a0a7
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.BZIRK = ' ' THEN NULL ELSE LIKP.BZIRK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b0a557d2-9943-480a-bcd2-c012f7fa31b1
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: t171t_bztxt
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ffb06fbc-ed7b-43a9-b002-a7eccb428939
+                stepCounter: 98e34a06-50e0-47a7-b62e-1eede86becbb
+            transform: CASE WHEN T171T.BZTXT = ' ' THEN NULL ELSE T171T.BZTXT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 640e1f85-e9ef-48ff-944f-fcb19d0f3e24
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vstel
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 399732b8-2a24-4d58-8d47-abcc99bcf4f7
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 937a10e6-5352-4fbb-98d7-cca1fa1df511
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvstt_vtext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b41eb3b8-d4fb-44cf-960f-51a880dcaa7e
+                stepCounter: a011b4fe-425c-47b6-8cd8-58d127748b3c
+            transform: CASE WHEN TVKOT.VTEXT = ' ' THEN NULL ELSE TVKOT.VTEXT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ba459fe-4ef1-4af9-9f1e-7654fff7e2a3
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vkorg
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d40cfc6-8007-486b-ad67-e09cf0c8b645
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 50fc079d-f3fa-4876-89dc-070c7907bae4
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvkot_vtext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b41eb3b8-d4fb-44cf-960f-51a880dcaa7e
+                stepCounter: a011b4fe-425c-47b6-8cd8-58d127748b3c
+            transform: CASE WHEN TVKOT.VTEXT = ' ' THEN NULL ELSE TVKOT.VTEXT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba22a22c-e307-4f4c-986d-463de3b45245
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: bukrs
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f1b35c06-dedd-435f-97a2-118a6c2474a0
+                stepCounter: bef9f6eb-a9ed-4dc6-bfb5-7e0477733f8d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb9ed73a-5d1c-4553-9920-b1aa94f36c9e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lfart
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3a021807-a27e-4626-9cac-812b5f6bbda6
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 05568210-5ea8-4143-bb39-909a2be1b687
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvlkt_vtext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 05568210-5ea8-4143-bb39-909a2be1b687
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: " CAST(NULL AS STRING)"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b59900b-0c0c-452a-b717-86795d7466ee
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: autlf
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ad8dea9-1da8-4b77-ae8d-18a3cfec2328
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.AUTLF = ' ' THEN NULL ELSE LIKP.AUTLF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: af772759-3b0a-42b0-9f9e-dca9c9f69064
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: kzazu
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b72a6df-0a96-4bc3-9217-17f94d64ffd2
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KZAZU = ' ' THEN NULL ELSE LIKP.KZAZU END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 31d178f2-6970-46eb-8d2a-9157a5760e33
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: wadat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b055af03-9670-47b8-a048-4ba2332de499
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.WADAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e299172d-9eb9-449b-869d-5035a932826d
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: lddat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4eff9792-b326-415b-b2e4-34c3d10b60f8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.LDDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4963ab51-41dd-411d-a4b5-552b9f988c32
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: tddat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 52be9882-6249-4983-8183-8078d69c768b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.TDDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc085dc0-e87d-4bb0-a9b9-ee2db065bb20
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: lfdat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 85e23991-4daa-4344-be1f-48e8c806c0ad
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.LFDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a227f09-ada4-4419-a2da-113ad07484cd
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: kodat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ed7bdf6-a473-43bd-9df3-e333a18df895
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.KODAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fea5504a-ed97-439b-ac4a-24e04220a28d
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ablad
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c171e434-f7e8-4336-bba9-ab7d9482e10d
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 516bfa02-3fd4-45d1-9e21-ce5f7c8c74a2
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: inco1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a575e3f5-c21e-4733-aac4-5ab848fdc261
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 040be9a8-60f4-4da3-8d51-265c66fc7018
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: inco2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ca6b6ca1-39f7-47b3-ae08-717468bd931e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.INCO2 = ' ' THEN NULL ELSE LIKP.INCO2 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 42f9af4c-5ded-4877-b914-591b300edc9e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: expkz
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3ac2bb82-9685-4988-a16a-fe4023601688
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.EXPKZ = ' ' THEN NULL ELSE LIKP.EXPKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ef6c745-7157-4ff3-bd98-22e63a7bf1fc
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: route
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 536eee9f-92a8-4c9f-aa37-40227375609a
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.ROUTE = ' ' THEN NULL ELSE LIKP.ROUTE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 388c1f11-5a40-4505-b301-0074458a6f4a
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: faksk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 69ea91f4-d44e-499b-8d3b-0c68b752cb75
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.FAKSK = ' ' THEN NULL ELSE LIKP.FAKSK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf16c72c-ebd8-4d02-9347-efc02441684b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvfst_vtext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f1aa51e9-8501-4bdb-985f-313ac4fe93e9
+                stepCounter: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+            transform: CASE WHEN TVFST.VTEXT = ' ' THEN NULL ELSE TVFST.VTEXT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 476307ff-d101-4033-ba9e-04f4e46c2f9a
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lifsk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd5d7caa-569c-49cc-89ac-8c028dd6c0cf
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.LIFSK = ' ' THEN NULL ELSE LIKP.LIFSK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96c7c01a-352c-44bb-848b-33dee08724b8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvlst_vtext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b9d2aef-cda1-4239-a66b-f7b675e94c19
+                stepCounter: a4bfe789-0435-4026-8b0a-2b9ccdcafbbf
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e790bf31-8184-431e-b419-c1158823f503
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vbtyp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c5da664c-bc02-415e-a402-3d6de72d908b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b42aad25-51cb-4854-acfd-7732b9522e81
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: knfak
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 926e18fe-3125-4924-b905-a04debdabd40
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c576911a-04f6-47f0-b7b4-39fb361ecdb8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tpqua
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 05186a0a-4fb9-4c36-b06b-699cd4a28fbb
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TPQUA = ' ' THEN NULL ELSE LIKP.TPQUA END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 595dc754-a1c1-4909-bb62-005efc1a9e47
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tpgrp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d561be38-cad1-4b68-ba50-f64c48f3cf46
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TPGRP = ' ' THEN NULL ELSE LIKP.TPGRP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0bd62ed2-5305-4f2c-8713-6bb85d4b5406
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lprio
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b337de8-2cb7-42d8-8786-0d1c886a128b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cf51e7db-ed13-4e57-803f-dc1a65414ac3
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tprit_bezei
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cf51e7db-ed13-4e57-803f-dc1a65414ac3
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 19c8ef98-163c-4c7e-b4b9-1f5eafbc2ec3
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vsbed
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 971bf5e9-be3b-410d-8697-67b5d3f3fcd1
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0092d0e0-8a21-4e08-a9c0-fddcab00ef50
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvsbt_vtext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0092d0e0-8a21-4e08-a9c0-fddcab00ef50
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 119641f9-457a-455c-b1d9-c5879403e657
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: fk_kna1_kunnr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42bf7cdb-50eb-453e-ad73-6ffcb39bbfd8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.MANDT IS NULL OR LIKP.KUNNR IS NULL THEN NULL ELSE CONCAT_WS('~','5',LIKP.MANDT,LIKP.KUNNR) END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7fddd331-99f6-4b7c-838b-49d390a0577d
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: fk_kna1_kunag
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f757e279-0bee-47d0-bda4-848fde5073c1
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KUNAG = ' ' OR LIKP.MANDT IS NULL THEN NULL ELSE CONCAT_WS('~','5',LIKP.MANDT,LIKP.KUNAG) END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a30077b-f40d-4c44-ab08-07fda27e0593
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: kdgrp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 19f32ffa-d65c-4e35-8bbd-c4be0b63cce3
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KDGRP = ' ' THEN NULL ELSE LIKP.KDGRP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6fde8a32-1d9e-4a4e-9fa5-dcedf236f94b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: t151t_ktext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c0919847-e00c-4174-91b3-695cbc8bd75f
+                stepCounter: 331fcfca-ec5d-4a2e-a4e1-e8de2ab43ca8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 060ba077-9aee-4eeb-8687-6961a491c9a5
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: stzkl
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 006b72b3-6b82-4df6-b72e-b4efe5d35e04
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.STZKL AS DECIMAL(4,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 59271b4b-4e83-4e0d-a3a6-51e9ff90a537
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: stzzu
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1fa0f29c-917f-4a2d-ab9e-a8e55c2178a0
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.STZZU AS DECIMAL(4,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a42ece6-2852-4ce2-a47d-8b6373f50d94
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: btgew
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 401be435-55db-48e0-a82a-2206e5a52b26
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.BTGEW AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78b67935-c653-4914-9253-3fb050f2453c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ntgew
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 33b071fa-830e-488f-a8d8-72d619962bfe
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.NTGEW AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 929dd6fe-0093-4b86-8dcf-207ec27f183f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: gewei
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f1a097e3-ecd4-468c-aa78-cf7b014f2e36
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.GEWEI = ' ' THEN NULL ELSE LIKP.GEWEI END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: daf21a16-7237-434c-891e-f8cad9754d06
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: gewei_desc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: daf21a16-7237-434c-891e-f8cad9754d06
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: T006A_GEWEI.MSEHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a413a8c5-4fc4-460c-91e7-a8af640e9652
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: volum
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cb66faef-d094-4291-9598-0b63076f26ba
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.VOLUM AS DECIMAL(19,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 661cbfb1-dd97-4484-81cf-426638bc83f4
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: voleh
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0f61ef02-9c33-4aa4-a2f7-3e19ca647e0e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.VOLEH = ' ' THEN NULL ELSE LIKP.VOLEH END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 84d5664e-faf5-403b-bd3a-bac9ebe2abb7
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: voleh_desc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 84d5664e-faf5-403b-bd3a-bac9ebe2abb7
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: T006A_VOLEH.MSEHL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60843b78-f84a-4d2c-a151-a70bc1f57060
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: anzpk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 971693d2-f7b8-4db6-8965-07ac911e87f9
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bba71940-4130-4b26-b50e-331fa800946c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: berot
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 58b13347-6da9-4e14-8b1d-c6e4170f0bac
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.BEROT = ' ' THEN NULL ELSE LIKP.BEROT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 842be7da-d9f4-47b3-a394-14f292bf2d2b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lfuhr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fa43c52b-9554-4e0d-b8b4-9ff1bea239f8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7924da0-3c32-412c-a726-625a2b15894f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: grulg
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d0e8b32d-7645-4b29-a649-d3bbb34e18e2
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.GRULG = ' ' THEN NULL ELSE LIKP.GRULG END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e05a6473-ce03-440a-ae02-62fda602dc4b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lstel
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 74a5ec02-eb02-4b18-a326-2679ab2fa11b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39ad7f8c-d1c8-4ac9-b905-2f8cec5a18ae
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvlat_vtext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39ad7f8c-d1c8-4ac9-b905-2f8cec5a18ae
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22f3ab88-2f03-4e88-bd04-352031a1d1f9
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tragr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 46b529d9-39f7-421e-9b4d-127033a1dd19
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c7d7f514-f7b6-4f95-a458-01994269d2e5
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ttgrt_vtext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c7d7f514-f7b6-4f95-a458-01994269d2e5
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f21bb37-ac2a-461c-860b-7631ea44891c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: fkarv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d9d97b5-3b66-4166-a0a0-08dc155d76e8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8cde946f-f2d4-4445-9e4f-dfd82073d0b8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvfkt_vtext
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8cde946f-f2d4-4445-9e4f-dfd82073d0b8
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c6c45b2-2405-44ba-855c-6f7123d74458
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: fkdat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1e5dbd6f-7bfd-4e23-a8d3-0664f4d3bf57
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.FKDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6480a9ed-1386-473a-9390-01faf6229a3c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: perfk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bdd0a732-d6a1-49fa-9eb4-667dabfa033f
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53cb53d8-27dd-4059-88a6-c75f3305d574
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: routa
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0e242198-2a7c-44e1-824b-3e2869575e8d
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.ROUTA = ' ' THEN NULL ELSE LIKP.ROUTA END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a4ed1425-0c56-408d-9b7e-8341f83c694a
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvrot_bezei
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a4ed1425-0c56-408d-9b7e-8341f83c694a
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eb6bd1fe-29ef-4ec7-ada5-3dd2856a6513
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: stafo
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9256964-11f7-489a-9b61-7c9d9fac40f0
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.STAFO = ' ' THEN NULL ELSE LIKP.STAFO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2300f621-72fe-43fd-af1c-36f875f73fb4
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: kalsm
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9fc3aa45-09d7-4bcd-829e-c7fd4b8017f1
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e567b17-2f18-4af5-be57-72739626adbf
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: knumv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b9689e8-4e87-40f6-9c67-56f125f3d840
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KNUMV = ' ' THEN NULL ELSE LIKP.KNUMV END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7b02e764-8a4a-4672-834d-aa9f43091f25
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: waerk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3a876599-f7a8-4e0b-ad02-e1b8d5e79974
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.WAERK = ' ' THEN NULL ELSE LIKP.WAERK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88eb8f9f-7cf6-4356-96fc-8d66d4a57710
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vkbur
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 04268cb6-3cbb-4633-b9ea-3999d54963b0
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.VKBUR = ' ' THEN NULL ELSE LIKP.VKBUR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a8b42c81-d7c4-4eda-9e9d-22596abd3dc8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tvkbt_bezei
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 47437d99-c71f-479f-b93b-726988ef074e
+                stepCounter: 29fdb654-d42f-485e-8fd2-2cee36b80ced
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 910943c7-77e8-476e-8ea8-20de54b19a32
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: vbeak
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e638644e-b416-4d8c-a192-e0dd8f97acd2
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.VBEAK AS DECIMAL(8,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7ef4bc77-0008-4285-a77c-2907894fe2cc
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: zukrl
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c145441-488e-4510-872e-2eb538a1b881
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.ZUKRL = ' ' THEN NULL ELSE LIKP.ZUKRL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1efc1587-848a-4428-90b1-680d8688c476
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: verur
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dff40538-a4e0-487a-89d7-537a78e7554b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.VERUR = ' ' THEN NULL ELSE LIKP.VERUR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6261230f-db08-4d38-aae6-fb4459b992e3
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: commn
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c67daf3f-68c3-4510-89f5-8e825767fbac
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.COMMN = ' ' THEN NULL ELSE LIKP.COMMN END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e6b4000b-400f-44a1-aa26-a355a8ee8207
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: stwae
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5dd9ea51-8271-4857-a53c-ae92ac92b65e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.STWAE = ' ' THEN NULL ELSE LIKP.STWAE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b2e946e6-a81c-4f6a-8d68-56e624810146
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: stcur
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ec475f3a-9e8b-4324-8c90-e1f872b77e1e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.STCUR AS DECIMAL(12,5))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d14871a-0840-4ca4-9a48-c137dd0a9cde
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: exnum
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d45ff53-1cef-480b-8697-427b5fd256c4
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.EXNUM = ' ' THEN NULL ELSE LIKP.EXNUM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ce68aa35-a6dd-4aaf-8501-4f4acd9b5865
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: aenam
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 66d8706a-1e60-4c47-b302-7bbb382cd9a7
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.AENAM = ' ' THEN NULL ELSE LIKP.AENAM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c4b8a021-410d-4a55-9181-3a69e7afce98
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: aedat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6f6b3efd-49ba-4912-b213-784f83ec249a
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.AEDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70174046-ec41-48ff-b2a2-79153bb04e4e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lgnum
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c749512-409f-4568-9d4d-d7da4ea9ef63
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.LGNUM = ' ' THEN NULL ELSE LIKP.LGNUM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2823ebb-93cb-4f24-a0ac-99166d133490
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lispl
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7f097fbc-9049-451f-840e-ec4c659b3c63
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.LISPL = ' ' THEN NULL ELSE LIKP.LISPL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 103fec12-6453-4af5-a5e0-10335232e79d
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vkoiv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db3b19f7-2184-4d2a-b9c9-f8bbb364a8a7
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.VKOIV = ' ' THEN NULL ELSE LIKP.VKOIV END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1ae15b0-204c-4f24-a8fb-46a27e829032
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vkoiv_desc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1ae15b0-204c-4f24-a8fb-46a27e829032
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: TVKOT_IV.VTEXT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db430dd0-194b-49dc-a1ec-ed811ef4d7d2
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vtwiv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e5589397-01f1-466f-9c13-a63a6097252e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.VTWIV = ' ' THEN NULL ELSE LIKP.VTWIV END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c29ecda-b411-4a02-be93-7df8976d7972
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vtwiv_desc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c29ecda-b411-4a02-be93-7df8976d7972
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2417bf1f-7715-42b2-94f1-3b81cb6c6058
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spaiv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bc20f3a5-5769-4791-9975-675ebf35b201
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPAIV = ' ' THEN NULL ELSE LIKP.SPAIV END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 187eb7d3-bbc5-48dc-86e6-d4e995e4aeba
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spaiv_desc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 187eb7d3-bbc5-48dc-86e6-d4e995e4aeba
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ec7e8c3-ed13-4285-8a62-e220a7f068c8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: fkaiv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f60ab89-9621-452a-87c6-889ba458855e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.FKAIV = ' ' THEN NULL ELSE LIKP.FKAIV END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa98bebc-5f84-4f8b-9a0d-4f9d2e8fc85f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: fkaiv_desc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fa98bebc-5f84-4f8b-9a0d-4f9d2e8fc85f
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49ef704c-3c93-4b30-880b-fa93236e312b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: pioiv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f70825ad-d925-4f4a-a2b1-1c4be609fd45
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.PIOIV = ' ' THEN NULL ELSE LIKP.PIOIV END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83eb5707-6e63-4ec0-b990-6c5942fe912a
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: fkdiv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c501a4c3-b187-443b-b1fc-0c1d805f4ac4
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.FKDIV,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ab7646eb-7527-4096-be8b-ead697515337
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: fk_kna1_kuniv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b0bacd37-7472-491b-a83c-79ee53a976c5
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KUNIV = ' ' OR LIKP.MANDT IS NULL  THEN NULL ELSE CONCAT_WS('~','5',LIKP.MANDT,LIKP.KUNIV) END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 730d9bcf-38f8-41fb-8547-5433cc08c40f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: kkber
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a430e083-e3f6-4286-8f0f-a4dc57e3a431
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KKBER = ' ' THEN NULL ELSE LIKP.KKBER END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1911391a-a153-4eed-bd0b-ec10dea06059
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: t014t_kkbtx
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1911391a-a153-4eed-bd0b-ec10dea06059
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a8a5b3e-4440-4ec9-a2fa-b9ce150f226b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: fk_kna1_knkli
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aa43a624-4ebc-4863-8066-f4954aa36e2f
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KNKLI = ' ' OR LIKP.MANDT IS NULL  THEN NULL ELSE CONCAT_WS('~','5',LIKP.MANDT,LIKP.KNKLI) END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85db800f-339a-4fec-8405-df46184af7d8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: grupp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5678450-1864-430f-b558-39d3aba371a5
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.GRUPP = ' ' THEN NULL ELSE LIKP.GRUPP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e1b7109b-cb8d-463a-a9fe-7972b29b3ea7
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: sbgrp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a2c2528f-8ead-4e4d-aa2f-b35f5ea76c74
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SBGRP = ' ' THEN NULL ELSE LIKP.SBGRP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70845410-b361-4a41-9a26-c2cebde61cfc
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ctlpc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab7682b5-7e36-47d2-8663-61e5efbf9433
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.CTLPC = ' ' THEN NULL ELSE LIKP.CTLPC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0608b4aa-9f09-462c-ad5f-47e86e6bb1c6
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: cmwae
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a3f366c-56f6-4229-8d0d-cab9f6e99c36
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.CMWAE = ' ' THEN NULL ELSE LIKP.CMWAE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3306612d-a618-4c1d-b944-dbc64659fb25
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: amtbl
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a3f366c-56f6-4229-8d0d-cab9f6e99c36
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.CMWAE = ' ' THEN NULL ELSE LIKP.CMWAE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15f75818-231c-4ebe-8c35-9db87c87951e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: bolnr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 69cdbc29-7024-4040-99e2-acf91785d32b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.AMTBL = '0' THEN NULL ELSE LIKP.AMTBL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 57c10121-a942-4d9a-b757-d145a7e9cba2
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: fk_vm_general_vn
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 963945cc-9524-4924-ae6b-8fcc17bb4eee
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.BOLNR = ' ' THEN NULL ELSE LIKP.BOLNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3fe6b11-b266-4b88-b985-8854886396d1
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: traty
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dd8fcc67-223b-4bed-834c-4b20d28cc07e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.LIFNR = ' ' OR LIKP.MANDT IS NULL  THEN NULL ELSE CONCAT_WS('~','5',LIKP.MANDT,LIKP.LIFNR) END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ea2f7c85-f48c-4dac-b66e-19de1a9d2abb
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: traid
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6f1ae91a-cfdd-4f06-9f80-39d6f183e1d2
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TRATY = ' ' THEN NULL ELSE LIKP.TRATY END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 86e7139f-5696-4672-9ef8-afcce6250ed4
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: cmfre
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4bd120bf-9db2-4783-8d45-458542e35786
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TRAID = ' ' THEN NULL ELSE LIKP.TRAID END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd97cb9a-e62f-4e0c-9f7d-1d7778a65684
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: cmngv
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eb5be7e5-95a2-4802-bc5f-9d6dbf8da305
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.CMFRE,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e1e10ab8-eaf6-4e3c-ac51-865d218e52e8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: xabln
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e74431d9-5bea-40db-bce8-e49e511f4a52
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.CMNGV,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0fa8c928-b320-4ba5-86a0-1b8f84d9492e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: bldat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f7a441ee-7a75-4ba7-9b01-0bf55f38ae2b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.XABLN = ' ' THEN NULL ELSE LIKP.XABLN END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0b627b8-09ba-4874-99cc-615417c0ef46
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: wadat_ist
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 63d9f7e7-ca82-4950-b6c0-b3ae6d650b60
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.BLDAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38d0d0ff-531a-451b-ace0-0111b437acf8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: trspg
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b8f3786a-d30d-4d62-9320-e0068b8d4245
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TRSPG = ' ' THEN NULL ELSE LIKP.TRSPG END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60d20766-18c2-4613-b6ce-6bccfa0fd184
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ttsgt_bezei
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 60d20766-18c2-4613-b6ce-6bccfa0fd184
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41551c6c-6c90-4d85-ab14-dc5e7feb617b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tpsid
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ff45f08-8b27-4dc3-9f65-09b0f5c8fc1f
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TPSID = ' ' THEN NULL ELSE LIKP.TPSID END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b92cf2ce-a64d-4f8f-9bd0-a9ab18feaa9e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lifex
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b70a5678-2708-47e7-9171-2655de55eccc
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.LIFEX = ' ' THEN NULL ELSE LIKP.LIFEX END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2bcd6f7f-e111-4674-85c3-fa2baa92ef0f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ternr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6c39bbdc-f2ad-4510-9a2e-61d970f75f03
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TERNR = ' ' THEN NULL ELSE LIKP.TERNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 671b329d-d192-42b2-a279-c14df9e59429
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: kalsm_ch
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 671b329d-d192-42b2-a279-c14df9e59429
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1e386c70-ce12-4d41-a54b-66a67d951186
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: klief
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0b7af36e-5431-415d-9321-1feed97f3557
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KLIEF = ' ' THEN NULL ELSE LIKP.KLIEF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad8b1f6c-d45c-4623-a657-4b541149077b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: kalsp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7c96bc41-db0e-4c9e-bcd3-8b72fe8d7535
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KALSP = ' ' THEN NULL ELSE LIKP.KALSP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c5791c25-3541-4247-ad3d-d0787077ae3b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: knump
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f4ee27f-f119-4512-a1d4-bcb0f933cbaa
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KNUMP = ' ' THEN NULL ELSE LIKP.KNUMP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 86e489d5-8b8b-4871-b278-3e379699414b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: netwr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b51e41f1-7382-4a4f-ab48-0c8178b496e7
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b911f15e-94d7-471a-87f7-2819f965bdaa
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: aulwe
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3a19ce9b-e2f9-4407-8c53-e79e34a51a94
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.AULWE = ' ' THEN NULL ELSE LIKP.AULWE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d578e61b-7ee1-44a6-9aa0-9cd6fc9e9abf
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: werks
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a0bc708b-6faa-47ea-a49f-8df54fb21a02
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.WERKS = ' ' THEN NULL ELSE LIKP.WERKS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cbec03cb-0e9b-46d0-990f-478e706f8b6d
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: werks_name1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c0afcd8-c06d-462c-89ae-09c832fafb2a
+                stepCounter: 1df95e45-0fd0-4dac-9f27-934a18cdeac6
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 267c24ff-e987-4346-b9b3-e07978792b89
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lcnum
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 84400c0d-6c13-422b-b59a-7a002fc34792
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.LCNUM = ' ' THEN NULL ELSE LIKP.LCNUM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06e44504-c433-406d-9901-263d8af1d89f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: abssc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 86508cfb-e0fc-4dc8-bdef-90c3266907eb
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.ABSSC = ' ' THEN NULL ELSE LIKP.ABSSC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 10fe9458-cd8c-40a0-964a-d06bff2877d4
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: kouhr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 269af47e-25ce-44a6-9fae-41a45fda6a49
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KOUHR = '000000' THEN NULL ELSE LIKP.KOUHR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48e66885-918c-4258-9b14-0b02cc46cb3f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tduhr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cb566ae8-ecee-4af0-90f8-1b710b7bbbe4
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TDUHR = '000000' THEN NULL ELSE LIKP.TDUHR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7e8e4ca-5bbe-4e22-9835-88e0782eb90e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lduhr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c4af9b9-96a3-4c09-a320-51b6d6fa1c43
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.LDUHR = '000000' THEN NULL ELSE LIKP.LDUHR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b9073b71-bf62-4e08-96e4-99f8f63fa3c7
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: wauhr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6b9f7269-de2b-45e6-a2dc-5cb29d3b56aa
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.WAUHR = '000000' THEN NULL ELSE LIKP.WAUHR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6694c879-89da-40d1-b157-e2c40fc6c949
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lgtor
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02510f36-16c9-46c3-acdf-4a5ee9519087
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.LGTOR = ' ' THEN NULL ELSE LIKP.LGTOR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a33f7bbe-e7e5-4251-bc61-76f2d14ceddb
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: t30bt_ltort
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a33f7bbe-e7e5-4251-bc61-76f2d14ceddb
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 492b19e4-8b92-4baa-acb4-95d3daffcd77
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: lgbzo
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6dc220f7-ad60-4ece-a4db-f3d65d767d75
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.LGBZO = ' ' THEN NULL ELSE LIKP.LGBZO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fa0f688-b261-422e-bdd4-f1224e587a1c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: t30ct_lbzot
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5fa0f688-b261-422e-bdd4-f1224e587a1c
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(NULL AS STRING)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b676746-3350-4ed3-a7c3-da65573cdcf0
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: akwae
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ad80256b-a762-4812-a70b-23f14db330cc
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.AKWAE = ' ' THEN NULL ELSE LIKP.AKWAE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c065e2e-ee5c-47ff-be91-61a7c833712e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: akkur
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a4ea4e5b-a28f-4fc0-9c69-4078cf9ccb5b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.AKKUR AS DECIMAL(12,5))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f01a185-2550-409c-9f28-f513471cfd91
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: akprz
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 17e296c9-d494-489d-8e6e-bd4fcc415b86
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.AKPRZ AS DECIMAL(6,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 01d575a4-3ed9-4d0a-81a0-4a1939dedd8d
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: proli
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 24072d1e-cdba-4485-8325-b2f173bf5cf2
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.PROLI = ' ' THEN NULL ELSE LIKP.PROLI END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1c1e92cd-60de-46ca-a3ee-e1f245a9544c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: xblnr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fbefbacf-bb8e-4494-82e6-ab300bbb5c5f
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.XBLNR = ' ' THEN NULL ELSE LIKP.XBLNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db4d1efb-d2fd-4dbe-9792-cfd5f176146d
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: handle
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b09164b-275b-44ba-becc-81ff890acd9f
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.HANDLE = ' ' THEN NULL ELSE LIKP.HANDLE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14f9fb2a-868b-4adc-a44a-d027b616dcbb
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tsegfl
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a3b76b38-ef60-4636-8c36-da7495008b81
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TSEGFL = ' ' THEN NULL ELSE LIKP.TSEGFL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a7831cb-0f2c-4599-9b25-c4a03d93b464
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tsegtp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b3504bc7-4dde-47c3-9c3a-a43816d13d91
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TSEGTP = ' ' THEN NULL ELSE LIKP.TSEGTP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 460b9eaa-0ff0-4188-adc9-4539771b488c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tzonis
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 368499e8-740b-474a-b8e4-f5888222fdf9
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TZONIS = ' ' THEN NULL ELSE LIKP.TZONIS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f35221d-056f-45fe-8280-af8b62f3965c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tzonrc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7fd6a460-bc86-48c7-b991-a5e90182a06e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TZONRC = ' ' THEN NULL ELSE LIKP.TZONRC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06019468-b3e7-4cca-a96b-f3599d4ac51c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: cont_dg
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f272d69-7a2b-4232-a98b-52af7aec1665
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.CONT_DG = ' ' THEN NULL ELSE LIKP.CONT_DG END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6b263c6-4eae-4270-9121-9858c6e84fed
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: verursys
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 753bda72-2172-4c58-9c8c-78a3cd88241c
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.VERURSYS = ' ' THEN NULL ELSE LIKP.VERURSYS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 842f9845-126f-4ea8-9216-01bb54b8d5f2
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: kzwab
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0b402a25-7adf-4d5f-9e2c-390e305a538b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.KZWAB = ' ' THEN NULL ELSE LIKP.KZWAB END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 131a8ce5-e16a-4e71-93df-086b45102bc1
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vlstk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 59c1f3ac-4727-4367-aa9b-47ece3b4d404
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.VLSTK = ' ' THEN NULL ELSE LIKP.VLSTK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3567dddd-afc5-4e68-acb5-c0e76e31c893
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tcode
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f9b241fa-60b4-454d-9d09-78fc811d0599
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TCODE = ' ' THEN NULL ELSE LIKP.TCODE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e44b8fdf-0154-4900-acf1-ec0f21ce9619
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vsart
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4af9ec8d-fda3-4a36-8fd8-07a436cb646d
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.VSART = ' ' THEN NULL ELSE LIKP.VSART END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d09ee2b3-9457-4fc4-9f6c-e0f2b0df9930
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: trmtyp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 239ab05f-182b-4e55-9fe7-aa09a8868d4c
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.TRMTYP = ' ' THEN NULL ELSE LIKP.TRMTYP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a99ade5d-518a-4399-a52c-4cdced01f831
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: sdabw
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 40d79e6e-66dc-4368-9428-0c546f71734e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SDABW = ' ' THEN NULL ELSE LIKP.SDABW END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 86658725-2dc7-4e65-80d6-400ae12be2a4
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vbund
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 335515c9-ad15-4f70-a5e1-0f54bd8dbeb9
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.VBUND = ' ' THEN NULL ELSE LIKP.VBUND END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: de73b3e6-976e-49f2-b19a-0956894105b3
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: xwoff
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cfe6c34a-8640-437e-886c-74f444acc733
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.XWOFF = ' ' THEN NULL ELSE LIKP.XWOFF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf4ab20f-7a66-47c8-942f-b368e4789024
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: dirta
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d9da576d-2b2a-4b70-b90a-84bb921a79a8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.DIRTA = ' ' THEN NULL ELSE LIKP.DIRTA END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 89bf15ad-916a-4d21-9e63-22afa321274f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: prvbe
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c59ade02-1de3-4241-8056-b0c97c719c09
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.PRVBE = ' ' THEN NULL ELSE LIKP.PRVBE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d916fa9b-9303-4f7a-821e-4f10a9187406
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: folar
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6d5cc250-6aeb-4fcc-a52f-6e6e0471b737
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.FOLAR = ' ' THEN NULL ELSE LIKP.FOLAR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba9a05e7-3a44-4104-b584-4c358c09fc24
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: podat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5b7fca94-b258-4823-a75e-d39f7180e238
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: TRY_TO_TIMESTAMP(LIKP.PODAT,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9c731836-0271-4782-be8f-d51a5008eec5
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: potim
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3db96212-e707-4c49-92a7-754ec5e15ec9
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.POTIM = '000000' THEN NULL ELSE LIKP.POTIM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f9353a6-5f03-4c4d-8881-1ad5e2c46d14
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: vganz
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0b8d2e7f-2829-4b0b-8b6f-7f85dabc58f5
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.VGANZ AS INT)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27ccd0c4-fb37-4255-8769-77662c3f831a
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: imwrk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 21555a66-b9f0-48c6-a615-1501b0ed8fa8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.IMWRK = ' ' THEN NULL ELSE LIKP.IMWRK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 969923d9-1ff7-41a6-a68e-8504dc241194
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_loekz
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2830c80f-df67-44d7-ad4a-90a8d29926f5
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_LOEKZ = ' ' THEN NULL ELSE LIKP.SPE_LOEKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 37ecb86f-1470-4437-881d-b2e4109b6ed1
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_loc_seq
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c295ba0b-940b-43f9-a503-9c066b11471b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_LOC_SEQ = ' ' THEN NULL ELSE LIKP.SPE_LOC_SEQ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3088d9e5-c221-4b31-8307-249ab119758f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_acc_app_sts
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b924c19-5187-4ad1-b76c-a8821c7b275c
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_ACC_APP_STS = ' ' THEN NULL ELSE LIKP.SPE_ACC_APP_STS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fb211b97-5a1c-4930-96f8-14b15212a4cf
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_shp_inf_sts
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e2cb75f-eee9-4ce9-9108-bae239b30cf7
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_SHP_INF_STS = ' ' THEN NULL ELSE LIKP.SPE_SHP_INF_STS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03802376-f658-419d-aac1-8ef8463d3dce
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_ret_canc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e19b0982-0202-4c26-a891-4688dd0df3b0
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_RET_CANC = ' ' THEN NULL ELSE LIKP.SPE_RET_CANC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6616598-dd0b-45c4-afce-d6bcb91295d8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_wauhr_ist
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9170906d-19eb-4742-95cc-a5c9c37bc309
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_WAUHR_IST = '000000' THEN NULL ELSE LIKP.SPE_WAUHR_IST END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: afd70543-4edb-4325-b4a8-7d8321317d64
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_wazone_ist
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 931ab749-4843-466a-8436-09a086c21939
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_WAZONE_IST = ' ' THEN NULL ELSE LIKP.SPE_WAZONE_IST END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 61f68ae3-6eaf-4ede-97c0-8216ae7b5259
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_rev_vlstk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4f4220c4-c45d-4e83-aefa-5e5c84e16808
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_REV_VLSTK = ' ' THEN NULL ELSE LIKP.SPE_REV_VLSTK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39587f32-fd62-4864-a51a-e0ce14f7e30c
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_le_scenario
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bec21d7d-0262-47fc-b2db-e2ea1b15cb43
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_LE_SCENARIO = ' ' THEN NULL ELSE LIKP.SPE_LE_SCENARIO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f521bee5-75a0-4363-a1e1-69cbb8d8104b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_orig_sys
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c02c505-9924-4561-881b-67909780bb3c
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_ORIG_SYS = ' ' THEN NULL ELSE LIKP.SPE_ORIG_SYS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0b670093-5f35-4fc3-a3ea-154d2802e9ca
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_chng_sys
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 094ab01a-09d2-4c26-8129-bdedafb0511e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_CHNG_SYS = ' ' THEN NULL ELSE LIKP.SPE_CHNG_SYS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: efc15798-1f8a-4924-88b1-6203de52d9b7
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_georoute
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2f95dbcc-c57d-4739-bfd5-48d9832b06cf
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_GEOROUTE = ' ' THEN NULL ELSE LIKP.SPE_GEOROUTE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 16431484-441d-42be-b1b4-f945c12f6359
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_georouteind
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8a221aa5-1808-4317-acab-c5b2674fba76
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_GEOROUTEIND = ' ' THEN NULL ELSE LIKP.SPE_GEOROUTEIND END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac663edb-85b6-4426-9629-127c3cb59144
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_carrier_ind
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 80270c49-396c-4528-9157-13c0407c04a1
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_CARRIER_IND = ' ' THEN NULL ELSE LIKP.SPE_CARRIER_IND END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b2d214a-a7a9-463b-8223-16e82c805da1
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_gts_rel
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 575f09a8-d9fc-4d31-9b99-8ab69931629c
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_GTS_REL = ' ' THEN NULL ELSE LIKP.SPE_GTS_REL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a6fc703-4f96-4f11-bfaf-546acda0b30e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_gts_rt_cde
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5ea8e14-2215-40ab-b9a0-bb7473eb8543
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_GTS_RT_CDE = ' ' THEN NULL ELSE LIKP.SPE_GTS_RT_CDE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 662385d2-0af4-4a97-b219-64c3da75d62d
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: spe_rel_tmstmp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4925a55b-584a-44cb-a22e-7f7c328f6fa9
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CAST(LIKP.SPE_REL_TMSTMP AS DECIMAL(19,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ad7b81b-440a-40cd-bc47-dfccff9306db
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_unit_system
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d5c0127-f2c3-471b-a21b-d0d4c73affc9
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_UNIT_SYSTEM = ' ' THEN NULL ELSE LIKP.SPE_UNIT_SYSTEM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d829a6d3-b365-41d2-8e75-72871d1a67d1
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_inv_bfr_gi
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f1a47998-f20b-481e-ac42-71ac75e7b7b8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_INV_BFR_GI = ' ' THEN NULL ELSE LIKP.SPE_INV_BFR_GI END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4d2030cc-6036-4074-a214-3e8b4633aa72
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_qi_status
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 235fabb0-8d08-42b7-9a9a-10343bc3ecf0
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_QI_STATUS = ' ' THEN NULL ELSE LIKP.SPE_QI_STATUS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6bc6ff2c-eb98-4c93-9539-7726408e8553
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_red_ind
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 70ef671a-480e-4a14-aead-6bb496c5faf8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_RED_IND = ' ' THEN NULL ELSE LIKP.SPE_RED_IND END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5816d021-063c-40d6-85dc-9ec579df8404
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: sakes
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b7e7c8d2-cde0-4e5c-8ff0-e086c4ae57aa
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SAKES = ' ' THEN NULL ELSE LIKP.SAKES END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 296edeed-9d37-4996-89f3-f203473c9645
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_lifex_type
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 757721cb-8caf-47b0-9811-0fd9283e16c0
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_LIFEX_TYPE = ' ' THEN NULL ELSE LIKP.SPE_LIFEX_TYPE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1ca6d603-c6b9-4deb-b469-93745e59d921
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_ttype
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c3fbe63-5851-4a13-b214-c05291f63344
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_TTYPE = ' ' THEN NULL ELSE LIKP.SPE_TTYPE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a8786ad4-266a-4500-b192-65587651ea59
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_pro_number
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d01d2dc-3da6-46d0-ad22-4c21c3bc5399
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_PRO_NUMBER = ' ' THEN NULL ELSE LIKP.SPE_PRO_NUMBER END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39c5efd8-f5dd-43ba-9a65-06c968ea58c6
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: loc_guid
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b674438-87f1-4f99-8df0-3944471ab63e
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 068cd2ff-99a3-48d4-93d5-7ccbef171f59
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: spe_billing_ind
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2047db1c-c778-47eb-8b0b-a5a6d505ceca
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.SPE_BILLING_IND = ' ' THEN NULL ELSE LIKP.SPE_BILLING_IND END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: de92d5f6-08dc-4335-9485-e7e9bfaf886d
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: printer_profile
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ac42a61-d803-4b57-9042-9f15a1dc0139
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.PRINTER_PROFILE = ' ' THEN NULL ELSE LIKP.PRINTER_PROFILE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a156e01-dcbb-40d0-9ce0-440812823017
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: msr_active
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7baa1b55-3999-4b33-a539-d500ca6326e2
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.MSR_ACTIVE = ' ' THEN NULL ELSE LIKP.MSR_ACTIVE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 726fb5cb-2b96-49f4-882a-a9d57c8b590b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: prtnr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5dcb1489-64b0-40ee-ab30-20c8d95fbb79
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.PRTNR = '0000000000' THEN NULL ELSE LIKP.PRTNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fe94974f-614e-452d-94b8-fe27805cae3f
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: stge_loc_change
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a01555be-52df-4663-b914-679cc66e3782
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.STGE_LOC_CHANGE = ' ' THEN NULL ELSE LIKP.STGE_LOC_CHANGE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6f8fc82-06dc-42b3-83c3-f9ecf62d109b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: tm_ctrl_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6f8fc82-06dc-42b3-83c3-f9ecf62d109b
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CASE WHEN LIKP.TM_CTRL_KEY = ' ' THEN NULL ELSE LIKP.TM_CTRL_KEY END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ebdc59b-a6e8-4c84-85af-531186a34c34
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: dlv_split_initia
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ebdc59b-a6e8-4c84-85af-531186a34c34
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CASE WHEN LIKP.DLV_SPLIT_INITIA = ' ' THEN NULL ELSE LIKP.DLV_SPLIT_INITIA END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e7b4ca4-f376-4f58-a92c-3dd3d9829fcb
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: dlv_version
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e7b4ca4-f376-4f58-a92c-3dd3d9829fcb
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CASE WHEN LIKP.DLV_VERSION = '0000' THEN NULL ELSE LIKP.DLV_VERSION END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 852bab2a-1534-4547-8cbc-6e54c1b98b21
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: handoverloc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 852bab2a-1534-4547-8cbc-6e54c1b98b21
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CASE WHEN LIKP.HANDOVERLOC = ' ' THEN NULL ELSE LIKP.HANDOVERLOC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38b2a5ce-9930-4d5c-9c1a-7623a57c3802
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: handoverdate
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 38b2a5ce-9930-4d5c-9c1a-7623a57c3802
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: TRY_TO_TIMESTAMP(LIKP.HANDOVERDATE,'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b80995a6-7f66-45cc-a916-aa0ae84f781a
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: handovertime
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b80995a6-7f66-45cc-a916-aa0ae84f781a
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CASE WHEN LIKP.HANDOVERTIME = '000000' THEN NULL ELSE LIKP.HANDOVERTIME END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: afc95941-e3ff-499d-9c66-f12ecaa5c3c8
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: handovertzone
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: afc95941-e3ff-499d-9c66-f12ecaa5c3c8
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CASE WHEN LIKP.HANDOVERTZONE = ' ' THEN NULL ELSE LIKP.HANDOVERTZONE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b3117cf-92a6-43c6-9848-13c24118b732
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: bev1_luleinh
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b3117cf-92a6-43c6-9848-13c24118b732
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: LIKP.BEV1_LULEINH
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 562a4f34-05a4-435e-8c89-0faad809895e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: bev1_rpfaess
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 562a4f34-05a4-435e-8c89-0faad809895e
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(LIKP.BEV1_RPFAESS AS DECIMAL(9,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 17bdb2f9-de0d-44d1-ac18-fd0754a39091
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: bev1_rpkist
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 17bdb2f9-de0d-44d1-ac18-fd0754a39091
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(LIKP.BEV1_RPKIST AS DECIMAL(9,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aaa9c9f3-70c5-4036-ae3c-14154b8303a3
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: bev1_rpcont
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aaa9c9f3-70c5-4036-ae3c-14154b8303a3
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(LIKP.BEV1_RPCONT AS DECIMAL(9,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c430b9e-69d0-42e7-a873-cf947e2482c3
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: bev1_rpsonst
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c430b9e-69d0-42e7-a873-cf947e2482c3
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(LIKP.BEV1_RPSONST AS DECIMAL(9,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9bacd87b-304b-4bcc-92b1-a2e71df52537
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: bev1_rpflgnr
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9bacd87b-304b-4bcc-92b1-a2e71df52537
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: LIKP.BEV1_RPFLGNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d0d8915-8aae-4e32-b7d1-3fd8ec92f696
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: borgr_grp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 33740e56-e529-4dcf-8ee7-6a8b8f2bf818
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.BORGR_GRP = ' ' THEN NULL ELSE LIKP.BORGR_GRP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 257d32ee-f6ad-4798-a540-23bd42a1343a
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: slt_delete
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 257d32ee-f6ad-4798-a540-23bd42a1343a
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: LIKP.SLT_DELETE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d9194119-0d33-4e99-b334-cdff6531317b
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: slt_update
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d9194119-0d33-4e99-b334-cdff6531317b
+                stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+            transform: CAST(LIKP.SLT_UPDATE AS DECIMAL(22,7))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 461f53b2-46ac-4929-bf96-8f9efeda7386
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: fk_vm_general_sp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42bf7cdb-50eb-453e-ad73-6ffcb39bbfd8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: CASE WHEN LIKP.MANDT IS NULL OR VBPA_SP.LIFNR_SP IS NULL THEN NULL ELSE CONCAT_WS('~','5',LIKP.MANDT,VBPA_SP.LIFNR_SP) END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26aedb0d-9867-4e85-922b-ff7d6eb48bb3
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: tvro_traztd
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 98617b9e-8d5b-4652-a194-8361aa3068db
+                stepCounter: 0b273b89-80dc-4b4a-9c42-ba8f0da0f265
+            transform: CAST(CAST(TVRO.TRAZTD AS INT) /10000 / 24 AS DECIMAL(11,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a19cb05a-ff52-44f9-bb27-e5c42b0e521e
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vbuk_wbstk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 00bc50cc-fdc7-4d2e-a574-bc9b024effce
+                stepCounter: b5837233-30c3-4b74-9efe-930827c0a05a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1dd92ea6-7fdc-40ea-b0c5-e8b96bd02f04
+          stepCounter: 5afab43d-2139-47f6-8f61-ceb3c1ce66ad
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vbuk_fkstk
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b374c833-f28f-4d9b-9fd9-28cb00c01bee
+                stepCounter: b5837233-30c3-4b74-9efe-930827c0a05a
+            transform: ""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          LIKP: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+          T001W: 1df95e45-0fd0-4dac-9f27-934a18cdeac6
+          T006A_GEWEI: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T006A_VOLEH: 315f2b4d-a5b2-453d-9c6b-58962958ca64
+          T151T: f632d097-4c4a-495d-acf2-c592c73cfc39
+          T171T: 2d2364f3-574d-47b6-8a8d-e6b74b86c631
+          TVFST: 22d59d02-0468-4625-9155-6467d1cf7b67
+          TVKBT: 067fe8e7-ae36-4212-9db4-1bdf7d13d9c6
+          TVKO: bef9f6eb-a9ed-4dc6-bfb5-7e0477733f8d
+          TVKOT: dab9e753-4900-4771-b22d-5415089c558a
+          TVKOT_IV: dab9e753-4900-4771-b22d-5415089c558a
+          TVLST: c91ac57c-263f-4f8d-af26-be8318c472fe
+          TVRO: 0b273b89-80dc-4b4a-9c42-ba8f0da0f265
+          VBPA_SP: 797b1f1d-077e-41c3-9e24-e23c0268408a
+          VBUK: 55ba4129-6eb6-4c04-8afd-b37897c5f71b
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: LIKP
+          - locationName: SRC_SAP
+            nodeName: T001W
+          - locationName: SRC_SAP
+            nodeName: TVKO
+          - locationName: SRC_SAP
+            nodeName: TVRO
+          - locationName: WORK
+            nodeName: STG_T006A
+          - locationName: WORK
+            nodeName: STG_T151T
+          - locationName: WORK
+            nodeName: STG_T171T
+          - locationName: WORK
+            nodeName: STG_TVFST
+          - locationName: WORK
+            nodeName: STG_TVKBT
+          - locationName: WORK
+            nodeName: STG_TVKOT
+          - locationName: WORK
+            nodeName: STG_TVLST
+          - locationName: WORK
+            nodeName: STG_UNITY_SAP_TXN_PARTNERS_PIVOT
+          - locationName: WORK
+            nodeName: STG_VBUK
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'LIKP') }} 
+            LEFT OUTER JOIN {{ ref('SRC_SAP', 'TVKO') }} ON LIKP.MANDT = TVKO.MANDT AND LIKP.VKORG = TVKO.VKORG 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_TVKOT') }} AS TVKOT ON LIKP.MANDT = TVKOT.MANDT AND LIKP.VKORG = TVKOT.VKORG 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_TVKOT') }} AS TVKOT_IV ON LIKP.MANDT = TVKOT_IV.MANDT AND LIKP.VKOIV = TVKOT_IV.VKORG 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T171T') }} AS T171T ON LIKP.MANDT = T171T.MANDT AND LIKP.BZIRK = T171T.BZIRK 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_TVFST') }} AS TVFST ON LIKP.MANDT = TVFST.MANDT AND LIKP.FAKSK = TVFST.FAKSP 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_TVLST') }} AS TVLST ON LIKP.MANDT = TVLST.MANDT AND LIKP.LIFSK = TVLST.LIFSP 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T151T') }} AS T151T ON LIKP.MANDT = T151T.MANDT AND LIKP.KDGRP = T151T.KDGRP 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_TVKBT') }} AS TVKBT ON LIKP.MANDT = TVKBT.MANDT AND LIKP.VKBUR = TVKBT.VKBUR 
+            LEFT OUTER JOIN {{ ref('SRC_SAP', 'T001W') }} ON LIKP.MANDT = T001W.MANDT AND LIKP.WERKS = T001W.WERKS 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T006A') }} AS T006A_VOLEH ON LIKP.MANDT = T006A_VOLEH.MANDT AND LIKP.VOLEH = T006A_VOLEH.MSEHI 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T006A') }} AS T006A_GEWEI ON LIKP.MANDT = T006A_GEWEI.MANDT AND LIKP.GEWEI = T006A_GEWEI.MSEHI 
+            LEFT OUTER JOIN {{ ref('SRC_SAP', 'TVRO') }} ON LIKP.MANDT = TVRO.MANDT AND LIKP.ROUTE = TVRO.ROUTE 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_UNITY_SAP_TXN_PARTNERS_PIVOT') }} AS VBPA_SP ON CASE WHEN LIKP.MANDT IS NULL OR LIKP.VBELN IS NULL THEN NULL ELSE CONCAT_WS('~','5',LIKP.MANDT,LIKP.VBELN,'000000') END = VBPA_SP.PK_TXN_PARTNERS 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_VBUK') }} AS VBUK ON LIKP.MANDT = VBUK.MANDT AND LIKP.VBELN = VBUK.VBELN WHERE LIKP.SLT_DELETE = ' '
+        name: UNITY_SAP_DELIVERY_HDR_P1_STG
+        noLinkRefs: []
+  name: UNITY_SAP_DELIVERY_HDR_P1_STG
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

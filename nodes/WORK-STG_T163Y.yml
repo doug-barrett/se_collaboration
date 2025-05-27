@@ -1,0 +1,112 @@
+fileVersion: 1
+id: b849c252-6799-4e79-90f9-f275eccf8c0c
+name: STG_T163Y
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 759670ff-dcf2-432a-acbe-64fbd8a85b0c
+          stepCounter: b849c252-6799-4e79-90f9-f275eccf8c0c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 47bc6583-11ab-4e71-a27c-83952bd1cb74
+                stepCounter: d47e6f30-1efd-49a6-9c89-db310880a7b1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 13458093-f10b-4a03-b2cd-d75fa841ab88
+          stepCounter: b849c252-6799-4e79-90f9-f275eccf8c0c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PSTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c4b1a930-ae96-4270-a424-20e30a1e7001
+                stepCounter: d47e6f30-1efd-49a6-9c89-db310880a7b1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d3e8c5d-a736-4c6f-a83d-d479417fa975
+          stepCounter: b849c252-6799-4e79-90f9-f275eccf8c0c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: da792a23-83d4-4168-8d55-83cd7aa73ab1
+                stepCounter: d47e6f30-1efd-49a6-9c89-db310880a7b1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ddd54249-5613-4b62-8138-003448c212ac
+          stepCounter: b849c252-6799-4e79-90f9-f275eccf8c0c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: SLT_UPDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ffe4b470-c5cb-4d3f-90bf-2a5e282a7dac
+                stepCounter: d47e6f30-1efd-49a6-9c89-db310880a7b1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0ac8e03-4041-4611-9c5d-6bdb0467913f
+          stepCounter: b849c252-6799-4e79-90f9-f275eccf8c0c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: SPRAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab0ae886-819f-4201-8d47-9894753910b6
+                stepCounter: d47e6f30-1efd-49a6-9c89-db310880a7b1
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          T163Y: d47e6f30-1efd-49a6-9c89-db310880a7b1
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: T163Y
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'T163Y') }} "T163Y"
+            WHERE SPRAS = 'E'
+        name: STG_T163Y
+        noLinkRefs: []
+  name: STG_T163Y
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

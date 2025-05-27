@@ -1,6 +1,6 @@
 fileVersion: 1
 id: f3490556-9274-41aa-82e1-5079bc85541e
-name: unity_sap_sales_doc_pos_p1_stg
+name: UNITY_SAL_SALES_DOC_POS_P1_STG
 operation:
   config:
     insertStrategy: INSERT
@@ -1409,9 +1409,9 @@ operation:
             left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_L6 on vbap.mandt =T179T_L6.mandt and concat(VBAP.PRODH1,VBAP.PRODH2,VBAP.PRODH3,VBAP.PRODH4,VBAP.PRODH5,VBAP.PRODH6) = T179T_L6.PRODH 
             left outer join {{ ref('DWH', 'STG_T179T') }} as T179T_L7 on vbap.mandt =T179T_L7.mandt and concat(VBAP.PRODH1,VBAP.PRODH2,VBAP.PRODH3,VBAP.PRODH4,VBAP.PRODH5,VBAP.PRODH6,VBAP.PRODH7) = T179T_L7.PRODH 
             left outer join {{ ref('DWH', 'STG_MAKT') }} AS makt on vbap.mandt = makt.mandt and vbap.matnr = makt.matnr
-        name: unity_sap_sales_doc_pos_p1_stg
+        name: UNITY_SAL_SALES_DOC_POS_P1_STG
         noLinkRefs: []
-  name: unity_sap_sales_doc_pos_p1_stg
+  name: UNITY_SAL_SALES_DOC_POS_P1_STG
   overrideSQL: false
   schema: ""
   sqlType: Stage

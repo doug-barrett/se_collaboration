@@ -1,0 +1,99 @@
+fileVersion: 1
+id: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+name: hdr_table_vbrk
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Extracts header information from the VBRK table.
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b6d776a8-436d-4151-b6d5-2ea2166e6a8c
+          stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: HDR_TABLE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6d776a8-436d-4151-b6d5-2ea2166e6a8c
+                stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+            transform: "'VBAK'"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39c48ace-623d-4eee-8751-4f8782f58cd1
+          stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39c48ace-623d-4eee-8751-4f8782f58cd1
+                stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+            transform: vbrk.mandt
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bed780b6-17fc-4ca6-9f3d-6327f6d2a7eb
+          stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bed780b6-17fc-4ca6-9f3d-6327f6d2a7eb
+                stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+            transform: vbrk.vbeln
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8933f6fb-f70f-496e-99c4-fd12993bcf87
+          stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8933f6fb-f70f-496e-99c4-fd12993bcf87
+                stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+            transform: VBrK.VBTYP
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          VBRK: 8a639142-fc71-4d1c-8263-0ecf36bb27df
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: VBRK
+        join:
+          joinCondition: from {{ ref('SRC_SAP', 'VBRK') }} where vbrk.slt_delete = ' '
+        name: hdr_table_vbrk
+        noLinkRefs: []
+  name: hdr_table_vbrk
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,88 @@
+fileVersion: 1
+id: 1be9c91c-c7d3-4378-8f40-a667eadfa565
+name: STG_LFA1
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Final selection from LFA1.
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0ae18e88-4cb1-4759-a573-2ddefee80aac
+          stepCounter: 1be9c91c-c7d3-4378-8f40-a667eadfa565
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: LFA1_PK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 871c8072-c7b1-4064-8793-c4456b7c0026
+                stepCounter: 7595d307-cf7c-4e23-b4b1-ad9fb3982660
+            transform: CASE WHEN LFA1.MANDT IS NULL OR LFA1.LIFNR IS NULL THEN NULL ELSE CONCAT_WS('~','5',LFA1.MANDT,LFA1.LIFNR) END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2aee13d4-af55-4214-8c7c-6b98b1624436
+          stepCounter: 1be9c91c-c7d3-4378-8f40-a667eadfa565
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: LIFNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f4566f26-3f69-4232-929a-894d4aceea6c
+                stepCounter: 7595d307-cf7c-4e23-b4b1-ad9fb3982660
+            transform: LIFNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd08a59d-64fb-40cf-9c5e-ca4de9c85a46
+          stepCounter: 1be9c91c-c7d3-4378-8f40-a667eadfa565
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: NAME1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eced122f-b191-43be-b49e-2f405f1a60aa
+                stepCounter: 7595d307-cf7c-4e23-b4b1-ad9fb3982660
+            transform: NAME1
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          LFA1: 7595d307-cf7c-4e23-b4b1-ad9fb3982660
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: LFA1
+        join:
+          joinCondition: FROM {{ ref('SRC_SAP', 'LFA1') }} LFA1
+        name: STG_LFA1
+        noLinkRefs: []
+  name: STG_LFA1
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

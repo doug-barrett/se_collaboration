@@ -1,0 +1,84 @@
+fileVersion: 1
+id: a86839a8-8f2f-405d-8524-2e6d1b5f43c6
+name: UNITY_SAP_DELIVERY_HDR_P2_STG
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: string
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a76e4f1-5546-4f26-99b9-cc6b1daddd40
+          stepCounter: a86839a8-8f2f-405d-8524-2e6d1b5f43c6
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0a76e4f1-5546-4f26-99b9-cc6b1daddd40
+                stepCounter: a86839a8-8f2f-405d-8524-2e6d1b5f43c6
+            transform: MANDT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3250fe43-d7e9-43aa-83e4-b4f03076aa54
+          stepCounter: a86839a8-8f2f-405d-8524-2e6d1b5f43c6
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UEVBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3250fe43-d7e9-43aa-83e4-b4f03076aa54
+                stepCounter: a86839a8-8f2f-405d-8524-2e6d1b5f43c6
+            transform: UEVBELN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60e5ae1f-1609-4037-8b58-61bfa9e694a7
+          stepCounter: a86839a8-8f2f-405d-8524-2e6d1b5f43c6
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: TRACKING_DETAIL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 60e5ae1f-1609-4037-8b58-61bfa9e694a7
+                stepCounter: a86839a8-8f2f-405d-8524-2e6d1b5f43c6
+            transform: "LISTAGG(CONCAT(XSITD,': ', TRACKING_NUMBER), ';  ')"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: UNITY_SAP_DELIVERY_HDR_P2_STG_T2
+        join:
+          joinCondition: FROM {{ ref('WORK', 'UNITY_SAP_DELIVERY_HDR_P2_STG_T2') }} GROUP BY MANDT, UEVBELN
+        name: UNITY_SAP_DELIVERY_HDR_P2_STG
+        noLinkRefs: []
+  name: UNITY_SAP_DELIVERY_HDR_P2_STG
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

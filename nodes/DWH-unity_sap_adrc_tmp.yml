@@ -1,0 +1,105 @@
+fileVersion: 1
+id: 1ec2d460-ada6-4525-8e77-9d6525950c51
+name: unity_sap_adrc_tmp
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Address data from SAP ADRC table.
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b3530b17-60dd-4086-95af-6e9885a70651
+          stepCounter: 1ec2d460-ada6-4525-8e77-9d6525950c51
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: CLIENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b3530b17-60dd-4086-95af-6e9885a70651
+                stepCounter: 1ec2d460-ada6-4525-8e77-9d6525950c51
+            transform: ADRC.CLIENT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2584c04e-6cde-4472-b035-a730c8bbc830
+          stepCounter: 1ec2d460-ada6-4525-8e77-9d6525950c51
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: ADDRNUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2584c04e-6cde-4472-b035-a730c8bbc830
+                stepCounter: 1ec2d460-ada6-4525-8e77-9d6525950c51
+            transform: ADRC.ADDRNUMBER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 273b4502-4f9c-46fd-94fc-ccbff4e20bd8
+          stepCounter: 1ec2d460-ada6-4525-8e77-9d6525950c51
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: NAME1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 273b4502-4f9c-46fd-94fc-ccbff4e20bd8
+                stepCounter: 1ec2d460-ada6-4525-8e77-9d6525950c51
+            transform: ADRC.NAME1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b026fb5f-6cf5-4262-ace5-f04fe3ca2f8a
+          stepCounter: 1ec2d460-ada6-4525-8e77-9d6525950c51
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: COUNTRY_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b026fb5f-6cf5-4262-ace5-f04fe3ca2f8a
+                stepCounter: 1ec2d460-ada6-4525-8e77-9d6525950c51
+            transform: ADRC.COUNTRY
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          ADRC: 0befff7e-c543-4e43-9f0a-de98eab34c26
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: ADRC
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'ADRC') }} 
+            WHERE slt_delete = ' ' and nation = ' ' and date_to = '99991231'
+        name: unity_sap_adrc_tmp
+        noLinkRefs: []
+  name: unity_sap_adrc_tmp
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

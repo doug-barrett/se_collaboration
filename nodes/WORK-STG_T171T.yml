@@ -1,0 +1,112 @@
+fileVersion: 1
+id: 2d2364f3-574d-47b6-8a8d-e6b74b86c631
+name: STG_T171T
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f2c17a8-7055-4489-97c8-99dbd8f62f8d
+          stepCounter: 2d2364f3-574d-47b6-8a8d-e6b74b86c631
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: BZTXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ffb06fbc-ed7b-43a9-b002-a7eccb428939
+                stepCounter: 98e34a06-50e0-47a7-b62e-1eede86becbb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a72e8774-16d7-4f4b-a846-2ac46a55c395
+          stepCounter: 2d2364f3-574d-47b6-8a8d-e6b74b86c631
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: SPRAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5308f189-729e-47a2-b653-7edfd1aa86ba
+                stepCounter: 98e34a06-50e0-47a7-b62e-1eede86becbb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f307e1a7-f441-4bb2-938d-c1945de6d1ea
+          stepCounter: 2d2364f3-574d-47b6-8a8d-e6b74b86c631
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: be97649c-36f0-4701-9ecb-e356c7cc5c76
+                stepCounter: 98e34a06-50e0-47a7-b62e-1eede86becbb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b33fba69-d8e1-4146-a052-48484fdd955e
+          stepCounter: 2d2364f3-574d-47b6-8a8d-e6b74b86c631
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: BZIRK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: efc1bcf7-bb99-47ae-8b36-2a1c7eba8909
+                stepCounter: 98e34a06-50e0-47a7-b62e-1eede86becbb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6088667b-9b65-4c74-8f4c-854b6865a878
+          stepCounter: 2d2364f3-574d-47b6-8a8d-e6b74b86c631
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SLT_UPDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 95b528ae-50f3-44ed-bf06-bd33f5792ce5
+                stepCounter: 98e34a06-50e0-47a7-b62e-1eede86becbb
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          T171T: 98e34a06-50e0-47a7-b62e-1eede86becbb
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: T171T
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'T171T') }} "T171T"
+            WHERE SPRAS = 'E'
+        name: STG_T171T
+        noLinkRefs: []
+  name: STG_T171T
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

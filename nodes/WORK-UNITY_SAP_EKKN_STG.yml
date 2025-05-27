@@ -1,0 +1,76 @@
+fileVersion: 1
+id: 940f304f-d9f1-4a6a-8129-d860ada4d736
+name: UNITY_SAP_EKKN_STG
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: |-
+    create table called UNITY_SAP_EKKN_STG from SELECT 
+    PK_EKKN AS PK_EKKN
+    , PRCTR AS PRCTR
+    FROM UNITY_SAP_EKKN_STG_EKKN
+    GROUP BY PK_EKKN
+    , EKKN.PRCTR
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5aa03e81-a196-4bac-8126-fb51fe8adec7
+          stepCounter: 940f304f-d9f1-4a6a-8129-d860ada4d736
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PK_EKKN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5aa03e81-a196-4bac-8126-fb51fe8adec7
+                stepCounter: 940f304f-d9f1-4a6a-8129-d860ada4d736
+            transform: PK_EKKN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 91fc5952-d4f5-474c-a5f1-6a6d07fef5d5
+          stepCounter: 940f304f-d9f1-4a6a-8129-d860ada4d736
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PRCTR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 91fc5952-d4f5-474c-a5f1-6a6d07fef5d5
+                stepCounter: 940f304f-d9f1-4a6a-8129-d860ada4d736
+            transform: PRCTR
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: UNITY_SAP_EKKN_STG_EKKN
+        join:
+          joinCondition: FROM {{ ref('WORK', 'UNITY_SAP_EKKN_STG_EKKN') }} GROUP BY PK_EKKN , EKKN.PRCTR
+        name: UNITY_SAP_EKKN_STG
+        noLinkRefs: []
+  name: UNITY_SAP_EKKN_STG
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

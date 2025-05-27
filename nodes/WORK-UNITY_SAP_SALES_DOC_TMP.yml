@@ -1,0 +1,155 @@
+fileVersion: 1
+id: ec3b3e5e-1f72-4cfd-a730-d5f113907e7f
+name: UNITY_SAP_SALES_DOC_TMP
+operation:
+  config:
+    insertStrategy: UNION
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Sales document data from SAP
+  isMultisource: true
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14d27e38-b90f-46df-9ae4-4f495021be51
+          stepCounter: ec3b3e5e-1f72-4cfd-a730-d5f113907e7f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: HDR_TABLE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 14d27e38-b90f-46df-9ae4-4f495021be51
+                stepCounter: ec3b3e5e-1f72-4cfd-a730-d5f113907e7f
+            transform: "'VBAK'"
+          - columnReferences: []
+            transform: "'VBRK'"
+          - columnReferences: []
+            transform: "'LIKP'"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b332a73b-f8d7-4b13-8255-bb0f51f9bb2b
+          stepCounter: ec3b3e5e-1f72-4cfd-a730-d5f113907e7f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b332a73b-f8d7-4b13-8255-bb0f51f9bb2b
+                stepCounter: ec3b3e5e-1f72-4cfd-a730-d5f113907e7f
+            transform: VBAK.MANDT
+          - columnReferences:
+              - columnCounter: 551e1081-3b57-46a5-8b4b-035b838958f7
+                stepCounter: 88fdad87-32b0-4adb-b49b-636ad9c7f72e
+            transform: ""
+          - columnReferences:
+              - columnCounter: 42bf7cdb-50eb-453e-ad73-6ffcb39bbfd8
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 295671e7-2806-48ec-b6fe-b4e88563adc1
+          stepCounter: ec3b3e5e-1f72-4cfd-a730-d5f113907e7f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 295671e7-2806-48ec-b6fe-b4e88563adc1
+                stepCounter: ec3b3e5e-1f72-4cfd-a730-d5f113907e7f
+            transform: VBAK.VBELN
+          - columnReferences:
+              - columnCounter: 6b23aaa5-e28f-48b6-9bb2-3c35374a0536
+                stepCounter: 88fdad87-32b0-4adb-b49b-636ad9c7f72e
+            transform: ""
+          - columnReferences:
+              - columnCounter: f2a192fc-c3ca-4271-b398-8a4f83f1d459
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c95b13b-1a78-44ce-bb56-a394df4f26d9
+          stepCounter: ec3b3e5e-1f72-4cfd-a730-d5f113907e7f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c95b13b-1a78-44ce-bb56-a394df4f26d9
+                stepCounter: ec3b3e5e-1f72-4cfd-a730-d5f113907e7f
+            transform: VBAK.VBTYP
+          - columnReferences:
+              - columnCounter: aff95872-9135-4ee8-a721-75d9523b955c
+                stepCounter: 88fdad87-32b0-4adb-b49b-636ad9c7f72e
+            transform: ""
+          - columnReferences:
+              - columnCounter: c5da664c-bc02-415e-a402-3d6de72d908b
+                stepCounter: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+            transform: ""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          VBAK: a3c8a201-1475-4c20-9600-918db56ae605
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: VBAK
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'VBAK') }} 
+            WHERE SLT_DELETE = ' '
+        name: VBAK
+        noLinkRefs: []
+      - aliases:
+          VBRK: 88fdad87-32b0-4adb-b49b-636ad9c7f72e
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: VBRK
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'VBRK') }} "VBRK"
+            WHERE SLT_DELETE = ' '
+        name: VBRK
+        noLinkRefs: []
+      - aliases:
+          LIKP: 5d56e5e1-ac2c-45b5-94ae-b5acd0002ad9
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: LIKP
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'LIKP') }} "LIKP"
+            WHERE SLT_DELETE = ' '
+        name: LIKP
+        noLinkRefs: []
+  name: UNITY_SAP_SALES_DOC_TMP
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

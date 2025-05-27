@@ -1,0 +1,145 @@
+fileVersion: 1
+id: 54bcb1cd-d3bf-48f2-903b-44d207737225
+name: UNITY_SAP_EKKN_STG_T1
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: |-
+    create stage table called UNITY_SAP_EKKN_STG_T1 from SELECT MANDT, EBELN, EBELP,CASE WHEN PRCTR = ' ' THEN NULL ELSE PRCTR END PRCTR
+    , SUM(CAST(VPROZ AS DECIMAL(9,5))) VPROZ, SUM(CAST(MENGE AS DECIMAL(21,7))) MENGE, MIN(ZEKKN) ZEKKN
+    FROM EKKN
+    WHERE LOEKZ = ' ' AND SLT_DELETE = ' ' AND PRCTR <> ' '
+    GROUP BY MANDT, EBELN, EBELP,CASE WHEN PRCTR = ' ' THEN NULL ELSE PRCTR END
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8213ebe-3a6a-4e3f-a304-3c7a0d393295
+          stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e8213ebe-3a6a-4e3f-a304-3c7a0d393295
+                stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+            transform: MANDT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a721b69a-3482-4a93-bee1-28008748d019
+          stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a721b69a-3482-4a93-bee1-28008748d019
+                stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+            transform: EBELN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fab3c9a-16ff-4ebb-bd64-ddd370907515
+          stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EBELP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5fab3c9a-16ff-4ebb-bd64-ddd370907515
+                stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+            transform: EBELP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87aff604-91be-4287-bba7-c55c8d47adbd
+          stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PRCTR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87aff604-91be-4287-bba7-c55c8d47adbd
+                stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+            transform: CASE WHEN PRCTR = ' ' THEN NULL ELSE PRCTR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 00d183b5-dc74-4d54-8855-803161066f23
+          stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VPROZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 00d183b5-dc74-4d54-8855-803161066f23
+                stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+            transform: SUM(CAST(VPROZ AS DECIMAL(9,5)))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d766452b-d155-499b-8c63-549c906bfad8
+          stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: MENGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d766452b-d155-499b-8c63-549c906bfad8
+                stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+            transform: SUM(CAST(MENGE AS DECIMAL(21,7)))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f230663-37d8-4e97-8409-d7295aabf906
+          stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ZEKKN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f230663-37d8-4e97-8409-d7295aabf906
+                stepCounter: 54bcb1cd-d3bf-48f2-903b-44d207737225
+            transform: MIN(ZEKKN)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: EKKN
+        join:
+          joinCondition: FROM {{ ref('SRC_SAP', 'EKKN') }} WHERE LOEKZ = ' ' AND SLT_DELETE = ' ' AND PRCTR <> ' ' GROUP BY MANDT, EBELN, EBELP,CASE WHEN PRCTR = ' ' THEN NULL ELSE PRCTR END
+        name: UNITY_SAP_EKKN_STG_T1
+        noLinkRefs: []
+  name: UNITY_SAP_EKKN_STG_T1
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

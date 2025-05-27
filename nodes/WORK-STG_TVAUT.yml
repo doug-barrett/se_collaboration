@@ -1,0 +1,126 @@
+fileVersion: 1
+id: 585f4cc6-1470-4473-9073-7e2c4fe7742b
+name: STG_TVAUT
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 71eb1ecf-eec0-4431-b741-be010b8b6377
+          stepCounter: 585f4cc6-1470-4473-9073-7e2c4fe7742b
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 170354c0-86da-45b1-b89a-50939696ffc9
+                stepCounter: ac4370c4-d456-4283-8e21-6f6501f44366
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6d1b13d9-ce3b-4f54-8ba2-03817cef9ac9
+          stepCounter: 585f4cc6-1470-4473-9073-7e2c4fe7742b
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: SPRAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 51c67ae7-6bf3-4327-862d-38390d0bcf7a
+                stepCounter: ac4370c4-d456-4283-8e21-6f6501f44366
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6f00278-c2ed-4ca2-9833-6a895927f4f7
+          stepCounter: 585f4cc6-1470-4473-9073-7e2c4fe7742b
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: AUGRU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c81fcdb-1adb-49f3-8cef-b3f132730701
+                stepCounter: ac4370c4-d456-4283-8e21-6f6501f44366
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d5267c6e-ce92-494a-8f2c-14eebe4d1625
+          stepCounter: 585f4cc6-1470-4473-9073-7e2c4fe7742b
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: BEZEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1fda2827-8427-4b01-bd5c-5096439f8f87
+                stepCounter: ac4370c4-d456-4283-8e21-6f6501f44366
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14316179-a8a3-4751-89f6-6093a67ff4c3
+          stepCounter: 585f4cc6-1470-4473-9073-7e2c4fe7742b
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aab96e7a-2506-4d7e-91bb-9c570cb3f7a6
+                stepCounter: ac4370c4-d456-4283-8e21-6f6501f44366
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 796e3c00-57d3-4d01-ab90-59c52decca91
+          stepCounter: 585f4cc6-1470-4473-9073-7e2c4fe7742b
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: SOURCE_UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8db69dba-f13c-4cc0-a159-3fef5af9ab44
+                stepCounter: ac4370c4-d456-4283-8e21-6f6501f44366
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          TVAUT: ac4370c4-d456-4283-8e21-6f6501f44366
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: TVAUT
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'TVAUT') }} "TVAUT"
+            WHERE SPRAS = 'E'
+        name: STG_TVAUT
+        noLinkRefs: []
+  name: STG_TVAUT
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

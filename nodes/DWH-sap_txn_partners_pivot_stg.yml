@@ -1,0 +1,211 @@
+fileVersion: 1
+id: ec28705b-2c68-4da7-8532-c7c8957061f0
+name: sap_txn_partners_pivot_stg
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Contains pivoted partner data from SAP transactions.
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 17313154-527c-4244-8204-137209d3c3e9
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 17313154-527c-4244-8204-137209d3c3e9
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: VBPA.MANDT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 475aed36-a76b-4776-a06e-6579dd3bed9b
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 475aed36-a76b-4776-a06e-6579dd3bed9b
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: VBPA.VBELN
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e57bb7b-300c-461d-9663-2252fe3bac22
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: POSNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e57bb7b-300c-461d-9663-2252fe3bac22
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: VBPA.POSNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 95534e58-2cb3-45d0-b117-dd969a56800a
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARVW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 95534e58-2cb3-45d0-b117-dd969a56800a
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: VBPA.PARVW
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 94a85dd8-48a0-4e49-94e9-938feb46d988
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ADRNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 94a85dd8-48a0-4e49-94e9-938feb46d988
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: VBPA.ADRNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b7237494-48a0-4195-acff-40dc7ec73119
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARTNER_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b7237494-48a0-4195-acff-40dc7ec73119
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: COALESCE(decode(vbpa.kunnr,' ',null,vbpa.kunnr),decode(vbpa.lifnr,' ',null,vbpa.lifnr),decode(vbpa.parnr,'00000000',null,vbpa.parnr),decode(vbpa.pernr,'0000000000',null,vbpa.pernr),decode(vbpa.ADRNP,' ',null, vbpa.ADRNP))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 05a035e1-b1e9-47e3-b3f1-dd867d3471ed
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NAME1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 05a035e1-b1e9-47e3-b3f1-dd867d3471ed
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: adrc_tmp.NAME1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f11c2194-8110-44dc-831d-98d9cae24f48
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: COUNTRY_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f11c2194-8110-44dc-831d-98d9cae24f48
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: adrc_tmp.country_code
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ffe0007-993b-4f00-bc20-066f2834b566
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RELATED_TABLE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5ffe0007-993b-4f00-bc20-066f2834b566
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: case sales_doc_tmp.hdr_table when 'VBAK' then case POSNR when  '000000' then 'VBAK' else 'VBAP' end when 'VBRK' then case POSNR when  '000000' then 'VBRK' else 'VBRP' end when 'LIKP' then 'LIKP' else sales_doc_tmp.hdr_table end
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 908ab70f-aee4-401f-8f31-7fc6682e5400
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SLT_DELETE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 908ab70f-aee4-401f-8f31-7fc6682e5400
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: VBPA.slt_delete
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4f051749-cc7a-41e4-aafb-b243d65a0ec9
+          stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SLT_UPDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4f051749-cc7a-41e4-aafb-b243d65a0ec9
+                stepCounter: ec28705b-2c68-4da7-8532-c7c8957061f0
+            transform: VBPA.slt_update
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          ADRC_TMP: 1ec2d460-ada6-4525-8e77-9d6525950c51
+          SALES_DOC_TMP: 32eb2ed7-6253-4e27-88f8-6f7412d53cc9
+          VBPA: 1178b1ef-1fb4-411f-9fed-f7743c2b7652
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: unity_sap_adrc_tmp
+          - locationName: DWH
+            nodeName: unity_sap_sales_doc_tmp
+          - locationName: SRC_SAP
+            nodeName: VBPA
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'VBPA') }} 
+            inner join {{ ref('DWH', 'unity_sap_sales_doc_tmp') }} sales_doc_tmp 
+            on vbpa.mandt = sales_doc_tmp.mandt 
+            and vbpa.vbeln = sales_doc_tmp.vbeln 
+            left outer join {{ ref('DWH', 'unity_sap_adrc_tmp') }} adrc_tmp 
+            on vbpa.mandt = adrc_tmp.client 
+            and vbpa.adrnr = adrc_tmp.addrnumber 
+            where vbpa.slt_delete = ' '
+        name: sap_txn_partners_pivot_stg
+        noLinkRefs: []
+  name: sap_txn_partners_pivot_stg
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

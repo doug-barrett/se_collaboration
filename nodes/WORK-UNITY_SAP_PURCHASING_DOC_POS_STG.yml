@@ -1,0 +1,4382 @@
+fileVersion: 1
+id: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+name: UNITY_SAP_PURCHASING_DOC_POS_STG
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Contains purchasing document position data enriched with descriptions and flags.
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ff38230-b6f4-4891-ae75-e63b07cad115
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SLT_DELETE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ff38230-b6f4-4891-ae75-e63b07cad115
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SLT_DELETE = ' ' THEN NULL ELSE EKPO.SLT_DELETE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b1daac26-1015-4eb7-b2ca-432811c61732
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: POS_SLT_UPDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b1daac26-1015-4eb7-b2ca-432811c61732
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(GREATEST(NVL(EKPO.SLT_UPDATE,'0'), NVL(MAKT.SLT_UPDATE,'0'),NVL(T001.SLT_UPDATE,'0'),NVL(T001W.SLT_UPDATE,'0'), NVL(TINCT.SLT_UPDATE,'0'),  NVL(T134T.SLT_UPDATE,'0'),NVL(CEPCT.SLT_UPDATE,'0'), NVL(T001L.SLT_UPDATE,'0'), NVL(T163Y.SLT_UPDATE,'0')) AS DECIMAL(21,7))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 801e8b79-c6e5-4ac2-92ef-8b0a240c37b9
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f1f88903-0fe9-4484-bfe9-5b2e6eb70f05
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MANDT = '000' THEN NULL ELSE EKPO.MANDT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c2203954-6d4a-4df1-9938-881850d9d29b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EBELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 48cb6d6a-0edc-4060-a0db-88ffbe9bcb5b
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EBELN = ' ' THEN NULL ELSE EKPO.EBELN END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae521440-76a5-4bba-8762-4ee24ac62c4a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EBELP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 62a8ca3d-5992-4fa1-9fa7-0ac252126f83
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EBELP = '00000' THEN NULL ELSE EKPO.EBELP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dfd87512-441f-48b1-a9a3-3b04a0129842
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_LOEKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cc7d13ed-bb2f-4acb-a3c4-b6b7f59c1f0e
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.LOEKZ = ' ' THEN NULL ELSE EKPO.LOEKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8808160f-002a-4214-8005-577ad55e144e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_STATU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cebe3f3e-944c-4354-b93c-3c56fc241075
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.STATU = ' ' THEN NULL ELSE EKPO.STATU END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0550df65-e856-4581-b668-80937da15fee
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_AEDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 48041efb-2908-4a4d-b7b2-9f64ed2d2435
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.AEDAT,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a3782c7-80e7-4ad6-8326-f362f0e558a3
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_TXZ01
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b107832d-d580-4162-9886-e30f4f540cea
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.TXZ01 = ' ' THEN NULL ELSE EKPO.TXZ01 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15d86f78-4acd-4083-8b96-1eb0154263e8
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MATNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9f3bb888-e288-4e1e-b482-08f30a051987
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MATNR = ' ' THEN NULL ELSE EKPO.MATNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eb75bc14-30a7-4715-b182-57f41a3be50f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MAKT_MAKTX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a98e2d85-3f70-424c-8ac3-671d85c0226a
+                stepCounter: 5407c89d-1f64-4f24-9aa1-5acfca29181d
+            transform: CASE WHEN MAKT.MAKTX = ' ' THEN NULL ELSE MAKT.MAKTX END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9184104d-d637-4dac-a855-64f1f271f6c8
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EMATN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f2bb15c9-546b-4bbc-ad3b-ca28bdcb37ab
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EMATN = ' ' THEN NULL ELSE EKPO.EMATN END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad718cbf-d69a-43a6-b857-0356e26b6b7d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BUKRS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78e22aac-2d2e-499e-a833-1c28283d11b9
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.BUKRS = ' ' THEN NULL ELSE EKPO.BUKRS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d531d27-326d-44a0-8b71-6334dbc7a4c6
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_T001_BUTXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87b8a8eb-674c-4011-952f-49dc721c0d2c
+                stepCounter: 1772ecd2-1d44-4d24-b067-a7d6f9e281a2
+            transform: CASE WHEN T001.BUTXT = ' ' THEN NULL ELSE T001.BUTXT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 34f569ba-7042-4e2a-8815-52d2b74c1833
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WERKS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b01af370-0df9-4ac1-9621-e0e3b577e1ac
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.WERKS = ' ' THEN NULL ELSE EKPO.WERKS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 127c52f2-ef02-46f0-8982-061e9fb953b3
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_T001W_NAME1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c0afcd8-c06d-462c-89ae-09c832fafb2a
+                stepCounter: 1df95e45-0fd0-4dac-9f27-934a18cdeac6
+            transform: CASE WHEN T001W.NAME1 = ' ' THEN NULL ELSE T001W.NAME1 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c58a9cdb-9b64-4806-9179-64ce2d7317a4
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_LGORT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b9cdae0f-c5a6-46e0-8c0f-d573d1e10d9d
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.LGORT = ' ' THEN NULL ELSE EKPO.LGORT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a994c76-dc72-4bce-8e1a-c1ac2879ae21
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_T001L_LGOBE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f51cad73-05c7-437a-b5f8-d371fad40055
+                stepCounter: 9bb74aa1-d2b7-4312-bfac-005b36b93b9f
+            transform: CASE WHEN T001L.LGOBE = ' ' THEN NULL ELSE T001L.LGOBE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e0f76955-490c-42a8-9d5a-85b9c801d062
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BEDNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2391dfea-6b7d-4647-a97c-397f3c960849
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.BEDNR = ' ' THEN NULL ELSE EKPO.BEDNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26e1d783-aa8b-4e03-a82e-1669c8cf04cc
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MATKL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4a323252-4a8c-4ad1-a8ca-f631156f324d
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MATKL = ' ' THEN NULL ELSE EKPO.MATKL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a45b81b-6cd1-47fb-914c-ec5bd0af2e89
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_INFNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2277f7d1-fcf6-4b9a-8bf5-abe45a84c292
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.INFNR = ' ' THEN NULL ELSE EKPO.INFNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 102ca1aa-8d8c-42d3-aee9-89037bbd737a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_IDNLF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2db67c13-c359-445b-aebd-06ebce2ae07f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.IDNLF = ' ' THEN NULL ELSE EKPO.IDNLF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e95e254f-437b-451f-bb36-d3ec11269400
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KTMNG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 65ca2576-7fd9-4a6a-826a-16509f18281b
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.KTMNG AS DECIMAL(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eae57a2b-7991-45fc-8310-6d675613ba20
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MENGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e467f686-dd5c-4143-8968-cfa87e57906c
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.MENGE AS DECIMAL(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 47678263-928f-414c-a63c-3a88a0971452
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MEINS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 109b5701-87d5-4917-b74a-212acb38d210
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MEINS = ' ' THEN NULL ELSE EKPO.MEINS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f5dc011d-6e4b-45ae-ba65-2f5e90e6afe4
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BPRME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b65baddd-7ce6-4b84-84a9-a1c1e84403f3
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.BPRME = ' ' THEN NULL ELSE EKPO.BPRME END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a1ac277-e925-4b19-aae7-ed759c37a372
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BPUMZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 28dae414-9c8d-4725-b798-b838677d297f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.BPUMZ AS DECIMAL(5,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0fbb3e8f-5e8c-4830-b719-e56ec8260725
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BPUMN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bc82fe59-6c90-4f01-b5a7-7ae20c731f5f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.BPUMN AS DECIMAL(5,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0026e6c4-f38e-4e62-adb9-5195e81c3124
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_UMREZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd4ae1ca-3db1-422c-adfb-8adf5973e0ea
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.UMREZ AS DECIMAL(5,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 20e22833-d212-4066-8812-6daa14348c49
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_UMREN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 80e908ab-4331-435e-9f66-ed2d55a0ff3c
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.UMREN AS DECIMAL(5,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 02d94946-2828-4372-9150-00d38012fbff
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_NETPR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 143e2b5f-db29-42ee-8f7d-6c2ca6818df9
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.NETPR AS DECIMAL(11,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cbf6eb23-e87d-460c-b2d4-76bd8b11ca31
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PEINH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e12986ab-d7a5-405f-9317-09470c1df40c
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.PEINH AS DECIMAL(5,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 86c43eab-8748-4935-850c-b2393fccc26d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_NETWR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5ee928dc-431f-4e80-adac-0dc757861f5c
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.NETWR AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 65570886-c40a-4d47-913e-89f98e80405d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BRTWR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7cb3467c-373c-402f-acf8-f89a015d7ddd
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.BRTWR AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3aeed8b3-6b57-4c35-8ff8-7511e3815e3b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_AGDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3aeed8b3-6b57-4c35-8ff8-7511e3815e3b
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.AGDAT,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aaf86a5d-642c-4abb-93a9-33738e7211ba
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WEBAZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bfb2cb9f-3414-4dcc-b157-30432c74ac01
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.WEBAZ AS DECIMAL(3,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0252fcc-d202-4080-9180-f5bc7203f607
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MWSKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c7ee87de-18a9-430f-89b7-a2999c4ad24f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MWSKZ = ' ' THEN NULL ELSE EKPO.MWSKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c64fc21b-0cf7-4d54-ba96-f89be54ec461
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BONUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c64fc21b-0cf7-4d54-ba96-f89be54ec461
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.BONUS = ' ' THEN NULL ELSE EKPO.BONUS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a98485b-8ffa-4be5-8fb9-5cfe695368ca
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_INSMK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fa16b233-2a57-4fc9-bdf5-d5a9a47007f8
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.INSMK = ' ' THEN NULL ELSE EKPO.INSMK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: df31a401-d202-4a6e-acd2-e4012b40a3e9
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPINF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 91c597fd-5838-4932-b623-a6014c5fe2bf
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SPINF = ' ' THEN NULL ELSE EKPO.SPINF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4237a6b9-87ce-4689-96c7-8848c22625d7
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PRSDR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ed653b7-e440-471b-aa00-feb6dc4f8c0f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.PRSDR = ' ' THEN NULL ELSE EKPO.PRSDR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bdc203a7-b5ae-465b-8bc5-41bee83cf49f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SCHPR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 48a225e9-e068-46ee-8bbd-6e59fcfc0f20
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SCHPR = ' ' THEN NULL ELSE EKPO.SCHPR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 966b9a06-70a1-4681-8cd8-8b96232a9189
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MAHNZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8059f1a8-b2ba-470d-9c6b-8bba5f108b73
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.MAHNZ AS DECIMAL(3,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f00e9e60-7c6f-498d-a559-33638fdab4db
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MAHN1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b84c3d15-f162-4381-8819-fbbe516d6ab4
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.MAHN1 AS DECIMAL(3,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 228a385b-6d1b-456d-b230-c4362d82cf26
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MAHN2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18fad768-2b80-4a89-bc82-cc97403bc103
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.MAHN2 AS DECIMAL(3,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a37ba3b-522e-4af0-8a89-38dd90a9215b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MAHN3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7d2d3bc1-93aa-4ddf-b701-16e1b9ef0b11
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.MAHN3 AS DECIMAL(3,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 99a5c64f-9809-43d8-af24-4c401ff45efe
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_UEBTO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a3eb8b00-9d37-4343-9637-162e3dc173af
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.UEBTO AS DECIMAL(3,1))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0925ca73-ea43-4b11-b17c-1966fd544c00
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_UEBTK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b0bc75b-d5b4-461d-966b-3e2da42e90e8
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.UEBTK = ' ' THEN NULL ELSE EKPO.UEBTK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f9162c9e-bd8c-4e34-8574-dea86787b023
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_UNTTO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8771c56d-8e27-4771-81b8-a4cf3a2ea78a
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.UNTTO AS DECIMAL(3,1))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d32a229-0f58-4f9d-9e14-1b06bfb5a414
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BWTAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d32a229-0f58-4f9d-9e14-1b06bfb5a414
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.BWTAR = ' ' THEN NULL ELSE EKPO.BWTAR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ab2f82e4-171e-4cba-9d74-0800ae773f82
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BWTTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab2f82e4-171e-4cba-9d74-0800ae773f82
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.BWTTY = ' ' THEN NULL ELSE EKPO.BWTTY END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c5ba17d4-4c85-4c53-9504-e587609a7823
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ABSKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e765af85-2e58-41d3-a8d1-38a317cc33bf
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.ABSKZ = ' ' THEN NULL ELSE EKPO.ABSKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70bba989-0838-4694-ae43-cd5085e3066a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_AGMEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 70bba989-0838-4694-ae43-cd5085e3066a
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.AGMEM = ' ' THEN NULL ELSE EKPO.AGMEM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a9911ccf-18cb-4727-b686-833a9859bb8c
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ELIKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f489461c-4770-4965-9a7a-661cfc17e128
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.ELIKZ = ' ' THEN NULL ELSE EKPO.ELIKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 641cf338-47c6-4104-8cd8-b9efa147f53f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EREKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e45e68be-19b2-4301-a5f4-7245a604c9b8
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EREKZ = ' ' THEN NULL ELSE EKPO.EREKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec796a60-d499-483b-930c-818af48539f1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PSTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1c3b9a06-cd55-4be3-bcd8-2babbf3122b6
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.PSTYP = ' ' THEN NULL ELSE EKPO.PSTYP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f63bf30e-4534-4c01-a0c1-c713fc57cb97
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PSTYP_T163Y_PTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: da792a23-83d4-4168-8d55-83cd7aa73ab1
+                stepCounter: d47e6f30-1efd-49a6-9c89-db310880a7b1
+            transform: CASE WHEN T163Y.PTEXT = ' ' THEN NULL ELSE T163Y.PTEXT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ebaeb45a-b938-4355-a88f-e617bce98919
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KNTTP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d66d131-883f-4238-97a8-6342c3edebc6
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KNTTP = ' ' THEN NULL ELSE EKPO.KNTTP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4440f730-c6a5-46f2-8bf2-2c1f4f8cd735
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZVBR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7e0705f3-1444-4fe6-8896-48bc893fb5cf
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KZVBR = ' ' THEN NULL ELSE EKPO.KZVBR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e859fe08-7041-461f-88bb-b6a939e28ebc
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_VRTKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8c6db8f-a404-4d45-80e5-df0a2eb80324
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.VRTKZ = ' ' THEN NULL ELSE EKPO.VRTKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7e0a0eb5-30b8-4018-b20a-74ae28ac5d8e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_TWRKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76b2a4d9-9662-42a9-99bf-40d69ff923a2
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.TWRKZ = ' ' THEN NULL ELSE EKPO.TWRKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1bbf67c9-39aa-4976-b683-35fbee47508f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WEPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8319b62-1754-4958-b111-b2e7b25eeb01
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.WEPOS = ' ' THEN NULL ELSE EKPO.WEPOS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f2f0ed75-c9a2-4f1f-9aab-0b1d44e537e3
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WEUNB
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f54cb1e3-db6d-4270-af05-93538e0d671c
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.WEUNB = ' ' THEN NULL ELSE EKPO.WEUNB END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc2e176d-e702-4d58-81df-986e35d8f4dd
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_REPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 040425b2-44a9-4925-b83b-27bcdd826793
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.REPOS = ' ' THEN NULL ELSE EKPO.REPOS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6496e1df-c703-4855-92a3-0c96ca98ca19
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WEBRE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f5430338-02f4-41fb-81c2-f21080bf7d1d
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.WEBRE = ' ' THEN NULL ELSE EKPO.WEBRE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06debf22-2718-479a-a34f-333c6d565aa7
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZABS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b4c571f2-ad96-4475-9b97-254883d971ff
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KZABS = ' ' THEN NULL ELSE EKPO.KZABS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 954a0f28-08f5-4de9-bd5b-7e116f914c1d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_LABNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9cc03319-ba0d-496c-b3f5-3ae5ef527ae6
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.LABNR = ' ' THEN NULL ELSE EKPO.LABNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6c839dde-59ec-4ef1-ba6b-ca2df7d33f93
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KONNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1cf9099-6e52-443d-aba7-99738fcb5e44
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KONNR = ' ' THEN NULL ELSE EKPO.KONNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c96f0955-88b0-4266-a9e2-c459992c6838
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KTPNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4723f47b-87d2-4bcc-9781-5f25cfcf2a67
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KTPNR = '00000' THEN NULL ELSE EKPO.KTPNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 804c793e-2285-4211-b258-44ab7c1dd2e3
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ABDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 804c793e-2285-4211-b258-44ab7c1dd2e3
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.ABDAT,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9555b72a-872a-45a3-821e-8fc9db7f834c
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ABFTZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9555b72a-872a-45a3-821e-8fc9db7f834c
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(EKPO.ABFTZ AS DECIMAL(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d1168a0-adef-4fee-9d21-729aaaa1de19
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ETFZ1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8fd67fa2-60d5-4f17-bd24-31e8721bee1f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.ETFZ1 AS DECIMAL(3,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db6271e5-e81c-4624-a321-0639ac23ae6e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ETFZ2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db6271e5-e81c-4624-a321-0639ac23ae6e
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(EKPO.ETFZ2 AS DECIMAL(3,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 855c6439-d134-4d41-baa4-f47af784de4b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZSTU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 855c6439-d134-4d41-baa4-f47af784de4b
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.KZSTU = ' ' THEN NULL ELSE EKPO.KZSTU END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e2140f8-970c-4377-90a0-ac4925f83cd1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_NOTKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d8a11d0-a2b4-45ae-878b-2ccb8206153b
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.NOTKZ = ' ' THEN NULL ELSE EKPO.NOTKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 35bbf6f6-7d77-4369-ae9e-0bc14493225b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_LMEIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e7f17bc-2e93-43f0-a713-278bc25c7da6
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.LMEIN = ' ' THEN NULL ELSE EKPO.LMEIN END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 481a8a90-9a50-4029-965c-f58d49d07f6f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EVERS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 456c4834-5fc4-4a93-8879-b8a8b0dae61f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EVERS = ' ' THEN NULL ELSE EKPO.EVERS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8321a4a-33f8-4705-8a2d-b3e6cba4864e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ZWERT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dd78ab0a-7608-4d67-988e-0e9940f63a71
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.ZWERT AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f2e699ee-5a20-41ef-a1d2-93062f0b7ade
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_NAVNW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e10c2b85-8711-4a42-8a2c-6b845078966f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.NAVNW AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6e0f5449-087b-4ff3-8319-9faf29420527
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ABMNG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 37b1c12f-6ddb-4aba-9ae2-76e577a76b5c
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.ABMNG AS DECIMAL(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d3f5f40-3f79-4367-9a92-7c1be5254d74
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PRDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8208c2b5-7003-4911-9f7d-de857cd2a491
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.PRDAT,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ac09e3f-8afe-4bd4-a567-0b61ba8b2fad
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EFFWR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b1b61244-537d-4b69-bf64-af1bf18ea275
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.EFFWR AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d5342d0a-b3ac-40f8-9984-147c41b366dd
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_XOBLR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7d7734d4-40ab-4800-bed8-527d42558dac
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.XOBLR = ' ' THEN NULL ELSE EKPO.XOBLR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b0ed210-69c5-4b35-a539-3cadfe296f4f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KUNNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe3bac15-c6cf-4674-b330-cfc2dedda77e
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KUNNR = ' ' THEN NULL ELSE EKPO.KUNNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ab0b6f6-f44e-4f6d-b922-17358928dadc
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ADRNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 284f4a23-5259-492e-b70b-744b6674c8c7
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.ADRNR = ' ' THEN NULL ELSE EKPO.ADRNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b24573a0-6238-43d8-9385-0f01a75386f0
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EKKOL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cb8abf47-5d3a-4c85-a13e-f613dd89eed0
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EKKOL = ' ' THEN NULL ELSE EKPO.EKKOL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 376ca8e9-1d2c-411a-be74-2f35c2ddf126
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SKTOF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 62a9a11d-1b9b-4053-a161-6d9d7346185d
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SKTOF = ' ' THEN NULL ELSE EKPO.SKTOF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf04c821-a045-4aba-842b-228c0b66eb46
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_STAFO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: acc285c6-8ddd-4a8b-b472-c13717909715
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.STAFO = ' ' THEN NULL ELSE EKPO.STAFO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 98cad4c1-fd14-48ec-a3a5-dddf920fc7f7
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PLIFZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 44259082-0e1a-46aa-bb9e-b02565866de3
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.PLIFZ AS DECIMAL(3,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 91aeae8f-6ff3-43ce-ad73-d315e36402c7
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_NTGEW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0114bed9-94b0-41a4-9977-f36c3fdd81eb
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.NTGEW AS DECIMAL(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 75e97aaf-8a85-4b53-905a-2d5e9c1af285
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_GEWEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42e5abfe-35ba-4341-918b-fab6d640658b
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.GEWEI = ' ' THEN NULL ELSE EKPO.GEWEI END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2440f813-b8d3-4c23-bd36-ff8998617bbc
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_TXJCD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: de449f92-9946-4be9-aa84-60175b57b6a7
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.TXJCD = ' ' THEN NULL ELSE EKPO.TXJCD END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ee36f657-3d12-4c61-b3ab-db73d8b3c0ba
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ETDRK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7aea5e5d-13b2-43e5-8244-b35de49bfaf4
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.ETDRK = ' ' THEN NULL ELSE EKPO.ETDRK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d4a6743-b622-4739-a860-04d31117434d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SOBKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2644a77e-0c2d-4eb0-bcea-d6aae3b90322
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SOBKZ = ' ' THEN NULL ELSE EKPO.SOBKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d6e797d-68fc-460e-8bf1-6859c3ebd230
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ARSNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b4d1e62-6001-4f95-af08-1daf22ecdf76
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.ARSNR = '0000000000' THEN NULL ELSE EKPO.ARSNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4adad0ae-1f47-49a4-ad83-f0ee76b1f47b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ARSPS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8b55248-1c71-4913-886b-a6e145e46419
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.ARSPS = '0000' THEN NULL ELSE EKPO.ARSPS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7e25fc4-ae92-47a7-8efb-eb9c90145f16
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_INSNC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7e25fc4-ae92-47a7-8efb-eb9c90145f16
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.INSNC = ' ' THEN NULL ELSE EKPO.INSNC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b0242394-cea6-4004-8f2e-4391abf9538d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SSQSS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b1ff56d4-a043-4926-b968-d6a7ea371243
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SSQSS = ' ' THEN NULL ELSE EKPO.SSQSS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7acf3691-a196-46f5-81d5-f92042ff567b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ZGTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cb650663-1fa2-47f5-911b-ed1e846fcf0f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.ZGTYP = ' ' THEN NULL ELSE EKPO.ZGTYP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e17adc2f-3d78-421c-b8a1-ae50762e0908
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EAN11
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2dbe636f-2549-45ab-9f95-3b890bf41ac1
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EAN11 = ' ' THEN NULL ELSE EKPO.EAN11 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0ede6f22-7885-4e07-b2f2-76fc049b9888
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BSTAE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 241a6549-5d50-49e7-8e1e-ab286e1d843a
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.BSTAE = ' ' THEN NULL ELSE EKPO.BSTAE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3836239e-da17-4001-9f3b-6334597543b9
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_REVLV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c0f7384-8343-41d5-8725-429afd5d2d92
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.REVLV = ' ' THEN NULL ELSE EKPO.REVLV END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f4420a7c-1d9b-42a4-98ac-ddb530c052b0
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_GEBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f4420a7c-1d9b-42a4-98ac-ddb530c052b0
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.GEBER = ' ' THEN NULL ELSE EKPO.GEBER END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77c7cb4f-ed87-418d-8314-ef72b3f510a1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FISTL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 77c7cb4f-ed87-418d-8314-ef72b3f510a1
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.FISTL = ' ' THEN NULL ELSE EKPO.FISTL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04d10d24-f406-4d88-ac6f-a9b13f0d2e94
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FIPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 04d10d24-f406-4d88-ac6f-a9b13f0d2e94
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.FIPOS = ' ' THEN NULL ELSE EKPO.FIPOS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c17fe67-4703-4f75-a107-09419fc25dc1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KO_GSBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c17fe67-4703-4f75-a107-09419fc25dc1
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.KO_GSBER = ' ' THEN NULL ELSE EKPO.KO_GSBER END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 43b13a8f-5deb-4fa2-a7c8-44a15acb1018
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KO_PARGB
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 43b13a8f-5deb-4fa2-a7c8-44a15acb1018
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.KO_PARGB = ' ' THEN NULL ELSE EKPO.KO_PARGB END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ea70dd82-991d-4504-b38e-e482c536eb81
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KO_PRCTR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db0ab3ee-76ba-4b92-bc65-53be498cdf01
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KO_PRCTR = ' ' THEN NULL ELSE EKPO.KO_PRCTR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed79bca1-44ea-4c5c-9b66-eee294cec33a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KO_PPRCTR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ed79bca1-44ea-4c5c-9b66-eee294cec33a
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.KO_PPRCTR = ' ' THEN NULL ELSE EKPO.KO_PPRCTR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eb8f11d1-3c6f-4344-a7e3-cc7a51090e3d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KO_PRCTR_CEPCT_LTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 96eb278d-46b1-4ce5-8c14-2e4611ae414e
+                stepCounter: 4972579f-5761-4d4a-a6b7-39a67721b424
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2bb3d473-8eaa-4e81-86b8-355dea1cf35d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MEPRF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 57383235-d385-41e8-b1c8-808b59a1d155
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MEPRF = ' ' THEN NULL ELSE EKPO.MEPRF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60750307-aee4-4dd6-b8f5-defe53b982dd
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BRGEW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a0576b51-cc6a-4e5a-8034-44bb05bb310a
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.BRGEW AS DECIMAL(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aec2d080-23d1-435b-9773-c253ea450157
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_VOLUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b9a76b8b-1eb0-455f-89e7-9b437b907173
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.VOLUM AS DECIMAL(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41d723a7-383f-4cbf-9a9e-e8def44bbeda
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_VOLEH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e88a143e-260b-4304-a69a-542b849b7f51
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.VOLEH = ' ' THEN NULL ELSE EKPO.VOLEH END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 68206e40-ed20-4713-9ad6-02afc1ccc088
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_INCO1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b2e4d214-6a36-439d-9b8e-1679a1b09d4e
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.INCO1 = ' ' THEN NULL ELSE EKPO.INCO1 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c0654a51-7c94-4b04-99d0-e99e7f0c59bb
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_TINCT_BEZEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 32ad64e5-61ca-482d-9bca-3227fa8d5504
+                stepCounter: c2f30bb5-8f4a-402a-a45e-456166a59faa
+            transform: CASE WHEN TINCT.BEZEI = ' ' THEN NULL ELSE TINCT.BEZEI END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4ac9d2b1-7e5b-4212-af8a-736ee9a32c75
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_INCO2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 147695fd-0557-4afe-9c6a-7ecd292dc653
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.INCO2 = ' ' THEN NULL ELSE EKPO.INCO2 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6dd44e3-695a-4ead-8362-df8bf3f59d0c
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_VORAB
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d6dd44e3-695a-4ead-8362-df8bf3f59d0c
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.VORAB = ' ' THEN NULL ELSE EKPO.VORAB END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6cea78fc-d353-434a-a002-9edc16a6cf4b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KOLIF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e4c47f9f-07e3-4d1b-8eec-1090612cf0d5
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KOLIF = ' ' THEN NULL ELSE EKPO.KOLIF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4e168923-d83a-411f-a1c7-60df9802f1b2
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_LTSNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7483322e-f896-4a1e-862b-51cbb9b3a45a
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.LTSNR = ' ' THEN NULL ELSE EKPO.LTSNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 40892ffe-57ac-40f1-8fa3-e6245a747bf7
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PACKNO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 26cedb93-ff6a-4555-b448-1ed9d73ddb2e
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.PACKNO = '0000000000' THEN NULL ELSE EKPO.PACKNO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d9872740-6dfa-4019-8896-add1f61cb37f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FPLNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4afe1cf1-7319-470a-b224-86eabda1d865
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.FPLNR = ' ' THEN NULL ELSE EKPO.FPLNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f909f9a0-24fe-4666-a594-5ba7cfe1fd97
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_GNETWR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f909f9a0-24fe-4666-a594-5ba7cfe1fd97
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(EKPO.GNETWR AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7736e20d-97f3-4b81-bba6-0d062bd19e19
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_STAPO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ee53a56-bc8d-414e-8263-6616cddba28c
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.STAPO = ' ' THEN NULL ELSE EKPO.STAPO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27804f1e-0d3c-4beb-b401-768ea7729293
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_UEBPO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 71068483-5895-4a4c-b348-8520205769b1
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.UEBPO = '00000' THEN NULL ELSE EKPO.UEBPO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f431ee29-6f2c-431c-8b92-c190205faac0
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_LEWED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd34509c-b920-4b2b-8218-7d3fec2ee654
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.LEWED,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77e01ce9-38b7-4610-926d-91a983bb841b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EMLIF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eee4f415-4147-498d-9b99-5b793497ee36
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EMLIF = ' ' THEN NULL ELSE EKPO.EMLIF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6e47bf08-4695-4225-bde3-2d7dc9d4dbed
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_LBLKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6561db16-eb21-45b3-b85c-dd8df85e114e
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.LBLKZ = ' ' THEN NULL ELSE EKPO.LBLKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d04a3bf3-4261-40f6-9754-c59438abac1b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SATNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 79482a2c-897b-4d4d-81de-753e8d8484e8
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SATNR = ' ' THEN NULL ELSE EKPO.SATNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 098e150c-fbe9-4467-bf66-67a5cc645e11
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ATTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 098e150c-fbe9-4467-bf66-67a5cc645e11
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.ATTYP = ' ' THEN NULL ELSE EKPO.ATTYP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78ef3779-3abb-48ff-9fb2-7bfaf4b569e8
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_VSART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78ef3779-3abb-48ff-9fb2-7bfaf4b569e8
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.VSART = ' ' THEN NULL ELSE EKPO.VSART END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 538daa06-7990-4e5a-90bc-e24cb3b87d08
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_HANDOVERLOC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 538daa06-7990-4e5a-90bc-e24cb3b87d08
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.HANDOVERLOC = ' ' THEN NULL ELSE EKPO.HANDOVERLOC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60039362-f7d2-46d2-89a5-3d13068e5987
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KANBA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ebc2f87f-d89b-4a24-869b-79e3df0f3887
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KANBA = ' ' THEN NULL ELSE EKPO.KANBA END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: afca6de5-5a7c-4720-86be-6431f01dfa7a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ADRN2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dcff9ff6-b144-4e2e-b4bf-b0528b19a833
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.ADRN2 = ' ' THEN NULL ELSE EKPO.ADRN2 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38e497f7-6144-4f4a-9fd2-a6ac16f5675e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_CUOBJ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 38e497f7-6144-4f4a-9fd2-a6ac16f5675e
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.CUOBJ = '000000000000000000' THEN NULL ELSE EKPO.CUOBJ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ff37b463-9332-47d4-9c93-0246e1e2009e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_XERSY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eedb6878-75f7-490b-8c61-4afcd1a9d348
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.XERSY = ' ' THEN NULL ELSE EKPO.XERSY END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a824c83-1abc-4c0f-bc62-55ca7c93b5a9
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EILDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7a824c83-1abc-4c0f-bc62-55ca7c93b5a9
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.EILDT,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 641e7656-96ed-4d59-815a-bd29e43c145a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_DRDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d44a21f8-5890-49cf-8b10-55f88fc2d9d4
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.DRDAT,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 57c59e7e-9593-4286-8a46-436e07af6e07
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_DRUHR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9e2594d5-d3ee-4aae-b08d-fe4ef0090084
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.DRUHR = '000000' THEN NULL ELSE EKPO.DRUHR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 876dfc29-3990-46bb-bd1e-d7578d26dd9c
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_DRUNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 481f4daf-6fa9-43e1-bbe6-7eac2123d081
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.DRUNR = '0000' THEN NULL ELSE EKPO.DRUNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f571f0d-38ca-4bf1-8a7e-6e973b874ba3
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_AKTNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53e8ef39-375a-4d48-b105-07cfd8db4ee5
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.AKTNR = ' ' THEN NULL ELSE EKPO.AKTNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 362ef92f-1cd9-4ef6-b99b-3ac2d17c4e44
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ABELN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 362ef92f-1cd9-4ef6-b99b-3ac2d17c4e44
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.ABELN = ' ' THEN NULL ELSE EKPO.ABELN END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd2ab614-aaca-4002-a9d1-42415a4c0253
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ABELP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd2ab614-aaca-4002-a9d1-42415a4c0253
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.ABELP = '00000' THEN NULL ELSE EKPO.ABELP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d737d09-bfe8-480b-90d3-67b5cf6de82a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ANZPU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b459f40-b36a-4812-ae30-41809ff97ec1
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.ANZPU AS DECIMAL(13,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 850cd59e-270b-476c-9bc3-0aefb4f745fe
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PUNEI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2786fe1e-a993-4163-a12b-587c8974bf41
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.PUNEI = ' ' THEN NULL ELSE EKPO.PUNEI END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87d0f07b-e0de-4edb-9c1f-be03498f7294
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SAISO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87d0f07b-e0de-4edb-9c1f-be03498f7294
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SAISO = ' ' THEN NULL ELSE EKPO.SAISO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c45e969-0ba8-485e-97f3-bf540cd5f7d1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SAISJ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0c45e969-0ba8-485e-97f3-bf540cd5f7d1
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SAISJ = ' ' THEN NULL ELSE EKPO.SAISJ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae068d7e-ee80-451a-bc6b-c7848091265f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EBON2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ae068d7e-ee80-451a-bc6b-c7848091265f
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EBON2 = ' ' THEN NULL ELSE EKPO.EBON2 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6cca35b-5bf7-4432-99a0-4e6661bd3f7b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EBON3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d6cca35b-5bf7-4432-99a0-4e6661bd3f7b
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EBON3 = ' ' THEN NULL ELSE EKPO.EBON3 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f18b2b21-f560-4775-8e51-64bf405020f2
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EBONF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f18b2b21-f560-4775-8e51-64bf405020f2
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EBONF = ' ' THEN NULL ELSE EKPO.EBONF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d5b36a5-d03d-4c1c-b7d3-74418a40b1d1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MLMAA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c2726944-2c60-4c86-9141-be32ac74c167
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MLMAA = ' ' THEN NULL ELSE EKPO.MLMAA END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 792d753b-5aa3-4969-9c32-28ccdabd93c8
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MHDRZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0700d6fb-d1e9-42be-8e13-9851f946d114
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.MHDRZ AS DECIMAL(4,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: df5b964c-dc7a-4df3-b0f7-fe3d8b1ce160
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ANFNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 56c81a0d-5331-4641-932d-e8b93ed8792b
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.ANFNR = ' ' THEN NULL ELSE EKPO.ANFNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e18cc067-8871-417f-82f5-64ccf0acf5af
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ANFPS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e18cc067-8871-417f-82f5-64ccf0acf5af
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.ANFPS = '00000' THEN NULL ELSE EKPO.ANFPS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f119a79-2a65-4af7-acfd-b9154420e9e2
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZKFG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fde079ac-0208-4e16-89a8-d47d5de8f8f9
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KZKFG = ' ' THEN NULL ELSE EKPO.KZKFG END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e398013-9e76-4a5b-b59f-c40b387d2307
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_USEQU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dbd3c76f-ca79-4abe-b332-a715a3784c8f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.USEQU = ' ' THEN NULL ELSE EKPO.USEQU END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ba2fc16-4a4f-475d-8a85-2850b63b705a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_UMSOK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5cee84b9-06d8-4b5a-a031-229656c8181b
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.UMSOK = ' ' THEN NULL ELSE EKPO.UMSOK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 90f516ce-5d1f-491a-8757-bc62f08efd69
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BANFN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7c6047e4-c2f1-419e-bd69-be1823c7bc1f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.BANFN = ' ' THEN NULL ELSE EKPO.BANFN END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fe020d4-ee32-49fb-8403-63a89d211a46
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BNFPO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 431aef77-fe5e-4a50-a75b-c310c52b95e9
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.BNFPO = '00000' THEN NULL ELSE EKPO.BNFPO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec4c457e-7af5-469d-a633-a19df3607d4a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MTART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9e605132-ddc0-4435-b5b5-62323d7307e1
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MTART = ' ' THEN NULL ELSE EKPO.MTART END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ac2df2c-1dfe-4a1e-8ae3-3a7fc4a6d03a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_T134T_MTBEZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a02f8847-98c7-4d63-945e-edcc205a5d5b
+                stepCounter: c36acdce-ab74-4d9a-a0ad-8cc727aafa72
+            transform: CASE WHEN T134T.MTBEZ = ' ' THEN NULL ELSE T134T.MTBEZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: defd1545-a40a-46f1-bcd7-cd0a3067408f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_UPTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4a1c79ed-5d7e-426c-89d3-208bc803db47
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.UPTYP = ' ' THEN NULL ELSE EKPO.UPTYP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 145d1dbb-7e69-4c5c-bdd2-a08c4dfa2dc1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_UPVOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 12c99f9d-ec7c-430b-84a5-59708468ce08
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.UPVOR = ' ' THEN NULL ELSE EKPO.UPVOR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 09b471c4-b80b-4c86-8c77-1becb6cba313
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZWI1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 09b471c4-b80b-4c86-8c77-1becb6cba313
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(EKPO.KZWI1 AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8c3d939d-cc58-4a43-8bc5-72e7268feee8
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZWI2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8c3d939d-cc58-4a43-8bc5-72e7268feee8
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(EKPO.KZWI2 AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 794afd58-19e6-43c8-a89c-e3991c902732
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZWI3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f5ff6fdf-d82f-4d4b-884f-e43aeefd2f4c
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.KZWI3 AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 64c18bbf-35ca-4f7b-b6d1-8ca807065fc0
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZWI4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 64c18bbf-35ca-4f7b-b6d1-8ca807065fc0
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(EKPO.KZWI4 AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ce5ae78-c857-48ea-890b-77f591e5f73e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZWI5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9ce5ae78-c857-48ea-890b-77f591e5f73e
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(EKPO.KZWI5 AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 12d66453-bfec-457e-a77b-19656938d462
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZWI6
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 12d66453-bfec-457e-a77b-19656938d462
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(EKPO.KZWI6 AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a6c6782-fd36-4176-b3a5-dad599e57b02
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SIKGR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 35df59a5-49fe-4495-a4af-f12dc95f4809
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SIKGR = ' ' THEN NULL ELSE EKPO.SIKGR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b060281-bcf7-487a-bb01-31c2adf0fcf8
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MFZHI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe0e10f1-e79a-4e84-b1b9-7ee0019a130b
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.MFZHI AS DECIMAL(15,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b61df594-1339-471e-a399-6174ec02693e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FFZHI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2724142d-e191-4b5c-aa50-e07590f37dea
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.FFZHI AS DECIMAL(15,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a625308a-cd77-4e29-ad11-2bc14111ac4d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_RETPO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 07083e60-7f35-4300-8127-ecf402f3dd37
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.RETPO = ' ' THEN NULL ELSE EKPO.RETPO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d4bc98e7-3fa3-40bf-a2d7-b591e01b6427
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_AUREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d1d03dd8-78c6-434f-9112-ac9dc466f67c
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.AUREL = ' ' THEN NULL ELSE EKPO.AUREL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9fbb92ea-7dac-42f5-8a40-841fdc728b3a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BSGRU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 730b4576-c824-4f76-a0f7-f67e49cc359d
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.BSGRU = ' ' THEN NULL ELSE EKPO.BSGRU END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38411fc4-6507-4e54-8b43-2ceb2fb25921
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_LFRET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7cded412-374b-42be-b94c-152772888857
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.LFRET = ' ' THEN NULL ELSE EKPO.LFRET END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 482d74c2-f397-458f-8481-9a38da0d9781
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MFRGR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 482d74c2-f397-458f-8481-9a38da0d9781
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.MFRGR = ' ' THEN NULL ELSE EKPO.MFRGR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 605a1918-8abd-489e-ba5d-f2ab75f6b206
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_NRFHG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c6090dab-8d94-4604-9c22-f0a0848bf0a8
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.NRFHG = ' ' THEN NULL ELSE EKPO.NRFHG END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6e74e7fe-99a8-4a87-90ae-185f54caea94
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_J_1BNBM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3119d389-215f-4b9b-8230-dbc534b8292d
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.J_1BNBM = ' ' THEN NULL ELSE EKPO.J_1BNBM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8149ccc7-6896-4fce-ad2b-fabb998ee68c
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_J_1BMATUSE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d4c7593f-daa2-4e00-aa97-ec00b2b697a7
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.J_1BMATUSE = ' ' THEN NULL ELSE EKPO.J_1BMATUSE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 44dd731e-79d4-450e-87ed-2ee9c4c73edd
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_J_1BMATORG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a54d1a07-00b9-42b9-8eb3-a8ee4f9991c9
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.J_1BMATORG = ' ' THEN NULL ELSE EKPO.J_1BMATORG END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 617b472a-0103-4b37-ab7e-864b3a7e5bf5
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_J_1BOWNPRO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 06e43e9d-1868-41a5-b5fe-88a24c5fb3de
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.J_1BOWNPRO = ' ' THEN NULL ELSE EKPO.J_1BOWNPRO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca4ffd33-4dd6-487b-a65b-161c2134bdd4
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_J_1BINDUST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ebf84101-2be9-4797-9172-c8893c8fd1a9
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.J_1BINDUST = ' ' THEN NULL ELSE EKPO.J_1BINDUST END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7f8e3c5-ae56-40ac-921c-6777545911ea
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ABUEB
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7f8e3c5-ae56-40ac-921c-6777545911ea
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.ABUEB = ' ' THEN NULL ELSE EKPO.ABUEB END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba6817fb-e795-405d-b5cf-c74f20ea2a4a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_NLABD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4d19bed7-517e-4c14-8a82-d2e8a8fb1b70
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.NLABD,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e24c1fd-220a-4496-98d7-25bea9222234
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_NFABD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e24c1fd-220a-4496-98d7-25bea9222234
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.NFABD,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38523e24-5074-4c6e-b641-b93e55fbaa0e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZBWS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9c7da02a-0a4c-4ed2-a81f-ec572e5f939a
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KZBWS = ' ' THEN NULL ELSE EKPO.KZBWS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b0096815-34dd-47ee-bd43-802d60c60589
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BONBA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 931d506f-4a36-43e3-bedf-a03ceab93bc6
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.BONBA AS DECIMAL(13,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c9e2b110-7738-4c91-8270-641bea188f8d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FABKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 569180c3-944e-45bc-bbb4-98e48af73e7f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.FABKZ = ' ' THEN NULL ELSE EKPO.FABKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6346700b-a8cd-4a4f-961d-35cc6a0ce1b1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_J_1AINDXP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6346700b-a8cd-4a4f-961d-35cc6a0ce1b1
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.J_1AINDXP = ' ' THEN NULL ELSE EKPO.J_1AINDXP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9373961c-b7f7-4b21-9800-2ae01ca85a88
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_J_1AIDATEP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9373961c-b7f7-4b21-9800-2ae01ca85a88
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.J_1AIDATEP,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9578a92e-40e8-44f2-8b69-179e01e6df81
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MPROF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9578a92e-40e8-44f2-8b69-179e01e6df81
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.MPROF = ' ' THEN NULL ELSE EKPO.MPROF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a1e063f9-38dc-4000-baa1-5f14f1583bb7
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EGLKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b0223997-8007-49f8-99fd-0f0acd5e8840
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EGLKZ = ' ' THEN NULL ELSE EKPO.EGLKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d610ace9-c1d0-4698-97f5-79a71496c187
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZTLF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 21e260ec-393f-4f40-8aa1-f4658949ae4a
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KZTLF = ' ' THEN NULL ELSE EKPO.KZTLF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e47d91c7-f4a8-4c9c-a43b-727571e1f673
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KZFME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e47d91c7-f4a8-4c9c-a43b-727571e1f673
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.KZFME = ' ' THEN NULL ELSE EKPO.KZFME END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a9669cb-3f5f-4930-acdf-e6ad421c471a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_RDPRF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c69a1aea-be57-465d-87e1-ba253038b0fe
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.RDPRF = ' ' THEN NULL ELSE EKPO.RDPRF END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 84b93543-902d-42fe-9a99-24b7726e6088
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_TECHS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 84b93543-902d-42fe-9a99-24b7726e6088
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.TECHS = ' ' THEN NULL ELSE EKPO.TECHS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cba3bbfc-e76a-4dbc-ad8d-2b17e62257a0
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_CHG_SRV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cba3bbfc-e76a-4dbc-ad8d-2b17e62257a0
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.CHG_SRV = ' ' THEN NULL ELSE EKPO.CHG_SRV END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dd874be5-fdab-4974-873e-a5a76da8fd37
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_CHG_FPLNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dd874be5-fdab-4974-873e-a5a76da8fd37
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.CHG_FPLNR = ' ' THEN NULL ELSE EKPO.CHG_FPLNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6bd2d405-799c-43a5-a8a0-9f7aa9bca895
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MFRPN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc459b41-f019-412b-9f27-0c7ca169bd6f
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MFRPN = ' ' THEN NULL ELSE EKPO.MFRPN END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 373d0a64-64e6-4212-a3e7-cdf62cdf1e51
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MFRNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e4ea39c7-cb8b-4d7f-8861-856f1b34acf7
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.MFRNR = ' ' THEN NULL ELSE EKPO.MFRNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e9785efb-d98c-4063-a0cb-eefb8cb65866
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EMNFR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e9785efb-d98c-4063-a0cb-eefb8cb65866
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EMNFR = ' ' THEN NULL ELSE EKPO.EMNFR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d8c3857-c830-4a35-8072-e335d37aba26
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_NOVET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d8c3857-c830-4a35-8072-e335d37aba26
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.NOVET = ' ' THEN NULL ELSE EKPO.NOVET END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 91119354-2b83-4f57-bb86-42e5e55d07c4
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_AFNAM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a97f7edc-502e-47a0-ad77-97b994787475
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.AFNAM = ' ' THEN NULL ELSE EKPO.AFNAM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 916d61d7-dce2-44da-8692-894eee4160bc
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_TZONRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b4bf30ce-215b-48aa-953c-f2af9822a3b3
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.TZONRC = ' ' THEN NULL ELSE EKPO.TZONRC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: da4d766a-8049-4191-b0e1-04681d10e131
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_IPRKZ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8563f64a-1207-4f25-af0f-5471d3b788af
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.IPRKZ = ' ' THEN NULL ELSE EKPO.IPRKZ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 90fd50f5-722f-43dd-93f4-fa4615fe1f86
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_LEBRE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87986546-bf09-49f6-8279-030db36d4fe0
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.LEBRE = ' ' THEN NULL ELSE EKPO.LEBRE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: da1259fd-06d2-438e-b13b-735b9f4a19d3
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BERID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f322984b-9e16-44c2-b6c5-5aa5dfec29ed
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.BERID = ' ' THEN NULL ELSE EKPO.BERID END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e6874c09-e9de-47cd-b201-2d76d67e3840
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_XCONDITIONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e6874c09-e9de-47cd-b201-2d76d67e3840
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.XCONDITIONS = ' ' THEN NULL ELSE EKPO.XCONDITIONS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f2b0abb-19d0-461f-a97a-1526ee134661
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_APOMS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f2b0abb-19d0-461f-a97a-1526ee134661
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.APOMS = ' ' THEN NULL ELSE EKPO.APOMS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9438845f-c4fa-4287-b781-6cda5ab0dc3f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_CCOMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c4f2894-1f91-4dd3-bfa0-e7016a7ac8b8
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.CCOMP = ' ' THEN NULL ELSE EKPO.CCOMP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5162e69b-5ef3-49bd-b9a4-a51eb2946b15
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_GRANT_NBR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5162e69b-5ef3-49bd-b9a4-a51eb2946b15
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.GRANT_NBR = ' ' THEN NULL ELSE EKPO.GRANT_NBR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d6c522d-d981-4a05-beaf-f6ed77f59567
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FKBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d6c522d-d981-4a05-beaf-f6ed77f59567
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.FKBER = ' ' THEN NULL ELSE EKPO.FKBER END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0871a524-f4ef-4eca-b730-d8de504db8b4
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0871a524-f4ef-4eca-b730-d8de504db8b4
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.STATUS = ' ' THEN NULL ELSE EKPO.STATUS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 289c36fc-d425-4859-a3ed-8021f9546106
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_RESLO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2eed987f-837f-43eb-9929-67563a4e372a
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.RESLO = ' ' THEN NULL ELSE EKPO.RESLO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 93b35c19-adac-4ace-ae06-bbfb35e8bdc2
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KBLNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 93b35c19-adac-4ace-ae06-bbfb35e8bdc2
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.KBLNR = ' ' THEN NULL ELSE EKPO.KBLNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a47ef81-fa44-429c-866c-913ae987b4eb
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_KBLPOS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 77ff6406-f8cc-4c40-906d-907708b9fa5a
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.KBLPOS = '000' THEN NULL ELSE EKPO.KBLPOS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f42efe7d-991e-431f-8e41-bcb1028a5c5d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WEORA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 90b12f13-cee5-413f-883d-a6778e69bacd
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.WEORA = ' ' THEN NULL ELSE EKPO.WEORA END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f4891bf-9d12-4ad9-ab65-8a9292043b87
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SRV_BAS_COM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f4891bf-9d12-4ad9-ab65-8a9292043b87
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SRV_BAS_COM = ' ' THEN NULL ELSE EKPO.SRV_BAS_COM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1ba1856-2504-4c61-b2b5-11977b633e47
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PRIO_URG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1ba1856-2504-4c61-b2b5-11977b633e47
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.PRIO_URG = '00' THEN NULL ELSE EKPO.PRIO_URG END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d70c5c3b-a09f-4a4d-a103-409daca60c45
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PRIO_REQ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d70c5c3b-a09f-4a4d-a103-409daca60c45
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.PRIO_REQ = '000' THEN NULL ELSE EKPO.PRIO_REQ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77194ce2-4ce0-4b1d-9f0f-7c61a5722f8f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EMPST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 77194ce2-4ce0-4b1d-9f0f-7c61a5722f8f
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EMPST = ' ' THEN NULL ELSE EKPO.EMPST END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 94d9859b-b662-4934-9aad-6f5efe49c4c1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_DIFF_INVOICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 94d9859b-b662-4934-9aad-6f5efe49c4c1
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.DIFF_INVOICE = ' ' THEN NULL ELSE EKPO.DIFF_INVOICE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 746e44c3-14df-4c75-9762-036ab2b86071
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_TRMRISK_RELEVANT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 746e44c3-14df-4c75-9762-036ab2b86071
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.TRMRISK_RELEVANT = ' ' THEN NULL ELSE EKPO.TRMRISK_RELEVANT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 19b47814-c6c2-4f86-b7f6-e810c4fa1ce0
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_ABGRU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 19b47814-c6c2-4f86-b7f6-e810c4fa1ce0
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SPE_ABGRU = ' ' THEN NULL ELSE EKPO.SPE_ABGRU END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc4f0535-9ddc-4dd6-b0e2-df77491c4b25
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_CRM_SO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fc4f0535-9ddc-4dd6-b0e2-df77491c4b25
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SPE_CRM_SO = ' ' THEN NULL ELSE EKPO.SPE_CRM_SO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eec823af-a262-4b34-9436-ca9b12ac149f
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_CRM_SO_ITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e39da662-cc40-40fd-86d0-eb194b49f360
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SPE_CRM_SO_ITEM = '000000' THEN NULL ELSE EKPO.SPE_CRM_SO_ITEM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 892d3107-7470-4ff9-8e63-403c3e1cb4af
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_CRM_REF_SO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 892d3107-7470-4ff9-8e63-403c3e1cb4af
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SPE_CRM_REF_SO = ' ' THEN NULL ELSE EKPO.SPE_CRM_REF_SO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb929c49-f574-4c91-941c-392727f5b114
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_CRM_REF_ITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cb929c49-f574-4c91-941c-392727f5b114
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SPE_CRM_REF_ITEM = ' ' THEN NULL ELSE EKPO.SPE_CRM_REF_ITEM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c31ea52b-727e-4f82-a372-a21aeb276a74
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_CRM_FKREL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c31ea52b-727e-4f82-a372-a21aeb276a74
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SPE_CRM_FKREL = ' ' THEN NULL ELSE EKPO.SPE_CRM_FKREL END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d637b3be-36c2-4d30-988f-0736b2ea2c5b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_CHNG_SYS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d637b3be-36c2-4d30-988f-0736b2ea2c5b
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SPE_CHNG_SYS = ' ' THEN NULL ELSE EKPO.SPE_CHNG_SYS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a1cd6aa-5a4f-4dd2-a436-9a2840cbe193
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_INSMK_SRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0a1cd6aa-5a4f-4dd2-a436-9a2840cbe193
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SPE_INSMK_SRC = ' ' THEN NULL ELSE EKPO.SPE_INSMK_SRC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32528370-b33c-472f-81e0-d9b0d1769291
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_CQ_CTRLTYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 32528370-b33c-472f-81e0-d9b0d1769291
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SPE_CQ_CTRLTYPE = ' ' THEN NULL ELSE EKPO.SPE_CQ_CTRLTYPE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6dbdb134-5949-4b46-9a83-20db4020e6fc
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_CQ_NOCQ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1ad84457-fbac-4431-96c0-88fde2b6c827
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SPE_CQ_NOCQ = ' ' THEN NULL ELSE EKPO.SPE_CQ_NOCQ END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f26dcbf6-fd0d-4806-aaad-bae064827e98
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_REASON_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f26dcbf6-fd0d-4806-aaad-bae064827e98
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.REASON_CODE = ' ' THEN NULL ELSE EKPO.REASON_CODE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b2d1c2d-dcb6-4476-9922-40758722ea24
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_CQU_SAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d2cdac3e-0131-45a3-8fdf-fc0827a8a0c7
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.CQU_SAR AS DECIMAL(15,3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e52da733-ed73-4321-9033-e379ee7bf8a5
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ANZSN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7c5e892-1b93-4bf1-971d-ba35427aacd9
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.ANZSN AS DECIMAL(10,0))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b436d0bf-7258-441c-9d5d-7cb8391a2779
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SPE_EWM_DTC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b436d0bf-7258-441c-9d5d-7cb8391a2779
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SPE_EWM_DTC = ' ' THEN NULL ELSE EKPO.SPE_EWM_DTC END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 000be37e-79b1-49e8-9745-aa7188262548
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EXLIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 000be37e-79b1-49e8-9745-aa7188262548
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EXLIN = ' ' THEN NULL ELSE EKPO.EXLIN END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03e6369f-09a6-4f7c-9e85-efabc54d824a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EXSNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c3638f2b-0006-4020-967a-a444454fbb5b
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EXSNR = '00000' THEN NULL ELSE EKPO.EXSNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 89cd8e90-5a4a-4081-9fcd-5a282d4b1329
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EHTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 89cd8e90-5a4a-4081-9fcd-5a282d4b1329
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EHTYP = ' ' THEN NULL ELSE EKPO.EHTYP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac903054-dd7d-4bdf-9174-0acf0c1bcd57
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_RETPC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 719e54fc-8d75-4e61-99bf-13c44bf36453
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.RETPC AS DECIMAL(5,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a572ef0-cb08-48d9-a7da-291762f1e73a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_DPTYP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a572ef0-cb08-48d9-a7da-291762f1e73a
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.DPTYP = ' ' THEN NULL ELSE EKPO.DPTYP END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b87e449-ece8-49be-9dcb-3f8be3d1eabf
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_DPPCT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9fe11b37-d456-4749-a080-dffc1709415a
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.DPPCT AS DECIMAL(5,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e7e4113-e4a4-4bd9-bdb6-ee20b27b7a24
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: EKPO_DPAMT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f70efb1-5b8a-43a0-9104-97078a2dbc57
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CAST(EKPO.DPAMT AS DECIMAL(11,2))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b96e3f04-b9c1-43ef-ac0c-fcdb25d259ed
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: EKPO_DPDAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b96e3f04-b9c1-43ef-ac0c-fcdb25d259ed
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CAST(TO_TIMESTAMP(DATEDIFF(SECOND, '1970-01-01'::DATE,TRY_TO_TIMESTAMP(EKPO.DPDAT,'YYYYMMDD'))) AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f722e1f-6f8c-4bcf-8aae-55c158c75e9c
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FLS_RSTO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: daad2d5d-0a94-46d7-881d-d7b2640b4305
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.FLS_RSTO = ' ' THEN NULL ELSE EKPO.FLS_RSTO END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48715a77-a683-4176-aab6-a7e1e21be570
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EXT_RFX_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7dd6ef8d-4111-4a61-a3cf-8d7fb52ab56e
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EXT_RFX_NUMBER = ' ' THEN NULL ELSE EKPO.EXT_RFX_NUMBER END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 473ba2da-fc82-4558-bcf6-1badb5e5a89e
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EXT_RFX_ITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ad49d95e-595f-40dd-9840-8e1427eb53f4
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.EXT_RFX_ITEM = ' ' THEN NULL ELSE EKPO.EXT_RFX_ITEM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0eb3825c-eccb-4b83-8e32-a0d73e39fc97
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EXT_RFX_SYSTEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0eb3825c-eccb-4b83-8e32-a0d73e39fc97
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EXT_RFX_SYSTEM = ' ' THEN NULL ELSE EKPO.EXT_RFX_SYSTEM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c238b28b-a86b-469f-8d4e-e55663a45132
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SRM_CONTRACT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c238b28b-a86b-469f-8d4e-e55663a45132
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SRM_CONTRACT_ID = ' ' THEN NULL ELSE EKPO.SRM_CONTRACT_ID END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 94b2f8e3-1f6a-4e6c-8d64-770125c545a5
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SRM_CONTRACT_ITM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9a660e48-0a5f-4898-a316-30b2d8626555
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.SRM_CONTRACT_ITM = '0000000000' THEN NULL ELSE EKPO.SRM_CONTRACT_ITM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1336d7eb-8bb5-4da0-ac2d-0907ed3fd151
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BLK_REASON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1336d7eb-8bb5-4da0-ac2d-0907ed3fd151
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.BLK_REASON_ID = ' ' THEN NULL ELSE EKPO.BLK_REASON_ID END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f0acefec-e582-448a-b078-0eb4cd7b5c58
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BLK_REASON_TXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0acefec-e582-448a-b078-0eb4cd7b5c58
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.BLK_REASON_TXT = ' ' THEN NULL ELSE EKPO.BLK_REASON_TXT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa53a478-bf67-4983-b233-7a386034893c
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ITCONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aa53a478-bf67-4983-b233-7a386034893c
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.ITCONS = ' ' THEN NULL ELSE EKPO.ITCONS END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3c7b6c95-8879-4cdd-b661-41329923d0b1
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FIXMG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c7b6c95-8879-4cdd-b661-41329923d0b1
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.FIXMG = ' ' THEN NULL ELSE EKPO.FIXMG END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c60bc87d-b423-4438-9980-75c7b9faff81
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WABWE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c60bc87d-b423-4438-9980-75c7b9faff81
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.WABWE = ' ' THEN NULL ELSE EKPO.WABWE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 98a65ee3-8e24-463c-b8c6-2752b90634c8
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_CMPL_DLV_ITM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 98a65ee3-8e24-463c-b8c6-2752b90634c8
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.CMPL_DLV_ITM = ' ' THEN NULL ELSE EKPO.CMPL_DLV_ITM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c9d37521-b329-4c4c-b2ac-906aad703be3
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_TC_AUT_DET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9d37521-b329-4c4c-b2ac-906aad703be3
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.TC_AUT_DET = ' ' THEN NULL ELSE EKPO.TC_AUT_DET END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 93d55e87-2e24-473a-a702-365fb9512266
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MANUAL_TC_REASON
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 93d55e87-2e24-473a-a702-365fb9512266
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.MANUAL_TC_REASON = ' ' THEN NULL ELSE EKPO.MANUAL_TC_REASON END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1acb82ee-d38f-412a-8fff-8e611435dbbd
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FISCAL_INCENTIVE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1acb82ee-d38f-412a-8fff-8e611435dbbd
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.FISCAL_INCENTIVE = ' ' THEN NULL ELSE EKPO.FISCAL_INCENTIVE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e9495a4a-75b9-4ec1-91db-6d2647c6e9dd
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_TAX_SUBJECT_ST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e9495a4a-75b9-4ec1-91db-6d2647c6e9dd
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.TAX_SUBJECT_ST = ' ' THEN NULL ELSE EKPO.TAX_SUBJECT_ST END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 63779534-2625-4072-bbb7-d475a8a5f7d6
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FISCAL_INCENTIVE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 63779534-2625-4072-bbb7-d475a8a5f7d6
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.FISCAL_INCENTIVE_ID = ' ' THEN NULL ELSE EKPO.FISCAL_INCENTIVE_ID END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e44ee8bf-0178-4d76-acd1-78b5f8f4c25b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SF_TXJCD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e44ee8bf-0178-4d76-acd1-78b5f8f4c25b
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SF_TXJCD = ' ' THEN NULL ELSE EKPO.SF_TXJCD END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 75228a75-5b26-4fd2-b2d1-521f4834cd3a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BEV1_NEGEN_ITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 75228a75-5b26-4fd2-b2d1-521f4834cd3a
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.BEV1_NEGEN_ITEM = ' ' THEN NULL ELSE EKPO.BEV1_NEGEN_ITEM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 799b2e1d-ef21-4155-b91f-69679ed9f595
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BEV1_NEDEPFREE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 799b2e1d-ef21-4155-b91f-69679ed9f595
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.BEV1_NEDEPFREE = ' ' THEN NULL ELSE EKPO.BEV1_NEDEPFREE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 706d7919-d4e8-4e40-a0c9-548be0136a9b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BEV1_NESTRUCCAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 706d7919-d4e8-4e40-a0c9-548be0136a9b
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.BEV1_NESTRUCCAT = ' ' THEN NULL ELSE EKPO.BEV1_NESTRUCCAT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd4c537b-38f8-48ca-85c5-7df548a71d61
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ADVCODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd4c537b-38f8-48ca-85c5-7df548a71d61
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.ADVCODE = ' ' THEN NULL ELSE EKPO.ADVCODE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f6ed126-d44e-4c48-8ca8-7acabb062083
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_BUDGET_PD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f6ed126-d44e-4c48-8ca8-7acabb062083
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.BUDGET_PD = ' ' THEN NULL ELSE EKPO.BUDGET_PD END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6a8c01a-30b0-401f-9323-be61a50993de
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EXCPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c6a8c01a-30b0-401f-9323-be61a50993de
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EXCPE = '00' THEN NULL ELSE EKPO.EXCPE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 702a4bbd-4638-4e0d-babc-8087e40f1eba
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_FMFGUS_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 702a4bbd-4638-4e0d-babc-8087e40f1eba
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.FMFGUS_KEY = ' ' THEN NULL ELSE EKPO.FMFGUS_KEY END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8156a04-4676-4a3f-9b7f-298bc9b11d64
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_IUID_RELEVANT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d8156a04-4676-4a3f-9b7f-298bc9b11d64
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.IUID_RELEVANT = ' ' THEN NULL ELSE EKPO.IUID_RELEVANT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6840df80-a8cc-4de2-82b5-7b4888c45739
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_MRPIND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6840df80-a8cc-4de2-82b5-7b4888c45739
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.MRPIND = ' ' THEN NULL ELSE EKPO.MRPIND END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49cc15f0-680c-47d6-8e7e-ef559e067f67
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SGT_SCAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 49cc15f0-680c-47d6-8e7e-ef559e067f67
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SGT_SCAT = ' ' THEN NULL ELSE EKPO.SGT_SCAT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 802f324f-d466-455c-8234-8e5054c40209
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SGT_RCAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 802f324f-d466-455c-8234-8e5054c40209
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SGT_RCAT = ' ' THEN NULL ELSE EKPO.SGT_RCAT END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f3429c1-f375-40a4-8a14-cb8a15f62525
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WRF_CHARSTC1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f3429c1-f375-40a4-8a14-cb8a15f62525
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.WRF_CHARSTC1 = ' ' THEN NULL ELSE EKPO.WRF_CHARSTC1 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eab2ac85-a5fb-42e6-9237-ff2289e9dc6b
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WRF_CHARSTC2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eab2ac85-a5fb-42e6-9237-ff2289e9dc6b
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.WRF_CHARSTC2 = ' ' THEN NULL ELSE EKPO.WRF_CHARSTC2 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 930fed73-802f-45f2-b107-a79b5c003214
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_WRF_CHARSTC3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 930fed73-802f-45f2-b107-a79b5c003214
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.WRF_CHARSTC3 = ' ' THEN NULL ELSE EKPO.WRF_CHARSTC3 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1e457937-ca2b-4c6a-b0f5-2b92b8f4e94c
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_EXTWG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1e457937-ca2b-4c6a-b0f5-2b92b8f4e94c
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.EXTWG = ' ' THEN NULL ELSE EKPO.EXTWG END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 01e2eddf-66c3-49f3-9911-8048536e43f8
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_ZZSEQNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 01e2eddf-66c3-49f3-9911-8048536e43f8
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.ZZSEQNR = '00000000000000' THEN NULL ELSE EKPO.ZZSEQNR END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 37bb5000-63a1-466a-8f61-8b80ee6ea5ec
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_REFSITE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 37bb5000-63a1-466a-8f61-8b80ee6ea5ec
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.REFSITE = ' ' THEN NULL ELSE EKPO.REFSITE END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 587e9bcf-35f6-4004-af34-00a24fdb4be5
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_REF_ITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d1dae720-9b7b-4c35-9458-978f665997fa
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.REF_ITEM = '00000' THEN NULL ELSE EKPO.REF_ITEM END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1622d1f2-752f-44e4-9d09-1f3f4213ec5a
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SOURCE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1622d1f2-752f-44e4-9d09-1f3f4213ec5a
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SOURCE_ID = ' ' THEN NULL ELSE EKPO.SOURCE_ID END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 50640490-c6d6-4e9a-9d4f-dbdd4ebf586d
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_SOURCE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 50640490-c6d6-4e9a-9d4f-dbdd4ebf586d
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.SOURCE_KEY = ' ' THEN NULL ELSE EKPO.SOURCE_KEY END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b039457-2f20-4c58-8c9f-34a3e525c7a5
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_PUT_BACK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b039457-2f20-4c58-8c9f-34a3e525c7a5
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.PUT_BACK = ' ' THEN NULL ELSE EKPO.PUT_BACK END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 578f4fa4-ad4f-4600-afa8-182a2037b238
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_POL_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 578f4fa4-ad4f-4600-afa8-182a2037b238
+                stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+            transform: CASE WHEN EKPO.POL_ID = ' ' THEN NULL ELSE EKPO.POL_ID END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 18d29d49-0275-47ff-a60a-c47a9e1d0097
+          stepCounter: b1d41951-8c2a-46c7-8d76-04eb2ceb152d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EKPO_CONS_ORDER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4cf55faf-2186-4f64-84ec-9bbf2cb40ffe
+                stepCounter: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+            transform: CASE WHEN EKPO.CONS_ORDER = ' ' THEN NULL ELSE EKPO.CONS_ORDER END
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          CEPCT: 59b252d6-3dba-4169-a8a7-302a6fcc63b1
+          EKPO: cee8ae9f-9ddf-48f5-80bf-7529be5af191
+          MAKT: 1b022d41-7f66-44ad-aa93-1baea02e1875
+          T001: 1772ecd2-1d44-4d24-b067-a7d6f9e281a2
+          T001L: 9bb74aa1-d2b7-4312-bfac-005b36b93b9f
+          T001W: 1df95e45-0fd0-4dac-9f27-934a18cdeac6
+          T134T: ec2f0a24-5971-44e2-a301-099fa315e2c4
+          T163Y: b849c252-6799-4e79-90f9-f275eccf8c0c
+          TINCT: d712327c-742f-4feb-8c4e-a3c5c0189a3b
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: EKPO
+          - locationName: SRC_SAP
+            nodeName: T001
+          - locationName: SRC_SAP
+            nodeName: T001L
+          - locationName: SRC_SAP
+            nodeName: T001W
+          - locationName: WORK
+            nodeName: STG_CEPCT
+          - locationName: WORK
+            nodeName: STG_MAKT
+          - locationName: WORK
+            nodeName: STG_T134T
+          - locationName: WORK
+            nodeName: STG_T163Y
+          - locationName: WORK
+            nodeName: STG_TINCT
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'EKPO') }} 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_MAKT') }} MAKT ON EKPO.MANDT = MAKT.MANDT AND EKPO.MATNR = MAKT.MATNR 
+            LEFT OUTER JOIN {{ ref('SRC_SAP', 'T001') }} ON EKPO.MANDT = T001.MANDT AND EKPO.BUKRS = T001.BUKRS 
+            LEFT OUTER JOIN {{ ref('SRC_SAP', 'T001W') }} ON EKPO.MANDT = T001W.MANDT AND EKPO.WERKS = T001W.WERKS 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_TINCT') }} TINCT ON EKPO.MANDT = TINCT.MANDT AND EKPO.INCO1 = TINCT.INCO1 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T134T') }} T134T ON EKPO.MANDT = T134T.MANDT AND EKPO.MTART = T134T.MTART 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_CEPCT') }} CEPCT ON EKPO.MANDT = CEPCT.MANDT AND EKPO.KO_PRCTR = CEPCT.PRCTR 
+            LEFT OUTER JOIN {{ ref('SRC_SAP', 'T001L') }} ON EKPO.MANDT = T001L.MANDT AND EKPO.WERKS = T001L.WERKS AND EKPO.LGORT = T001L.LGORT 
+            LEFT OUTER JOIN {{ ref('WORK', 'STG_T163Y') }} T163Y ON EKPO.MANDT = T163Y.MANDT AND EKPO.PSTYP = T163Y.PSTYP 
+            WHERE EKPO.SLT_DELETE <> 'X'
+        name: UNITY_SAP_PURCHASING_DOC_POS_STG
+        noLinkRefs: []
+  name: UNITY_SAP_PURCHASING_DOC_POS_STG
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

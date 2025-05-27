@@ -1,0 +1,74 @@
+fileVersion: 1
+id: 4c512cca-a35c-451e-843d-ac0e75dad018
+name: UNITY_SAP_EKKN_STG_EKKN
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: |-
+    create stage table UNITY_SAP_EKKN_STG_EKKN from SELECT  CONCAT_WS('~','5',MANDT, EBELN, EBELP) PK_EKKN, FIRST_VALUE(PRCTR IGNORE NULLS) OVER (PARTITION BY EBELN,EBELP ORDER BY MENGE DESC, VPROZ DESC, ZEKKN) PRCTR 
+    FROM UNITY_SAP_EKKN_STG_T1
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 02c35b24-498e-40ff-9a9f-6e9848b5d6d4
+          stepCounter: 4c512cca-a35c-451e-843d-ac0e75dad018
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: PK_EKKN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02c35b24-498e-40ff-9a9f-6e9848b5d6d4
+                stepCounter: 4c512cca-a35c-451e-843d-ac0e75dad018
+            transform: CONCAT_WS('~','5',MANDT, EBELN, EBELP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 57b08b96-cec5-43c7-af8d-17069645c1d7
+          stepCounter: 4c512cca-a35c-451e-843d-ac0e75dad018
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: PRCTR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 57b08b96-cec5-43c7-af8d-17069645c1d7
+                stepCounter: 4c512cca-a35c-451e-843d-ac0e75dad018
+            transform: FIRST_VALUE(PRCTR IGNORE NULLS) OVER (PARTITION BY EBELN,EBELP ORDER BY MENGE DESC, VPROZ DESC, ZEKKN)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: UNITY_SAP_EKKN_STG_T1
+        join:
+          joinCondition: FROM {{ ref('WORK', 'UNITY_SAP_EKKN_STG_T1') }}
+        name: UNITY_SAP_EKKN_STG_EKKN
+        noLinkRefs: []
+  name: UNITY_SAP_EKKN_STG_EKKN
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

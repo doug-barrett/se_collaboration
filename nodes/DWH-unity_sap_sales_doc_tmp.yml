@@ -1,0 +1,149 @@
+fileVersion: 1
+id: 32eb2ed7-6253-4e27-88f8-6f7412d53cc9
+name: unity_sap_sales_doc_tmp
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Extracts header information from the VBRK table.
+  isMultisource: true
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d54995ec-64cd-4445-95b2-86cedbba66d7
+          stepCounter: 32eb2ed7-6253-4e27-88f8-6f7412d53cc9
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: hdr_table
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6d776a8-436d-4151-b6d5-2ea2166e6a8c
+                stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+            transform: ""
+          - columnReferences:
+              - columnCounter: 4cd9bdd5-0086-4cc4-b53d-1778d41ccbfd
+                stepCounter: 8b2dac08-a885-4458-a959-35f8bbfc5b32
+            transform: ""
+          - columnReferences:
+              - columnCounter: 6826a6a0-18ef-4901-b13c-6eab7537995a
+                stepCounter: 0ad0cd4a-01a3-42f1-b6d4-c6edf8242f77
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7ec537c-c270-4b06-9ec4-4fe4786e4d72
+          stepCounter: 32eb2ed7-6253-4e27-88f8-6f7412d53cc9
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: mandt
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39c48ace-623d-4eee-8751-4f8782f58cd1
+                stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+            transform: ""
+          - columnReferences:
+              - columnCounter: 41186e44-cad3-4767-9975-f8b4f29d310f
+                stepCounter: 8b2dac08-a885-4458-a959-35f8bbfc5b32
+            transform: ""
+          - columnReferences:
+              - columnCounter: b89915b9-79e2-41d9-9564-a9caa991553e
+                stepCounter: 0ad0cd4a-01a3-42f1-b6d4-c6edf8242f77
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c33bd5b1-cb96-4ade-9df9-f51b19d7cbd0
+          stepCounter: 32eb2ed7-6253-4e27-88f8-6f7412d53cc9
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vbeln
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bed780b6-17fc-4ca6-9f3d-6327f6d2a7eb
+                stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+            transform: ""
+          - columnReferences:
+              - columnCounter: abf62c7a-edcb-4049-81c1-61e9bcdff40a
+                stepCounter: 8b2dac08-a885-4458-a959-35f8bbfc5b32
+            transform: ""
+          - columnReferences:
+              - columnCounter: 163aa53a-38d2-40bd-aef0-1d9ac564168f
+                stepCounter: 0ad0cd4a-01a3-42f1-b6d4-c6edf8242f77
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a6560ef-5d56-4a95-9ebd-2128a1bde008
+          stepCounter: 32eb2ed7-6253-4e27-88f8-6f7412d53cc9
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: vbtyp
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8933f6fb-f70f-496e-99c4-fd12993bcf87
+                stepCounter: 8f75f8cc-aec2-4e5e-90de-e2625fe4dbf5
+            transform: ""
+          - columnReferences:
+              - columnCounter: 7f0dcd97-0a1e-4e6f-b2f2-2621faa5d89a
+                stepCounter: 8b2dac08-a885-4458-a959-35f8bbfc5b32
+            transform: ""
+          - columnReferences:
+              - columnCounter: bfafc208-a585-4aed-b18a-4cacadd1f0f1
+                stepCounter: 0ad0cd4a-01a3-42f1-b6d4-c6edf8242f77
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: hdr_table_vbrk
+        join:
+          joinCondition: FROM {{ ref('DWH', 'hdr_table_vbrk') }} "hdr_table_vbrk"
+        name: hdr_table_vbrk
+        noLinkRefs: []
+      - aliases:
+          hdr_table_vbak: 8b2dac08-a885-4458-a959-35f8bbfc5b32
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: hdr_table_vbak
+        join:
+          joinCondition: FROM {{ ref('DWH', 'hdr_table_vbak') }} "hdr_table_vbak"
+        name: hdr_table_vbak
+        noLinkRefs: []
+      - aliases:
+          hdr_table_likp: 0ad0cd4a-01a3-42f1-b6d4-c6edf8242f77
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: hdr_table_likp
+        join:
+          joinCondition: FROM {{ ref('DWH', 'hdr_table_likp') }} "hdr_table_likp"
+        name: hdr_table_likp
+        noLinkRefs: []
+  name: unity_sap_sales_doc_tmp
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

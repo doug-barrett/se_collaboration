@@ -1,0 +1,88 @@
+fileVersion: 1
+id: c5b8fdee-780e-49f1-9e0c-afae4c0613e2
+name: STG_KNA1
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Customer dimension staging table.
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b1403874-0b74-4a75-9a68-b8dd98c67972
+          stepCounter: c5b8fdee-780e-49f1-9e0c-afae4c0613e2
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: KNA1_PK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0cfe27c3-be32-47bd-b79f-6f19dec61696
+                stepCounter: 957f689a-eef9-4242-8945-122e598de601
+            transform: CASE WHEN KNA1.MANDT IS NULL OR KNA1.KUNNR IS NULL THEN NULL ELSE CONCAT_WS('~','5',KNA1.MANDT,KNA1.KUNNR) END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c5310e7-5bb7-49d6-91c7-1ce78a897322
+          stepCounter: c5b8fdee-780e-49f1-9e0c-afae4c0613e2
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: KUNNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1378a49a-8827-41de-a605-ba666045755d
+                stepCounter: 957f689a-eef9-4242-8945-122e598de601
+            transform: KUNNR
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88d8a5e4-3d41-48a4-9940-d9dc12c7d503
+          stepCounter: c5b8fdee-780e-49f1-9e0c-afae4c0613e2
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: NAME1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 79dd9e17-4268-412d-855c-35d31eefdae1
+                stepCounter: 957f689a-eef9-4242-8945-122e598de601
+            transform: NAME1
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          KNA1: 957f689a-eef9-4242-8945-122e598de601
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: KNA1
+        join:
+          joinCondition: FROM {{ ref('SRC_SAP', 'KNA1') }}
+        name: STG_KNA1
+        noLinkRefs: []
+  name: STG_KNA1
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

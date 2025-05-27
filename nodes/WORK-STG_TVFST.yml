@@ -1,0 +1,154 @@
+fileVersion: 1
+id: 22d59d02-0468-4625-9155-6467d1cf7b67
+name: STG_TVFST
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4e730734-aaa2-42dd-bfba-fb7f52b1a7f7
+          stepCounter: 22d59d02-0468-4625-9155-6467d1cf7b67
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b1341950-29c3-4859-97ba-ff30464c3c95
+                stepCounter: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7222941a-b48a-4d75-b892-abe911c147be
+          stepCounter: 22d59d02-0468-4625-9155-6467d1cf7b67
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: SPRAS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 328737fc-6647-45c0-81c0-a7aa752ba07e
+                stepCounter: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b84d91c-60c1-42a4-bfb3-c952cd0a9906
+          stepCounter: 22d59d02-0468-4625-9155-6467d1cf7b67
+        config: {}
+        dataType: VARCHAR(2)
+        description: ""
+        name: FAKSP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 13d454a9-1de1-41cf-a3fb-41556ac1e1f3
+                stepCounter: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 63b8f023-8b1a-44c2-b5b2-eb94ae1a9a09
+          stepCounter: 22d59d02-0468-4625-9155-6467d1cf7b67
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: VTEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f1aa51e9-8501-4bdb-985f-313ac4fe93e9
+                stepCounter: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 867f2ddb-9b97-4fc2-b1f6-c3ce560ec66e
+          stepCounter: 22d59d02-0468-4625-9155-6467d1cf7b67
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: ARCHIVE_FLAG$
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d4bd78b1-c4e8-46c5-998b-96da9da80ebd
+                stepCounter: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb0f5cd1-abf3-4395-8c32-52dbd57285de
+          stepCounter: 22d59d02-0468-4625-9155-6467d1cf7b67
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: ARCHIVE_TIMESTAMP$
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 06d985af-b982-450e-9abd-6c462d52c86f
+                stepCounter: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 80c86c1f-b83c-4a02-8cdc-7d649867bb56
+          stepCounter: 22d59d02-0468-4625-9155-6467d1cf7b67
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9cec4806-22cf-49ed-a316-4bca5d59dc25
+                stepCounter: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 50aab540-f32a-4e62-8190-7bb6711164f4
+          stepCounter: 22d59d02-0468-4625-9155-6467d1cf7b67
+        config: {}
+        dataType: TIMESTAMP_NTZ(0)
+        description: ""
+        name: SOURCE_UPDATE_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1c60562-bf60-42d4-a9cd-b04fedbc84d5
+                stepCounter: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          TVFST: 3754573a-8e18-47e6-993a-2d0824a2d3a0
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP
+            nodeName: TVFST
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAP', 'TVFST') }} "TVFST"
+            WHERE SPRAS = 'E'
+        name: STG_TVFST
+        noLinkRefs: []
+  name: STG_TVFST
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
