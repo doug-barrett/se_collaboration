@@ -1,26 +1,26 @@
 fileVersion: 1
-id: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
-name: ML_FCSTS_VANCOUVER_PREDICTIONS
+id: 454d1cc7-0054-4abc-bbd5-37c07320eed8
+name: ML_FCSTS_V_VANCOUVER_PREDICTION
 operation:
   config:
     Forcecreate: false
     cobject: false
-    exvar: "true"
-    fcdays: "30"
+    exvar: true
+    fcdays: ""
     mname: vancouver_forecast
-    multiseries: true
+    multiseries: "true"
     predictioninterval: ex:0.80(float value)
     series_value: false
     seriescol:
-      columnCounter: f5527fcd-05ca-407a-b47b-ddc813ab6826
-      stepCounter: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
+      columnCounter: 16d02627-52a4-4b3e-814a-a84d29e692c1
+      stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
     svalue: ""
     tgtcol:
-      columnCounter: f809e422-19ce-4249-b146-75ff6e8d1a35
-      stepCounter: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
+      columnCounter: 41fd2562-9915-4028-af0e-bea278852799
+      stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
     tscol:
-      columnCounter: c146d03d-6ed0-41e0-aa28-1a0b6ec81aca
-      stepCounter: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
+      columnCounter: 8ef1e950-1be6-40c7-aa54-9eb32bca4df9
+      stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
   database: ""
   deployEnabled: true
   description: ""
@@ -32,8 +32,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: c146d03d-6ed0-41e0-aa28-1a0b6ec81aca
-          stepCounter: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
+          columnCounter: 8ef1e950-1be6-40c7-aa54-9eb32bca4df9
+          stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
         config: {}
         dataType: TIMESTAMP_NTZ
         description: ""
@@ -41,13 +41,17 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
+              - columnCounter: d767c44a-8007-49f9-804b-861248b1add4
+                stepCounter: 704db4e3-7015-439f-aeca-6d9326dcfc57
+            transform: ""
+          - columnReferences:
               - columnCounter: c624f4fc-fa60-4e05-bb7a-01bc097489af
                 stepCounter: 0e909cca-5104-43cf-8542-549c80efa0d0
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: f5527fcd-05ca-407a-b47b-ddc813ab6826
-          stepCounter: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
+          columnCounter: 16d02627-52a4-4b3e-814a-a84d29e692c1
+          stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -55,19 +59,45 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
+              - columnCounter: f2a1bc87-7e75-4a71-aeaa-0cb89348a2f9
+                stepCounter: 704db4e3-7015-439f-aeca-6d9326dcfc57
+            transform: ""
+          - columnReferences:
               - columnCounter: b3c528d1-ee19-4922-9a52-9c9ce93a4a4b
                 stepCounter: 0e909cca-5104-43cf-8542-549c80efa0d0
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 7949eeb2-30f5-47ad-a3a8-ad16e2cb0390
-          stepCounter: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
+          columnCounter: 41fd2562-9915-4028-af0e-bea278852799
+          stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: TOTAL_SOLD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c4e0c54f-63c0-4973-a9cd-7c183c73212b
+                stepCounter: 704db4e3-7015-439f-aeca-6d9326dcfc57
+            transform: ""
+          - columnReferences:
+              - columnCounter: a6d19fa7-dc95-4444-b190-9e175337608e
+                stepCounter: 0e909cca-5104-43cf-8542-549c80efa0d0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c7e54a10-15e2-4658-89ac-ca05490d5980
+          stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
         config: {}
         dataType: VARCHAR(16777216)
         description: Name of the Holiday
         name: HOLIDAY_NAME
         nullable: true
         sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c22769a4-222d-41f0-af25-0546c38dded7
+                stepCounter: 704db4e3-7015-439f-aeca-6d9326dcfc57
+            transform: ""
           - columnReferences:
               - columnCounter: 022d524e-3bdb-471b-ad44-e41a8493f094
                 stepCounter: 0e909cca-5104-43cf-8542-549c80efa0d0
@@ -77,8 +107,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f809e422-19ce-4249-b146-75ff6e8d1a35
-          stepCounter: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
+          columnCounter: 5b5142f9-e1c1-42bf-8433-2c290779546a
+          stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
         config: {}
         dataType: FLOAT
         defaultValue: ""
@@ -89,13 +119,15 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
+          - columnReferences: []
+            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2c5e4f0c-fa63-4577-ad69-2df4c493dac8
-          stepCounter: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
+          columnCounter: a58e53f7-c027-45a3-aedb-bc0fc292584c
+          stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
         config: {}
         dataType: FLOAT
         defaultValue: ""
@@ -106,13 +138,15 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
+          - columnReferences: []
+            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: eeffa9a8-f063-4796-8726-3c885ee6ef88
-          stepCounter: ddcca1f2-d9b5-437d-8fa3-f19c984597b0
+          columnCounter: 5edff42f-1ca2-4dae-80b6-f31dfb9f2c44
+          stepCounter: 454d1cc7-0054-4abc-bbd5-37c07320eed8
         config: {}
         dataType: FLOAT
         defaultValue: ""
@@ -120,6 +154,8 @@ operation:
         name: UPPER_BOUND
         nullable: true
         sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
           - columnReferences: []
             transform: ""
         upper_bound: true
@@ -131,12 +167,23 @@ operation:
           customSQL: ""
         dependencies:
           - locationName: DWH
+            nodeName: V_ALLITEMS_VANCOUVER
+        join:
+          joinCondition: FROM {{ ref('DWH', 'V_ALLITEMS_VANCOUVER') }} "V_ALLITEMS_VANCOUVER"
+        name: V_ALLITEMS_VANCOUVER
+        noLinkRefs: []
+      - aliases:
+          V_VANCOUVER_INFERENCE_DATA: 0e909cca-5104-43cf-8542-549c80efa0d0
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
             nodeName: V_VANCOUVER_INFERENCE_DATA
         join:
           joinCondition: FROM {{ ref('DWH', 'V_VANCOUVER_INFERENCE_DATA') }} "V_VANCOUVER_INFERENCE_DATA"
-        name: ML_FCSTS_VANCOUVER_PREDICTIONS
+        name: NEW_SOURCE
         noLinkRefs: []
-  name: ML_FCSTS_VANCOUVER_PREDICTIONS
+  name: ML_FCSTS_V_VANCOUVER_PREDICTION
   overrideSQL: false
   schema: ""
   sqlType: cortex-2-0-3:::262

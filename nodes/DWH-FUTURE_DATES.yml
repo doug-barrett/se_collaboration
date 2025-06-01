@@ -45,7 +45,7 @@ operation:
             FROM 
             (SELECT MAX("TIMESTAMP")::DATE AS max_date 
                FROM {{ ref('DWH', 'VANCOUVER_SALES') }}) AS "LATEST_DATE",
-            TABLE(generator(rowcount => 10))
+            TABLE(generator(rowcount => 50))
         name: FUTURE_DATES
         noLinkRefs: []
   name: FUTURE_DATES

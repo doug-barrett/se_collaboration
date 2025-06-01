@@ -1,0 +1,32 @@
+{#
+    Copyright (c) 2023 Coalesce. All rights reserved.
+This script and its associated documentation are confidential and proprietary to Coalesce.
+Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
+Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+does not permit copying or modification for any other purpose.  
+#}
+{# == Node Type Version        : 1  == #}
+{# == Node Type Name           : ML Forecast == #}
+{# == Node Type Description    : This node creates a forecast table  == #}
+
+{% set source = sources[0] %}
+{% set src_node = source.dependencies[0].node %}
+{% set forecast_name = 'FORECAST_' ~ src_node.name %}
+
+{# Forecast table creation #}
+
+{{ stage('Create Forecast Table') }}
+
+CREATE OR REPLACE TABLE {{ this }}
+(
+    {% for col in source.columns  %}
+        "{{ col.name }}" 
+        {%- if col.name == config.tscol.name %} TIMESTAMP 
+        {%- elif col.name == config.tgtcol.name %} FLOAT 
+        {%- else %} {{ col.dataType }}
+        {%- endif %}
+        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{%- endif %}
+        {%- if not loop.last -%}, {% endif %}
+    {% endfor %}
+)
+{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
