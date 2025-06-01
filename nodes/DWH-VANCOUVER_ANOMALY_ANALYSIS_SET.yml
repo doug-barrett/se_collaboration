@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 5c8b5c5a-7ace-430c-85ed-eb7923c047ba
-name: VANCOUVER_ANOMALY_TRAINING_SET
+id: fe158eb2-a66c-4dea-a2bc-6db96e452374
+name: VANCOUVER_ANOMALY_ANALYSIS_SET
 operation:
   config:
     insertStrategy: INSERT
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 6e18de6d-0f98-4ff9-acb1-7b5f237a8851
-          stepCounter: 5c8b5c5a-7ace-430c-85ed-eb7923c047ba
+          columnCounter: 22b1ecbd-74ac-423c-91bb-f151cec06393
+          stepCounter: fe158eb2-a66c-4dea-a2bc-6db96e452374
         config: {}
         dataType: TIMESTAMP_NTZ
         description: ""
@@ -33,8 +33,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 88832cdc-50d6-43ed-a636-83e05fd6efda
-          stepCounter: 5c8b5c5a-7ace-430c-85ed-eb7923c047ba
+          columnCounter: 09662ae3-2751-483a-ab4c-a4819e4ae8ae
+          stepCounter: fe158eb2-a66c-4dea-a2bc-6db96e452374
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -47,8 +47,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: e9b4d471-40f4-4198-8eb6-f42264bfe3b1
-          stepCounter: 5c8b5c5a-7ace-430c-85ed-eb7923c047ba
+          columnCounter: f490411c-e36d-4d5d-8134-a8e6f9c686a6
+          stepCounter: fe158eb2-a66c-4dea-a2bc-6db96e452374
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -61,8 +61,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a6728196-3915-4b6d-87e1-3d73b32c4f17
-          stepCounter: 5c8b5c5a-7ace-430c-85ed-eb7923c047ba
+          columnCounter: 4c1ae6f9-bc52-47bc-a61c-18a3b10150a9
+          stepCounter: fe158eb2-a66c-4dea-a2bc-6db96e452374
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -82,14 +82,16 @@ operation:
           customSQL: ""
         dependencies:
           - locationName: DWH
+            nodeName: VANCOUVER_ANOMALY_TRAINING_SET
+          - locationName: DWH
             nodeName: VANCOUVER_SALES
         join:
           joinCondition: |-
             FROM {{ ref('DWH', 'VANCOUVER_SALES') }} "VANCOUVER_SALES"
-            WHERE timestamp < (SELECT MAX(timestamp) FROM {{ ref('DWH', 'VANCOUVER_SALES') }}) - interval '1 Month'
-        name: VANCOUVER_ANOMALY_TRAINING_SET
+            WHERE timestamp > (SELECT MAX(timestamp) FROM {{ ref('DWH', 'VANCOUVER_ANOMALY_TRAINING_SET') }})
+        name: VANCOUVER_ANOMALY_ANALYSIS_SET
         noLinkRefs: []
-  name: VANCOUVER_ANOMALY_TRAINING_SET
+  name: VANCOUVER_ANOMALY_ANALYSIS_SET
   overrideSQL: false
   schema: ""
   sqlType: Stage
