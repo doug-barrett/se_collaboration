@@ -129,17 +129,38 @@ operation:
               - columnCounter: 12af9e9d-0d69-4fcd-8dac-53abea9ec18c
                 stepCounter: 9d76a5da-7e72-4030-bf3a-654dc29f90ba
             transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3d05021-2534-4fc0-bbea-266e7f5e8666
+          stepCounter: da60b74b-c057-4f07-902c-0c9ae7f17051
+        config: {}
+        dataType: TIMESTAMP_TZ(9)
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: LOAD_DTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CURRENT_TIMESTAMP()
+        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          CUSTOMER: 9d76a5da-7e72-4030-bf3a-654dc29f90ba
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SRC
+          - locationName: SRC_SAMPLE
             nodeName: CUSTOMER
         join:
-          joinCondition: FROM {{ ref('SRC', 'CUSTOMER') }} "CUSTOMER"
+          joinCondition: FROM {{ ref('SRC_SAMPLE', 'CUSTOMER') }} "CUSTOMER"
         name: STG_CUSTOMER
         noLinkRefs: []
   name: STG_CUSTOMER
