@@ -3,10 +3,9 @@ id: 9d76a5da-7e72-4030-bf3a-654dc29f90ba
 name: CUSTOMER
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: Customer data as defined by TPC-H
-  locationName: SRC
+  locationName: SRC_SAMPLE
   metadata:
     columns:
       - acceptedValues:
@@ -161,12 +160,9 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SRC', 'CUSTOMER') }}
   name: CUSTOMER
   schema: ""
   sqlType: Source
-  table: CUSTOMER
   type: sourceInput
   version: 1
 type: Node
