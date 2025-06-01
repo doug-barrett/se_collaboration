@@ -1,0 +1,103 @@
+fileVersion: 1
+id: 704db4e3-7015-439f-aeca-6d9326dcfc57
+name: V_ALLITEMS_VANCOUVER
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d767c44a-8007-49f9-804b-861248b1add4
+          stepCounter: 704db4e3-7015-439f-aeca-6d9326dcfc57
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fa39c209-8bfa-4f6c-8e75-2aeb5a16191c
+                stepCounter: e79ba994-66ca-4888-9fae-afc15256180d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f2a1bc87-7e75-4a71-aeaa-0cb89348a2f9
+          stepCounter: 704db4e3-7015-439f-aeca-6d9326dcfc57
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: MENU_ITEM_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a8ddbfca-3c93-4f85-8ca6-5153b031c562
+                stepCounter: e79ba994-66ca-4888-9fae-afc15256180d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c4e0c54f-63c0-4973-a9cd-7c183c73212b
+          stepCounter: 704db4e3-7015-439f-aeca-6d9326dcfc57
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: TOTAL_SOLD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9f9dd0fe-7658-4d03-834f-f113a3977b9b
+                stepCounter: e79ba994-66ca-4888-9fae-afc15256180d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c22769a4-222d-41f0-af25-0546c38dded7
+          stepCounter: 704db4e3-7015-439f-aeca-6d9326dcfc57
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Name of the Holiday
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0deccae-d910-4c5d-bfc1-f9b9aaa8d1fa
+                stepCounter: 025c0d83-8d2c-4bf8-8731-b767ba730098
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CANADIAN_HOLIDAYS: 025c0d83-8d2c-4bf8-8731-b767ba730098
+          VANCOUVER_SALES: e79ba994-66ca-4888-9fae-afc15256180d
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: CANADIAN_HOLIDAYS
+          - locationName: DWH
+            nodeName: VANCOUVER_SALES
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'VANCOUVER_SALES') }} "VANCOUVER_SALES"
+            LEFT JOIN {{ ref('DWH', 'CANADIAN_HOLIDAYS') }} "CANADIAN_HOLIDAYS"
+            ON "VANCOUVER_SALES"."TIMESTAMP" = "CANADIAN_HOLIDAYS"."DATE"
+            WHERE "MENU_ITEM_NAME" IN ('Mothers Favorite', 'Bottled Soda', 'Ice Tea')
+        name: V_ALLITEMS_VANCOUVER
+        noLinkRefs: []
+  name: V_ALLITEMS_VANCOUVER
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -89,6 +89,7 @@ operation:
             FROM {{ ref('SRC_TASTY_BYTE', 'TASTY_BYTE_SALES') }} "TASTY_BYTE_SALES"
             WHERE
             DATE > (SELECT max("DATE") - interval '1 year' FROM {{ ref('SRC_TASTY_BYTE', 'TASTY_BYTE_SALES') }})
+            GROUP BY ALL
         name: VANCOUVER_SALES
         noLinkRefs: []
   name: VANCOUVER_SALES

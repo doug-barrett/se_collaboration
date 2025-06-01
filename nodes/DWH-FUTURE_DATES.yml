@@ -1,0 +1,57 @@
+fileVersion: 1
+id: e5e4de27-a3fb-4784-8a6c-88499e625192
+name: FUTURE_DATES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7876d55-2e78-4b2a-9261-b4ad2d73f158
+          stepCounter: e5e4de27-a3fb-4784-8a6c-88499e625192
+        config: {}
+        dataType: DATE
+        description: ""
+        name: TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fa39c209-8bfa-4f6c-8e75-2aeb5a16191c
+                stepCounter: e79ba994-66ca-4888-9fae-afc15256180d
+            transform: "\"LATEST_DATE\".\"MAX_DATE\" + row_number() OVER (ORDER BY 0)"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: VANCOUVER_SALES
+        join:
+          joinCondition: |-
+            FROM 
+            (SELECT MAX("TIMESTAMP")::DATE AS max_date 
+               FROM {{ ref('DWH', 'VANCOUVER_SALES') }}) AS "LATEST_DATE",
+            TABLE(generator(rowcount => 10))
+        name: FUTURE_DATES
+        noLinkRefs: []
+  name: FUTURE_DATES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

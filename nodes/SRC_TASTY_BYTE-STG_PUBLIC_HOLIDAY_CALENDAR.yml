@@ -1,0 +1,76 @@
+fileVersion: 1
+id: b235605c-3654-4af2-9688-22fefcd39bd4
+name: STG_PUBLIC_HOLIDAY_CALENDAR
+operation:
+  database: ""
+  deployEnabled: true
+  description: |-
+    The Public Holiday Calendar provides reference data containing government-designated holidays for 119 countries since 1970, as well as the financial market holidays for the European Central Bank (ECB) and New York Stock Exchange (NYSE).
+    Provides historical values for each public holiday by GEO_ID.
+    Each row represents a distinct timeseries, date, and holiday name by geographic entity. It identifies whether the holiday is financial.
+  locationName: SRC_TASTY_BYTE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 558d1bb4-2b8f-4999-bce1-0f7b7d928ffb
+          stepCounter: b235605c-3654-4af2-9688-22fefcd39bd4
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: Date associated with the event
+        name: DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96a8ad6a-7891-440a-aefc-e2cb43fecd86
+          stepCounter: b235605c-3654-4af2-9688-22fefcd39bd4
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: Name of the Holiday
+        name: HOLIDAY_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 72965479-3662-4c23-b9d1-3a250003796c
+          stepCounter: b235605c-3654-4af2-9688-22fefcd39bd4
+        config: {}
+        dataType: BOOLEAN
+        defaultValue: ""
+        description: Boolean denoting a stock market closure for the given region
+        name: IS_FINANCIAL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: STG_PUBLIC_HOLIDAY_CALENDAR
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

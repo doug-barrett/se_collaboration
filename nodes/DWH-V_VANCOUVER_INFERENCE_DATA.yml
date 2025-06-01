@@ -1,0 +1,89 @@
+fileVersion: 1
+id: 0e909cca-5104-43cf-8542-549c80efa0d0
+name: V_VANCOUVER_INFERENCE_DATA
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c624f4fc-fa60-4e05-bb7a-01bc097489af
+          stepCounter: 0e909cca-5104-43cf-8542-549c80efa0d0
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0703623e-d078-4fdc-a4ad-bd8bc7f240fc
+                stepCounter: 0de6b832-35cc-4c25-bde4-f2f387636767
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b3c528d1-ee19-4922-9a52-9c9ce93a4a4b
+          stepCounter: 0e909cca-5104-43cf-8542-549c80efa0d0
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: MENU_ITEM_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4204eb36-97ee-4df8-829f-43adbd253422
+                stepCounter: 0de6b832-35cc-4c25-bde4-f2f387636767
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 022d524e-3bdb-471b-ad44-e41a8493f094
+          stepCounter: 0e909cca-5104-43cf-8542-549c80efa0d0
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Name of the Holiday
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0deccae-d910-4c5d-bfc1-f9b9aaa8d1fa
+                stepCounter: 025c0d83-8d2c-4bf8-8731-b767ba730098
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CANADIAN_HOLIDAYS: 025c0d83-8d2c-4bf8-8731-b767ba730098
+          JOINED_MENU_ITEMS: 0de6b832-35cc-4c25-bde4-f2f387636767
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: CANADIAN_HOLIDAYS
+          - locationName: DWH
+            nodeName: JOINED_MENU_ITEMS
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'JOINED_MENU_ITEMS') }} "JOINED_MENU_ITEMS"
+            LEFT JOIN {{ ref('DWH', 'CANADIAN_HOLIDAYS') }} "CANADIAN_HOLIDAYS"
+            ON CAST("JOINED_MENU_ITEMS"."TIMESTAMP" AS DATE) = "CANADIAN_HOLIDAYS"."DATE"
+        name: V_VANCOUVER_INFERENCE_DATA
+        noLinkRefs: []
+  name: V_VANCOUVER_INFERENCE_DATA
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,74 @@
+fileVersion: 1
+id: 0de6b832-35cc-4c25-bde4-f2f387636767
+name: JOINED_MENU_ITEMS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0703623e-d078-4fdc-a4ad-bd8bc7f240fc
+          stepCounter: 0de6b832-35cc-4c25-bde4-f2f387636767
+        config: {}
+        dataType: DATE
+        description: ""
+        name: TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7876d55-2e78-4b2a-9261-b4ad2d73f158
+                stepCounter: e5e4de27-a3fb-4784-8a6c-88499e625192
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4204eb36-97ee-4df8-829f-43adbd253422
+          stepCounter: 0de6b832-35cc-4c25-bde4-f2f387636767
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: MENU_ITEM_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 60279f66-5aeb-4225-a610-e0511dcba6e8
+                stepCounter: 20caef06-f06c-4375-9b18-6350c04fb261
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          FOOD_ITEMS: 20caef06-f06c-4375-9b18-6350c04fb261
+          FUTURE_DATES: e5e4de27-a3fb-4784-8a6c-88499e625192
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FOOD_ITEMS
+          - locationName: DWH
+            nodeName: FUTURE_DATES
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FUTURE_DATES') }} "FUTURE_DATES"
+            CROSS JOIN {{ ref('DWH', 'FOOD_ITEMS') }} "FOOD_ITEMS"
+            ORDER BY "MENU_ITEM_NAME" ASC, TIMESTAMP ASC
+        name: JOINED_MENU_ITEMS
+        noLinkRefs: []
+  name: JOINED_MENU_ITEMS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

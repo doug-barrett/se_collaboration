@@ -1,0 +1,58 @@
+fileVersion: 1
+id: 20caef06-f06c-4375-9b18-6350c04fb261
+name: FOOD_ITEMS
+operation:
+  config:
+    asofJoinMain: false
+    clusterKey: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: true
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60279f66-5aeb-4225-a610-e0511dcba6e8
+          stepCounter: 20caef06-f06c-4375-9b18-6350c04fb261
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: MENU_ITEM_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f2a1bc87-7e75-4a71-aeaa-0cb89348a2f9
+                stepCounter: 704db4e3-7015-439f-aeca-6d9326dcfc57
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: V_ALLITEMS_VANCOUVER
+        join:
+          joinCondition: FROM {{ ref('DWH', 'V_ALLITEMS_VANCOUVER') }} "V_ALLITEMS_VANCOUVER"
+        name: FOOD_ITEMS
+        noLinkRefs: []
+  name: FOOD_ITEMS
+  overrideSQL: false
+  schema: ""
+  sqlType: base-node-types-advanced-deploy-1-5-2:::179
+  type: sql
+  version: 1
+type: Node
