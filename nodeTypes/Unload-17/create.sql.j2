@@ -1,0 +1,8 @@
+{{ stage('Create View of Stage') }}
+{% set source = sources[0] %}
+
+CREATE OR REPLACE VIEW {{this}}
+AS 
+{% for dep in source.dependencies if dep.node %}
+    SELECT 'EXPORTED {{ ref_no_link(dep.node.location.name, dep.node.name) | upper }}' RESULT {% if not loop.last %} UNION ALL {% endif %}
+{% endfor %}
