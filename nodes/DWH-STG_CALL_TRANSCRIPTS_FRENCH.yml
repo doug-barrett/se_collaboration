@@ -1,0 +1,140 @@
+fileVersion: 1
+id: f1689ab3-37b7-475f-815b-6477ae4f99aa
+name: STG_CALL_TRANSCRIPTS_FRENCH
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 212da4ed-bdf3-46b1-a2f9-f16172d4d478
+          stepCounter: f1689ab3-37b7-475f-815b-6477ae4f99aa
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_CREATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab746606-fcf1-484b-bcb9-c65aa4c920c9
+                stepCounter: f3144f3a-1228-4d13-a136-1abf18f7b5d0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d2c314f-70ee-409b-81f4-412e0a713788
+          stepCounter: f1689ab3-37b7-475f-815b-6477ae4f99aa
+        config: {}
+        dataType: VARCHAR(60)
+        description: ""
+        name: LANGUAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f7d56aac-7d81-40d5-804f-07b0e7794189
+                stepCounter: f3144f3a-1228-4d13-a136-1abf18f7b5d0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b1e3327-833a-4628-9900-b6f0322d892c
+          stepCounter: f1689ab3-37b7-475f-815b-6477ae4f99aa
+        config: {}
+        dataType: VARCHAR(60)
+        description: ""
+        name: COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e328cbe5-feda-4092-8887-be0947a36d89
+                stepCounter: f3144f3a-1228-4d13-a136-1abf18f7b5d0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 812ce8ca-cbef-42f7-beb9-16ad0d0972e5
+          stepCounter: f1689ab3-37b7-475f-815b-6477ae4f99aa
+        config: {}
+        dataType: VARCHAR(60)
+        description: ""
+        name: PRODUCT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1042fd11-0dcc-4a6f-a586-f40f0db75e4c
+                stepCounter: f3144f3a-1228-4d13-a136-1abf18f7b5d0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a787e549-abe9-4986-bf3d-d8234dcb84ef
+          stepCounter: f1689ab3-37b7-475f-815b-6477ae4f99aa
+        config: {}
+        dataType: VARCHAR(60)
+        description: ""
+        name: CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 323b32f4-57fb-4c63-a277-7d1f85e0318b
+                stepCounter: f3144f3a-1228-4d13-a136-1abf18f7b5d0
+            transform: UPPER("CALL_TRANSCRIPTS"."CATEGORY")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6643b31-866b-4d4a-8111-0cdecc939348
+          stepCounter: f1689ab3-37b7-475f-815b-6477ae4f99aa
+        config: {}
+        dataType: VARCHAR(90)
+        description: ""
+        name: DAMAGE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f044129e-8675-42a9-9b0b-05aa31bdce48
+                stepCounter: f3144f3a-1228-4d13-a136-1abf18f7b5d0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e24b7c73-9e2c-42e2-a9dd-9caec6675e97
+          stepCounter: f1689ab3-37b7-475f-815b-6477ae4f99aa
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: TRANSCRIPT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9ef209af-1f32-4d90-885d-0f286556a5cb
+                stepCounter: f3144f3a-1228-4d13-a136-1abf18f7b5d0
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CALL_TRANSCRIPTS: f3144f3a-1228-4d13-a136-1abf18f7b5d0
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: CALLS
+            nodeName: CALL_TRANSCRIPTS
+        join:
+          joinCondition: |-
+            FROM {{ ref('CALLS', 'CALL_TRANSCRIPTS') }} "CALL_TRANSCRIPTS"
+            WHERE "LANGUAGE" IN ('French', 'English')
+        name: STG_CALL_TRANSCRIPTS_FRENCH
+        noLinkRefs: []
+  name: STG_CALL_TRANSCRIPTS_FRENCH
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
