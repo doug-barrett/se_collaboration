@@ -4,12 +4,12 @@ name: ML_AD_VANCOUVER_ANOMALY_ANALYSIS_SET
 operation:
   config:
     Forcecreate: true
-    cobject: false
+    cobject: true
     lcdata: false
     mname: vancouver_anomaly_model
     mtoggle: false
     multiseries: true
-    predictioninterval: ex:0.80(float value)
+    predictioninterval: ".95"
     seriescol:
       columnCounter: c9e2e04b-1280-4c2a-b173-d6a1721d37ae
       stepCounter: b10ad408-1e9b-402e-8c8c-8d3e02c85959
@@ -46,24 +46,6 @@ operation:
             transform: ""
           - columnReferences:
               - columnCounter: 22b1ecbd-74ac-423c-91bb-f151cec06393
-                stepCounter: fe158eb2-a66c-4dea-a2bc-6db96e452374
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 237138a1-7f94-4496-8787-88755bde440e
-          stepCounter: b10ad408-1e9b-402e-8c8c-8d3e02c85959
-        config: {}
-        dataType: VARCHAR(16777216)
-        description: ""
-        name: PRIMARY_CITY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 88832cdc-50d6-43ed-a636-83e05fd6efda
-                stepCounter: 5c8b5c5a-7ace-430c-85ed-eb7923c047ba
-            transform: ""
-          - columnReferences:
-              - columnCounter: 09662ae3-2751-483a-ab4c-a4819e4ae8ae
                 stepCounter: fe158eb2-a66c-4dea-a2bc-6db96e452374
             transform: ""
       - appliedColumnTests: {}
