@@ -1,0 +1,138 @@
+fileVersion: 1
+id: a3bfe163-738b-4552-88de-edf188dffafc
+name: FCT_TRUCK_MENU
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Fact table for truck and menu data, containing measurements and keys.
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78954f6d-f01f-40dd-aa60-8436d818459c
+          stepCounter: a3bfe163-738b-4552-88de-edf188dffafc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: MENU_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ce5cd9d-8c2e-4b1d-9c04-f3116d01f25b
+                stepCounter: cd562e67-9894-42e8-bf49-267adf6b2d1c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fb4af88e-ee37-4a67-be40-9c8d6713cdf6
+          stepCounter: a3bfe163-738b-4552-88de-edf188dffafc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: MENU_ITEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a897f4e-b0c3-4b39-85f2-689f10d85d7b
+                stepCounter: cd562e67-9894-42e8-bf49-267adf6b2d1c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a99d5408-4244-4eb7-8949-4473c8e6d628
+          stepCounter: a3bfe163-738b-4552-88de-edf188dffafc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: COST_OF_GOODS_USD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 00603bbd-9b31-494f-9aa4-5217a5e4b80b
+                stepCounter: cd562e67-9894-42e8-bf49-267adf6b2d1c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0c78b7f-c1b3-473c-bc16-e3f025bc154b
+          stepCounter: a3bfe163-738b-4552-88de-edf188dffafc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SALE_PRICE_USD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 95ef5da7-65ef-4269-957f-b524bd4d1412
+                stepCounter: cd562e67-9894-42e8-bf49-267adf6b2d1c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9a29fa77-de9d-4e97-b7b2-5b4cb13c0280
+          stepCounter: a3bfe163-738b-4552-88de-edf188dffafc
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MENU_ITEM_HEALTH_METRICS_OBJ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1acea6f-1fe5-46cb-9156-33b0b11a8a4f
+                stepCounter: cd562e67-9894-42e8-bf49-267adf6b2d1c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28cfe93c-e749-4b29-bfa4-020049dee217
+          stepCounter: a3bfe163-738b-4552-88de-edf188dffafc
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a8e196e4-171f-4410-b9d3-2a1042258101
+          stepCounter: a3bfe163-738b-4552-88de-edf188dffafc
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: STG_TRUCK_MENU
+        join:
+          joinCondition: FROM {{ ref('DWH', 'STG_TRUCK_MENU') }} "STG_TRUCK_MENU"
+        name: FCT_TRUCK_MENU
+        noLinkRefs: []
+  name: FCT_TRUCK_MENU
+  overrideSQL: false
+  schema: ""
+  sqlType: Fact
+  type: sql
+  version: 1
+type: Node

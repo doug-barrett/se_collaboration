@@ -1,0 +1,71 @@
+fileVersion: 1
+id: 41f47e8e-0e78-4d49-aa5b-c77c915cfeeb
+name: STG_CUSTOMER_LOYALTY_AGE_COHORT_AGG
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: A staging node that aggregates customer counts per age cohort from STG_CUSTOMER_LOYALTY.
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28d0d992-69c4-4b06-97aa-89eee3a45d4f
+          stepCounter: 41f47e8e-0e78-4d49-aa5b-c77c915cfeeb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SIGN_UP_AGE_COHORT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 28d0d992-69c4-4b06-97aa-89eee3a45d4f
+                stepCounter: 41f47e8e-0e78-4d49-aa5b-c77c915cfeeb
+            transform: SIGN_UP_AGE_COHORT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: efb6432b-0705-4cee-b7fc-1792592f026f
+          stepCounter: 41f47e8e-0e78-4d49-aa5b-c77c915cfeeb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CUSTOMER_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: efb6432b-0705-4cee-b7fc-1792592f026f
+                stepCounter: 41f47e8e-0e78-4d49-aa5b-c77c915cfeeb
+            transform: COUNT(CUSTOMER_ID)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          STG_CUSTOMER_LOYALTY: c4424ae7-7ba7-4f59-a3b4-ccc712398cd0
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: STG_CUSTOMER_LOYALTY
+        join:
+          joinCondition: FROM {{ ref('DWH', 'STG_CUSTOMER_LOYALTY') }} "STG_CUSTOMER_LOYALTY" GROUP BY SIGN_UP_AGE_COHORT
+        name: STG_CUSTOMER_LOYALTY_AGE_COHORT_AGG
+        noLinkRefs: []
+  name: STG_CUSTOMER_LOYALTY_AGE_COHORT_AGG
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
