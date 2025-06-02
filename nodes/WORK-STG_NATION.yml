@@ -1,0 +1,91 @@
+fileVersion: 1
+id: df719025-8272-4882-922c-e582bd7a210b
+name: STG_NATION
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a1d729b7-1a93-4af5-bbee-dd1b09b06716
+          stepCounter: df719025-8272-4882-922c-e582bd7a210b
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        name: N_NATIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2fd67e04-e1d5-4b28-a63f-2d3264f91970
+                stepCounter: 8c1b80c2-908b-4eba-bc49-fd77855b355f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ded14f6-353a-4753-addc-b689d5370e4c
+          stepCounter: df719025-8272-4882-922c-e582bd7a210b
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        hashDetails: null
+        name: N_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 652e982e-443d-4fab-8af4-6a72a6d94a90
+                stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22128741-30d2-4640-b49a-f803331dbf10
+          stepCounter: df719025-8272-4882-922c-e582bd7a210b
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        hashDetails: null
+        name: N_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3d618c25-7e4a-4bf9-a3c3-832484fa5950
+                stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          HUB_NATION: 8c1b80c2-908b-4eba-bc49-fd77855b355f
+          SATV1_NATION: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: HUB_NATION
+          - locationName: WORK
+            nodeName: SATV1_NATION
+        join:
+          joinCondition: |-
+            FROM {{ ref('WORK', 'SATV1_NATION') }} "SATV1_NATION"
+            INNER JOIN {{ ref('WORK', 'HUB_NATION') }} "HUB_NATION"
+            ON "SATV1_NATION"."HK_NATION_H" = "HUB_NATION"."HK_NATION_H"
+        name: STG_NATION
+        noLinkRefs: []
+  name: STG_NATION
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

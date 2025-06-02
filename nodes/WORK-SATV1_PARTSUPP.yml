@@ -1,0 +1,187 @@
+fileVersion: 1
+id: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+name: SATV1_PARTSUPP
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+  database: ""
+  deployEnabled: true
+  description: Partsupp data as defined by TPC-H
+  isMultisource: false
+  locationName: WORK
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c402119d-125c-4e60-9104-82ebf791eaa0
+          stepCounter: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+        config:
+          is_hk: true
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: HK_SUPPKEY_H
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f6f320d-8d06-4d0b-854e-813f09fcbfce
+                stepCounter: 86ab364d-08ed-43c6-99ce-e83ab2a6b9bb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0420fd9e-cd2b-4a3c-8fac-1a4bc67a1cab
+          stepCounter: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: HK_PARTSUPP_N_S
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9f30d123-818f-4d18-b982-1b484ccb9d65
+                stepCounter: 86ab364d-08ed-43c6-99ce-e83ab2a6b9bb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db72f8d2-e0ec-44b3-9dd6-ebe5f20c3383
+          stepCounter: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        name: PS_AVAILQTY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 89f9ea81-939a-4285-afde-937b1eb0a516
+                stepCounter: 86ab364d-08ed-43c6-99ce-e83ab2a6b9bb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8068fbb3-88c5-4e02-8ec0-69a8539ad242
+          stepCounter: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashDetails: null
+        name: PS_SUPPLYCOST
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cfe4dee9-d5c3-4def-91fa-12a240bdbe95
+                stepCounter: 86ab364d-08ed-43c6-99ce-e83ab2a6b9bb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a90cfe17-6d43-43c9-8138-1c6f747c0661
+          stepCounter: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+        config: {}
+        dataType: VARCHAR(199)
+        description: ""
+        hashDetails: null
+        name: PS_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 341a0caa-d893-4284-8862-9439f0dc6918
+                stepCounter: 86ab364d-08ed-43c6-99ce-e83ab2a6b9bb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2068a3a4-cf53-4e97-9560-81b398274029
+          stepCounter: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+        config: {}
+        dataType: TIMESTAMP
+        description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+        hashDetails: null
+        name: LDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6df9bd57-a738-471e-bb18-8b40cc4b6136
+                stepCounter: 86ab364d-08ed-43c6-99ce-e83ab2a6b9bb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d0b2e4f-5fe8-4e8d-9cda-c88e2475f00f
+          stepCounter: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+        config: {}
+        dataType: STRING
+        description: The Record Source (RSRC) describes the source of this data.
+        hashDetails: null
+        name: RSRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d84693f-6953-419c-b420-5490b58fdfca
+                stepCounter: 86ab364d-08ed-43c6-99ce-e83ab2a6b9bb
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a6b80c14-4736-4900-8f5b-3e650ffc81d5
+          stepCounter: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        is_system_ledts: true
+        name: LEDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: |-
+              COALESCE(LEAD("{{ datavault4coalesce.config.ldts_alias }}" - INTERVAL '1 MICROSECOND') 
+              OVER (PARTITION BY "{{ get_value_by_column_attribute("is_hk") }}" 
+              ORDER BY "{{ datavault4coalesce.config.ldts_alias }}"), {{ datavault4coalesce__string_to_timestamp(datavault4coalesce.config.timestamp_format, datavault4coalesce.config.end_of_all_times) }})
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9483a5c2-578b-49dd-9335-7bd9d02daa5d
+          stepCounter: 95da3e91-b2f6-48d3-a3cb-6320a6d208d4
+        config: {}
+        dataType: BOOLEAN
+        defaultValue: ""
+        description: ""
+        is_system_current_col: true
+        name: IS_CURRENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: |-
+              CASE 
+                WHEN 
+                  LEAD("{{ datavault4coalesce.config.ldts_alias }}" - INTERVAL '1 MICROSECOND') 
+                  OVER (PARTITION BY "{{ get_value_by_column_attribute("is_hk") }}" 
+                  ORDER BY "{{ datavault4coalesce.config.ldts_alias }}") IS NULL 
+                THEN TRUE 
+                ELSE FALSE 
+              END
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: SATV0_PARTSUPP
+        join:
+          joinCondition: FROM {{ ref('WORK', 'SATV0_PARTSUPP') }} "SATV0_PARTSUPP"
+        name: SATV1_PARTSUPP
+        noLinkRefs: []
+  name: SATV1_PARTSUPP
+  overrideSQL: false
+  schema: ""
+  sqlType: "9"
+  type: sql
+  version: 1
+type: Node

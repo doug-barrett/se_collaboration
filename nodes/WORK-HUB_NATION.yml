@@ -1,0 +1,99 @@
+fileVersion: 1
+id: 8c1b80c2-908b-4eba-bc49-fd77855b355f
+name: HUB_NATION
+operation:
+  config:
+    disable_hwm: true
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Nation data as defined by TPC-H
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: de53563d-07ed-4bd9-a8ae-13e0229080dc
+          stepCounter: 8c1b80c2-908b-4eba-bc49-fd77855b355f
+        config:
+          is_Hub_hk: true
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: HK_NATION_H
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: acc779b9-5f16-4297-be12-be557374d728
+                stepCounter: a673f4c4-afe6-4d73-a34e-201d0959ffcb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2fd67e04-e1d5-4b28-a63f-2d3264f91970
+          stepCounter: 8c1b80c2-908b-4eba-bc49-fd77855b355f
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        name: N_NATIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e4a72566-5860-4142-b71d-9bd6aa963862
+                stepCounter: a673f4c4-afe6-4d73-a34e-201d0959ffcb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41f7d9cf-5e9e-4e12-ba7c-f3f8d4e6950e
+          stepCounter: 8c1b80c2-908b-4eba-bc49-fd77855b355f
+        config: {}
+        dataType: TIMESTAMP
+        description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+        hashDetails: null
+        name: LDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4d825f60-ed0d-4414-abc7-60b60619d268
+                stepCounter: a673f4c4-afe6-4d73-a34e-201d0959ffcb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 607851eb-2a49-4fe4-9692-e517ce0ca805
+          stepCounter: 8c1b80c2-908b-4eba-bc49-fd77855b355f
+        config: {}
+        dataType: STRING
+        description: The Record Source (RSRC) describes the source of this data.
+        hashDetails: null
+        name: RSRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cefd35e4-a03a-4573-b55d-bfd0a4ad5722
+                stepCounter: a673f4c4-afe6-4d73-a34e-201d0959ffcb
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: DVSTG_NATION
+        join:
+          joinCondition: FROM {{ ref('WORK', 'DVSTG_NATION') }} "DVSTG_NATION"
+        name: HUB_NATION
+        noLinkRefs: []
+  name: HUB_NATION
+  overrideSQL: false
+  schema: ""
+  sqlType: "6"
+  type: sql
+  version: 1
+type: Node

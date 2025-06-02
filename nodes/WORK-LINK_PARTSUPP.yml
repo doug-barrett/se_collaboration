@@ -1,0 +1,114 @@
+fileVersion: 1
+id: 73206b0d-1c54-4dd6-b7d1-28badc224d5e
+name: LINK_PARTSUPP
+operation:
+  config:
+    disable_hwm: true
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Partsupp data as defined by TPC-H
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aed003bd-72b6-4f97-9239-3ea4a77d7561
+          stepCounter: 73206b0d-1c54-4dd6-b7d1-28badc224d5e
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: HK_PARTKEY_H
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ad7463bf-a1b6-4db2-b4d3-c2902ad03096
+                stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c5bc0290-9ffe-4c86-8276-b5b254dec0af
+          stepCounter: 73206b0d-1c54-4dd6-b7d1-28badc224d5e
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: HK_SUPPKEY_H
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1a7a7003-8d8c-4fff-8354-3a662138c1e6
+                stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 61a62694-bba5-443d-aedf-e9076491c25d
+          stepCounter: 73206b0d-1c54-4dd6-b7d1-28badc224d5e
+        config:
+          is_Link_hk: true
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: HK_PARTSUPP_SUPPLIER_L
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6613d5c-85ef-4d34-8fd6-d375b10c0958
+                stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a6252c6-b257-41ea-861b-f32d855ac5c3
+          stepCounter: 73206b0d-1c54-4dd6-b7d1-28badc224d5e
+        config: {}
+        dataType: TIMESTAMP
+        description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+        hashDetails: null
+        name: LDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ca52798-cb19-4947-9150-8253a7ccf3b4
+                stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 879f160f-7054-400d-9de7-52339b653626
+          stepCounter: 73206b0d-1c54-4dd6-b7d1-28badc224d5e
+        config: {}
+        dataType: STRING
+        description: The Record Source (RSRC) describes the source of this data.
+        hashDetails: null
+        name: RSRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 51a04a72-0f80-40a1-82c3-490bdbad4ed6
+                stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: DVSTG_PARTSUPP
+        join:
+          joinCondition: FROM {{ ref('WORK', 'DVSTG_PARTSUPP') }} "DVSTG_PARTSUPP"
+        name: LINK_PARTSUPP
+        noLinkRefs: []
+  name: LINK_PARTSUPP
+  overrideSQL: false
+  schema: ""
+  sqlType: "7"
+  type: sql
+  version: 1
+type: Node

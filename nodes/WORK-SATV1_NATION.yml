@@ -1,0 +1,172 @@
+fileVersion: 1
+id: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+name: SATV1_NATION
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+  database: ""
+  deployEnabled: true
+  description: Nation data as defined by TPC-H
+  isMultisource: false
+  locationName: WORK
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b7a2cc05-9da4-42d3-9e4b-6b5a6f54bc66
+          stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+        config:
+          is_hk: true
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: HK_NATION_H
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 74c378c1-01c3-4ae8-8058-a50ee94b2bf3
+                stepCounter: 721265da-cf1a-4498-85e5-289ecc89b164
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7312de5c-4270-41be-ad2a-a2142437c6ce
+          stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+        config: {}
+        dataType: STRING
+        description: ""
+        hashDetails: null
+        name: HK_NATION_N_S
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 434b0423-7bc1-47bf-95f9-6a3a4e79cde3
+                stepCounter: 721265da-cf1a-4498-85e5-289ecc89b164
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3d618c25-7e4a-4bf9-a3c3-832484fa5950
+          stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        hashDetails: null
+        name: N_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c4dc3b0-b349-4403-8f48-52ca5bf782a8
+                stepCounter: 721265da-cf1a-4498-85e5-289ecc89b164
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 652e982e-443d-4fab-8af4-6a72a6d94a90
+          stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        hashDetails: null
+        name: N_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 89087f85-0527-4575-bdf2-b74b49396912
+                stepCounter: 721265da-cf1a-4498-85e5-289ecc89b164
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60d9aa33-2d69-4321-80c4-b9ea30f7941b
+          stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+        config: {}
+        dataType: TIMESTAMP
+        description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+        hashDetails: null
+        name: LDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c1a0ef9-8b8a-47c9-985c-6353ad68776e
+                stepCounter: 721265da-cf1a-4498-85e5-289ecc89b164
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d1ee48ca-8ca1-477d-9214-b9daa2a7ce3b
+          stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+        config: {}
+        dataType: STRING
+        description: The Record Source (RSRC) describes the source of this data.
+        hashDetails: null
+        name: RSRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1642117f-2808-41f0-b30b-3dff06ff55e8
+                stepCounter: 721265da-cf1a-4498-85e5-289ecc89b164
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 05f94297-105f-4708-b78a-aaef0731bc2b
+          stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        is_system_ledts: true
+        name: LEDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: |-
+              COALESCE(LEAD("{{ datavault4coalesce.config.ldts_alias }}" - INTERVAL '1 MICROSECOND') 
+              OVER (PARTITION BY "{{ get_value_by_column_attribute("is_hk") }}" 
+              ORDER BY "{{ datavault4coalesce.config.ldts_alias }}"), {{ datavault4coalesce__string_to_timestamp(datavault4coalesce.config.timestamp_format, datavault4coalesce.config.end_of_all_times) }})
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f3b217f-69ce-4757-8559-34c66a44023f
+          stepCounter: 36d5527a-ae4c-4db1-a59a-7da4e98a2f4b
+        config: {}
+        dataType: BOOLEAN
+        defaultValue: ""
+        description: ""
+        is_system_current_col: true
+        name: IS_CURRENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: |-
+              CASE 
+                WHEN 
+                  LEAD("{{ datavault4coalesce.config.ldts_alias }}" - INTERVAL '1 MICROSECOND') 
+                  OVER (PARTITION BY "{{ get_value_by_column_attribute("is_hk") }}" 
+                  ORDER BY "{{ datavault4coalesce.config.ldts_alias }}") IS NULL 
+                THEN TRUE 
+                ELSE FALSE 
+              END
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: SATV0_NATION
+        join:
+          joinCondition: FROM {{ ref('WORK', 'SATV0_NATION') }} "SATV0_NATION"
+        name: SATV1_NATION
+        noLinkRefs: []
+  name: SATV1_NATION
+  overrideSQL: false
+  schema: ""
+  sqlType: "9"
+  type: sql
+  version: 1
+type: Node

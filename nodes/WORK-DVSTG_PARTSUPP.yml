@@ -1,0 +1,223 @@
+fileVersion: 1
+id: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+name: DVSTG_PARTSUPP
+operation:
+  config:
+    contains_multiactive_data: false
+    generate_ghost_records: true
+    main_hk_col: null
+  database: ""
+  deployEnabled: true
+  description: Partsupp data as defined by TPC-H
+  isMultisource: false
+  locationName: WORK
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad7463bf-a1b6-4db2-b4d3-c2902ad03096
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        hashDetails:
+          hashAlgorithm: SHA1
+        hashedColumns:
+          - columnCounter: 49a7e87e-5d55-45ca-bb0f-31c126f97002
+            stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        name: HK_PARTKEY_H
+        nullable: true
+        sourceColumnReferences: []
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a7a7003-8d8c-4fff-8354-3a662138c1e6
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        hashDetails:
+          hashAlgorithm: SHA1
+        hashedColumns:
+          - columnCounter: 8fea0e9d-6ced-46ae-87cd-12b3f214d0b2
+            stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        name: HK_SUPPKEY_H
+        nullable: true
+        sourceColumnReferences: []
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d185b261-42e5-4a36-8d79-10ac788a810f
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        hashDetails:
+          hashAlgorithm: SHA1
+        hashedColumns:
+          - columnCounter: 72ca140b-e61c-4aec-a5a3-71166b0fdf41
+            stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+          - columnCounter: d25f0a78-9aa1-4ba8-9db4-e440a492e606
+            stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+          - columnCounter: 9c291f99-2460-4ecb-9360-f458af342366
+            stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        name: HK_PARTSUPP_N_S
+        nullable: true
+        sourceColumnReferences: []
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6613d5c-85ef-4d34-8fd6-d375b10c0958
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        hashDetails:
+          hashAlgorithm: SHA1
+        hashedColumns:
+          - columnCounter: 49a7e87e-5d55-45ca-bb0f-31c126f97002
+            stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+          - columnCounter: 8fea0e9d-6ced-46ae-87cd-12b3f214d0b2
+            stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        name: HK_PARTSUPP_SUPPLIER_L
+        nullable: true
+        sourceColumnReferences: []
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49a7e87e-5d55-45ca-bb0f-31c126f97002
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_PARTKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5324201c-9bff-47e4-9081-73df4a5fbc58
+                stepCounter: 96251b7b-bc55-4dfa-8d5f-d1e24075e00d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8fea0e9d-6ced-46ae-87cd-12b3f214d0b2
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_SUPPKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 428f4891-fced-45f7-a510-78950537d33c
+                stepCounter: 96251b7b-bc55-4dfa-8d5f-d1e24075e00d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 72ca140b-e61c-4aec-a5a3-71166b0fdf41
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_AVAILQTY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d21c171c-177e-4069-83ca-a824a969a593
+                stepCounter: 96251b7b-bc55-4dfa-8d5f-d1e24075e00d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9c291f99-2460-4ecb-9360-f458af342366
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: PS_SUPPLYCOST
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aea3d6d1-0b56-46a7-b5d5-8a4367339bf0
+                stepCounter: 96251b7b-bc55-4dfa-8d5f-d1e24075e00d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d25f0a78-9aa1-4ba8-9db4-e440a492e606
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: VARCHAR(199)
+        description: ""
+        name: PS_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9fc5f101-aca2-4ea3-a4be-a9e0cb7e29b9
+                stepCounter: 96251b7b-bc55-4dfa-8d5f-d1e24075e00d
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ca52798-cb19-4947-9150-8253a7ccf3b4
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+        is_system_ldts: true
+        name: LDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SYSDATE()
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 51a04a72-0f80-40a1-82c3-490bdbad4ed6
+          stepCounter: a9e2faf9-9422-4dc2-b242-65bac3eb16be
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: The Record Source (RSRC) describes the source of this data.
+        is_system_rsrc: true
+        name: RSRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "{{record_source()}}"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC
+            nodeName: PARTSUPP
+        join:
+          joinCondition: FROM {{ ref('SRC', 'PARTSUPP') }} "PARTSUPP"
+        name: DVSTG_PARTSUPP
+        noLinkRefs: []
+  name: DVSTG_PARTSUPP
+  overrideSQL: false
+  schema: ""
+  sqlType: "4"
+  type: sql
+  version: 1
+type: Node
