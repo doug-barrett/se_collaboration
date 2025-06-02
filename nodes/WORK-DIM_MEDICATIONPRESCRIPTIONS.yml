@@ -1,0 +1,360 @@
+fileVersion: 1
+id: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+name: DIM_MEDICATIONPRESCRIPTIONS
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 764a007a-b3b2-4ca1-9751-9a32e65a0888
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_MEDICATIONPRESCRIPTIONS_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8dffcfa4-62de-4339-ae96-c0495d2cdd2c
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: true
+        name: PRESCRIPTIONID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e136dac0-619a-42d3-81c9-05b4fb71cbca
+                stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eb3b238d-9c6e-4fa7-bb16-874b4d992a2a
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PATIENTID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5eed949-84c7-47d1-a161-a2a9b4f14798
+                stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7b502457-7e84-4b3c-bd4a-e3f941fdb875
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: VISITID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 60802d7d-a140-4976-877f-c8e0ea0f6d56
+                stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 46be96db-37d2-4189-bae3-1e9b74b8125d
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: DATE
+        description: ""
+        name: PRESCRIPTIONDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 56276c6c-bc7f-4008-883b-0468557a3fb4
+                stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26e434e5-aa1c-4e93-a6ec-1fa956544c93
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: MEDICATIONNAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b58dafa-e6a6-4a48-94a7-1fe985ddc930
+                stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 92b98513-a59f-4f36-a375-38a502cd9938
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: DOSAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30c26a36-7b5a-4865-8507-a6005faacebe
+                stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7dede57-a7b7-4171-8dcd-4f60130ec358
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: DOSAGEUNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6b820a8-3279-4c48-9e2c-1789c40d8217
+                stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41463e77-c56f-4fd5-88ba-cf0a9883b00e
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: ADMISSIONDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 466e9a8b-b20c-4228-ab6c-0905c6e8e226
+                stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fb71512a-10a1-4e90-9b82-54557e330fb6
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: DISCHARGEDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 116caa6d-0b5a-4ac2-8e2d-e58c1dbff61c
+                stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 51d6e7ac-12e5-4d84-bdc4-ae3d4c4625e0
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: DEPARTMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1832c027-7f72-42e4-8685-80c1883c96bd
+                stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c55bded-5ade-417c-a75c-10271366566f
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: DIAGNOSIS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1ba06cd4-e312-4d5a-9411-58fc919ff9aa
+                stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b17a1709-f42a-4e3d-ba28-37fc3d3f0b68
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: DOCTORNAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f12674f4-10d5-4ddc-853e-eeea948f9cc9
+                stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d5fd7aff-e992-405a-9a68-f8d415320dc5
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: FREQUENCY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 27432b99-743a-4d95-8424-79dbaf1d1e6d
+                stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7f20e1a-cc98-47db-9aba-136f41bca99c
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: PURPOSE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 59f44871-d39e-419a-b724-31c5aab01a94
+                stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: efb75962-47fa-40ae-8344-496c24b3100e
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d43d395-c5d0-40d7-9c4e-91c392ded192
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2fa2a3c6-a09b-47ed-9538-a34069e496ce
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 75f83304-bbf8-477a-b6ec-a83391b3b16b
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca68e838-30f1-4720-982a-ac56e4b4fa9b
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ef5fde59-c673-4fe4-a6bf-5545b109cba6
+          stepCounter: 2fe27f47-a3e5-4512-a9cc-90cff8482438
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_HOSPITALVISITS: a1086e4e-434f-438e-9fce-1e272fd37a47
+          STG_MEDICATIONPRESCRIPTIONS: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: STG_HOSPITALVISITS
+          - locationName: WORK
+            nodeName: STG_MEDICATIONPRESCRIPTIONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('WORK', 'STG_HOSPITALVISITS') }} "STG_HOSPITALVISITS"
+            INNER JOIN {{ ref('WORK', 'STG_MEDICATIONPRESCRIPTIONS') }} "STG_MEDICATIONPRESCRIPTIONS"
+            ON "STG_HOSPITALVISITS"."VISITID" = "STG_MEDICATIONPRESCRIPTIONS"."VISITID"
+        name: DIM_MEDICATIONPRESCRIPTIONS
+        noLinkRefs: []
+  name: DIM_MEDICATIONPRESCRIPTIONS
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

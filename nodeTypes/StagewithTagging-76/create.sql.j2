@@ -1,0 +1,69 @@
+{% if node.override.create.enabled %}
+    
+    {{ node.override.create.script }}
+{% elif node.materializationType == 'table' %}
+    {{ stage('Create Stage Table') }}
+    CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+    (
+        {% for col in columns %}
+            "{{ col.name }}" {{ col.dataType }}
+            {%- if not col.nullable %} NOT NULL
+                {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            {% endif %}
+            {%- if config.columnTaggingTabular %}
+                    {%- set col_info = config.columnTaggingTabular['items'] | selectattr('taggedColumns.name', 'equalto', col.name) | list %}
+                    {%- if col_info | length > 0 %}
+                        {%- set reg_sens_info = col_info[0] %}
+                        WITH TAG (
+                            {% if reg_sens_info.EMP_HR_SENS %}{{ ref_no_link("GENERAL_MGMT", "EMP_HR_SENS")}} = '{{ reg_sens_info.EMP_HR_SENS }}'{% endif %}
+                            {% if reg_sens_info.EMP_PII_SENS %}
+                                {% if reg_sens_info.EMP_HR_SENS %}, {% endif %}
+                                {{ ref_no_link("GENERAL_MGMT", "EMP_PII_SENS")}} = '{{reg_sens_info.EMP_PII_SENS}}' {% endif %}
+                        )
+                    {% endif %}   
+                {% endif %}          
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            {%- if not loop.last -%}, {% endif %}
+        {% endfor %}
+    )
+    {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+{% elif node.materializationType == 'view' %}
+    {{ stage('Create Stage View') }}
+    CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+    (
+        {% for col in columns %}
+            "{{ col.name }}"
+            {%- if config.columnTaggingTabular %}
+                    {%- set col_info = config.columnTaggingTabular['items'] | selectattr('taggedColumns.name', 'equalto', col.name) | list %}
+                    {%- if col_info | length > 0 %}
+                        {%- set reg_sens_info = col_info[0] %}
+                        WITH TAG (
+                            {% if reg_sens_info.EMP_HR_SENS %}{{ ref_no_link("GENERAL_MGMT", "EMP_HR_SENS")}} = '{{ reg_sens_info.EMP_HR_SENS }}'{% endif %}
+                            {% if reg_sens_info.EMP_PII_SENS %}
+                                {% if reg_sens_info.EMP_HR_SENS %}, {% endif %}
+                                {{ ref_no_link("GENERAL_MGMT", "EMP_PII_SENS")}} = '{{reg_sens_info.EMP_PII_SENS}}' {% endif %}
+                        )
+                    {% endif %}   
+                {% endif %}      
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            {%- if not loop.last -%}, {% endif %}
+        {% endfor %}
+    )
+    {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+    AS
+    {% for source in sources %}
+        SELECT
+        {% for col in source.columns %}
+            {{ get_source_transform(col) }} AS "{{ col.name }}"
+            {%- if not loop.last -%}, {% endif %}
+        {% endfor %}
+        {{ source.join }}
+        {% if not loop.last %}
+            {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                {{ config.insertStrategy }}
+            {% else %}
+                UNION
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endif %}

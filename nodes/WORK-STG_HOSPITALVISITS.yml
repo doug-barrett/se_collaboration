@@ -1,0 +1,137 @@
+fileVersion: 1
+id: a1086e4e-434f-438e-9fce-1e272fd37a47
+name: STG_HOSPITALVISITS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b0d7c97-bf6a-49ad-9f79-eac7957267f0
+          stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: VISITID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e5479e90-24fb-4395-936d-857572e19b9f
+                stepCounter: 6f7fa467-f322-4baf-9d4e-bee453869be7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f934de2-18d0-4db1-89dd-520237de0beb
+          stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PATIENTID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 574b78b0-e410-4fa8-bc46-bea53bbdc5bf
+                stepCounter: 6f7fa467-f322-4baf-9d4e-bee453869be7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 466e9a8b-b20c-4228-ab6c-0905c6e8e226
+          stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: ADMISSIONDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7523eb10-1757-4b19-9f2a-789821021512
+                stepCounter: 6f7fa467-f322-4baf-9d4e-bee453869be7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 116caa6d-0b5a-4ac2-8e2d-e58c1dbff61c
+          stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: DISCHARGEDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 14a4de90-8476-4b47-97f1-4a041d0931f4
+                stepCounter: 6f7fa467-f322-4baf-9d4e-bee453869be7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1832c027-7f72-42e4-8685-80c1883c96bd
+          stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: DEPARTMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 52bee73c-95a2-4798-b2a7-3ca041ca033a
+                stepCounter: 6f7fa467-f322-4baf-9d4e-bee453869be7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1ba06cd4-e312-4d5a-9411-58fc919ff9aa
+          stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: DIAGNOSIS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4f7be34c-0e81-451f-be32-0ee66185afe8
+                stepCounter: 6f7fa467-f322-4baf-9d4e-bee453869be7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f12674f4-10d5-4ddc-853e-eeea948f9cc9
+          stepCounter: a1086e4e-434f-438e-9fce-1e272fd37a47
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: DOCTORNAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7cc4af6b-275a-4f25-b93c-a6355dc65928
+                stepCounter: 6f7fa467-f322-4baf-9d4e-bee453869be7
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC
+            nodeName: HOSPITALVISITS
+        join:
+          joinCondition: FROM {{ ref('SRC', 'HOSPITALVISITS') }} "HOSPITALVISITS"
+        name: STG_HOSPITALVISITS
+        noLinkRefs: []
+  name: STG_HOSPITALVISITS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

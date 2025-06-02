@@ -1,0 +1,158 @@
+fileVersion: 1
+id: 5f11e122-feda-4933-b8a7-103a1b6e2b87
+name: FCT_LABRESULTS
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2015c6fa-190c-4749-8cea-d46491882915
+          stepCounter: 5f11e122-feda-4933-b8a7-103a1b6e2b87
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PATIENTID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 210a0336-7668-4b50-8918-26e4852a0291
+                stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 957fc9a4-3920-4c53-80c4-cc5ac66ff85f
+          stepCounter: 5f11e122-feda-4933-b8a7-103a1b6e2b87
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: RESULTVALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ddd02ce-6911-4dda-942b-aadf31d58ed2
+                stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7f6c52b-6d3f-40f2-9ab1-f3b8d286f182
+          stepCounter: 5f11e122-feda-4933-b8a7-103a1b6e2b87
+        config: {}
+        dataType: DATE
+        description: ""
+        name: TESTDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d44b55f-19de-4b50-adac-d78d35678370
+                stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 54f0f7dc-f4c7-42a7-9cec-afbf48a64529
+          stepCounter: 5f11e122-feda-4933-b8a7-103a1b6e2b87
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: RESULTID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b463d631-0124-4c72-ba34-6047b580030c
+                stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 24f890ac-c593-45b1-abf5-b72ac1de9e92
+          stepCounter: 5f11e122-feda-4933-b8a7-103a1b6e2b87
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f254f7b-e311-45b5-acd3-4559f8a66fe5
+                stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b386a118-1be9-4a6a-b2d6-aad3df99e3ce
+          stepCounter: 5f11e122-feda-4933-b8a7-103a1b6e2b87
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: daa47cbf-1244-4020-a533-6d29a4a5b865
+          stepCounter: 5f11e122-feda-4933-b8a7-103a1b6e2b87
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e11b1-590c-4cb1-b3f2-17612d4ec08c
+          stepCounter: 5f11e122-feda-4933-b8a7-103a1b6e2b87
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: TESTNAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7d13271d-2bf9-4a9d-a38b-4edbb43d35e1
+                stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: STG_LABRESULTS
+        join:
+          joinCondition: FROM {{ ref('WORK', 'STG_LABRESULTS') }} "STG_LABRESULTS"
+        name: FCT_LABRESULTS
+        noLinkRefs: []
+  name: FCT_LABRESULTS
+  overrideSQL: false
+  schema: ""
+  sqlType: Fact
+  type: sql
+  version: 1
+type: Node

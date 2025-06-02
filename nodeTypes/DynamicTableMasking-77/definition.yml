@@ -1,0 +1,60 @@
+fileVersion: 1
+id: "77"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Custom Dynamic Masking View
+    short: DMV
+    tagColor: 'purple'
+    isDisabled: true
+    plural: Views
+
+    config:
+      - groupName: Options
+        items: 
+        
+        - type: toggleButton
+          attributeName: selectDistinct
+          displayName: Distinct
+
+        - type: toggleButton
+          attributeName: enableMasking
+          displayName: Enable Column Masking
+          default: true
+
+        - type: textBox
+          displayName: Snowflake Masking Policy
+          attributeName: selMaskPolicy
+          isRequired: true
+          enableIf: "{% if config.enableMasking %} true {% else %} false {% endif %}"
+          default: mask_char
+
+        - type: toggleButton
+          attributeName: maskingOverride
+          displayName: Override Masking columns
+          default: false
+          enableIf: "{% if config.enableMasking %} true {% else %} false {% endif %}"
+
+        - type: columnSelector
+          displayName: Select Columns for Masking
+          attributeName: maskingCols
+          isRequired: false
+          enableIf: "{% if config.maskingOverride %} true {% else %} false {% endif %}"
+
+        - type: multisourceToggle
+
+        - type: overrideSQLToggle
+
+        - displayName: Multi Source Strategy
+          attributeName: insertStrategy
+          type: dropdownSelector
+          default: UNION
+          options:
+          - "UNION"
+          - "UNION ALL" 
+          isRequired: true
+          enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+name: Dynamic Table Masking
+type: NodeType

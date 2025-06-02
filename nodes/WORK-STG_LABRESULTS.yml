@@ -1,0 +1,123 @@
+fileVersion: 1
+id: adee483c-65a7-491c-989c-d7bda37fb8da
+name: STG_LABRESULTS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b463d631-0124-4c72-ba34-6047b580030c
+          stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: RESULTID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 10672d24-d9a8-4626-8d95-448ad50e9360
+                stepCounter: f50965dd-0465-4d1f-96b6-8eec1c04d37f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 210a0336-7668-4b50-8918-26e4852a0291
+          stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PATIENTID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 54b69789-3d6c-4745-a8b7-d3644650c0aa
+                stepCounter: f50965dd-0465-4d1f-96b6-8eec1c04d37f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d44b55f-19de-4b50-adac-d78d35678370
+          stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+        config: {}
+        dataType: DATE
+        description: ""
+        name: TESTDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a0647d91-9926-434d-8e17-5beda70277c6
+                stepCounter: f50965dd-0465-4d1f-96b6-8eec1c04d37f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d13271d-2bf9-4a9d-a38b-4edbb43d35e1
+          stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: TESTNAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 58e65040-df61-47a3-b7dd-7b3857329f91
+                stepCounter: f50965dd-0465-4d1f-96b6-8eec1c04d37f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7ddd02ce-6911-4dda-942b-aadf31d58ed2
+          stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: RESULTVALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6199787-4c8b-4566-b93f-cab900c48580
+                stepCounter: f50965dd-0465-4d1f-96b6-8eec1c04d37f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f254f7b-e311-45b5-acd3-4559f8a66fe5
+          stepCounter: adee483c-65a7-491c-989c-d7bda37fb8da
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87b9d0d6-64ef-4434-bff2-ff64fe9a5c9f
+                stepCounter: f50965dd-0465-4d1f-96b6-8eec1c04d37f
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC
+            nodeName: LABRESULTS
+        join:
+          joinCondition: FROM {{ ref('SRC', 'LABRESULTS') }} "LABRESULTS"
+        name: STG_LABRESULTS
+        noLinkRefs: []
+  name: STG_LABRESULTS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

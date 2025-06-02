@@ -1,0 +1,165 @@
+fileVersion: 1
+id: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+name: STG_MEDICATIONPRESCRIPTIONS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e136dac0-619a-42d3-81c9-05b4fb71cbca
+          stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PRESCRIPTIONID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8cc2fb10-30f5-4a22-a09e-a6f6cb426462
+                stepCounter: 815c2bb9-9c86-4810-8c7c-3e0790e09698
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b5eed949-84c7-47d1-a161-a2a9b4f14798
+          stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PATIENTID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 272f71db-2902-4c50-8314-e5d5e0e4af68
+                stepCounter: 815c2bb9-9c86-4810-8c7c-3e0790e09698
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60802d7d-a140-4976-877f-c8e0ea0f6d56
+          stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: VISITID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 263a830a-12b8-483f-b4c4-228beb5aec84
+                stepCounter: 815c2bb9-9c86-4810-8c7c-3e0790e09698
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 56276c6c-bc7f-4008-883b-0468557a3fb4
+          stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        config: {}
+        dataType: DATE
+        description: ""
+        name: PRESCRIPTIONDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0a416712-7f35-473f-b85b-4c3d489d1b9d
+                stepCounter: 815c2bb9-9c86-4810-8c7c-3e0790e09698
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b58dafa-e6a6-4a48-94a7-1fe985ddc930
+          stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: MEDICATIONNAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 47a998c5-278d-4556-b126-580feca84e4a
+                stepCounter: 815c2bb9-9c86-4810-8c7c-3e0790e09698
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 30c26a36-7b5a-4865-8507-a6005faacebe
+          stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: DOSAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a0fa900-fc95-4edb-a654-d5ddc9763fb9
+                stepCounter: 815c2bb9-9c86-4810-8c7c-3e0790e09698
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6b820a8-3279-4c48-9e2c-1789c40d8217
+          stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: DOSAGEUNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2607f0f7-94c3-4fab-82a2-3abf6977cd11
+                stepCounter: 815c2bb9-9c86-4810-8c7c-3e0790e09698
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27432b99-743a-4d95-8424-79dbaf1d1e6d
+          stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: FREQUENCY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ffe53a79-f128-4885-aa89-70641308c8eb
+                stepCounter: 815c2bb9-9c86-4810-8c7c-3e0790e09698
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 59f44871-d39e-419a-b724-31c5aab01a94
+          stepCounter: 10f30fa8-df85-41e7-9b4d-97a62477c25a
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: PURPOSE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 86c216c4-427b-41ac-8d76-fc85df155d9e
+                stepCounter: 815c2bb9-9c86-4810-8c7c-3e0790e09698
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC
+            nodeName: MEDICATIONPRESCRIPTIONS
+        join:
+          joinCondition: FROM {{ ref('SRC', 'MEDICATIONPRESCRIPTIONS') }} "MEDICATIONPRESCRIPTIONS"
+        name: STG_MEDICATIONPRESCRIPTIONS
+        noLinkRefs: []
+  name: STG_MEDICATIONPRESCRIPTIONS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
