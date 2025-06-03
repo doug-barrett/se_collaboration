@@ -1,0 +1,85 @@
+fileVersion: 1
+id: d843832c-db22-4b0c-a30f-22c0e33fb5bf
+name: STG_CANADIAN_HOLIDAYS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    preSQL2: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: |-
+    The Public Holiday Calendar provides reference data containing government-designated holidays for 119 countries since 1970, as well as the financial market holidays for the European Central Bank (ECB) and New York Stock Exchange (NYSE).
+    Provides historical values for each public holiday by GEO_ID.
+    Each row represents a distinct timeseries, date, and holiday name by geographic entity. It identifies whether the holiday is financial.
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: be570ade-51a5-4339-bb8f-568bf1733305
+          stepCounter: d843832c-db22-4b0c-a30f-22c0e33fb5bf
+        config: {}
+        dataType: DATE
+        description: Date associated with the event
+        name: DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 200ad3d2-7b95-4438-bbba-8fb6d13a4d6b
+                stepCounter: 025c0d83-8d2c-4bf8-8731-b767ba730098
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c5ffc25c-f988-4a1c-b98a-ffca93e48ebe
+          stepCounter: d843832c-db22-4b0c-a30f-22c0e33fb5bf
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Name of the Holiday
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0deccae-d910-4c5d-bfc1-f9b9aaa8d1fa
+                stepCounter: 025c0d83-8d2c-4bf8-8731-b767ba730098
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 712f0f9a-ae79-4e66-9126-75715cd4292e
+          stepCounter: d843832c-db22-4b0c-a30f-22c0e33fb5bf
+        config: {}
+        dataType: BOOLEAN
+        description: Boolean denoting a stock market closure for the given region
+        name: IS_FINANCIAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b095e94-8599-46f9-b020-2e27485edfb1
+                stepCounter: 025c0d83-8d2c-4bf8-8731-b767ba730098
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: CANADIAN_HOLIDAYS
+        join:
+          joinCondition: FROM {{ ref('DWH', 'CANADIAN_HOLIDAYS') }} "CANADIAN_HOLIDAYS"
+        name: STG_CANADIAN_HOLIDAYS
+        noLinkRefs: []
+  name: STG_CANADIAN_HOLIDAYS
+  overrideSQL: false
+  schema: ""
+  sqlType: "136"
+  type: sql
+  version: 1
+type: Node
