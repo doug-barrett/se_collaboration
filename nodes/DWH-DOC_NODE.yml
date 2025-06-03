@@ -1,0 +1,150 @@
+fileVersion: 1
+id: 7229e529-99d5-4e9a-9158-f42e06d27897
+name: DOC_NODE
+operation:
+  config:
+    devMode: true
+    extractionQueryName: INVOICES
+    extractionQueryStorageLocationName: JJ_INTERNAL_STAGE
+    extractionQueryVersion: "1"
+    flagSrcStream: true
+    redeploymentBehavior: Create At Existing Stream
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriod: "60"
+    schedulePeriodOption: Predecessor
+    schedulingMode: Warehouse Task
+    sourceType: Directory Table
+    stageName: JJ_INTERNAL_STAGE
+    stageStorageLocationName: JJ_INTERNAL_STAGE
+    subfolder: demo7
+    truncateBefore: false
+    whName: <WAREHOUSE_NAME>
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60436ce7-cb68-48f6-b698-29ccbc262f5f
+          stepCounter: 7229e529-99d5-4e9a-9158-f42e06d27897
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        fileName: true
+        name: FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d48cf5c3-ef86-406b-8144-b6f5d59b5807
+          stepCounter: 7229e529-99d5-4e9a-9158-f42e06d27897
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: FILE_URL
+        nullable: true
+        presignedURL: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: FILE_URL
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 23d12afe-dd0a-47e1-a23e-e921804d88b5
+          stepCounter: 7229e529-99d5-4e9a-9158-f42e06d27897
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        fileLastModified: true
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_TIMESTAMP_NTZ(LAST_MODIFIED)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2bf23955-8a31-47b9-9d8f-a9519ed93037
+          stepCounter: 7229e529-99d5-4e9a-9158-f42e06d27897
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: SIZE
+        nullable: true
+        size: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SIZE
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a83d0e7-9974-4d8f-9905-dcdc2e84229a
+          stepCounter: 7229e529-99d5-4e9a-9158-f42e06d27897
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        extractedData: true
+        name: EXTRACTED_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b43b57a4-85fd-457f-82ae-1480db4391f2
+          stepCounter: 7229e529-99d5-4e9a-9158-f42e06d27897
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        fileLastModified: true
+        name: DATA_EXTRACT_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: DOC_NODE
+        noLinkRefs: []
+  name: DOC_NODE
+  overrideSQL: false
+  schema: ""
+  sqlType: cortex-2-0-3:::429
+  type: sql
+  version: 1
+type: Node
