@@ -1,0 +1,184 @@
+fileVersion: 1
+id: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+name: DIM_LAND_PROD_WEIGHTED_CPI
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DATA
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1edb2f7c-96c1-4654-8018-5557c6b18140
+          stepCounter: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_LAND_PROD_WEIGHTED_CPI_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d5e208d5-9368-4d4c-9e9d-b2e4a8702b24
+          stepCounter: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f281c301-ee97-4ec4-b718-e666670f1484
+                stepCounter: 499554b0-b635-4cd2-9793-4e88a17d6436
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb5e4a08-ce3b-4adb-a7eb-162ce1b4da3f
+          stepCounter: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: WEIGHT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7c850412-0f8c-4c76-ad2a-048945ff9ab1
+                stepCounter: 499554b0-b635-4cd2-9793-4e88a17d6436
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f52aef8a-e271-48e9-935c-29de1b0d4671
+          stepCounter: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 722b4420-e6fd-4777-bd52-cf47ae022bf1
+          stepCounter: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 887a49a6-0a73-4a6e-a166-55702ccbb8d1
+          stepCounter: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fdbebdf0-e4f4-4495-8f79-d0d002fe03f5
+          stepCounter: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4bdb64c4-8302-4de1-b277-48205e4efd33
+          stepCounter: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bab95c3a-145d-46b7-8419-438b0df6d042
+          stepCounter: 5521ace6-b7c9-43a6-8d9b-e2537591648a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: LAND
+            nodeName: LAND_PROD_WEIGHTED_CPI
+        join:
+          joinCondition: FROM {{ ref('LAND', 'LAND_PROD_WEIGHTED_CPI') }} "LAND_PROD_WEIGHTED_CPI"
+        name: DIM_LAND_PROD_WEIGHTED_CPI
+        noLinkRefs: []
+  name: DIM_LAND_PROD_WEIGHTED_CPI
+  overrideSQL: false
+  schema: ""
+  sqlType: "19"
+  type: sql
+  version: 1
+type: Node

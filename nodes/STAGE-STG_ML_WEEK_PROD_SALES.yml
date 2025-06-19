@@ -15,9 +15,15 @@ operation:
   locationName: STAGE
   materializationType: table
   metadata:
-    appliedNodeTests: []
+    appliedNodeTests:
+      - continueOnFailure: true
+        description: ""
+        name: Test
+        runOrder: After
+        templateString: ""
     columns:
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          isDistinct: true
         columnReference:
           columnCounter: 336f1a45-51f9-4ff4-80ee-4b8f1940ffb8
           stepCounter: ebefdc11-4720-4791-b292-d98fdeb8c368
@@ -32,7 +38,8 @@ operation:
               - columnCounter: 4188407a-ee36-4406-925e-987c7ea54b90
                 stepCounter: 36edc320-8f30-419b-895a-4c73757b9b46
             transform: MIN("STG_ML_DATE_PROD"."TRANSACTION_DATE")
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          isDistinct: true
         columnReference:
           columnCounter: b37da2c6-33d4-48c8-8bee-705568fe33c7
           stepCounter: ebefdc11-4720-4791-b292-d98fdeb8c368
@@ -47,7 +54,8 @@ operation:
               - columnCounter: acd71823-9e6e-414c-892e-6c5d7ad9c139
                 stepCounter: 36edc320-8f30-419b-895a-4c73757b9b46
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          isDistinct: true
         columnReference:
           columnCounter: c9708308-08ad-407b-b5a7-3f032393f49b
           stepCounter: ebefdc11-4720-4791-b292-d98fdeb8c368
@@ -61,7 +69,8 @@ operation:
               - columnCounter: c58883f5-110c-4bf8-8f85-10956f18195c
                 stepCounter: 36edc320-8f30-419b-895a-4c73757b9b46
             transform: MODE(STG_ML_DATE_PROD.PRICE)
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          isDistinct: true
         columnReference:
           columnCounter: de807587-c9f2-4941-95a5-ebb2db75bf55
           stepCounter: ebefdc11-4720-4791-b292-d98fdeb8c368
@@ -76,7 +85,8 @@ operation:
                 stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
             transform: NVL(SUM("FCT_SALES_DAY"."UNITS_SALES"), 0)
     cteString: ""
-    enabledColumnTestIDs: []
+    enabledColumnTestIDs:
+      - isDistinct
     sourceMapping:
       - aliases:
           FCT_SALES_DAY: 91c3542a-c2f9-472c-8706-d613acb63e06
