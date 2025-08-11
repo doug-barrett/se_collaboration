@@ -1,0 +1,902 @@
+fileVersion: 1
+id: c47882b5-b230-4f51-8ff9-486070e48258
+name: VWA_FORECAST_AUDIT
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: "Just a bit of tidy up "
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c643b7c4-a620-43ed-95dc-28ec7eb52c38
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: VARCHAR(32)
+        description: ""
+        name: FORECAST_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18c1a81e-d659-4cc2-8b03-0ce6095fcbdf
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6abdaf01-5261-4656-9693-911a4239818b
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 071995c4-de4e-4da7-9bb3-0edafbbc4f93
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53018829-9e00-429f-96a2-7bd335424731
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ee638e61-2455-45f2-be31-64505b05b94f
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e266a8d-3373-4cd9-a56c-82c124faa810
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DATE
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5262faee-c434-4af4-a25e-81b88208ffb7
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a3f885ba-a904-4f0e-9e14-57db3655ae67
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: LAST_UPDATED_AT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"LAST_UPDATED_AT\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b914884-37c1-4fc0-9ac6-f5929a9823c7
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: LAST_UPDATED_BY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"LAST_UPDATED_BY\"::STRING"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60dc0870-180a-491b-a867-8d19355d9844
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SYSTEM_CREATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d6d1f0a1-99e9-4136-8fd4-fd799e6bbd3c
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 31a433d4-e60c-4523-87d4-70c90b85de1b
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SYSTEM_UPDATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab65c0b1-154e-4c20-af64-2956a0e9c777
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 552e5fcd-9946-4aa1-b235-d6e8eb297899
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ADVERTISING
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"ADVERTISING\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 10b55030-ae3b-4eaa-93ff-01f4f9ef2d85
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: AD_FIN_WEEK_NO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"AD_FIN_WEEK_NO\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a13df24-a7ec-455a-a26b-616870974587
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: AI_FORECAST_UNITS_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"AI_FORECAST_UNITS_WEEK\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b41b11c-d619-447e-b21d-df14b17812ba
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: APPROVED_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"APPROVED_UNITS\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: baa6f367-0043-4b88-a6c3-49a366d63327
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: BASE_COSTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"BASE_COSTS\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 40d1fc58-eb27-4a8a-829f-03ecbc650028
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: BASE_COST_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"BASE_COST_PER_UNIT\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fede4a1e-965e-456b-87dd-d9c8a6a91acb
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: BASE_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"BASE_MARGIN\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: dabbced9-4f68-491e-976a-9ade7286febd
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: BASE_MARGIN_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"BASE_MARGIN_PER_UNIT\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 19e0c86c-e84a-4890-8217-6a3bb1e8f822
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: BASE_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"BASE_SALES\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77bbb90c-3e85-4a13-b0b6-143403f28039
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: BASE_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"BASE_UNITS\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f1d045c-9a86-46da-b696-348012e7cb1b
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: BASE_UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"BASE_UNITS_PER_DAY\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 912fbaff-777c-4c6b-abef-1f50f7dfd77d
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CAMPAIGN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"CAMPAIGN\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 685ab7a6-4b17-4ff7-ae57-616373297086
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"COMMENT\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ebc8417a-507e-4f31-aa23-aa15a53264ba
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: COST_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"COST_PER_UNIT\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22372184-657d-4f9c-9c5c-84f3c58e50b3
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: DAYS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"DAYS\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d22ae3f4-46eb-4d37-b412-c731a404f3b5
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: DISCOUNT_BUCKET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"DISCOUNT_BUCKET\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 059bc8bf-493e-4ffd-8d83-a8d9fa8713bf
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DISCOUNT_GRP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"DISCOUNT_GRP\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba446077-7906-43d2-bfd3-202361d1d873
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: DISCOUNT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"DISCOUNT_PERCENT\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: af38d299-8ae7-46a0-beff-7f6664478665
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"END_DATE\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fdad4733-58ed-4a53-a31a-fb899b7c784d
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"EVENT_TYPE\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba654cfa-c563-4f8b-a68e-d05c5cf99cae
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: FORECAST_HASH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"FORECAST_HASH\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8bafadf1-695b-4439-a2b8-4e7e5bcf4195
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: FORECAST_UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"FORECAST_UNITS_PER_DAY\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 09c70ed2-c94c-47e0-ab1b-b33b096e3cab
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: FORECAST_UNITS_PER_DAY_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"FORECAST_UNITS_PER_DAY_COMMENT\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: eab44032-551c-4fe0-aefc-712ec436cad6
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"HOLIDAY_NAME\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d9d7d4bf-4d2e-42ef-b0f0-4be36be440a9
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: LOCATION_IN_STORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"LOCATION_IN_STORE\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb08211e-49f4-45c5-a12d-50a2e889a9f2
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: MARGIN_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"MARGIN_PERCENT\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c223ae5c-4f6d-4055-b04a-11b4870d222b
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: MARGIN_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"MARGIN_PER_UNIT\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd8b6e2a-2b0b-430e-b189-f351c128b767
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: MECHANIC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"MECHANIC\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: de6f2637-b1e8-4a27-9e75-c788aee5a9f3
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: NOW_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"NOW_PRICE\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: de08b4f1-72f7-478d-8f43-ed558fccc43a
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: NOW_PRICE_EX_VAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"NOW_PRICE_EX_VAT\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 045dd0d8-e48e-403a-a782-f3baf1124abb
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: OVERARCHING_DEAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"OVERARCHING_DEAL\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6399f6d-019e-4e83-a916-8471bf5a9a6a
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: OVERIDE_UNITS_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"OVERIDE_UNITS_WEEK\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6fea861d-4be8-463e-ae14-dad6cdd3bc60
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: SOA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"SOA\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7e6d809-0b0b-437d-aa15-3edeba6ebdbd
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: SOA_2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"SOA_2\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d7afd10-9cdc-4c68-9419-f3954b2393e3
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"STATUS\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bc1d2d7d-3676-4374-a48c-f2d18c73bcc1
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: TOTAL_COSTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"TOTAL_COSTS\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88adb6dc-3d0d-40c9-8bc3-2de57348dff6
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: TOTAL_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"TOTAL_MARGIN\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2c0b17f-083d-4f19-a5b6-0cb89684e5e5
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: TOTAL_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"TOTAL_SALES\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 242553c5-973f-49d0-a84a-199fbc421b34
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: TOTAL_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"TOTAL_UNITS\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: de6db99f-29d4-475b-afe2-0496ff5ccf9b
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: UPLIFT_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"UPLIFT_MARGIN\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 670d3298-a53a-45ec-b693-8667a85f3948
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: UPLIFT_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"UPLIFT_SALES\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f209bbea-1f4a-43fa-9073-6f1a7e0079e3
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: UPLIFT_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"UPLIFT_UNITS\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: daf7e925-894d-48bf-88e1-299b7d5381c6
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: STRING
+        description: ""
+        name: WAS_NOW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"WAS_NOW\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ea4a65ba-10f8-467d-b7fc-3aa2827e8174
+          stepCounter: c47882b5-b230-4f51-8ff9-486070e48258
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+                stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+            transform: "\"DS_FORECAST_AUDIT\".\"FORECAST_PAYLOAD\":\"WAS_PRICE\"::DOUBLE"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATASTORE
+            nodeName: DS_FORECAST_AUDIT
+        join:
+          joinCondition: FROM {{ ref('DATASTORE', 'DS_FORECAST_AUDIT') }} "DS_FORECAST_AUDIT"
+        name: VWA_FORECAST_AUDIT
+        noLinkRefs: []
+  name: VWA_FORECAST_AUDIT
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

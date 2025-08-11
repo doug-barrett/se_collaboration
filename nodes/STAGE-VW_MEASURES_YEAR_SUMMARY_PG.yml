@@ -1,0 +1,114 @@
+fileVersion: 1
+id: 5ce38ea6-e695-4134-a61d-705d94a13cf2
+name: VW_MEASURES_YEAR_SUMMARY_PG
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eef7dcac-a8e0-414f-ae66-f18f89687ad3
+          stepCounter: 5ce38ea6-e695-4134-a61d-705d94a13cf2
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 490d543b-73bd-4111-8f88-d6aeff6efb96
+                stepCounter: 41d8ed72-6fb3-42ea-81a6-626898e8c162
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 67e8e8e6-144e-4204-9747-bf92a1ebcf01
+          stepCounter: 5ce38ea6-e695-4134-a61d-705d94a13cf2
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL4_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 81d483bb-5578-4211-bed7-6f59f0e33c08
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ab9bea7f-2543-4d8c-a457-87ddf45a85fb
+          stepCounter: 5ce38ea6-e695-4134-a61d-705d94a13cf2
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: YEAR_PG_UNITS_SALES_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1ed2aea9-de1d-456d-a2fa-aab27abcc4b8
+                stepCounter: 41d8ed72-6fb3-42ea-81a6-626898e8c162
+            transform: SUM("VW_MEASURES_YEAR_SUMMARY"."YEAR_UNITS_SALES_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1c40391c-85a2-42f7-81f0-2bb2e8431a12
+          stepCounter: 5ce38ea6-e695-4134-a61d-705d94a13cf2
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: YEAR_PG_UNITS_SALES_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1ed2aea9-de1d-456d-a2fa-aab27abcc4b8
+                stepCounter: 41d8ed72-6fb3-42ea-81a6-626898e8c162
+            transform: AVG("VW_MEASURES_YEAR_SUMMARY"."YEAR_UNITS_SALES_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bfcdd1fa-6208-4eab-8273-04706c274d0a
+          stepCounter: 5ce38ea6-e695-4134-a61d-705d94a13cf2
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: YEAR_PG_UNITS_BASE_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b410a010-1f3f-410a-8170-f6e657342dac
+                stepCounter: 41d8ed72-6fb3-42ea-81a6-626898e8c162
+            transform: AVG("VW_MEASURES_YEAR_SUMMARY"."YEAR_UNITS_BASE_AVG")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_PRODUCT: 99510b9e-1d3e-4709-93b8-2042202093b0
+          VW_MEASURES_YEAR_SUMMARY: 41d8ed72-6fb3-42ea-81a6-626898e8c162
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: STAGE
+            nodeName: VW_MEASURES_YEAR_SUMMARY
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_MEASURES_YEAR_SUMMARY') }} "VW_MEASURES_YEAR_SUMMARY"
+            JOIN {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            ON "VW_MEASURES_YEAR_SUMMARY"."PRODKEY" = "DIM_PRODUCT"."PRODKEY"
+            GROUP BY 1, 2
+        name: VW_MEASURES_YEAR_SUMMARY_PG
+        noLinkRefs: []
+  name: VW_MEASURES_YEAR_SUMMARY_PG
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

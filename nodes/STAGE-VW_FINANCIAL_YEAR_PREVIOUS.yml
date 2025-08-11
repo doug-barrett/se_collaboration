@@ -1,0 +1,205 @@
+fileVersion: 1
+id: b424713a-ab99-405c-a57b-1797a0b61c62
+name: VW_FINANCIAL_YEAR_PREVIOUS
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Type 1 Date Dimension - no surrogate key required
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f532f2d-f6d6-407e-9e20-c2e1ecf42084
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        hashDetails: null
+        name: FINANCIAL_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 82011664-1d67-4397-8020-b75a1220ad3f
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a8f264d-68b8-4358-bb89-f26782ec0459
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: MIN_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6095f65-e0db-41e0-9936-96ddecfa2b30
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c13c3d05-6b0a-49e3-a7fc-548b35e5efca
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: DATE
+        description: ""
+        name: MAX_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3d25396-e6ad-4d60-9ff9-05b43c67f1fd
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 56dfa1ad-b807-4f31-8d64-856323dc7ec8
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        hashDetails: null
+        name: FINANCIAL_YEAR_PREVIOUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 82011664-1d67-4397-8020-b75a1220ad3f
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: LAG(FINANCIAL_YEAR, 1) OVER (ORDER BY MIN_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76814325-1657-41c8-b2a9-93662529f8aa
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: MIN_DATE_PREVIOUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6095f65-e0db-41e0-9936-96ddecfa2b30
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: LAG(MIN_DATE, 1) OVER (ORDER BY MIN_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d04bf158-cbdf-4b50-bfa3-b7a522430806
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: DATE
+        description: ""
+        name: MAX_DATE_PREVIOUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3d25396-e6ad-4d60-9ff9-05b43c67f1fd
+                stepCounter: 13b634a1-7351-4d8f-a4c2-2fc923343882
+            transform: LAG(MAX_DATE, 1) OVER (ORDER BY MIN_DATE)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac245814-060c-4367-a27f-21da7ec3a4bb
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: CHAR(1)
+        defaultValue: ""
+        description: ""
+        name: THIS_YEAR_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CASE WHEN CURRENT_DATE-1 BETWEEN MIN_DATE AND MAX_DATE THEN 'Y' ELSE 'N' END
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c833a695-bb67-44f1-8e8b-8be9e5185316
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: THIS_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CURRENT_DATE-1
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f2a4f6a-94a7-4506-a20f-67f118769a50
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: DAYS_INTO_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CASE WHEN THIS_YEAR_FLAG = 'Y' THEN DATEDIFF(DAY, MIN_DATE, CURRENT_DATE -1 ) END
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 310a1aab-9468-4f39-ad3c-ff72727270e9
+          stepCounter: b424713a-ab99-405c-a57b-1797a0b61c62
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: THIS_DATE_PREVIOUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE WHEN THIS_YEAR_FLAG = 'Y' THEN 
+                DATEADD(DAY, DAYS_INTO_YEAR, MIN_DATE_PREVIOUS)
+              END
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VW_FINANCIAL_YEAR_PERIODS: 13b634a1-7351-4d8f-a4c2-2fc923343882
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_FINANCIAL_YEAR_PERIODS
+        join:
+          joinCondition: |
+            FROM {{ ref('STAGE', 'VW_FINANCIAL_YEAR_PERIODS') }} "VW_FINANCIAL_YEAR_PERIODS"
+        name: VW_FINANCIAL_YEAR_PREVIOUS
+        noLinkRefs: []
+  name: VW_FINANCIAL_YEAR_PREVIOUS
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

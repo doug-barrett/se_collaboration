@@ -1,0 +1,221 @@
+fileVersion: 1
+id: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+name: VW_PRICE_PERIOD
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Change
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87a3fb91-8354-483c-b4e4-dd7bcd0cda7f
+          stepCounter: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fedcca57-73c4-4e08-8767-b367d4d80982
+                stepCounter: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 52054b61-ebbc-4b20-b212-80fd4ddd2e12
+          stepCounter: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f337f7b0-6865-4401-aaeb-5b676d5b4706
+                stepCounter: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fa81d86-3cf6-446c-9903-b7a108536d3e
+          stepCounter: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: PC_DT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b3c3265a-7203-4de6-a95e-ea1ec403361a
+                stepCounter: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 40e024e7-93a4-4da0-a058-3d42efe498aa
+          stepCounter: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: PC_DT_END
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b3c3265a-7203-4de6-a95e-ea1ec403361a
+                stepCounter: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+            transform: "LEAD(PC_DT, 1,TO_DATE('2100-01-01')) OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY PC_DT) -1 "
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4beb4cde-5153-499a-9c55-7b8e80a2d4f5
+          stepCounter: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39a2716f-285b-4d4f-bbfc-2dcc68f2c0f6
+                stepCounter: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bafadfdf-a069-491d-be6f-e3049108f31a
+          stepCounter: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+        config: {}
+        dataType: NUMBER(9,2)
+        defaultValue: ""
+        description: ""
+        name: PRIOR_PRICE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c68e3611-cb01-4ded-bc0f-39246c94a6bd
+                stepCounter: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4af5203c-fa58-4e29-a35e-7a7680a25985
+          stepCounter: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+        config: {}
+        dataType: NUMBER(9,2)
+        defaultValue: ""
+        description: ""
+        name: DISCOUNT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39a2716f-285b-4d4f-bbfc-2dcc68f2c0f6
+                stepCounter: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+            transform: DIV0((PRICE - PRIOR_PRICE), PRIOR_PRICE) * -100
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 714d66e4-3cda-4754-bd33-6e36bdd17a41
+          stepCounter: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: DISCOUNT_BUCKET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39a2716f-285b-4d4f-bbfc-2dcc68f2c0f6
+                stepCounter: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+            transform: |-
+              CASE WHEN DISCOUNT_PERCENT  > 0 
+                    AND DISCOUNT_PERCENT  < 5 THEN 5
+              ELSE TO_NUMBER(DISCOUNT_PERCENT  / 10) * 10 
+              END
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f580f568-4c03-49ca-92fd-de6441e35b05
+          stepCounter: 10b31833-9604-4ed2-be4d-e5f9e8aafc8a
+        config: {}
+        dataType: VARCHAR(1)
+        defaultValue: ""
+        description: ""
+        name: PRICE_DROP_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39a2716f-285b-4d4f-bbfc-2dcc68f2c0f6
+                stepCounter: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+            transform: CASE WHEN PRICE < PRIOR_PRICE THEN 'Y' ELSE 'N' END
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_PRICE_PERIOD: 7ce2e228-e8bb-449a-ab1e-3ed108ed4320
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ this }} AS (
+              SELECT 	
+                  ZONE_GEOGRAPHY
+                , PRODKEY
+                , PC_DT	
+                , LEAD(PC_DT_END, 1,TO_DATE('2100-01-01')) OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY PC_DT) -1 PC_DT_END
+                , PRICE
+                , PRIOR_PRICE
+                , CASE WHEN PRIOR_PRICE > 0 THEN 100 * (1 - (DIV0(PRICE, PRIOR_PRICE))) ELSE 0 END DISCOUNT_PERCENT 
+                , CASE WHEN PRICE < PRIOR_PRICE THEN 'Y' ELSE 'N' END PRICE_DROP_FLAG
+              FROM (	
+                  SELECT 
+                      DIM_ZONE.ZONE_GEOGRAPHY
+                    , DS_PRICE_COST.prodkey	
+                    , CASE WHEN DS_PRICE_COST.pc_dt = MIN(DS_PRICE_COST.pc_dt) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.prodkey ORDER BY DS_PRICE_COST.pc_dt) 
+                          THEN TO_DATE('2000-01-01') 
+                      ELSE DS_PRICE_COST.PC_DT 
+                      END pc_dt	
+                    , DS_PRICE_COST.pc_dt pc_dt_end	
+                    , NVL(DS_PRICE_COST.price, 0) price	
+                    , LAG(NVL(DS_PRICE_COST.price, 0), 1, 0) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.prodkey ORDER BY DS_PRICE_COST.pc_dt) prior_price
+                  FROM {{ref('DATASTORE','DS_PRICE_COST')}} DS_PRICE_COST
+                  JOIN (SELECT ZONE_GEOGRAPHY, MIN(ZONE_CODE) ZONE_CODE FROM {{ref('DATA','DIM_ZONE')}} GROUP BY ZONE_GEOGRAPHY) DIM_ZONE ON DS_PRICE_COST.ZONE_CODE = DIM_ZONE.ZONE_CODE
+                  QUALIFY 	
+                      LAG(NVL(DS_PRICE_COST.price, 0), 1, 0) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.prodkey ORDER BY DS_PRICE_COST.pc_dt) <> NVL(DS_PRICE_COST.price,0)	
+              ) PC
+            )
+        dependencies:
+          - locationName: STAGE
+            nodeName: STG_PRICE_PERIOD
+        join:
+          joinCondition: |
+            FROM {{ref('STAGE', 'STG_PRICE_PERIOD') }} "STG_PRICE_PERIOD"
+        name: VW_PRICE_PERIOD
+        noLinkRefs: []
+  name: VW_PRICE_PERIOD
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

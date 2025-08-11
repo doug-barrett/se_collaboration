@@ -1,0 +1,217 @@
+fileVersion: 1
+id: 57a67e3d-7d63-4ee1-91b0-10969220f244
+name: STG_PRICE_COST_CHANGES
+operation:
+  config:
+    insertStrategy: UNION
+    postSQL: null
+    preSQL: null
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 555bbf80-442c-4e1c-bc0c-f5d0574889c7
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: PC_DT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8c84cffb-c9fe-4517-a769-42efe625b9eb
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: |-
+              CASE WHEN PC_DT = MIN(PC_DT) OVER (PARTITION BY ZONE_CODE, PRODKEY ORDER BY PC_DT) 
+                  THEN TO_DATE('2000-01-01') 
+              ELSE PC_DT 
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6654d843-56b4-41a9-93e9-eae1c5953434
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: ZONE_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b8b16a5c-6c0c-472e-a512-197a18b8658a
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 830ddca4-7a6b-44c8-b102-89841e0fbcac
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 32542283-5688-44e3-b1cb-c676f3e9d7a5
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 551fbf79-ec3e-4fad-85d7-8d37f2cf0f76
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 99ccd888-6831-42ff-859f-1b75b16f529d
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d9198653-b920-4395-894f-d9a44318c3ad
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: COST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 46d9f670-89c4-418f-bd41-29e1d61bc779
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fb0f93c2-f2d9-4e2c-a900-b1e525973ff2
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: VAT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 727a3f24-d23c-4324-acc2-b9ade0f9dd3b
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32462fa5-d303-4b3d-ba33-7eeab1719413
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: ACP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 561bdc80-296a-41f9-84eb-13c306e15a59
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 55278ed8-4fe8-4035-9592-6690d5d21e41
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: UBC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1d44453-0851-4370-afd1-258fd74d2ad4
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 21cfa826-ba4e-42f9-ad88-c01ab95b9321
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: SOA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e2e94511-f191-4a66-bc89-d93ade0d58ac
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32db9094-3b66-4728-91f2-880849ed9d9d
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: TAKE_IN_COST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 86da9bf4-d3dd-4c41-80f9-c96c196a21bc
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36dce46b-36ba-412d-ad38-6020581c1474
+          stepCounter: 57a67e3d-7d63-4ee1-91b0-10969220f244
+        config: {}
+        dataType: NUMBER(5,2)
+        description: ""
+        hashDetails: null
+        name: APPLIED_TA_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2009f760-e68a-421f-af22-76d0fe728f6d
+                stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VW_PRICE_COST_REBATE: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_PRICE_COST_REBATE
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_PRICE_COST_REBATE') }} "VW_PRICE_COST_REBATE"
+            QUALIFY   
+                LAG(PRICE, 1, 0)    OVER (PARTITION BY ZONE_CODE, PRODKEY ORDER BY PC_DT) <> PRICE
+             OR LAG(ACP  , 1, 0)    OVER (PARTITION BY ZONE_CODE, PRODKEY ORDER BY PC_DT) <> ACP
+             OR LAG(UBC  , 1, 0)    OVER (PARTITION BY ZONE_CODE, PRODKEY ORDER BY PC_DT) <> UBC
+             OR LAG(SOA  , 1, 0)    OVER (PARTITION BY ZONE_CODE, PRODKEY ORDER BY PC_DT) <> SOA
+             OR LAG(APPLIED_TA_PERCENT, 1, 0)   OVER (PARTITION BY ZONE_CODE, PRODKEY ORDER BY PC_DT) <> APPLIED_TA_PERCENT
+        name: STG_PRICE_COST_CHANGES
+        noLinkRefs: []
+  name: STG_PRICE_COST_CHANGES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

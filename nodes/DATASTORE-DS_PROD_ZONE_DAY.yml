@@ -1,0 +1,358 @@
+fileVersion: 1
+id: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+name: DS_PROD_ZONE_DAY
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: |-
+      DELETE FROM {{this}} WHERE TRANSACTION_DATE > CURRENT_DATE - 2
+                                                     
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DATASTORE
+  materializationType: table
+  metadata:
+    appliedNodeTests:
+      - continueOnFailure: false
+        description: ""
+        name: Uniqueness
+        runOrder: After
+        templateString: |-
+          SELECT 1
+          FROM {{this}}
+          GROUP BY ZONE_GEOGRAPHY, PRODKEY, TRANSACTION_DATE
+          HAVING COUNT(1) > 1
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b17c592a-09ae-4404-8fa1-9af6d53d32a7
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8843f289-f676-4745-ac04-db5c24eacb95
+                stepCounter: 32499007-8daf-416e-9b0a-940aa0500567
+            transform: PROD_ZONE_DAY."ZONE_GEOGRAPHY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7178b538-1e6a-4fe6-a003-2a6fa06b1e84
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        isBusinessKey: true
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5883e817-e989-4a6e-89f9-91443e57b7d8
+                stepCounter: 32499007-8daf-416e-9b0a-940aa0500567
+            transform: PROD_ZONE_DAY."PRODKEY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2d51488-7cfe-4311-bdec-34f7a6f43012
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: DATE
+        description: ""
+        isBusinessKey: true
+        name: TRANSACTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 698bd8e1-66a3-4c00-b745-141f47201e74
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."CALENDAR_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc88080a-eee7-48cd-8714-84d60cc1b058
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_PRICE_COST_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eb423af0-e485-4fc6-bb03-bc0692d748a6
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 108813ce-9b59-4338-a670-da2fe3fbba05
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: INTEGER
+        description: Generated artificial key
+        name: DIM_EVENTS_REGION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 546e14b9-c682-44e1-aca5-293a5b15141b
+                stepCounter: b4585615-226c-470e-8e85-be95816a6df2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 72361c3f-22e6-40b1-90e1-33b441d77f0a
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: FINANCIAL_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4002d1c2-ff8a-4b5f-927c-1f5be4257a85
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."FINANCIAL_YEAR"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 92663210-3758-4d1c-9785-c61293849002
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: FINANCIAL_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2246e010-ea5d-4b5b-975a-a51a8a65b11c
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."FINANCIAL_WEEK"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f3e97db-5e48-4cf5-96ae-beb89230eebb
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: FINANCIAL_YYWW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b60f7cc-94bc-46df-b522-0d7d00038d9b
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."FINANCIAL_YYWW"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 564b34fb-4430-4110-adbb-ff3556427683
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: DATE
+        description: ""
+        name: HOLIDAY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e352c8f9-a2d0-454f-9ccd-bc99876ed0fe
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."HOLIDAY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f005c0b-61ce-4f04-bd4c-5d836dc3ced1
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e887d56-d37d-4e5f-a594-6a55cc229433
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."HOLIDAY_NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e8ce848-a29e-4f60-94bb-dccb3738a916
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: HOLIDAY_LENGTH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e887d56-d37d-4e5f-a594-6a55cc229433
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY.HOLIDAY_LENGTH
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f85afb2-ccae-4a14-a38c-52914b9f3623
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: DAYS_FROM_HOLIDAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22bd57b6-cccd-4646-a050-f0bfb3b3fc6c
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."DAYS_FROM_HOLIDAY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d15c0711-b69c-46ba-83c5-17d48ede6582
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: PERIOD_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e887d56-d37d-4e5f-a594-6a55cc229433
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: "NVL(HOLIDAY_NAME, 'NO_HOLIDAY') "
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a4d2d5a-dadb-4cfb-b991-c795a9f91e1c
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: DAY_NO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22bd57b6-cccd-4646-a050-f0bfb3b3fc6c
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: NVL("DAYS_FROM_HOLIDAY", "CAL_DAY_IN_WEEK_NO")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2024244a-191f-4844-be45-d5ddeb757d18
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: DEAL1_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0c9a3543-ab00-4b3e-b2d9-193e5c567f73
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."DEAL1_NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb9ac583-398e-45fc-b4fa-21f972ca864e
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: DEAL2_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 44b6c201-840a-4628-8208-5c6699c2cd80
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."DEAL2_NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 752f8f21-fd1c-4ed5-a3cc-7ef946cd64ee
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: DEAL3_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42e54757-c9ee-4e74-8ba5-d0a3efb32f10
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."DEAL3_NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49c49e8e-566e-40e4-84b6-1a56966d66d1
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: DEAL4_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdb031c6-dc3f-4db1-914c-8fc872de202f
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."DEAL4_NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 35b1d404-56cf-4348-a7be-5c480934a06e
+          stepCounter: 51e303d5-9af1-4e9e-8f87-8f293d8df9fc
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: DEAL5_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: adb0b5a0-8808-4538-9827-2cffa607a686
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: PROD_ZONE_DAY."DEAL5_NAME"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_EVENTS_REGION: b4585615-226c-470e-8e85-be95816a6df2
+          VW_PRICE_COST_REGION: 72a0e5a7-a669-4c2e-810c-418edf46939a
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: DATA
+            nodeName: DIM_EVENTS_REGION
+          - locationName: DATA
+            nodeName: FCT_SALES_WEEK
+          - locationName: STAGE
+            nodeName: VW_PRICE_COST_REGION
+        join:
+          joinCondition: |
+            FROM (  SELECT ZONE_GEOGRAPHY, PRODKEY, "DIM_DATE".*
+                    FROM
+                    (  SELECT DISTINCT ZONE_GEOGRAPHY, PRODKEY 
+                            FROM {{ ref('DATA', 'FCT_SALES_WEEK') }}
+                            WHERE "FCT_SALES_WEEK"."FINANCIAL_YYWW" >= (
+                            SELECT "FINANCIAL_YYWW" 
+                            FROM {{ ref('DATA',  'DIM_DATE')}}
+                            WHERE "CALENDAR_DATE" = DATEADD(YEAR, -1, CURRENT_DATE))) "FCT_SALES_WEEK"
+                       CROSS JOIN  (
+                            SELECT *, COUNT(1) OVER (PARTITION BY FINANCIAL_YEAR, HOLIDAY_NAME) HOLIDAY_LENGTH
+                            FROM {{ ref('DATA', 'DIM_DATE') }}
+                            WHERE "CALENDAR_DATE" BETWEEN DATEADD(YEAR, -2, CURRENT_DATE) AND DATEADD(YEAR, 1, CURRENT_DATE)
+                     ) DIM_DATE
+            ) PROD_ZONE_DAY
+
+            LEFT JOIN {{ ref('DATA', 'DIM_EVENTS_REGION') }} "DIM_EVENTS_REGION"
+            ON "PROD_ZONE_DAY"."ZONE_GEOGRAPHY" = "DIM_EVENTS_REGION"."ZONE_GEOGRAPHY"
+            AND "PROD_ZONE_DAY"."PRODKEY" = "DIM_EVENTS_REGION"."PRODKEY"
+            AND "PROD_ZONE_DAY"."CALENDAR_DATE" BETWEEN "DIM_EVENTS_REGION"."EFFECTIVE_DATE" AND "DIM_EVENTS_REGION"."END_DATE"
+
+            LEFT JOIN {{ ref('STAGE','VW_PRICE_COST_REGION') }} "VW_PRICE_COST_REGION"
+            ON "PROD_ZONE_DAY"."ZONE_GEOGRAPHY" = "VW_PRICE_COST_REGION"."ZONE_GEOGRAPHY"
+            AND "PROD_ZONE_DAY"."PRODKEY" = "VW_PRICE_COST_REGION"."PRODKEY"
+            AND "PROD_ZONE_DAY"."CALENDAR_DATE" BETWEEN "VW_PRICE_COST_REGION"."PC_DT" AND "VW_PRICE_COST_REGION"."PC_DT_END"
+
+            WHERE PROD_ZONE_DAY."CALENDAR_DATE" >= (SELECT NVL(MAX(TRANSACTION_DATE) ,'2020-01-01') FROM {{this }} ) 
+        name: DS_PROD_ZONE_DAY
+        noLinkRefs:
+          - locationName: DATASTORE
+            nodeName: DS_PROD_ZONE_DAY
+  name: DS_PROD_ZONE_DAY
+  overrideSQL: false
+  schema: ""
+  sqlType: "1"
+  type: sql
+  version: 1
+type: Node

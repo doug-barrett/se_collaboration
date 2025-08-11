@@ -1,0 +1,494 @@
+fileVersion: 1
+id: 90e32206-d2b3-4590-8c62-5db181a34bda
+name: VW_FCT_SCRAPE_PRODUCT
+operation:
+  config:
+    insertStrategy: UNION
+    postSQL: null
+    preSQL: null
+    selectDistinct: false
+    testsEnabled: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e1c76a75-f700-4ee8-908b-59827ae70c14
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eec9d64d-41a4-4a08-810b-56bd8a617e4d
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c981091-2466-4c3f-9e27-423c7143da71
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a256c5b6-fe58-4ac7-8461-96bd8f34b130
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 404cdd92-4884-4c2f-a9b5-1508bf9fbc54
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ad67dbd1-be47-4f63-a814-f30ce81a72f2
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 44af72e4-e2bd-4e0f-a1a5-f7f8d572bbf0
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: RETAILER_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5539287d-a9d6-40ca-bc76-900255711240
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: MAX("FCT_SCRAPE_PRODUCT_MATCH"."RETAILER_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5054e6b9-6b78-4997-9f01-a9f6f835bc67
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: RETAILER_WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5afcda82-b1ad-4aff-a6b1-82f14092727e
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: MAX("FCT_SCRAPE_PRODUCT_MATCH"."RETAILER_WAS_PRICE")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 65a6932e-2206-4024-8387-fe5e7c55fe71
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: CHAR(1)
+        defaultValue: ""
+        description: ""
+        name: RETAILER_PROMO_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5afcda82-b1ad-4aff-a6b1-82f14092727e
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: |-
+              CASE WHEN MAX(NVL(RETAILER_WAS_PRICE,0)) > 0 THEN 'Y' 
+              ELSE 'N'
+              END
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f2e307d-ea46-4638-8f50-7bebef229079
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: RETAILER_PRODUCT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c6ee0c94-7ee0-40be-b4ad-c54d03376b43
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: MAX("FCT_SCRAPE_PRODUCT_MATCH"."RETAILER_PRODUCT_NAME")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4e4570ef-46da-4391-9ae2-bf3f25f8f34f
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        hashDetails: null
+        name: RETAILER_STOCK_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cea8aef4-5738-47b0-9861-dbea4b37c6c0
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: MAX("FCT_SCRAPE_PRODUCT_MATCH"."RETAILER_STOCK_STATUS")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 084533a4-285b-4719-b74e-69433db2b5d3
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: RETAILER_PROMOTIONAL_MECHANIC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 99c302c2-5eb0-420a-a0de-6610d0d7cc3e
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: MAX("FCT_SCRAPE_PRODUCT_MATCH"."RETAILER_PROMOTIONAL_MECHANIC")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1c1cdc29-898f-4c9e-9d23-b91082569d1e
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER(9,2)
+        defaultValue: ""
+        description: ""
+        name: RETAILER_MODE_PRICE_GAP_OFF_PROMO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE WHEN MAX(NVL(RETAILER_WAS_PRICE,0)) > 0 THEN 0 
+              ELSE (MODE(COMPETITOR_PRICE) - MAX(RETAILER_PRICE))
+              END
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 938d1067-29cc-44be-99dc-175855f003f3
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: COMPETITOR_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87f1a0a7-598e-4451-b603-bcbea20bef44
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: SUM("FCT_SCRAPE_PRODUCT_MATCH"."COMPETITOR_COUNT")
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b32ce029-3f4e-4ad4-aca7-3b2000499d27
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: COMPETITORS_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: COUNT(1)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f860ecc-40b4-41dd-9de2-02d59c176ab1
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: EXACT_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9e76aad6-0027-4d85-97bd-3b06cbff1670
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: SUM(CASE WHEN MATCH_TYPE = 'EXACT' THEN 1 ELSE 0 END)
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 141d38ae-7a63-48f9-9e39-d50566c36173
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER(12,4)
+        description: ""
+        hashDetails: null
+        name: CPI_EXACT_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 24d61447-93ff-4323-92b5-95fd7b5f3756
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: |-
+              DIV0(SUM(CASE WHEN MATCH_TYPE = 'EXACT' THEN CASE WHEN "FCT_SCRAPE_PRODUCT_MATCH"."CPI" <= 80 THEN 80
+                   WHEN "FCT_SCRAPE_PRODUCT_MATCH"."CPI" >= 120 THEN 120
+              ELSE (TO_NUMBER((100 * "FCT_SCRAPE_PRODUCT_MATCH"."CPI") / 250) * 250) / 100
+              END END), EXACT_MATCH_COUNT)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d55dd7b1-0260-49c1-91d2-08a091a7f583
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: SAME_BRAND_SAME_SPEC_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9e76aad6-0027-4d85-97bd-3b06cbff1670
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: SUM(CASE WHEN MATCH_TYPE = 'SAME BRAND / SAME SPEC' THEN 1 ELSE 0 END)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3b03f87e-c689-4e1e-a454-c2e3fa5c10ef
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: DIFF_BRAND_SAME_SPEC_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9e76aad6-0027-4d85-97bd-3b06cbff1670
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: SUM(CASE WHEN MATCH_TYPE = 'DIFF BRAND / SAME SPEC' THEN 1 ELSE 0 END)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 145c0237-ed25-4792-b3b8-5cfa2ef296ac
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: SIMILAR_SPEC_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9e76aad6-0027-4d85-97bd-3b06cbff1670
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: SUM(CASE WHEN MATCH_TYPE = 'SIMILAR SPEC' THEN 1 ELSE 0 END)
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a9984a9-a5ed-4900-8ea2-7e2c7203b51c
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COMPETITOR_PRICE_MIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 690a9693-299b-427a-95c3-d3aad01e5569
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: MIN("FCT_SCRAPE_PRODUCT_MATCH"."COMPETITOR_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7302b0b9-4c8b-4f6d-ad2d-2043c834eac5
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: RETAILER_CHEAPEST_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 690a9693-299b-427a-95c3-d3aad01e5569
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: CASE WHEN MAX("FCT_SCRAPE_PRODUCT_MATCH"."RETAILER_PRICE") <= MIN("FCT_SCRAPE_PRODUCT_MATCH"."COMPETITOR_PRICE") THEN 'Y' ELSE 'N' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22d52c4a-b371-40c8-8b79-0411ef3ab868
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COMPETITOR_PRICE_MAX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 690a9693-299b-427a-95c3-d3aad01e5569
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: MAX("FCT_SCRAPE_PRODUCT_MATCH"."COMPETITOR_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d9bc4a3c-bdd1-434b-aeed-bea41b8bbcfa
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COMPETITOR_PRICE_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 690a9693-299b-427a-95c3-d3aad01e5569
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: AVG("FCT_SCRAPE_PRODUCT_MATCH"."COMPETITOR_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dfbb4314-a352-481b-b378-9775f918a8fc
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COMPETITOR_PRICE_MODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 690a9693-299b-427a-95c3-d3aad01e5569
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: MODE("FCT_SCRAPE_PRODUCT_MATCH"."COMPETITOR_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 785a75ba-00e8-4028-ac3b-ab37ccd0c260
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER(12,4)
+        description: ""
+        hashDetails: null
+        name: CPI_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 24d61447-93ff-4323-92b5-95fd7b5f3756
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: |-
+              AVG(
+              CASE WHEN "FCT_SCRAPE_PRODUCT_MATCH"."CPI" <= 80 THEN 80
+                   WHEN "FCT_SCRAPE_PRODUCT_MATCH"."CPI" >= 120 THEN 120
+              ELSE (TO_NUMBER((100 * "FCT_SCRAPE_PRODUCT_MATCH"."CPI") / 250) * 250) / 100
+              END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a650cf0-cf9d-42ad-9ccb-5aa17b143eb0
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER(12,4)
+        description: ""
+        name: CPI_MODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 24d61447-93ff-4323-92b5-95fd7b5f3756
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: |-
+              MODE(CASE WHEN "FCT_SCRAPE_PRODUCT_MATCH"."CPI" <= 80 THEN 80
+                   WHEN "FCT_SCRAPE_PRODUCT_MATCH"."CPI" >= 120 THEN 120
+              ELSE (TO_NUMBER((100 * "FCT_SCRAPE_PRODUCT_MATCH"."CPI") / 250) * 250) / 100
+              END)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2850f394-6aba-460e-9b8d-455ab4799301
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: COMPETITORS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 24d61447-93ff-4323-92b5-95fd7b5f3756
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: |-
+              LISTAGG(COMPETITOR_NAME||' ('||COMPETITOR_SKU||') '|| TO_VARCHAR(COMPETITOR_PRICE)||' - '||MATCH_TYPE,' ,') 
+              WITHIN GROUP (ORDER BY CPI DESC) 
+        transform: ""
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c4d64719-5f34-43a5-81a6-6df6e538e960
+          stepCounter: 90e32206-d2b3-4590-8c62-5db181a34bda
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: THIS_COMPETITOR_MATCH_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3e5e5cf1-199f-47f9-8453-0bd0258f481e
+                stepCounter: f8736199-4009-4110-b26e-65496cb876ab
+            transform: SUM("FCT_SCRAPE_PRODUCT_MATCH"."THIS_COMPETITOR_MATCH_COUNT")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_SCRAPE_COMPETITOR: 354d71c7-2420-4e03-84e1-f6283417f471
+          FCT_SCRAPE_PRODUCT_MATCH: f8736199-4009-4110-b26e-65496cb876ab
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_SCRAPE_COMPETITOR
+          - locationName: DATA
+            nodeName: FCT_SCRAPE_PRODUCT_MATCH
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_SCRAPE_PRODUCT_MATCH') }} "FCT_SCRAPE_PRODUCT_MATCH"
+            JOIN {{ ref('DATA', 'DIM_SCRAPE_COMPETITOR')}} DIM_SCRAPE_COMPETITOR
+            ON "FCT_SCRAPE_PRODUCT_MATCH"."COMPETITOR_CODE" = "DIM_SCRAPE_COMPETITOR".COMPETITOR_CODE
+            WHERE "FCT_SCRAPE_PRODUCT_MATCH"."EFFECTIVE_DATE" > (SELECT NVL(MAX("EFFECTIVE_DATE"),'2000-01-01') FROM {{ ref_no_link('DATA', 'FCT_SCRAPE_PRODUCT') }} )
+            GROUP BY 1, 2, 3
+        name: VW_FCT_SCRAPE_PRODUCT
+        noLinkRefs:
+          - locationName: DATA
+            nodeName: FCT_SCRAPE_PRODUCT
+  name: VW_FCT_SCRAPE_PRODUCT
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

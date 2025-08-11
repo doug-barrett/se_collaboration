@@ -1,0 +1,103 @@
+fileVersion: 1
+id: c74b1ff3-7a83-4492-8c26-b85dc7e1f50a
+name: DS_PRODUCT_GROUP
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DATASTORE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 18d3d1e3-7aac-4112-808c-78147644be82
+          stepCounter: c74b1ff3-7a83-4492-8c26-b85dc7e1f50a
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        isBusinessKey: true
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6a571d1a-a99e-4874-9b5b-fbaa96262b49
+                stepCounter: f698d75f-25a6-4cf7-b76a-d427aa12c2b1
+            transform: RIGHT('000000'||"PRODKEY",6)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc51217f-c410-4d05-b646-56c87fe9b110
+          stepCounter: c74b1ff3-7a83-4492-8c26-b85dc7e1f50a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: GROUP_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 591a498b-a392-47c3-ac87-6340f1d7bf6c
+                stepCounter: f698d75f-25a6-4cf7-b76a-d427aa12c2b1
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: abf4b7d9-9ac1-4f98-935b-3a797fc9de3c
+          stepCounter: c74b1ff3-7a83-4492-8c26-b85dc7e1f50a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 021b8512-29e2-444d-98a3-f2f77f2c9a4b
+          stepCounter: c74b1ff3-7a83-4492-8c26-b85dc7e1f50a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          LAND_PRODUCT_GROUP: f698d75f-25a6-4cf7-b76a-d427aa12c2b1
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: LAND
+            nodeName: LAND_PRODUCT_GROUP
+        join:
+          joinCondition: FROM {{ ref('LAND', 'LAND_PRODUCT_GROUP') }} "LAND_PRODUCT_GROUP"
+        name: DS_PRODUCT_GROUP
+        noLinkRefs: []
+  name: DS_PRODUCT_GROUP
+  overrideSQL: false
+  schema: ""
+  sqlType: "1"
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,233 @@
+fileVersion: 1
+id: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+name: STG_MEASURES_CURRENT_MA
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c426b81-3346-4b6e-a7f6-ccb76327b137
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: DATA_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CURRENT_DATE
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb68c1a7-187a-46bd-97bb-c62936c7bf3c
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 490d543b-73bd-4111-8f88-d6aeff6efb96
+                stepCounter: 41d8ed72-6fb3-42ea-81a6-626898e8c162
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f4d77dc4-c29c-4aa0-b918-3c020efe239a
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL1_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 48a82910-6386-46e0-b072-3c89965cb3c1
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a9a51a73-6c9b-49f0-b644-deebfc703446
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL2_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 850983c0-90a9-4640-84e8-e8ae587b9e5a
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b0984444-607c-42d8-94f9-a929368363d0
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76b80dd0-990c-439c-9b2a-f320fd772670
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cbf27386-ce1c-49c4-a8ff-5df1f6186f7e
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: CURRENT_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3348fb2a-e7fb-4b59-b7da-510338bd86c2
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: AVG(VW_PRICE_COST_REGION_CURRENT."PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6e438adb-3b09-413f-b0ef-b58ac9606518
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: YEAR_UNITS_SALES_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1ed2aea9-de1d-456d-a2fa-aab27abcc4b8
+                stepCounter: 41d8ed72-6fb3-42ea-81a6-626898e8c162
+            transform: SUM("VW_MEASURES_YEAR_SUMMARY"."YEAR_UNITS_SALES_TOTAL")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b2c85e1c-d702-4c02-85fd-ea5ad168bd58
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: YEAR_UNITS_BASE_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b410a010-1f3f-410a-8170-f6e657342dac
+                stepCounter: 41d8ed72-6fb3-42ea-81a6-626898e8c162
+            transform: AVG("VW_MEASURES_YEAR_SUMMARY"."YEAR_UNITS_BASE_AVG")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d6a8155-c9de-4bba-8d9c-2019fe9646c6
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: CPI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 446c00dd-cd24-462e-a754-186858eb8cb2
+                stepCounter: f6f348e7-d1f7-4a36-92a2-4b84db870b5d
+            transform: AVG("VW_MEASURES_BRAND_VIEW"."CPI")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 567fa060-7c86-45ab-af2a-611284e30cea
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: PRICE_NTILE3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3348fb2a-e7fb-4b59-b7da-510338bd86c2
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: |-
+              NTILE(3) OVER (PARTITION BY "VW_MEASURES_YEAR_SUMMARY"."ZONE_GEOGRAPHY", "DIM_PRODUCT".LEVEL2_DESC
+              ORDER BY AVG("VW_MEASURES_YEAR_SUMMARY"."YEAR_MODE_PRICE") DESC)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e12010d0-db15-4f01-9e0b-20409c323f14
+          stepCounter: 2b4759d8-f4b2-4c1b-93e5-16943379ed24
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: VOLUME_NTILE3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1ed2aea9-de1d-456d-a2fa-aab27abcc4b8
+                stepCounter: 41d8ed72-6fb3-42ea-81a6-626898e8c162
+            transform: |-
+              NTILE(3) OVER (PARTITION BY "VW_MEASURES_YEAR_SUMMARY"."ZONE_GEOGRAPHY", "DIM_PRODUCT".LEVEL2_DESC
+              ORDER BY SUM(VW_MEASURES_YEAR_SUMMARY."YEAR_UNITS_SALES_TOTAL") DESC)
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: STAGE
+            nodeName: VW_MEASURES_BRAND_VIEW
+          - locationName: STAGE
+            nodeName: VW_MEASURES_YEAR_SUMMARY
+          - locationName: STAGE
+            nodeName: VW_PRICE_COST_REGION
+        join:
+          joinCondition: |
+            FROM {{ ref('STAGE', 'VW_MEASURES_YEAR_SUMMARY') }} VW_MEASURES_YEAR_SUMMARY
+            JOIN {{ ref('DATA', 'DIM_PRODUCT') }} DIM_PRODUCT
+            ON VW_MEASURES_YEAR_SUMMARY.PRODKEY = DIM_PRODUCT.PRODKEY
+            LEFT JOIN {{ ref('STAGE', 'VW_PRICE_COST_REGION') }} VW_PRICE_COST_REGION_CURRENT
+            ON VW_MEASURES_YEAR_SUMMARY.ZONE_GEOGRAPHY = VW_PRICE_COST_REGION_CURRENT.ZONE_GEOGRAPHY
+            AND VW_MEASURES_YEAR_SUMMARY.PRODKEY = VW_PRICE_COST_REGION_CURRENT.PRODKEY
+            AND CURRENT_DATE BETWEEN VW_PRICE_COST_REGION_CURRENT.PC_DT AND VW_PRICE_COST_REGION_CURRENT.PC_DT_END
+            LEFT JOIN  {{ ref('STAGE', 'VW_MEASURES_BRAND_VIEW') }} VW_MEASURES_BRAND_VIEW
+            ON VW_MEASURES_YEAR_SUMMARY.ZONE_GEOGRAPHY = VW_MEASURES_BRAND_VIEW.ZONE_GEOGRAPHY
+            AND VW_MEASURES_YEAR_SUMMARY.PRODKEY = VW_MEASURES_BRAND_VIEW.PRODKEY
+            GROUP BY "VW_MEASURES_YEAR_SUMMARY"."ZONE_GEOGRAPHY", 
+                "DIM_PRODUCT"."LEVEL1_DESC", 
+                "DIM_PRODUCT"."LEVEL2_DESC", 
+                "DIM_PRODUCT"."LEVEL3_DESC"
+        name: STG_MEASURES_CURRENT_MA
+        noLinkRefs: []
+  name: STG_MEASURES_CURRENT_MA
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

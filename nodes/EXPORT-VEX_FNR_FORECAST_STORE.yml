@@ -1,0 +1,148 @@
+fileVersion: 1
+id: ec28a7df-2fc7-467e-874d-2aeec13841c3
+name: VEX_FNR_FORECAST_STORE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: EXPORT
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 484a06c9-a6ae-4a6b-a1c9-202581cd43f5
+          stepCounter: ec28a7df-2fc7-467e-874d-2aeec13841c3
+        config: {}
+        dataType: DATE
+        description: ""
+        name: FNR_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4877239d-b899-4bad-ab0c-b0298041522a
+                stepCounter: 09210ba0-df4d-475e-aa2d-2245a6cc8f32
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 11d34cb6-4201-4cec-9795-5e297bfe88ba
+          stepCounter: ec28a7df-2fc7-467e-874d-2aeec13841c3
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e5651cc7-0501-4b9c-a021-d5da3e61b732
+                stepCounter: 09210ba0-df4d-475e-aa2d-2245a6cc8f32
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b4e5fc88-03ec-43dd-b51d-a6e8e53a11a9
+          stepCounter: ec28a7df-2fc7-467e-874d-2aeec13841c3
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: STORE_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b573ad1-2da2-4cf5-8dc4-eb2281d0283c
+                stepCounter: 09210ba0-df4d-475e-aa2d-2245a6cc8f32
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 07e99ba2-e554-4d56-a24a-4bd5d5967add
+          stepCounter: ec28a7df-2fc7-467e-874d-2aeec13841c3
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: EVENT_ADJUSTMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b44d4de9-895e-4abb-931e-6ade3a60a16d
+                stepCounter: 09210ba0-df4d-475e-aa2d-2245a6cc8f32
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6191deb3-7123-4031-88a1-676bc766890d
+          stepCounter: ec28a7df-2fc7-467e-874d-2aeec13841c3
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: PRE_PROCESSING_FLAG
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2fe1a99c-d20c-461b-9bb5-1ecee8f2dec5
+                stepCounter: 09210ba0-df4d-475e-aa2d-2245a6cc8f32
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 20ca2cde-f37a-4f96-8915-d15da520bfec
+          stepCounter: ec28a7df-2fc7-467e-874d-2aeec13841c3
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: LOCATION_IN_STORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 167f2c8a-d3b5-4edc-b9e1-ef78d69bca3c
+                stepCounter: 09210ba0-df4d-475e-aa2d-2245a6cc8f32
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 02c37167-5b9a-446a-8d80-059e862fedb8
+          stepCounter: ec28a7df-2fc7-467e-874d-2aeec13841c3
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5b712ebf-d58f-4ba6-a78f-0f79bc1f8ca8
+                stepCounter: 09210ba0-df4d-475e-aa2d-2245a6cc8f32
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9a56c2cf-0266-4ddb-9fa3-fb505f3e9c3c
+          stepCounter: ec28a7df-2fc7-467e-874d-2aeec13841c3
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ADVERTISING_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c5be7bd-3dfe-402b-8768-2a24b1f7f929
+                stepCounter: 09210ba0-df4d-475e-aa2d-2245a6cc8f32
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: VIEWS
+            nodeName: VWA_FNR_FORECAST_STORE
+        join:
+          joinCondition: FROM {{ ref('VIEWS', 'VWA_FNR_FORECAST_STORE') }} "VWA_FNR_FORECAST_STORE"
+        name: VEX_FNR_FORECAST_STORE
+        noLinkRefs: []
+  name: VEX_FNR_FORECAST_STORE
+  overrideSQL: false
+  schema: ""
+  sqlType: "35"
+  type: sql
+  version: 1
+type: Node

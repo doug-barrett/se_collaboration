@@ -1,0 +1,222 @@
+fileVersion: 1
+id: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+name: VW_FCT_SALES_CAMPAIGN
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: UNITS_BASE updated on post sql of FCT_SALES_EVENT
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2c2e340-01c3-473c-ae9b-c5644f3b6b7e
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: DEAL_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 364dedf2-658f-4c35-a935-1e8ea4f62664
+                stepCounter: 9646524a-d0f5-41b7-8d52-4665dbb3c853
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9965d7ec-6615-42ec-b6b0-6a5774696bba
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcede211-1839-4363-b6da-6fa314efe9ac
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dbfd608e-0ba7-49ea-b87d-0902f651f992
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: Base units
+        name: UNITS_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fb185ff0-d38d-4d87-aeb8-9dcdb236b7b4
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec1b7d57-ee1a-4b94-906f-035291bc71f1
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UNITS_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0982f174-c543-4de4-a91e-3b6c4b01855f
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cfc5878c-cfa7-4b20-9c90-02b4b045cec3
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UNITS_UPLIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a5314a0-22d7-47f2-953b-a48bb7a28f99
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_UPLIFT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f052ef7-e166-4286-add0-61c3fe37bc95
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: SALES_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4af4a132-3536-425a-bc6e-8403e96095de
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."SALES_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e6351b96-2925-456a-9249-677c0292c66b
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: SALES_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cac3e1c5-19b6-4097-a729-c4aa7ff08c40
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."SALES_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4ab9baf6-fcaa-4975-8d1e-d662b72c447c
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: SALES_UPLIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 169bd8e5-ce50-4955-a933-8edd0feba9e2
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."SALES_UPLIFT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f5bdf2d7-d3a2-429d-88ed-9f2942edfca2
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: MARGIN_BASE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fcc4451a-9ec1-4c75-b342-52541997793a
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."MARGIN_BASE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c89f975-bb23-49dc-854a-6e49421527b8
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: MARGIN_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 107c4b55-1541-4898-ba87-3b66dc77ba43
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."MARGIN_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4be5bbb3-112e-4334-bcf3-9785fdbf75ae
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: MARGIN_UPLIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 40e369f0-435b-432d-9a2b-db2fea96b6d0
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."MARGIN_UPLIFT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 277b63d0-5eb5-4b1a-b589-e6057df1f877
+          stepCounter: ba1ed5ea-61af-4efb-b43e-593a9e3503d8
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: CURRENCY_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0fd99908-5cb5-445a-a1f1-cd14780b589c
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: MAX("FCT_SALES_DAY"."CURRENCY_CODE")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_EVENTS_REGION: b4585615-226c-470e-8e85-be95816a6df2
+          FCT_SALES_DAY: 91c3542a-c2f9-472c-8706-d613acb63e06
+          REF_CAMPAIGN: 9646524a-d0f5-41b7-8d52-4665dbb3c853
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_EVENTS_REGION
+          - locationName: DATA
+            nodeName: FCT_SALES_DAY
+          - locationName: REFERENCE
+            nodeName: REF_CAMPAIGN
+        join:
+          joinCondition: |-
+            FROM {{ ref('REFERENCE', 'REF_CAMPAIGN') }} "REF_CAMPAIGN"
+            INNER JOIN {{ ref('DATA', 'FCT_SALES_DAY') }} "FCT_SALES_DAY"
+            ON "FCT_SALES_DAY"."TRANSACTION_DATE" BETWEEN "REF_CAMPAIGN"."DEAL_START_DATE" AND "REF_CAMPAIGN"."DEAL_END_DATE"
+            INNER JOIN {{ ref('DATA', 'DIM_EVENTS_REGION')}} "DIM_EVENTS_REGION"
+            ON "FCT_SALES_DAY"."DIM_EVENTS_REGION_KEY" = "DIM_EVENTS_REGION"."DIM_EVENTS_REGION_KEY"
+            WHERE (CURRENT_DATE BETWEEN "REF_CAMPAIGN"."DEAL_START_DATE" AND "REF_CAMPAIGN"."DEAL_END_DATE" + 5
+               OR "REF_CAMPAIGN"."DEAL_KEY" NOT IN (SELECT DISTINCT DEAL_KEY FROM {{ ref_no_link('DATA', 'FCT_SALES_CAMPAIGN') }}))
+               AND DIM_EVENTS_REGION."EVENT_TYPE" = 'EVENT'
+            GROUP BY 1, 2
+        name: VW_FCT_SALES_CAMPAIGN
+        noLinkRefs:
+          - locationName: DATA
+            nodeName: FCT_SALES_CAMPAIGN
+  name: VW_FCT_SALES_CAMPAIGN
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

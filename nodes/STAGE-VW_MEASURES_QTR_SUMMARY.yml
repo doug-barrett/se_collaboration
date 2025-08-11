@@ -1,0 +1,246 @@
+fileVersion: 1
+id: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+name: VW_MEASURES_QTR_SUMMARY
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14a36628-6081-452a-8455-48a0d40c7002
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcede211-1839-4363-b6da-6fa314efe9ac
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b5dbe8a5-abdd-472b-9bc2-846294beb73a
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 67539d7f-ec1f-4f62-95c0-e1a6e99796f7
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9dfcd3b3-7213-43de-94ff-3fc3204bfe98
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76b80dd0-990c-439c-9b2a-f320fd772670
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: MAX("DIM_PRODUCT"."LEVEL3_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f8c9b64a-8beb-412d-9732-0786b2b03704
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: YEAR_FROM_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53776bbd-937c-4506-a163-dedff0387a4a
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: MIN("FCT_SALES_DAY"."TRANSACTION_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 71eb1a20-26f7-40e1-8cca-352cd2ca5a9c
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: YEAR_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53776bbd-937c-4506-a163-dedff0387a4a
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: MAX("FCT_SALES_DAY"."TRANSACTION_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2e034c0-2b14-4d10-a6b9-1cd9ac6dcee8
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: DATE
+        description: ""
+        name: LAST_SOLD_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53776bbd-937c-4506-a163-dedff0387a4a
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: MAX(CASE WHEN "FCT_SALES_DAY"."UNITS_SALES" > 0 THEN "FCT_SALES_DAY"."TRANSACTION_DATE" END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1258b906-12d2-446a-8069-88ea339e798e
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: QTR_MAX_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d150ba2-db3a-4e0f-962a-44deec271577
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: MAX("FCT_SALES_DAY"."PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ee6a4a1-942c-449b-a423-b143ba3bc382
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: QTR_MIN_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d150ba2-db3a-4e0f-962a-44deec271577
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: MIN("FCT_SALES_DAY"."PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a832527c-8955-4c5c-b0e4-e1e2621354ca
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: QTR_MODE_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d150ba2-db3a-4e0f-962a-44deec271577
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: MODE("FCT_SALES_DAY"."PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d147b9e7-c580-4e3e-8139-92e51d2642db
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: QTR_MAX_UNITS_SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1820fabd-6601-408b-87cf-7222cfc72522
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: MAX("FCT_SALES_DAY"."UNITS_SALES")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 040dc696-2a7c-4c4c-9d2b-1c41de5d0951
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: QTR_UNITS_SALES_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1820fabd-6601-408b-87cf-7222cfc72522
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_SALES")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ae015e1-bc20-4899-83b8-81ad7b4b8e33
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: NUMBER(16,2)
+        defaultValue: ""
+        description: ""
+        name: QTR_L3_SALES_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: SUM(SUM("FCT_SALES_DAY"."UNITS_SALES")) OVER (PARTITION BY ZONE_GEOGRAPHY, MAX(LEVEL3_DESC))
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 84b7b953-7e2a-4f2e-8521-c8f80ed2e20c
+          stepCounter: 592cc3c2-49b7-4387-9261-c4c276d90aa8
+        config: {}
+        dataType: NUMBER(10, 6)
+        defaultValue: ""
+        description: ""
+        name: QTR_L3_PRODUCT_RATIO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              DIV0(SUM("FCT_SALES_DAY"."UNITS_SALES"),
+              SUM(SUM("FCT_SALES_DAY"."UNITS_SALES")) OVER (PARTITION BY ZONE_GEOGRAPHY, MAX(LEVEL3_DESC)))
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_PRODUCT: 99510b9e-1d3e-4709-93b8-2042202093b0
+          FCT_SALES_DAY: 91c3542a-c2f9-472c-8706-d613acb63e06
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: DATA
+            nodeName: FCT_SALES_DAY
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_SALES_DAY') }} "FCT_SALES_DAY"
+            JOIN {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            ON "FCT_SALES_DAY"."PRODKEY" = "DIM_PRODUCT"."PRODKEY"
+            WHERE "FCT_SALES_DAY"."TRANSACTION_DATE" BETWEEN DATEADD(MONTH, -3, CURRENT_DATE) AND CURRENT_DATE
+            GROUP BY "FCT_SALES_DAY"."ZONE_GEOGRAPHY", "FCT_SALES_DAY"."PRODKEY"
+        name: VW_MEASURES_QTR_SUMMARY
+        noLinkRefs: []
+  name: VW_MEASURES_QTR_SUMMARY
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

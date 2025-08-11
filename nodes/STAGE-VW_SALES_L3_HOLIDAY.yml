@@ -1,0 +1,151 @@
+fileVersion: 1
+id: 77dd440b-0682-4099-bccd-a95c7e29f5fe
+name: VW_SALES_L3_HOLIDAY
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: UNITS_BASE updated on post sql of FCT_SALES_EVENT
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4388988b-1b30-4486-966c-fa9c6e090e40
+          stepCounter: 77dd440b-0682-4099-bccd-a95c7e29f5fe
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e887d56-d37d-4e5f-a594-6a55cc229433
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: NVL("DIM_DATE"."HOLIDAY_NAME",'NO_HOLIDAY')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c4c2722-0323-4eed-b8a9-67887d438745
+          stepCounter: 77dd440b-0682-4099-bccd-a95c7e29f5fe
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcede211-1839-4363-b6da-6fa314efe9ac
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f269c2d-acd6-4685-919d-fd3a1905a628
+          stepCounter: 77dd440b-0682-4099-bccd-a95c7e29f5fe
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76b80dd0-990c-439c-9b2a-f320fd772670
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27478983-c38b-475a-8ac8-7c794df111ad
+          stepCounter: 77dd440b-0682-4099-bccd-a95c7e29f5fe
+        config: {}
+        dataType: NUMBER(12,4)
+        defaultValue: ""
+        description: ""
+        name: NUMBER_OF_WEEKS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: COUNT(DISTINCT DIM_DATE."CALENDAR_DATE") / 7
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 98a0ad64-db15-45ca-bb02-0bdeac524c16
+          stepCounter: 77dd440b-0682-4099-bccd-a95c7e29f5fe
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UNITS_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1820fabd-6601-408b-87cf-7222cfc72522
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_SALES")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 33718330-7eaa-4297-89c2-70c45b6237b0
+          stepCounter: 77dd440b-0682-4099-bccd-a95c7e29f5fe
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UNITS_SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1820fabd-6601-408b-87cf-7222cfc72522
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: "SUM(\"FCT_SALES_DAY\".\"UNITS_SALES\") / COUNT(DISTINCT DIM_DATE.\"CALENDAR_DATE\") "
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 44858019-6de9-41fc-8220-5ecd5c681104
+          stepCounter: 77dd440b-0682-4099-bccd-a95c7e29f5fe
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UNITS_SALES_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1820fabd-6601-408b-87cf-7222cfc72522
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_SALES") / (COUNT(DISTINCT DIM_DATE."CALENDAR_DATE") / 7)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
+          DIM_PRODUCT: 99510b9e-1d3e-4709-93b8-2042202093b0
+          FCT_SALES_DAY: 91c3542a-c2f9-472c-8706-d613acb63e06
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: DATA
+            nodeName: FCT_SALES_DAY
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'DIM_DATE') }} "DIM_DATE"
+            INNER JOIN {{ ref('DATA', 'FCT_SALES_DAY') }} "FCT_SALES_DAY"
+            ON "FCT_SALES_DAY"."TRANSACTION_DATE" = "DIM_DATE"."CALENDAR_DATE"
+            INNER JOIN {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            ON "FCT_SALES_DAY"."PRODKEY" = "DIM_PRODUCT"."PRODKEY"
+            GROUP BY 1, 2, 3
+        name: VW_SALES_L3_HOLIDAY
+        noLinkRefs: []
+  name: VW_SALES_L3_HOLIDAY
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

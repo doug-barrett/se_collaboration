@@ -1,0 +1,140 @@
+fileVersion: 1
+id: 8668005b-4a2e-4b48-9539-a1b6213d4d40
+name: VW_MARGIN_REQUIREMENTS
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 50778df0-073f-4cd9-a782-5bc3fe843744
+          stepCounter: 8668005b-4a2e-4b48-9539-a1b6213d4d40
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 161add1a-b35b-4d63-a4bb-e3e6754c5d72
+                stepCounter: 88a9d7ca-2ef5-428e-9552-b407acdcc7a3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 51172c6e-dfed-406a-8daa-c3f5e3c9161c
+          stepCounter: 8668005b-4a2e-4b48-9539-a1b6213d4d40
+        config: {}
+        dataType: STRING
+        description: ""
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b037048-f454-407a-8077-4d32e61bde0b
+                stepCounter: 88a9d7ca-2ef5-428e-9552-b407acdcc7a3
+            transform: UPPER(TRIM("REF_BRAND_MARGIN_REQUIREMENTS"."BRAND"))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b76ebcfc-24dc-4868-9a25-11d93ee8bd42
+          stepCounter: 8668005b-4a2e-4b48-9539-a1b6213d4d40
+        config: {}
+        dataType: STRING
+        description: ""
+        name: MA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9fe06c59-2931-4ca5-b15b-059fdf236f8a
+                stepCounter: 88a9d7ca-2ef5-428e-9552-b407acdcc7a3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39872323-ddb8-4764-8a86-091816d36138
+          stepCounter: 8668005b-4a2e-4b48-9539-a1b6213d4d40
+        config: {}
+        dataType: STRING
+        description: ""
+        name: LEVEL3_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9fe06c59-2931-4ca5-b15b-059fdf236f8a
+                stepCounter: 88a9d7ca-2ef5-428e-9552-b407acdcc7a3
+            transform: LEFT("REF_BRAND_MARGIN_REQUIREMENTS"."MA", 4)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e1ecd05-4d44-41da-ac22-48737456fcb8
+          stepCounter: 8668005b-4a2e-4b48-9539-a1b6213d4d40
+        config: {}
+        dataType: NUMBER(5,2)
+        description: ""
+        name: MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a73c942a-007c-4bb2-8eab-86739cd27e66
+                stepCounter: 88a9d7ca-2ef5-428e-9552-b407acdcc7a3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf2f051d-4e6a-483c-a9ab-8dbc636e6c21
+          stepCounter: 8668005b-4a2e-4b48-9539-a1b6213d4d40
+        config: {}
+        dataType: NUMBER(5,2)
+        description: ""
+        name: MIN_MARGIN_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a73c942a-007c-4bb2-8eab-86739cd27e66
+                stepCounter: 88a9d7ca-2ef5-428e-9552-b407acdcc7a3
+            transform: "\"REF_BRAND_MARGIN_REQUIREMENTS\".\"MARGIN\" * 100"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bfaba3fa-aa4a-4aef-82cc-f9bb6988160e
+          stepCounter: 8668005b-4a2e-4b48-9539-a1b6213d4d40
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9921cb06-6ba1-403b-b62c-b07f610c59c2
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: REFERENCE
+            nodeName: REF_BRAND_MARGIN_REQUIREMENTS
+        join:
+          joinCondition: |-
+            FROM {{ ref('REFERENCE', 'REF_BRAND_MARGIN_REQUIREMENTS') }} "REF_BRAND_MARGIN_REQUIREMENTS"
+            INNER JOIN {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            ON LEFT("REF_BRAND_MARGIN_REQUIREMENTS"."MA", 4) = "DIM_PRODUCT"."LEVEL3_CODE"
+            AND UPPER(TRIM("REF_BRAND_MARGIN_REQUIREMENTS"."BRAND")) = "DIM_PRODUCT"."BRAND"
+        name: VW_MARGIN_REQUIREMENTS
+        noLinkRefs: []
+  name: VW_MARGIN_REQUIREMENTS
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,320 @@
+fileVersion: 1
+id: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+name: VEX_FORECAST_GTM
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: EXPORT
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76164ab9-a973-4e62-a7fd-0aac06f61538
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6489fad4-59e3-4156-a076-19b5ec6b42cc
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2cf7494a-0d8c-4354-a363-fb9ff9f2ba1b
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: DEAL_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a11be3d1-926e-4f09-b3a3-38f105abe322
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: NVL("VWA_FORECAST_GTM"."DEAL_NAME", VWA_FORECAST_GTM."CAMPAIGN")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c40de85d-e172-4cdf-96f7-57bd17180cc8
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL1_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 27387774-4e9b-4400-8412-faf2665ec35a
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6fbee915-9d7c-401b-beac-ff91dc3984cf
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL2_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bf4242a2-d9da-432a-8a34-d5908d84f15e
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27d3e82b-c6be-4049-ac26-a2853dc0c2b5
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1be83954-eeb6-4a10-a1dd-6646f30f1afb
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bbf92ac8-c4ba-4b50-a297-dc4192cd6f1a
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 282bfd29-c40d-4fb3-9526-990eefc75dc4
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: de804cfe-7dc1-4495-8933-db82518a5a7d
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 052b2598-4698-47ac-839d-8afbe17ca907
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: |-
+              CASE WHEN DEAL_START_DATE > START_DATE THEN DEAL_START_DATE
+              ELSE START_DATE
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5945d16a-41f1-449e-87bb-8e849b45054a
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: DATE
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42052fcc-7323-4eb8-a554-6a1152b31862
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: |-
+              CASE WHEN END_DATE > DEAL_END_DATE THEN DEAL_END_DATE
+              ELSE END_DATE
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8e615fe-b353-454d-8577-9b786a5088e0
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: RETAIL_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 621dab70-e212-4dad-9caa-306d4897cac0
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ab804a8-52ce-4021-b272-97dd7bb33327
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3836d435-3680-41fe-991e-605ca83984eb
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 40d4c7a5-2057-4e55-b254-a700aff22f74
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PLU_V_OUTFIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 50cec1ab-2946-4907-9a47-20e239cb103d
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 606feac2-244b-4249-b602-1eaebd16b75f
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        name: MAIN_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6489fad4-59e3-4156-a076-19b5ec6b42cc
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: "''"
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b82bf74e-ee46-4ea9-9143-520042a561f2
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: TV_DEAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78277b93-de64-42e5-a187-ed87395ef9e2
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: CASE WHEN NVL("VWA_FORECAST_GTM"."TV_FIN_WEEK_NO",0) > 0 THEN 'Y' ELSE 'N' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cff6d93c-4900-4f79-add8-639c728f3925
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: TV_DEAL_WEEK_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78277b93-de64-42e5-a187-ed87395ef9e2
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: NVL("VWA_FORECAST_GTM"."TV_FIN_WEEK_NO",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a90a5c45-18e0-43cd-a7f4-6ddd4b4d2018
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PROMO_MSG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 955c8116-0768-4da2-9469-9c19491a6571
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f72d22a-81f5-4e29-9a91-4f0fcea67fc1
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: SAVE_MSG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 955c8116-0768-4da2-9469-9c19491a6571
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 616aa94b-946b-4173-9835-26c5e729c04d
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: ""
+        defaultValue: ""
+        description: ""
+        name: DELETE_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "'N'"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0b4b3bd8-c017-4e25-8a40-b3ab3c93ba43
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        name: INVENTORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c28c8ef-30d2-40b4-ae17-281c9a095bff
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: acf12f0f-016e-4e98-a5f0-0ee173f0daa1
+          stepCounter: fda47f0b-4210-4b40-97a5-64d6b95ecca5
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: CAMPAIGN_MATCH_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3566922f-102f-44cf-a30a-bbdfff5f23bd
+                stepCounter: dd239b70-3237-486f-be99-eb477859fa64
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VWA_FORECAST_GTM: dd239b70-3237-486f-be99-eb477859fa64
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: VIEWS
+            nodeName: VWA_FORECAST_GTM
+        join:
+          joinCondition: |-
+            FROM {{ ref('VIEWS', 'VWA_FORECAST_GTM') }} "VWA_FORECAST_GTM"
+            WHERE UPPER(TRIM(STATUS)) = 'APPROVED'
+            AND NVL(CAMPAIGN, '') > ''
+            AND "DEAL_END_DATE" >= CURRENT_DATE
+        name: VEX_FORECAST_GTM
+        noLinkRefs: []
+  name: VEX_FORECAST_GTM
+  overrideSQL: false
+  schema: ""
+  sqlType: "35"
+  type: sql
+  version: 1
+type: Node

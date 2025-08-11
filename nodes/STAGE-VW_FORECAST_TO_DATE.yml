@@ -1,0 +1,394 @@
+fileVersion: 1
+id: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+name: VW_FORECAST_TO_DATE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: "Just a bit of tidy up "
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 29fbc74e-d239-4c9d-ad67-bb3402d28dcb
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: VARCHAR(32)
+        description: ""
+        hashDetails: null
+        name: FORECAST_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d1c5cf8-05cd-485d-a12c-975d02bdbf11
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a3a0f09c-2b2c-468f-a5ca-797eb209b8aa
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c3a775e6-2770-4bd0-a611-f5098d1f4f47
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dffc6af1-ca82-41a1-a4aa-920a0ffa406b
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b3f9a48-d33f-450f-bc1a-5ec6fabb7a3e
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 33fccb87-0101-4e5a-80a8-07fd6715243a
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a07a6b91-fecd-4271-af85-a1f312256363
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."LEVEL3_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7e18aba1-0455-47db-9ace-22e367cc59e1
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 67797555-ff56-405c-97cc-e63610f0d530
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."EVENT_TYPE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 344f124c-25b1-421b-a1a7-4126bb13ac94
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d44ded03-d1a1-4ef2-ad8a-bc0f390de940
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."STATUS")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cbd80469-e5d7-4956-a93d-4bc5ee15317a
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9ae69e00-d453-4771-bba0-c04fa7ea98e5
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."START_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e8a0769-e690-486d-96e6-04db81117ba2
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 70100fdf-0e12-4725-a9b3-596d85009a8b
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."END_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb6fa0ce-10a4-412a-8c88-5e126389e398
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: DURATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d3133f2-52a2-4b87-833a-57a4d6143262
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: DATEDIFF(DAY, MAX(START_DATE), MAX(END_DATE)) + 1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26729bec-7b63-42b2-be43-024083b0d3d6
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: DAYS_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d3133f2-52a2-4b87-833a-57a4d6143262
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: |-
+              CASE WHEN CURRENT_DATE > MAX(END_DATE) THEN DURATION
+              WHEN CURRENT_DATE < MAX(START_DATE) THEN 0
+              ELSE DATEDIFF(DAY, MAX(START_DATE), CURRENT_DATE) + 1
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7dad559e-a987-4bba-b191-c67ed8cf5876
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: DAYS_LEFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d3133f2-52a2-4b87-833a-57a4d6143262
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: |-
+              CASE WHEN CURRENT_DATE > MAX(END_DATE) THEN 0
+              WHEN CURRENT_DATE < MAX(START_DATE) THEN DURATION
+              ELSE DATEDIFF(DAY, CURRENT_DATE, MAX(END_DATE))
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a52991b-fbbe-4b63-97c6-72872407b94d
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: COMPLETENESS_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d3133f2-52a2-4b87-833a-57a4d6143262
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: 100 * DIV0(DAYS_TO_DATE, DURATION)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 247fff01-1829-43b3-95e4-b8b5880696cd
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: STARTED_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d3133f2-52a2-4b87-833a-57a4d6143262
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: CASE WHEN MAX(START_DATE) < CURRENT_DATE THEN 'Y' ELSE 'N' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c08412c0-34d0-4f06-8069-e817d8204fb1
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: RUNNING_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d3133f2-52a2-4b87-833a-57a4d6143262
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: CASE WHEN CURRENT_DATE BETWEEN MAX(START_DATE) AND MAX(END_DATE) THEN 'Y' ELSE 'N' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aac55202-5ab2-4152-9285-131526005746
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        hashDetails: null
+        name: COMPLETED_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d3133f2-52a2-4b87-833a-57a4d6143262
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: CASE WHEN MAX(END_DATE) < CURRENT_DATE THEN 'Y' ELSE 'N' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 00fefee9-5bc9-4f09-87e2-5548d4e44428
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: BASE_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8aa7a18e-33b7-4df5-8611-51e531bb82ba
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."BASE_UNITS")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a09a2cf6-33cd-4604-bce0-9ee5c1255168
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: TOTAL_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 212c5837-6364-4711-b483-a2ccb45c006f
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."TOTAL_UNITS")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ee214df8-5585-471a-a8e2-fdc430f1542a
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: TOTAL_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7c2577f6-c5b9-4a8e-b85f-cf05e2d4b561
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."TOTAL_SALES")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2631c4f9-3342-4e61-8fa1-da70052bd74c
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: TOTAL_MARGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a059573c-c7b0-4a18-9f55-8fabcf1d49f9
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."TOTAL_MARGIN")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e630939-cea7-4369-ab77-2d19158e828c
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: BASE_UNITS_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ebe1c360-1102-40cb-aa05-9e03630bba77
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: |-
+              SUM(CASE WHEN TRANSACTION_DATE < 
+              CURRENT_DATE THEN "VW_FORECAST_DAY"."BASE_UNITS_PER_DAY" ELSE 0 END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b7838de8-52f6-43ec-a5bf-968267359cf6
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: UNITS_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd0faef7-5fce-4b95-ad84-490f6540950b
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: SUM(CASE WHEN TRANSACTION_DATE < CURRENT_DATE THEN "VW_FORECAST_DAY"."UNITS_PER_DAY" ELSE 0 END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e35a02d0-8405-4f69-b2cd-670771ce3a47
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: SALES_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7777a5d9-f958-4672-87be-533c06adc84d
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: SUM(CASE WHEN TRANSACTION_DATE < CURRENT_DATE THEN "VW_FORECAST_DAY"."SALES_PER_DAY" ELSE 0 END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d271bec-f552-48a8-ae00-11fd8d35c1b3
+          stepCounter: 5cad2d09-c0bb-402d-a61b-159191ae1d7f
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: MARGIN_TO_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1238c0e7-a552-42fa-b99f-640ffabaf2eb
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: SUM(CASE WHEN TRANSACTION_DATE < CURRENT_DATE THEN "VW_FORECAST_DAY"."MARGIN_PER_DAY" ELSE 0  END)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VW_FORECAST_DAY: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_FORECAST_DAY
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_FORECAST_DAY') }} "VW_FORECAST_DAY"
+            GROUP BY 1, 2, 3
+        name: VW_FORECAST_TO_DATE
+        noLinkRefs: []
+  name: VW_FORECAST_TO_DATE
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,117 @@
+fileVersion: 1
+id: ae3955ef-970c-43cb-8889-51a7f41066c6
+name: STG_PRODUCT_ACTIVE
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b042c2b0-59dc-4ca8-8f3e-4023818df9aa
+          stepCounter: ae3955ef-970c-43cb-8889-51a7f41066c6
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c62193d7-1c87-454b-a44a-ea7ee87d83ed
+                stepCounter: 3c49b8ad-a39f-4dc6-975c-0dd2c4ce0f25
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 23aac57c-f35c-4e49-ae2f-3619253a6b21
+          stepCounter: ae3955ef-970c-43cb-8889-51a7f41066c6
+        config: {}
+        dataType: DATE
+        description: ""
+        name: LAST_PRICE_CHANGE_DT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aa0d24a4-bdd9-409a-b72a-d09390b33abd
+                stepCounter: 434dffce-b09e-4aab-8fcc-8be353e0e3f2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6b8911f-7ecc-422b-8009-1e517a2ee22e
+          stepCounter: ae3955ef-970c-43cb-8889-51a7f41066c6
+        config: {}
+        dataType: DATE
+        description: ""
+        name: LAST_SOLD_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d99a13e3-5caf-4eac-80b2-5fb50ae5bfd3
+                stepCounter: 94c85ee9-190b-467a-9ef9-19358b1dd22c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77a544b1-d2f0-420a-a4b0-7b24846f2df1
+          stepCounter: ae3955ef-970c-43cb-8889-51a7f41066c6
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SYSTEM_UPDATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4d843366-4971-411b-b259-3571280ed95f
+                stepCounter: 3c49b8ad-a39f-4dc6-975c-0dd2c4ce0f25
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: FCT_PRICE_ELASTICITY_RAW
+          - locationName: DATASTORE
+            nodeName: DS_PRODUCT
+          - locationName: DATASTORE
+            nodeName: DS_TLOG
+        join:
+          joinCondition: |-
+            FROM (  SELECT PRODKEY, MAX(SYSTEM_UPDATE_TIME) SYSTEM_UPDATE_TIME 
+                    FROM {{ ref('DATASTORE', 'DS_PRODUCT') }} 
+                    GROUP BY PRODKEY) "DS_PRODUCT"
+            LEFT JOIN (
+                SELECT PRODKEY, MAX(START_DATE) START_DATE 
+                FROM {{ ref('DATA', 'FCT_PRICE_ELASTICITY_RAW') }} 
+                WHERE ZONE_GEOGRAPHY = 'UK' AND START_DATE > DATEADD(MONTH, -12, CURRENT_DATE) 
+                GROUP BY PRODKEY) "FCT_PRICE_ELASTICITY_RAW"
+            ON "DS_PRODUCT"."PRODKEY" = "FCT_PRICE_ELASTICITY_RAW"."PRODKEY"
+            LEFT JOIN (
+                SELECT PRODKEY, MAX(TRANSACTION_DATE) TRANSACTION_DATE 
+                FROM {{ ref('DATASTORE', 'DS_TLOG') }} "DS_TLOG" 
+                WHERE "TRANSACTION_DATE" > DATEADD(MONTH, -12, CURRENT_DATE)  
+                GROUP BY PRODKEY) DS_TLOG
+            ON "DS_PRODUCT"."PRODKEY" = "DS_TLOG"."PRODKEY"
+            WHERE "FCT_PRICE_ELASTICITY_RAW"."PRODKEY" IS NOT NULL
+            OR "DS_TLOG"."PRODKEY" IS NOT NULL
+            OR "DS_PRODUCT"."SYSTEM_UPDATE_TIME" > DATEADD(MONTH, -6, CURRENT_DATE)
+        name: STG_PRODUCT_ACTIVE
+        noLinkRefs: []
+  name: STG_PRODUCT_ACTIVE
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

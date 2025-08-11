@@ -1,0 +1,435 @@
+fileVersion: 1
+id: b2d1af9c-311a-4401-b744-7b1853f669d4
+name: VWA_PRICE_ELASTICITY_STORE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Get the latest Price Elasticity for each Zone, Product, Holiday, Discount
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3eeb281b-d279-4221-95b0-f1c98344fdf3
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b74ff20e-ecdf-4e2a-acfc-8086fd7815a0
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9368d9d7-7087-42d4-b50f-1d10252b448a
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e36ec3d2-b302-4e72-b83d-9d4a364424c8
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fe746c74-ea99-489c-a627-e37bf2adc854
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: STORE_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 897a821c-b38e-4e37-9098-437ea0a070cd
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d4d06a03-2efe-4c70-b7e2-9ccbb328b632
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 37be67cd-d25a-4db4-b144-b539668ac201
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9c1f6a14-25ba-430a-9a53-ddc06f230d4f
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: DISCOUNT_BUCKET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdf25eca-c9a4-42f5-9d75-762a17979f2b
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 951bcb03-5eac-4cd7-9ca9-e2ea10a0a9e2
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 49a040bf-6fac-440d-a767-e3f7799876e4
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04defcd0-ab53-4a33-bc72-1b28b7fb7b35
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 16b3ebc8-3a14-42d1-a72d-6525ea62b61e
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3c14af80-da75-4d45-b8c3-0dfc68c38f4b
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER(6,4)
+        description: ""
+        name: PRICE_ELASTICITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6456d69-d027-48ac-a3a8-027afca3a11b
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 09b396ed-b6e8-4dd0-8d31-19b318ab5a71
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER(6,4)
+        description: ""
+        name: PRICE_ELASTICITY_PROD_HOL_DISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c8d712b-e7c5-474f-b815-839761aec548
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7addfbae-0870-4dc9-9f9a-232a4a89b713
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER(6,4)
+        description: ""
+        name: PRICE_ELASTICITY_MA_BRAND_HOL_DISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78107a53-dee3-461b-a13d-34618e1be64e
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7962ef1c-3693-4a71-82eb-713c3c75c22d
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER(6,4)
+        description: ""
+        name: PRICE_ELASTICITY_MA_BRAND_DISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0f5c8a7c-2bf2-425f-a2e8-1bf011451398
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b1d5bd8f-e5e8-400d-a601-e39b1817dd59
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER(6,4)
+        description: ""
+        name: PRICE_ELASTICITY_MA_DISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e548ec6-1c03-43cf-8072-2e661c7f706e
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eb576dfa-ae66-4138-92bc-204e846b4bd1
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER(6,4)
+        description: ""
+        name: PRICE_ELASTICITY_MA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 95c966d6-756e-4532-a5fd-7555cfde3507
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d20ece5a-bb2c-4451-b939-2c1ddd18e317
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: RN_PROD_HOL_DISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 85318197-74f1-41b0-91f1-13c72e684d71
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e364c67a-fcb2-4af6-b781-b2670b9ef520
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: RN_MA_BRAND_HOL_DISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba1a7128-0177-46b1-9632-a954e74e3214
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3fe43eb-4dff-489c-85f5-9d528f12825c
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: RN_MA_BRAND_DISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d21c9d06-4012-48af-afa2-405869e37800
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 92c9ad2f-6377-437f-8d5e-4ac0663bfb81
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: RN_MA_DISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1c4669cc-8f64-4685-b848-888f564f4dc1
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4728add3-b8b6-4df1-894d-02e775599bbf
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: RN_MA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f3cfb5d1-fc71-471c-aa53-2a95cfa81e14
+                stepCounter: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d748f70-276a-4eb2-83f1-d2012a02caf1
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: ZONE_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 365daed0-2ecf-41aa-8d65-374ae8923972
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e78736c0-f462-4e32-9aeb-a8e68417fcfc
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: STORE_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 06b0856a-c29c-461b-99b4-f53b5a93bee4
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 02910eb4-e320-458d-888e-f88022ea596d
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: ZONE_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 13fd8dde-fd9c-4885-95e0-1b453829746f
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a38c7562-e73b-490b-aeee-de0d5dc0cd89
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: STREET_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 91ba36b0-d647-4158-bb73-edb35b03847a
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fadb5e3-c943-4bee-88c9-065a4ae5ab5e
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: CITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 345fea00-2837-4986-b5a3-d753cc4c5a48
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 769cfc6d-7eb0-4ff8-8dcd-c73f4cadd179
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: STATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 46706ebb-7aa0-49a9-8800-987673f57f13
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53e58a79-bc1f-49c3-9d03-1f2d9c51ef6c
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: ZIP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ef9d2ba3-4e3e-4a22-a143-46e316a3d68e
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa84188a-b0f2-4c3c-a555-64bcedcfcbc7
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: DATE
+        description: ""
+        name: OPEN_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dd9b1f7b-e4ec-455d-97e0-8539957dc7cd
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9a3d4362-b732-423c-9942-bb75b5ef5fc6
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: DATE
+        description: ""
+        name: CLOSE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 088017f9-0fb8-4ea0-9d29-c39908b09bf8
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad278952-bc8b-444d-911d-2105cd9b18af
+          stepCounter: b2d1af9c-311a-4401-b744-7b1853f669d4
+        config: {}
+        dataType: DECIMAL(38)
+        description: ""
+        name: STORE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 97de3ad8-ba22-4921-b089-07d19c6801c6
+                stepCounter: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_STORE: 3217c5fd-8bd5-4d9a-878b-1cd2e90eea42
+          FCT_PRICE_ELASTICITY_STORE: 968b88b3-7631-4175-a1c4-1bcb9ca7f69f
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_STORE
+          - locationName: DATA
+            nodeName: FCT_PRICE_ELASTICITY_STORE
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_PRICE_ELASTICITY_STORE') }} "FCT_PRICE_ELASTICITY_STORE"
+            INNER JOIN {{ ref('DATA', 'DIM_STORE') }} "DIM_STORE"
+            ON "FCT_PRICE_ELASTICITY_STORE"."STORE_CODE" = "DIM_STORE"."STORE_CODE"
+        name: VWA_PRICE_ELASTICITY_STORE
+        noLinkRefs: []
+  name: VWA_PRICE_ELASTICITY_STORE
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

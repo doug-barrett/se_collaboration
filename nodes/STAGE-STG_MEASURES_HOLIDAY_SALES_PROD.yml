@@ -1,0 +1,163 @@
+fileVersion: 1
+id: 9f86298b-305e-4159-8a2b-2b7ad0f67ea6
+name: STG_MEASURES_HOLIDAY_SALES_PROD
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: UNITS_BASE updated on post sql of FCT_SALES_EVENT
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec811ef8-45b9-4c27-a611-f326670d1a65
+          stepCounter: 9f86298b-305e-4159-8a2b-2b7ad0f67ea6
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcede211-1839-4363-b6da-6fa314efe9ac
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28b5550e-d350-465c-94c4-bcf7fdcf7aaa
+          stepCounter: 9f86298b-305e-4159-8a2b-2b7ad0f67ea6
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e887d56-d37d-4e5f-a594-6a55cc229433
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: UPPER(NVL("DIM_DATE"."HOLIDAY_NAME",'NO_HOLIDAY'))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2208df24-d168-4698-860a-7f736b89bf03
+          stepCounter: 9f86298b-305e-4159-8a2b-2b7ad0f67ea6
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 67539d7f-ec1f-4f62-95c0-e1a6e99796f7
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b36ee05-1542-4cfa-a718-64ace0b1cbb8
+          stepCounter: 9f86298b-305e-4159-8a2b-2b7ad0f67ea6
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: UNITS_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1820fabd-6601-408b-87cf-7222cfc72522
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM("FCT_SALES_DAY"."UNITS_SALES")
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77f072b4-da0d-49e2-b1f2-a33b0a6d126f
+          stepCounter: 9f86298b-305e-4159-8a2b-2b7ad0f67ea6
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: DAY_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53776bbd-937c-4506-a163-dedff0387a4a
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: SUM(CASE WHEN "FCT_SALES_DAY"."UNITS_SALES" > 0 THEN 1 ELSE 0 END)
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 20b020cf-55bc-47c7-b3ae-0ee8d8450262
+          stepCounter: 9f86298b-305e-4159-8a2b-2b7ad0f67ea6
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: SALES_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1820fabd-6601-408b-87cf-7222cfc72522
+                stepCounter: 91c3542a-c2f9-472c-8706-d613acb63e06
+            transform: DIV0(SUM("FCT_SALES_DAY"."UNITS_SALES"),DAY_COUNT)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5aeeadc3-78b8-46e1-82d0-5b7241fb433a
+          stepCounter: 9f86298b-305e-4159-8a2b-2b7ad0f67ea6
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: MAX_SALES_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: MAX("FCT_SALES_DAY"."UNITS_SALES")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
+          DIM_PRODUCT: 99510b9e-1d3e-4709-93b8-2042202093b0
+          FCT_SALES_DAY: 91c3542a-c2f9-472c-8706-d613acb63e06
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: DATA
+            nodeName: FCT_SALES_DAY
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_SALES_DAY') }} "FCT_SALES_DAY"
+            JOIN {{ ref('DATA', 'DIM_DATE') }} "DIM_DATE"
+            ON "FCT_SALES_DAY"."TRANSACTION_DATE" = "DIM_DATE"."CALENDAR_DATE"
+            JOIN {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            ON "FCT_SALES_DAY"."PRODKEY" = "DIM_PRODUCT"."PRODKEY"
+            GROUP BY 1, 2, 3
+        name: STG_MEASURES_HOLIDAY_SALES_PROD
+        noLinkRefs: []
+  name: STG_MEASURES_HOLIDAY_SALES_PROD
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

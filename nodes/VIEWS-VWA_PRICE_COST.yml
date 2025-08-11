@@ -1,0 +1,274 @@
+fileVersion: 1
+id: e092eff7-f22d-4aec-8b1a-20b7831dc230
+name: VWA_PRICE_COST
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d5da6214-4e6b-4207-a2b7-3990cc93423a
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1c2d47a6-bd76-4a91-9bdd-feb809a36ec7
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: da0388bf-e007-4dcd-98ec-58bfcbee455a
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4677713d-5272-47c6-ba71-7b3960cdc642
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 837ca334-5680-42c9-8e47-9c3292b74add
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_PRICE_COST_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eb423af0-e485-4fc6-bb03-bc0692d748a6
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e1a963e-2538-4e5e-819e-1de69886bb0b
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DATE
+        description: ""
+        name: PC_DT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 375a56a6-f160-4298-8e31-cfc5078c110b
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d94612f1-cd52-4b6e-9a26-b041ff26ff23
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DATE
+        description: ""
+        name: PC_DT_END
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 361df798-2b8d-4cd1-8b62-8a313ae7c122
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e10391c3-d65d-496a-a2d5-f9c27d70fa8f
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3348fb2a-e7fb-4b59-b7da-510338bd86c2
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ef9249cb-7f46-492c-a8f2-c10474c68389
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: PRICE_EX_VAT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d1a417c5-a9a3-47d2-8279-50013e1dd0a4
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: de91c52a-1d68-4efa-b59e-b50643aaa5ab
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: ACP_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a0ea6f97-51f8-4c0b-80ed-c33288a54dc6
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: adaa98d2-5e2a-4113-9748-62fb8201740e
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: UBC_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ef71c90-394f-4bb4-b310-a3a21f948f82
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 92cddeb7-10ba-4d0b-b6ed-ae154d020e2c
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: SOA_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3285f420-9566-435c-8760-6241d120dd80
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a8a2e41-5f09-4bae-9e58-7823e18630a4
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: COST_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 62d6d74e-9d9a-465f-9a24-747c553bcd4d
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3fabab90-b380-414e-bbc3-a42fbd99ff7a
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: MARGIN_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 52ee017b-4c40-4810-850a-c5103c4ea7af
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f7d1efb-7926-42b4-9cb9-795abad986c9
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: TA_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 31885a3f-4719-4680-a2e3-9bfd32f3b991
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8c436d80-8443-429f-877a-44fed40c4eee
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: COST_WITH_TA_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ae6d97b-d98c-43fd-ac8f-aee02b30c884
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc817720-ca07-4505-8079-d89b8ccf71a2
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: TAKE_IN_COST_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ea9c10cb-e1b9-4a1a-96a0-fcafd8020330
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a6f2a6a-dad2-4055-bcf6-7c588cd2006d
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: VAT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 83a2bbaf-418a-4e77-ac8e-14488445aeff
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3337c9ef-e586-4bbf-90f2-7e86e9f990ff
+          stepCounter: e092eff7-f22d-4aec-8b1a-20b7831dc230
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        name: MARGIN_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8200b7a8-317a-45b7-9082-64191176b39e
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_PRICE_COST_REGION
+        join:
+          joinCondition: FROM {{ ref('STAGE', 'VW_PRICE_COST_REGION') }} "VW_PRICE_COST_REGION"
+        name: VWA_PRICE_COST
+        noLinkRefs: []
+  name: VWA_PRICE_COST
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

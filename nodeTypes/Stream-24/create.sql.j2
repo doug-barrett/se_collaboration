@@ -1,0 +1,6 @@
+{{ stage('Create Stream') }}
+    CREATE STREAM IF NOT EXISTS {{this}}
+    ON TABLE {{ config.str_table }}
+    APPEND_ONLY = {% if config.appendOnly is true %} TRUE {%- else -%} FALSE {% endif %} 
+    SHOW_INITIAL_ROWS = {% if config.initialRows is true %} TRUE {%- else -%} FALSE {% endif %} 
+    COMMENT = 'CDC Stream on {{ this }}'

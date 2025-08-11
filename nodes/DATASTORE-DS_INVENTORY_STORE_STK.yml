@@ -1,0 +1,118 @@
+fileVersion: 1
+id: 7263eb53-ab14-44c3-803c-55093773bd1a
+name: DS_INVENTORY_STORE_STK
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DATASTORE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1ed883b2-b6ec-4a0d-8901-fe06409e78f9
+          stepCounter: 7263eb53-ab14-44c3-803c-55093773bd1a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: STORE_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 63117a8a-7793-4260-b806-5ff88964feae
+                stepCounter: cee7ecc7-99fe-4e22-8ca6-4c44e4f76d18
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1de0cc60-c93d-491a-907f-0733423cff82
+          stepCounter: 7263eb53-ab14-44c3-803c-55093773bd1a
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        isBusinessKey: true
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8bc2b05-9baa-4caa-a310-d7bca85a5261
+                stepCounter: cee7ecc7-99fe-4e22-8ca6-4c44e4f76d18
+            transform: RIGHT('000000'||"PRODKEY",6)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d661d506-e9bc-4b65-b847-b5708f6d0ed0
+          stepCounter: 7263eb53-ab14-44c3-803c-55093773bd1a
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: INVENTORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 84fb0ded-7629-4599-be47-b067f2902f36
+                stepCounter: cee7ecc7-99fe-4e22-8ca6-4c44e4f76d18
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b3ba153c-a13f-49eb-80cf-78dbaf58f7ae
+          stepCounter: 7263eb53-ab14-44c3-803c-55093773bd1a
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: UPDATED_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dd9756d2-fa5b-4b8f-9483-c466547e715d
+                stepCounter: cee7ecc7-99fe-4e22-8ca6-4c44e4f76d18
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a6eba7c-13fd-4738-a8a0-c5750d62b666
+          stepCounter: 7263eb53-ab14-44c3-803c-55093773bd1a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          LAND_INVENTORY_STORE_STOCK: cee7ecc7-99fe-4e22-8ca6-4c44e4f76d18
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: LAND
+            nodeName: LAND_INVENTORY_STORE_STOCK
+        join:
+          joinCondition: FROM {{ ref('LAND', 'LAND_INVENTORY_STORE_STOCK') }} "LAND_INVENTORY_STORE_STOCK"
+        name: DS_INVENTORY_STORE_STK
+        noLinkRefs: []
+  name: DS_INVENTORY_STORE_STK
+  overrideSQL: false
+  schema: ""
+  sqlType: "1"
+  type: sql
+  version: 1
+type: Node

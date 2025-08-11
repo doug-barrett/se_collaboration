@@ -1,0 +1,316 @@
+fileVersion: 1
+id: d32da66a-f434-4289-943e-8b4c00ff0941
+name: VW_FCT_PRICE_ELASTICITY_RAW_STORE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4307fb57-53f7-4d56-8f32-0216f22d26d5
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e6093bd-8643-4b83-b5bb-7b775ee51a6d
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8c058a28-449a-40b2-ad63-a9079889b6cd
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3f1e14f6-3a1e-47c8-892b-9e7ded620086
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9f8b2f11-357b-4904-87a3-0fe143d3f913
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: STORE_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe8dc6a0-6e3a-4b8e-831c-e734ffc2b032
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4575848d-b92d-47a4-849a-0f3f52d20cdd
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: HOLIDAY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cafcaf90-2c6e-4fbf-bc65-6d3de0897671
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f561cb4-fd9a-4ad4-9139-b844a7a0abe2
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe698647-d9fe-4fd4-9e8a-2df0e639e2fc
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a5aa5817-42fd-44e6-bdde-2f122ff47a47
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6fe5b23-285b-4d2e-bfe0-ba81c0aba8b1
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77a41207-4889-4381-9e0a-0b7c395098b4
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c22822d0-d658-4bac-8ae8-6fe57bcce112
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d718951b-bd22-49cb-941d-2bbbc1b3c816
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: PRIOR_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2f3016b9-1c82-4585-ba9b-223dc6505531
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: LAG(UNITS_PER_DAY, 1) OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY, STORE_CODE ORDER BY START_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a4a337e5-6213-49a5-8d79-eb0541cf755d
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: PRICE_DISCOUNT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 98666f84-98e3-494c-9cda-6ae4d1412454
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ea14b31-9ae2-421f-9d8e-e797a538c5f1
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: NUMBER
+        description: ""
+        hashDetails: null
+        name: PRICE_DISCOUNT_BUCKET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a6900170-bf3f-44d3-8827-bb70d87aaf39
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4bfb08cb-879a-4dc1-b486-d2993c005b1d
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: CHAR(1)
+        defaultValue: ""
+        description: ""
+        name: PRICE_DROP_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 045d40d3-43af-467b-b260-399d003b3828
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88e31756-ead2-4f2d-8a1b-e407041e696a
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53b62615-d477-4d0a-9adb-fa5c96b0936a
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c5a0352f-3ee6-4f9c-868c-d62ab1cac271
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: PRIOR_UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53b62615-d477-4d0a-9adb-fa5c96b0936a
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: LAG(UNITS_PER_DAY, 1) OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY, STORE_CODE ORDER BY START_DATE)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 94286e23-5f5c-4bbb-bcd1-de0220669d26
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: NUMBER(6,4)
+        defaultValue: ""
+        description: ""
+        name: PRICE_ELASTICITY_CALC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE 
+                WHEN (UNITS_PER_DAY + PRIOR_UNITS_PER_DAY) = 0 THEN 0
+                WHEN (PRICE + PRIOR_PRICE) = 0 THEN 0
+                WHEN (PRICE - PRIOR_PRICE) = 0 THEN 0 
+              ELSE
+                (((UNITS_PER_DAY - PRIOR_UNITS_PER_DAY) / (UNITS_PER_DAY + PRIOR_UNITS_PER_DAY) / 2)
+                /
+                ((PRICE - PRIOR_PRICE) / (PRICE + PRIOR_PRICE) / 2 ))
+                * -1
+              END
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ea663aa-cc59-4237-be09-f6569e48527e
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: NUMBER(6,4)
+        defaultValue: ""
+        description: ""
+        name: PRICE_ELASTICITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE WHEN PRICE_ELASTICITY_CALC BETWEEN 1 AND 5 THEN PRICE_ELASTICITY_CALC
+                  WHEN PRICE_ELASTICITY_CALC < 0 THEN 5
+                  ELSE 1.5
+              END
+        transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c65e7cbe-4bf0-4cd6-93f6-82a5844347b0
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: PRIOR_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe698647-d9fe-4fd4-9e8a-2df0e639e2fc
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: LAG(START_DATE, 1) OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY, STORE_CODE ORDER BY START_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8582f576-ca57-48e5-8927-7e1d5390da9a
+          stepCounter: d32da66a-f434-4289-943e-8b4c00ff0941
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: PRIOR_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe698647-d9fe-4fd4-9e8a-2df0e639e2fc
+                stepCounter: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+            transform: LAG(END_DATE, 1) OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY, STORE_CODE ORDER BY START_DATE)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VW_PRICE_ELASTICITY_SUM_STORE: 755ca556-9e9d-41e3-9dbe-c463a46a3b08
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_PRICE_ELASTICITY_SUM_STORE
+        join:
+          joinCondition: FROM {{ ref('STAGE', 'VW_PRICE_ELASTICITY_SUM_STORE') }} "VW_PRICE_ELASTICITY_SUM_STORE"
+        name: VW_FCT_PRICE_ELASTICITY_RAW_STORE
+        noLinkRefs: []
+  name: VW_FCT_PRICE_ELASTICITY_RAW_STORE
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

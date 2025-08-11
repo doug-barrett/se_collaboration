@@ -1,0 +1,432 @@
+fileVersion: 1
+id: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+name: VW_FUTURE_PRICE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: "Just a bit of tidy up "
+  isMultisource: true
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b76a8eae-f432-42b3-944c-096efeb6f411
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: VARCHAR(32)
+        description: ""
+        name: FORECAST_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d432410f-eaf1-4025-b37a-86edf9c569b2
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: d432410f-eaf1-4025-b37a-86edf9c569b2
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bbc47c2e-7a6d-4ffc-8361-c5f91d84bd2b
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ac2350f-fd4a-4b58-b189-286d1607f7c9
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: 7ac2350f-fd4a-4b58-b189-286d1607f7c9
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 590a3f2a-8c4f-4177-bb86-cf6351b94328
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e157cdf4-fffd-4bc4-aa6d-19be8d45bf61
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: e157cdf4-fffd-4bc4-aa6d-19be8d45bf61
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: be3bc145-1a40-4ce2-91a4-8fe9d5d8ba13
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: APPROVAL_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2257aa01-dacc-4166-a5d6-caaa3577e2f6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: 2257aa01-dacc-4166-a5d6-caaa3577e2f6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a4bdadd-4d66-4755-9d03-fa274fc17ecd
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: PROMO_EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6fd198e7-b8ff-40cb-ba11-b546288b36f0
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: 6fd198e7-b8ff-40cb-ba11-b546288b36f0
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a7584ab-bb3c-48af-94ac-9d90106169b0
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6fd198e7-b8ff-40cb-ba11-b546288b36f0
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: 0977a9a9-ef5e-402e-a0ae-5e948477e6c6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: END_DATE + 1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b356cf68-c7ba-4a78-a8bd-d5e2475cfdfe
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0977a9a9-ef5e-402e-a0ae-5e948477e6c6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: 0977a9a9-ef5e-402e-a0ae-5e948477e6c6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: LEAD(START_DATE, 1, '2100-01-01') OVER (PARTITION BY DS_FORECAST.ZONE_GEOGRAPHY, DS_FORECAST.PRODKEY ORDER BY DS_FORECAST.START_DATE) - 1
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9fab1f81-d60c-481e-9d8a-d53c60f4a998
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        hashDetails: null
+        name: DURATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7fec432-6c18-4516-99ad-4821d8195779
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences: []
+            transform: "DATEDIFF(D, END_DATE + 1,LEAD(DS_FORECAST.START_DATE, 1, '2100-01-01') OVER (PARTITION BY DS_FORECAST.ZONE_GEOGRAPHY, DS_FORECAST.PRODKEY ORDER BY DS_FORECAST.START_DATE) -1) "
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 47edad1e-24b3-4a1b-86fd-6634d4512f80
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d9673f1-53de-4c07-8ae5-c84eec6dc275
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: CASE WHEN UPPER(EVENT_TYPE) = 'PRICE' THEN WAS_PRICE ELSE NOW_PRICE END
+          - columnReferences:
+              - columnCounter: c9c67e70-224e-49e4-b85a-75404655c8b6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04b37389-76d0-4b38-a13b-204d18046d61
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: DSS_CREATE_USER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1a3b91e4-838b-424b-9b63-64a8221f793e
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: 1a3b91e4-838b-424b-9b63-64a8221f793e
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d9b78eb-7fbe-43b9-b640-f0b429a8a4ef
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: DSS_CREATE_FROM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1a3b91e4-838b-424b-9b63-64a8221f793e
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: "'SIGMA'"
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "'SIGMA'"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cddecda-e352-4fe8-93a3-7b9010ee9305
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: TIMESTAMP_LTZ(9)
+        description: ""
+        hashDetails: null
+        name: DSS_CREATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 65765320-6f8c-45f9-98a2-20ed015b2878
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: 65765320-6f8c-45f9-98a2-20ed015b2878
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aee73e0d-8161-4582-9442-b68c243c6c86
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: PRICE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a308c7d-92e4-4704-942d-19a11b63f6e9
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences: []
+            transform: "'Base Price'"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f244864-d23f-4ec8-ba1c-f39f835aa720
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: TIMESTAMP
+        description: Populated by the Export Process
+        name: DSS_EXPORT_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 162e8db4-8f18-47da-8e97-6ba4dcc3a5ba
+                stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
+            transform: ""
+          - columnReferences:
+              - columnCounter: 162e8db4-8f18-47da-8e97-6ba4dcc3a5ba
+                stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7ffb4591-afba-4485-babc-65309cfae34e
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: STRING
+        description: Populated by the Export process
+        name: EXPORT_FILE_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba3b3c38-1921-42ec-84ea-4c386a6aee47
+                stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
+            transform: ""
+          - columnReferences:
+              - columnCounter: ba3b3c38-1921-42ec-84ea-4c386a6aee47
+                stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b58a4ed8-5685-4a0a-924a-58f485816446
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9c67e70-224e-49e4-b85a-75404655c8b6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: c9c67e70-224e-49e4-b85a-75404655c8b6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 66b45815-2435-429a-85cb-699cc6094d16
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: RETAIL_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d9673f1-53de-4c07-8ae5-c84eec6dc275
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences:
+              - columnCounter: c9c67e70-224e-49e4-b85a-75404655c8b6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ffcbf2cd-ed95-4c87-8083-eb3ca74acc29
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: SAVE_MSG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f56bdf7b-0b93-49e2-8e8d-f55dc1e67de7
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: "'SAVE'"
+          - columnReferences: []
+            transform: "''"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 453ed818-f0ab-4127-bcb9-0a5d492eee97
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: PROMO_MSG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f56bdf7b-0b93-49e2-8e8d-f55dc1e67de7
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: ""
+          - columnReferences: []
+            transform: "''"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eb7c9379-5b9a-404f-ba88-8eabfe44a768
+          stepCounter: c8bf7a47-e37a-4517-9d3a-4aa505e44054
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a308c7d-92e4-4704-942d-19a11b63f6e9
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: CASE WHEN UPPER(EVENT_TYPE) = 'PRICE' THEN 'B' ELSE 'P' END
+          - columnReferences: []
+            transform: "'B'"
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DS_FORECAST: e6e000e3-f962-4187-a382-475935ae8974
+          DS_PLANNED_PRICE_EXPORT: b218fdcc-190c-4bfe-a7aa-466fc60086d8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATASTORE
+            nodeName: DS_FORECAST
+          - locationName: DATASTORE
+            nodeName: DS_PLANNED_PRICE_EXPORT
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATASTORE', 'DS_FORECAST') }} "DS_FORECAST"
+            LEFT JOIN {{ ref('DATASTORE', 'DS_PLANNED_PRICE_EXPORT') }} "DS_PLANNED_PRICE_EXPORT"
+            ON "DS_FORECAST"."ZONE_GEOGRAPHY" =  "DS_PLANNED_PRICE_EXPORT"."ZONE_GEOGRAPHY"
+            AND "DS_FORECAST"."PRODKEY" = "DS_PLANNED_PRICE_EXPORT".PRODKEY
+            AND "DS_FORECAST"."START_DATE" = "DS_PLANNED_PRICE_EXPORT"."EFFECTIVE_DATE"
+            WHERE UPPER(DS_FORECAST.STATUS) = 'APPROVED'
+        name: FUTURE_PRICE
+        noLinkRefs: []
+      - aliases:
+          DS_FORECAST: e6e000e3-f962-4187-a382-475935ae8974
+          DS_PLANNED_PRICE_EXPORT: b218fdcc-190c-4bfe-a7aa-466fc60086d8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATASTORE
+            nodeName: DS_FORECAST
+          - locationName: DATASTORE
+            nodeName: DS_PLANNED_PRICE_EXPORT
+        join:
+          joinCondition: |
+            FROM {{ ref('DATASTORE', 'DS_FORECAST') }} "DS_FORECAST"
+            LEFT JOIN {{ ref('DATASTORE', 'DS_PLANNED_PRICE_EXPORT') }} "DS_PLANNED_PRICE_EXPORT"
+            ON "DS_FORECAST"."ZONE_GEOGRAPHY" =  "DS_PLANNED_PRICE_EXPORT"."ZONE_GEOGRAPHY"
+            AND "DS_FORECAST"."PRODKEY" = "DS_PLANNED_PRICE_EXPORT".PRODKEY
+            AND "DS_FORECAST"."START_DATE" = "DS_PLANNED_PRICE_EXPORT"."EFFECTIVE_DATE"
+            WHERE UPPER(DS_FORECAST.STATUS) = 'APPROVED'
+            QUALIFY  DATEDIFF(D, END_DATE + 1,LEAD(DS_FORECAST.START_DATE, 1, '2100-01-01') OVER (PARTITION BY DS_FORECAST.ZONE_GEOGRAPHY, DS_FORECAST.PRODKEY ORDER BY DS_FORECAST.START_DATE) -1) > 0 	
+        name: BASE PRICE
+        noLinkRefs: []
+  name: VW_FUTURE_PRICE
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

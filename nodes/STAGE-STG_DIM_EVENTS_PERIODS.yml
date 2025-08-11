@@ -1,0 +1,345 @@
+fileVersion: 1
+id: "613"
+name: STG_DIM_EVENTS_PERIODS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: true
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests:
+      - continueOnFailure: false
+        description: ""
+        name: Test for duplicates
+        runOrder: After
+        templateString: |-
+          SELECT 1
+          FROM {{this}}
+          GROUP BY ZONE_GEOGRAPHY, PRODKEY, EFFECTIVE_DATE
+          HAVING COUNT(1) > 1
+      - continueOnFailure: false
+        description: ""
+        name: Test for Base All and Event
+        runOrder: After
+        templateString: |-
+          SELECT 1
+          FROM {{this}} E
+          JOIN {{this}} B 
+          ON E.PRODKEY = B.PRODKEY 
+          AND E.ZONE_GEOGRAPHY = B.ZONE_GEOGRAPHY
+          AND E.EVENT_TYPE = 'EVENT'
+          AND B.EVENT_TYPE = 'BASE ALL'
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2d17dda-eabd-44ab-88c4-607609cacd28
+          stepCounter: "613"
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a71daa7b-dfdd-49ce-aa90-941a4149f31b
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+          - columnReferences:
+              - columnCounter: 5ef34ca2-716d-4f2f-8be9-524cd0a96acd
+                stepCounter: 8ea642ef-4606-44d0-8121-571a15ba33fa
+            transform: ""
+          - columnReferences:
+              - columnCounter: a71daa7b-dfdd-49ce-aa90-941a4149f31b
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+          - columnReferences:
+              - columnCounter: a71daa7b-dfdd-49ce-aa90-941a4149f31b
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+          - columnReferences:
+              - columnCounter: a71daa7b-dfdd-49ce-aa90-941a4149f31b
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "8095"
+          stepCounter: "613"
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ce6724b-435b-4284-957f-9f00c84e5d4d
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+          - columnReferences:
+              - columnCounter: d34baf39-f35c-4a72-8266-897d360ae000
+                stepCounter: 8ea642ef-4606-44d0-8121-571a15ba33fa
+            transform: ""
+          - columnReferences:
+              - columnCounter: 6ce6724b-435b-4284-957f-9f00c84e5d4d
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+          - columnReferences:
+              - columnCounter: 6ce6724b-435b-4284-957f-9f00c84e5d4d
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+          - columnReferences:
+              - columnCounter: 6ce6724b-435b-4284-957f-9f00c84e5d4d
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "8097"
+          stepCounter: "613"
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 79da5933-fa01-4c45-b35e-946d4ba95436
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+          - columnReferences:
+              - columnCounter: 12a36f2e-cfdc-4e2a-ac26-f688ace90519
+                stepCounter: 8ea642ef-4606-44d0-8121-571a15ba33fa
+            transform: VW_TLOG_ZONE.MIN_DATE
+          - columnReferences:
+              - columnCounter: 12a36f2e-cfdc-4e2a-ac26-f688ace90519
+                stepCounter: 8ea642ef-4606-44d0-8121-571a15ba33fa
+            transform: ""
+          - columnReferences:
+              - columnCounter: 79da5933-fa01-4c45-b35e-946d4ba95436
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+          - columnReferences:
+              - columnCounter: 0a4812f7-6de4-49ab-b56e-4d9fc71c36ce
+                stepCounter: 5f9e1382-ded6-478f-87e6-27ac0d7b03f1
+            transform: DATEADD(D, 1, "VW_EVENTS_REGION"."END_DATE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "8098"
+          stepCounter: "613"
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f38fa60f-0a64-47bf-85b6-964f67caccdc
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: MAX("VW_EVENTS_REGION"."END_DATE")
+          - columnReferences:
+              - columnCounter: 12a36f2e-cfdc-4e2a-ac26-f688ace90519
+                stepCounter: 8ea642ef-4606-44d0-8121-571a15ba33fa
+            transform: VW_TLOG_ZONE.MAX_DATE
+          - columnReferences:
+              - columnCounter: f38fa60f-0a64-47bf-85b6-964f67caccdc
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: DATEADD(D, -1, "VW_EVENTS_REGION"."EFFECTIVE_DATE")
+          - columnReferences:
+              - columnCounter: f38fa60f-0a64-47bf-85b6-964f67caccdc
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: ""
+          - columnReferences:
+              - columnCounter: 12a36f2e-cfdc-4e2a-ac26-f688ace90519
+                stepCounter: 8ea642ef-4606-44d0-8121-571a15ba33fa
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "8099"
+          stepCounter: "613"
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: WAS_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9664d373-c3cb-4eda-b611-c18b00d357e1
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: MAX("VW_EVENTS_REGION"."WAS_PRICE")
+          - columnReferences: []
+            transform: ""
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+          - columnReferences: []
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "8100"
+          stepCounter: "613"
+        config: {}
+        dataType: NUMBER(9,2)
+        description: ""
+        hashDetails: null
+        name: NOW_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f78ff7f-1c11-4e37-af41-7a878f9a90a4
+                stepCounter: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+            transform: MAX("VW_EVENTS_REGION"."NOW_PRICE")
+          - columnReferences: []
+            transform: ""
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+          - columnReferences: []
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: "8121"
+          stepCounter: "613"
+        config: {}
+        dataType: VARCHAR(64)
+        defaultValue: ""
+        description: ""
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "'EVENT'"
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "'BASE ALL'"
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "'BASE START'"
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "'BASE FILL'"
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "'BASE END'"
+        transform: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VW_EVENTS_REGION: 8338e9ae-510e-4c4a-8df6-84e64bf62b73
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_EVENTS_REGION
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_EVENTS_REGION') }} VW_EVENTS_REGION
+            GROUP BY 1, 2, 3
+        name: DS_EVENTS
+        noLinkRefs: []
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_EVENTS_REGION
+          - locationName: STAGE
+            nodeName: VW_TLOG_ZONE
+        join:
+          joinCondition: |
+            FROM  (SELECT ZONE_GEOGRAPHY, PRODKEY, MIN(TRANSACTION_DATE) MIN_DATE, MAX(TRANSACTION_DATE) MAX_DATE 
+                     FROM {{ ref('STAGE', 'VW_TLOG_ZONE') }}
+                   GROUP BY 1, 2)  VW_TLOG_ZONE
+            LEFT JOIN (SELECT DISTINCT ZONE_GEOGRAPHY, PRODKEY FROM {{ ref('STAGE', 'VW_EVENTS_REGION') }}) VW_EVENTS_REGION
+            ON VW_TLOG_ZONE.ZONE_GEOGRAPHY = VW_EVENTS_REGION.ZONE_GEOGRAPHY
+            AND VW_TLOG_ZONE.PRODKEY = VW_EVENTS_REGION.PRODKEY
+            WHERE VW_EVENTS_REGION.PRODKEY IS NULL
+            AND VW_TLOG_ZONE.PRODKEY IS NOT NULL
+        name: BASE_ALL
+        noLinkRefs: []
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_EVENTS_REGION
+          - locationName: STAGE
+            nodeName: VW_TLOG_ZONE
+        join:
+          joinCondition: |
+            FROM (SELECT ZONE_GEOGRAPHY, PRODKEY, MIN(EFFECTIVE_DATE)   AS EFFECTIVE_DATE   FROM {{ ref('STAGE', 'VW_EVENTS_REGION') }} GROUP BY 1, 2) VW_EVENTS_REGION
+            JOIN (SELECT ZONE_GEOGRAPHY, PRODKEY, MIN(TRANSACTION_DATE) AS TRANSACTION_DATE FROM {{ ref('STAGE', 'VW_TLOG_ZONE') }}  GROUP BY 1, 2) VW_TLOG_ZONE
+              ON VW_EVENTS_REGION.ZONE_GEOGRAPHY = VW_TLOG_ZONE.ZONE_GEOGRAPHY
+             AND VW_EVENTS_REGION.PRODKEY = VW_TLOG_ZONE.PRODKEY
+            WHERE VW_TLOG_ZONE.TRANSACTION_DATE < VW_EVENTS_REGION.EFFECTIVE_DATE 
+        name: BASE_START
+        noLinkRefs: []
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_EVENTS_REGION
+        join:
+          joinCondition: |
+            FROM (
+               SELECT ZONE_GEOGRAPHY, PRODKEY,
+                   DATEADD(DAY, 1, END_DATE) EFFECTIVE_DATE,
+                   DATEADD(DAY,-1, LEAD(EFFECTIVE_DATE,1) OVER (PARTITION BY ZONE_GEOGRAPHY, PRODKEY ORDER BY EFFECTIVE_DATE)) END_DATE
+                FROM {{ ref('STAGE', 'VW_EVENTS_REGION') }} ) "VW_EVENTS_REGION"
+            WHERE  VW_EVENTS_REGION.ZONE_GEOGRAPHY IS NOT NULL
+            AND DATEDIFF(DAY, VW_EVENTS_REGION.EFFECTIVE_DATE, VW_EVENTS_REGION.END_DATE) >= 0 
+            AND VW_EVENTS_REGION.END_DATE IS NOT NULL
+        name: BASE_FILL
+        noLinkRefs: []
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_EVENTS_REGION
+          - locationName: STAGE
+            nodeName: VW_TLOG_ZONE
+        join:
+          joinCondition: |-
+            FROM (  SELECT ZONE_GEOGRAPHY, PRODKEY, END_DATE         
+                    FROM {{ ref('STAGE', 'VW_EVENTS_REGION') }} VW_EVENTS_REGION
+                    QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY "ZONE_GEOGRAPHY", "PRODKEY" ORDER BY "EFFECTIVE_DATE" DESC)) VW_EVENTS_REGION
+            JOIN (  SELECT ZONE_GEOGRAPHY, PRODKEY, MAX(TRANSACTION_DATE) AS TRANSACTION_DATE 
+                    FROM {{ ref('STAGE', 'VW_TLOG_ZONE') }}  
+                    GROUP BY 1, 2) VW_TLOG_ZONE
+              ON VW_EVENTS_REGION.ZONE_GEOGRAPHY = VW_TLOG_ZONE.ZONE_GEOGRAPHY
+             AND VW_EVENTS_REGION.PRODKEY        = VW_TLOG_ZONE.PRODKEY
+            WHERE VW_TLOG_ZONE.TRANSACTION_DATE > VW_EVENTS_REGION.END_DATE 
+        name: BASE_END
+        noLinkRefs: []
+  name: STG_DIM_EVENTS_PERIODS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

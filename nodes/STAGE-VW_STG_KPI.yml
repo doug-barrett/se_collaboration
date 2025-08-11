@@ -1,0 +1,297 @@
+fileVersion: 1
+id: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+name: VW_STG_KPI
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6518f821-9922-4114-91fd-9d03bda7dc07
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d8d2a4d9-9cae-4a70-a40e-68916c9f6cda
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec9952b5-a7b5-4769-9ae1-03afdf2b730a
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e062501c-b70c-46ca-8a35-d45fc58f5f0a
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd763cf5-8370-41ec-858a-fded4da89b68
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: TIME_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 686a483e-9db1-4016-be75-74528a200865
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 406cd586-504f-4cb0-9aa9-e2459d07eb42
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: FORECAST_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fcb46ed3-31d2-4581-a13d-288473f541dd
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: SUM(CASE WHEN FORECAST_KEY IS NULL THEN 0 ELSE 1 END)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 34b30b9b-a2db-46bb-9703-49eaa98ce9d0
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: EVENT_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fcb46ed3-31d2-4581-a13d-288473f541dd
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: SUM(CASE WHEN DIM_EVENTS_REGION_KEY IS NULL THEN 0 ELSE 1 END)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: afe00fa1-29f4-431e-99fe-e7e5620b1378
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: BELOW_MARKET_CPI_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7260d9b2-083f-443f-a905-01c758f339fc
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: "SUM(CASE WHEN EVENT_CPI < 100 THEN 1 ELSE 0 END) "
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 818b7ec9-bac6-46c1-b704-60e9663ab1b3
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: AT_MARKET_CPI_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7260d9b2-083f-443f-a905-01c758f339fc
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: "SUM(CASE WHEN EVENT_CPI = 100 THEN 1 ELSE 0 END) "
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b20987e-91a1-4811-938f-8a2818b03f0e
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: ABOVE_MARKET_CPI_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7260d9b2-083f-443f-a905-01c758f339fc
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: "SUM(CASE WHEN EVENT_CPI > 100 THEN 1 ELSE 0 END) "
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 206cb101-138f-476e-9085-6aea3e8733d4
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: LOW_WEIGHTED_INVENTORY_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e4da97f-1f96-4703-964c-89898d087ad0
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: "SUM(CASE WHEN EVENT_INVENTORY_WGT_AVG < 50 THEN 1 ELSE 0 END) "
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1fd90eab-abb9-417e-bc78-cd756cf437b0
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: LOW_MARGIN_UPLIFT_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 581e1fc4-5eac-4e90-8330-3137e2e56472
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: "SUM(CASE WHEN EVENT_MARGIN_TOTAL < 500 THEN 1 ELSE 0 END) "
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03b6f1fa-68d0-4227-9938-5912c858d2a5
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: FORECAST_POSITIVE_UPLIFT_MARGIN_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b7740876-48f6-4d10-9cf9-aaff414e3b0d
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: SUM(CASE WHEN NVL(FORECAST_UPLIFT_MARGIN,0) > 0 THEN 1 ELSE 0 END)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d93563cc-8084-4365-8153-146ac8bed6ef
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: FORECAST_NEGATIVE_UPLIFT_MARGIN_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b7740876-48f6-4d10-9cf9-aaff414e3b0d
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: SUM(CASE WHEN NVL(FORECAST_UPLIFT_MARGIN,0) < 0 THEN 1 ELSE 0 END)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a92f5954-ad87-4edb-99a5-252b04189a49
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER(16,2)
+        defaultValue: ""
+        description: ""
+        name: AVG_FORECAST_DISCOUNT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9147a9d7-d1fe-4017-b5b8-21bfdab1de2f
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: AVG(FORECAST_DISCOUNT_PERCENT)
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 09c033d0-5ae1-469f-b9dd-bd98f7885d57
+          stepCounter: 2828831d-6c55-4d2c-b421-72eb5bbb606f
+        config: {}
+        dataType: NUMBER(16,2)
+        defaultValue: ""
+        description: ""
+        name: AVG_FORECAST_MARGIN_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d44a52e-de3d-428d-84e5-4b855de39bad
+                stepCounter: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+            transform: AVG(FORECAST_MARGIN_PERCENT)
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VWA_FORECAST_EVENT_MATCH: 0ed93d2b-8f5d-42bd-a0df-2246d164ad02
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: VIEWS
+            nodeName: VWA_FORECAST_EVENT_MATCH
+        join:
+          joinCondition: |-
+            FROM {{ ref('VIEWS', 'VWA_FORECAST_EVENT_MATCH') }} "VWA_FORECAST_EVENT_MATCH"
+            GROUP BY 1, 2, 3
+        name: VW_STG_KPI
+        noLinkRefs: []
+  name: VW_STG_KPI
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

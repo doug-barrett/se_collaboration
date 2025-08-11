@@ -1,0 +1,290 @@
+fileVersion: 1
+id: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+name: VEX_FNR_FORECAST
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: EXPORT
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d3af1464-b7fb-43a9-89c9-b9732304e4e5
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: DATE
+        description: ""
+        name: TRANSACTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bc9f787a-b624-475e-b36d-e03b47defe70
+                stepCounter: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 02e8d7dc-1adb-4bbd-b631-05c80d7bf12a
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 939ad01b-91f8-4a74-b51c-8c72016a4bc5
+                stepCounter: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 43f68e4f-df3c-4430-a31c-4bbfc5ea6ba0
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b02fffad-934a-49d0-bbfc-19632e79d08f
+                stepCounter: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7911cd0f-062f-4870-953e-366167813367
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: NUMBER(20,10)
+        description: ""
+        name: FNR_FORECAST_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ddb7345-466e-4cc5-b28f-f061fe49a150
+                stepCounter: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+            transform: NVL("FCT_FNR_FORECAST"."FNR_FORECAST_UNITS_LATEST",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9406e978-40d1-4470-899f-67bbb5c52959
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: VARCHAR(32)
+        description: ""
+        name: FORECAST_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d1c5cf8-05cd-485d-a12c-975d02bdbf11
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL("VW_FORECAST_DAY"."FORECAST_KEY", '')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 12ba6597-7a38-4ea6-ba90-e0ed993a8c7c
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: CHAR(1)
+        description: ""
+        name: FORECAST_FLAG
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d1c5cf8-05cd-485d-a12c-975d02bdbf11
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: CASE WHEN VW_FORECAST_DAY.FORECAST_KEY IS NULL THEN 0 ELSE 1 END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a36b8e7-1d77-4e48-a7b4-834be338b3b1
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: NUMBER(20,10)
+        description: ""
+        name: FORECAST_UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd0faef7-5fce-4b95-ad84-490f6540950b
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL("VW_FORECAST_DAY"."UNITS_PER_DAY",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 54f5fd00-f271-480b-a453-f112cff9b08a
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UNITS_PER_DAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd0faef7-5fce-4b95-ad84-490f6540950b
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: |-
+              CASE WHEN FORECAST_FLAG = 1 THEN NVL("VW_FORECAST_DAY"."UNITS_PER_DAY",0)
+              ELSE NVL("FCT_FNR_FORECAST"."FNR_FORECAST_UNITS_LATEST",0)
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd31dbfc-01ca-487a-84d3-afa221905b6e
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UPLIFT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd0faef7-5fce-4b95-ad84-490f6540950b
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: |-
+              CASE WHEN FORECAST_FLAG = 1 AND NVL("VW_FORECAST_DAY"."UNITS_PER_DAY",0) - NVL("FCT_FNR_FORECAST"."FNR_FORECAST_UNITS_LATEST",0) > 0 THEN 
+              100 * DIV0(("VW_FORECAST_DAY"."UNITS_PER_DAY" - "FCT_FNR_FORECAST"."FNR_FORECAST_UNITS_LATEST") , "FCT_FNR_FORECAST"."FNR_FORECAST_UNITS_LATEST") 
+              ELSE 0
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25d45b6e-e402-49f4-bba0-c494f7048947
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: EVENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 67797555-ff56-405c-97cc-e63610f0d530
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: |-
+              CASE 
+                  WHEN FORECAST_FLAG = 1 THEN NVL("VW_FORECAST_DAY"."EVENT_TYPE", '')
+              ELSE ''
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6da2354-5ace-4eb1-aba1-06a9927d72de
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: MECHANIC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cd2fe361-fdbf-4a88-bd1e-1c82b251f9c6
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: |
+              CASE 
+                  WHEN FORECAST_FLAG = 1 THEN NVL("DS_FORECAST"."MECHANIC",'Saving')
+              ELSE ''
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e57d734-6128-4219-adea-83893fc19512
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ADVERTISING
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 046eb452-22ee-4b58-aa1b-2ac22071184c
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: |-
+              CASE WHEN FORECAST_FLAG = 1 THEN NVL("DS_FORECAST"."ADVERTISING", 'Other')
+              ELSE ''
+              END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f41525b-adfd-4883-851e-687493d6686e
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: LOCATION_IN_STORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6472b912-fe1d-46e5-a279-7538cca6fd33
+                stepCounter: e6e000e3-f962-4187-a382-475935ae8974
+            transform: |-
+              CASE WHEN FORECAST_FLAG = 1 THEN NVL("DS_FORECAST"."LOCATION_IN_STORE", 'In Run')
+              ELSE ''
+              END
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 99a5e6e6-ffe9-472e-b748-442182232208
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: CANNIBALIZATION_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "0"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70a53be3-09d4-491b-8bf1-b320a276cd6b
+          stepCounter: 40ebce87-2bb1-45aa-9c9b-ab94024cc972
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: CANNIBALIZED_UNITS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "0"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DS_FORECAST: e6e000e3-f962-4187-a382-475935ae8974
+          FCT_FNR_FORECAST: 21eb4cfe-5225-4c5b-87cf-c43fba709101
+          VW_FORECAST_DAY: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: FCT_FNR_FORECAST
+          - locationName: DATASTORE
+            nodeName: DS_FORECAST
+          - locationName: STAGE
+            nodeName: VW_FORECAST_DAY
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_FNR_FORECAST') }} "FCT_FNR_FORECAST"
+            LEFT JOIN {{ ref('STAGE', 'VW_FORECAST_DAY') }} "VW_FORECAST_DAY"
+            ON "FCT_FNR_FORECAST"."ZONE_GEOGRAPHY" = "VW_FORECAST_DAY"."ZONE_GEOGRAPHY"
+            AND "FCT_FNR_FORECAST"."PRODKEY" = "VW_FORECAST_DAY"."PRODKEY"
+            AND "FCT_FNR_FORECAST"."FNR_DATE" = "VW_FORECAST_DAY"."TRANSACTION_DATE"
+            LEFT JOIN {{ ref('DATASTORE', 'DS_FORECAST') }} "DS_FORECAST"
+            ON "VW_FORECAST_DAY"."FORECAST_KEY" = "DS_FORECAST"."FORECAST_KEY"
+            WHERE "FCT_FNR_FORECAST"."FNR_DATE" > CURRENT_DATE
+        name: VEX_FNR_FORECAST
+        noLinkRefs: []
+  name: VEX_FNR_FORECAST
+  overrideSQL: false
+  schema: ""
+  sqlType: "35"
+  type: sql
+  version: 1
+type: Node

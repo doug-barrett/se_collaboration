@@ -1,0 +1,157 @@
+fileVersion: 1
+id: 5a445501-62c8-43d8-a59f-31198e0349e2
+name: DS_FORECAST_AUDIT
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: "Just a bit of tidy up "
+  isMultisource: false
+  locationName: DATASTORE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 18c1a81e-d659-4cc2-8b03-0ce6095fcbdf
+          stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+        config: {}
+        dataType: VARCHAR(32)
+        description: ""
+        isBusinessKey: true
+        name: FORECAST_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ccf034e0-df24-43ee-9cca-841fa7e1c158
+                stepCounter: ed3320a0-252e-48a7-a5b2-f1883fd91301
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 071995c4-de4e-4da7-9bb3-0edafbbc4f93
+          stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02d94ec7-0ea8-4319-89ea-54c0844408fa
+                stepCounter: ed3320a0-252e-48a7-a5b2-f1883fd91301
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ee638e61-2455-45f2-be31-64505b05b94f
+          stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 056fa92a-bba1-4d47-a7f2-5c67d3efe9f2
+                stepCounter: ed3320a0-252e-48a7-a5b2-f1883fd91301
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5262faee-c434-4af4-a25e-81b88208ffb7
+          stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+        config: {}
+        dataType: DATE
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: df4f5ef3-1248-47e7-ba30-75e464369a25
+                stepCounter: ed3320a0-252e-48a7-a5b2-f1883fd91301
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e3e00fa-edb8-4f9e-b868-bbf3f4d29eda
+          stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: FORECAST_PAYLOAD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 056fa92a-bba1-4d47-a7f2-5c67d3efe9f2
+                stepCounter: ed3320a0-252e-48a7-a5b2-f1883fd91301
+            transform: OBJECT_CONSTRUCT_KEEP_NULL(*)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cabe2575-92e2-4669-9724-4ff35f644a65
+          stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+        config: {}
+        dataType: STRING
+        description: ""
+        isBusinessKey: true
+        name: FORECAST_HASH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1ec932c2-ff2e-47da-a43e-eef4ee3b119b
+                stepCounter: ed3320a0-252e-48a7-a5b2-f1883fd91301
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6d1f0a1-99e9-4136-8fd4-fd799e6bbd3c
+          stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ab65c0b1-154e-4c20-af64-2956a0e9c777
+          stepCounter: 5a445501-62c8-43d8-a59f-31198e0349e2
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_FORECAST
+        join:
+          joinCondition: FROM {{ ref('STAGE', 'VW_FORECAST') }} "VW_FORECAST"
+        name: DS_FORECAST_AUDIT
+        noLinkRefs: []
+  name: DS_FORECAST_AUDIT
+  overrideSQL: false
+  schema: ""
+  sqlType: "1"
+  type: sql
+  version: 1
+type: Node

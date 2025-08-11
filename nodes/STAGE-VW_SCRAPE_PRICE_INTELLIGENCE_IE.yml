@@ -1,0 +1,513 @@
+fileVersion: 1
+id: 992f194b-215b-46c6-abd9-43eeaf936369
+name: VW_SCRAPE_PRICE_INTELLIGENCE_IE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Shred JSON document into Structured View
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6d3a16f3-1afa-46bf-8685-d7cbd47e5a46
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4365e708-af17-4a60-b58f-c0bc0b7f8b92
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8af61041-5dce-4db8-9c4a-d3489c738505
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 74139805-02e2-4767-b022-a27b0e554af2
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: BOOLEAN
+        description: ""
+        name: data_matched_products_availability
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"availability\"::BOOLEAN"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e51759bd-8063-4c0e-8d2e-2741f653e845
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_crawl_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"crawl_date\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 71675d6d-c01d-4e1e-ab72-5774f74a7763
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"id\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e4c5cd7d-7dc7-47b6-884e-aa9e8cfc2703
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_in_cart
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"in_cart\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a7e9c29-1914-4345-ba8b-385705f0ce1d
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_marketplace_seller
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"marketplace_seller\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 813f7420-7f23-4f50-af5e-1d2fd1e250c5
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_match_type
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"match_type\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 71a22919-fe97-425d-b991-47503c93c6cc
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_matched_products_previous_price
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"previous_price\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83527da5-1eaa-4033-af8e-d5d28cc16e3f
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_matched_products_price
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"price\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4bf87b40-b105-4c8b-895e-24820d35528f
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_matched_products_regular_price
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"regular_price\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96aa6a72-c2ec-4700-8f61-dc0f29373363
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_matched_products_savings
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"savings\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 68903f7b-3b1c-410d-a927-2f6205239079
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_savings_message
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"savings_message\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28a78514-75a5-40e6-a7fb-bd3cffe20cde
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_shipping_message
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"shipping_message\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4e0440ea-4f02-407a-b0cd-b02bc3045be7
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_shipping_price
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"shipping_price\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7edc5c46-f23a-431b-a3e5-88b1ff81cec4
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_special_offer
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"special_offer\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 232b5162-93f4-4e6d-943d-9391fe432948
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_store_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"store_name\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: deef5e56-38ad-40e0-9607-2c67f1644438
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_matched_products_url
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data_matched_products\".value:\"url\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a036f3d-7ac3-4af8-88be-00c69f40c9e6
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: BOOLEAN
+        description: ""
+        name: data_sku_assortment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data\".value:\"sku\".\"assortment\"::BOOLEAN"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4070f29a-8ac3-4258-9d14-9f9e1683956e
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_sku_category_level_1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data\".value:\"sku\".\"category_level_1\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53903dbe-7913-4777-b17d-67477a5d6331
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_sku_category_level_2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data\".value:\"sku\".\"category_level_2\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 487a1857-c8ae-4d27-9dbd-24a7fd0d42fa
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_sku_environment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data\".value:\"sku\".\"environment\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a733d27-cba7-47b5-8d48-56bbf11c78bd
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_sku_master_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data\".value:\"sku\".\"master_id\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 62bc38a6-965a-4c76-abda-0d63602ee5d1
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_sku_sku
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data\".value:\"sku\".\"sku\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 357b2bb7-3b02-4c0e-8520-26ea40843d49
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_sku_title
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"DATA_data\".value:\"sku\".\"title\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 878795ae-9ee0-428f-9c51-14fe49435a00
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: pagination_details_page
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"LAND_SCRAPE_PRICE_INTELLIGENCE_IE\".\"DATA\":\"pagination_details\".\"page\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06544265-d9cf-4fbf-a5c8-e5723dff1a76
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: pagination_details_page_size
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"LAND_SCRAPE_PRICE_INTELLIGENCE_IE\".\"DATA\":\"pagination_details\".\"page_size\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 64a7d1d9-54f0-45f7-ad9f-065392787bba
+          stepCounter: 992f194b-215b-46c6-abd9-43eeaf936369
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: pagination_details_total_pages
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac71db9b-d434-45fa-99d5-60426434bf66
+                stepCounter: 18befbd7-adc7-43fa-a544-3c61865d1781
+            transform: "\"LAND_SCRAPE_PRICE_INTELLIGENCE_IE\".\"DATA\":\"pagination_details\".\"total_pages\"::DOUBLE"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: LAND
+            nodeName: LAND_SCRAPE_PRICE_INTELLIGENCE_IE
+        join:
+          joinCondition: |
+            FROM (  SELECT * 
+                    FROM {{ ref('LAND', 'LAND_SCRAPE_PRICE_INTELLIGENCE_IE') }}
+                    WHERE "TS" > (SELECT NVL(MAX(TS), '2025-01-01 12:00:00') FROM {{ref_no_link('DATASTORE', 'DS_SCRAPE_PRICE_INTELLIGENCE_IE')}})) "LAND_SCRAPE_PRICE_INTELLIGENCE_IE", 
+            lateral flatten(input => "DATA":"data", OUTER => TRUE) "DATA_data", 
+            lateral flatten(input => "DATA_data".value:"matched_products", OUTER => TRUE) "DATA_data_matched_products"
+        name: VW_SCRAPE_PRICE_INTELLIGENCE_IE
+        noLinkRefs:
+          - locationName: DATASTORE
+            nodeName: DS_SCRAPE_PRICE_INTELLIGENCE_IE
+  name: VW_SCRAPE_PRICE_INTELLIGENCE_IE
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

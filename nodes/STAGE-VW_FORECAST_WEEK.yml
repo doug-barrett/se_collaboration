@@ -1,0 +1,296 @@
+fileVersion: 1
+id: c15ef31d-106e-4e20-bb19-58294c730290
+name: VW_FORECAST_WEEK
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: "Just a bit of tidy up "
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1eaf0d7e-1a5d-4c5b-be06-d6e925e9b17f
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: FINANCIAL_YEAR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4002d1c2-ff8a-4b5f-927c-1f5be4257a85
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 329dfc93-0707-4bc4-80f7-70ba0c044734
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: FINANCIAL_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2246e010-ea5d-4b5b-975a-a51a8a65b11c
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6caf3f51-9acf-4da7-be8b-d08ba5125f23
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: FINANCIAL_YYWW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b60f7cc-94bc-46df-b522-0d7d00038d9b
+                stepCounter: 2d9f453e-f432-4a19-a605-81709e23d574
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04b40b0e-9368-469e-a3c9-f871869697ec
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c3a775e6-2770-4bd0-a611-f5098d1f4f47
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b5b869e-4efe-4709-ad2c-efcc6d505a52
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: CHAR(6)
+        description: ""
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b3f9a48-d33f-450f-bc1a-5ec6fabb7a3e
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a32c732-88f0-405e-876e-bdb92701d059
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: VARCHAR(32)
+        description: ""
+        name: FORECAST_KEYS
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d1c5cf8-05cd-485d-a12c-975d02bdbf11
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: ARRAY_UNIQUE_AGG("VW_FORECAST_DAY"."FORECAST_KEY")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 24989535-38a0-4df1-9a6e-95f2cbda1b85
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: WAS_NOW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f350f374-064e-4b25-80d9-7754557b862a
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."WAS_NOW")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 52140e63-9178-4367-b5e9-1ac25994c34c
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FORECAST_DAY_COUNT
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d1c5cf8-05cd-485d-a12c-975d02bdbf11
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: SUM(CASE WHEN "VW_FORECAST_DAY"."FORECAST_KEY" IS NOT NULL THEN 1 ELSE 0 END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9f00f518-97c7-4a24-a7a3-16e7cd38245a
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a07a6b91-fecd-4271-af85-a1f312256363
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: MAX("VW_FORECAST_DAY"."LEVEL3_DESC")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c314ccb-e7ac-4559-993f-4da3b9c37574
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UNITS_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd0faef7-5fce-4b95-ad84-490f6540950b
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL(SUM("VW_FORECAST_DAY"."UNITS_PER_DAY"),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2238420c-514b-497d-b530-d7b7acd4de3b
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: SALES_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7777a5d9-f958-4672-87be-533c06adc84d
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL(SUM("VW_FORECAST_DAY"."SALES_PER_DAY"),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f89c683b-3832-4f7a-9b1a-50fe2cdfb7c2
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: MARGIN_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1238c0e7-a552-42fa-b99f-640ffabaf2eb
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL(SUM("VW_FORECAST_DAY"."MARGIN_PER_DAY"),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9424622e-27bd-4bf9-b478-23ced40238b9
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UPLIFT_UNITS_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7cc110c5-c679-4586-a6e1-c8fd192cbe73
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL(SUM("VW_FORECAST_DAY"."UPLIFT_UNITS_PER_DAY"),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4466840e-8fdf-42c8-a83e-901e04b0aa36
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UPLIFT_SALES_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 80d29ed7-ee23-4b8a-8292-9a538b7d5596
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL(SUM("VW_FORECAST_DAY"."UPLIFT_SALES_PER_DAY"),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0c44d96-c675-4dd9-9ac7-e6b0154aca8a
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: UPLIFT_MARGIN_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e24f1d2a-3e2b-476b-a3a5-7a7ca7e951fc
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL(SUM("VW_FORECAST_DAY"."UPLIFT_MARGIN_PER_DAY"),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f5954194-19ee-4766-b71a-dd37cabc089e
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: BASE_UNITS_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ebe1c360-1102-40cb-aa05-9e03630bba77
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL(SUM("VW_FORECAST_DAY"."BASE_UNITS_PER_DAY"),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 91145a5c-d643-4d39-ae72-ba29fd8ba3b1
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: BASE_SALES_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d07e40f1-e2f2-4a52-bc89-054f2b715ac6
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL(SUM("VW_FORECAST_DAY"."BASE_SALES_PER_DAY"),0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8c3403eb-bfea-4285-8fcc-02f3463fdcdc
+          stepCounter: c15ef31d-106e-4e20-bb19-58294c730290
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        name: BASE_MARGIN_PER_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53561c20-604a-4fa4-9415-6ab8da8c5236
+                stepCounter: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+            transform: NVL(SUM("VW_FORECAST_DAY"."BASE_MARGIN_PER_DAY"),0)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
+          VW_FORECAST_DAY: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: STAGE
+            nodeName: VW_FORECAST_DAY
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_FORECAST_DAY') }} "VW_FORECAST_DAY"
+            JOIN {{ ref('DATA', 'DIM_DATE') }} "DIM_DATE"
+            ON "VW_FORECAST_DAY"."TRANSACTION_DATE" = "DIM_DATE"."CALENDAR_DATE"
+            GROUP BY 1, 2, 3, 4, 5
+        name: VW_FORECAST_WEEK
+        noLinkRefs: []
+  name: VW_FORECAST_WEEK
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

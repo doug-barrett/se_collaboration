@@ -1,0 +1,311 @@
+fileVersion: 1
+id: 80a07f9d-e8b1-454c-b0de-13110a136c46
+name: VW_PRICE_COST_REBATE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: true
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8c84cffb-c9fe-4517-a769-42efe625b9eb
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        name: PC_DT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ad454901-83a3-46f9-8e18-c781187bee43
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: ""
+          - columnReferences:
+              - columnCounter: 7f992685-e0af-41af-ac68-eb05dff2e3b6
+                stepCounter: 8dcedc32-0f23-4442-9055-b28302c5355b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b8b16a5c-6c0c-472e-a512-197a18b8658a
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: ZONE_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab24f5cd-4934-4316-88d9-833a838a73e5
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: ""
+          - columnReferences:
+              - columnCounter: 831af2f4-7b72-4c4e-b93d-72aae42b7508
+                stepCounter: 8dcedc32-0f23-4442-9055-b28302c5355b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32542283-5688-44e3-b1cb-c676f3e9d7a5
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7c9f7041-8ce7-4649-819f-e55a18e36b8e
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: ""
+          - columnReferences:
+              - columnCounter: edda7a5d-7360-4335-8730-c6a9ca7ba0a5
+                stepCounter: 8dcedc32-0f23-4442-9055-b28302c5355b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 99ccd888-6831-42ff-859f-1b75b16f529d
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: caf80271-9275-4e9a-a52c-733a20787f47
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: NVL("DS_PRICE_COST"."PRICE",0)
+          - columnReferences:
+              - columnCounter: b1eb900e-6eff-4f3f-90d6-a601a3a65367
+                stepCounter: 8dcedc32-0f23-4442-9055-b28302c5355b
+            transform: NVL("DS_PRICE_COST_FUTURE"."PRICE",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 46d9f670-89c4-418f-bd41-29e1d61bc779
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: COST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 05c8cb6d-4150-4a21-9023-d4fe013b1c48
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: NVL("DS_PRICE_COST"."COST",0)
+          - columnReferences:
+              - columnCounter: 1d25de0d-fa2b-4cf1-bcf7-6c685d371105
+                stepCounter: 8dcedc32-0f23-4442-9055-b28302c5355b
+            transform: NVL("DS_PRICE_COST_FUTURE"."COST",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 727a3f24-d23c-4324-acc2-b9ade0f9dd3b
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: VAT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9ef2a537-2d14-4113-8f96-df18b285617d
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: |-
+              NVL("DS_PRICE_COST"."VAT_PERCENT",
+                  CASE WHEN "DS_PRICE_COST".ZONE_CODE IN (4, 5) THEN 23
+                  ELSE 20
+                  END
+              )
+          - columnReferences:
+              - columnCounter: 41241634-6373-45be-93bd-cafe5ad7aced
+                stepCounter: 8dcedc32-0f23-4442-9055-b28302c5355b
+            transform: |-
+              NVL("DS_PRICE_COST_FUTURE"."VAT_PERCENT",
+                  CASE WHEN ZONE_CODE IN (4, 5) THEN 23
+                  ELSE 20
+                  END
+              )
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 561bdc80-296a-41f9-84eb-13c306e15a59
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: ACP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8f4d51c-f702-40fb-81ee-45cd33e76987
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: NVL("DS_PRICE_COST"."ACP",0)
+          - columnReferences:
+              - columnCounter: e8e868c4-1130-4c67-a916-212830e7430d
+                stepCounter: 8dcedc32-0f23-4442-9055-b28302c5355b
+            transform: NVL("DS_PRICE_COST_FUTURE"."ACP",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e1d44453-0851-4370-afd1-258fd74d2ad4
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: UBC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c435a63c-b37a-4315-95f2-bf3fe813e8a8
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: NVL("DS_PRICE_COST"."UBC",0)
+          - columnReferences:
+              - columnCounter: 15e5f1d0-78a3-48cd-9707-07cffef6e8f4
+                stepCounter: 8dcedc32-0f23-4442-9055-b28302c5355b
+            transform: NVL("DS_PRICE_COST_FUTURE"."UBC",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2e94511-f191-4a66-bc89-d93ade0d58ac
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: SOA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e09d2e1-54c2-44e9-bec4-b7c91e6d9d5e
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: NVL("DS_PRICE_COST"."SOA",0)
+          - columnReferences:
+              - columnCounter: bbd0d5ab-5404-4011-9488-ecced224388f
+                stepCounter: 8dcedc32-0f23-4442-9055-b28302c5355b
+            transform: NVL("DS_PRICE_COST_FUTURE"."SOA",0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 86da9bf4-d3dd-4c41-80f9-c96c196a21bc
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: TAKE_IN_COST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aeddabca-29fb-4e59-8d63-b9aeb96c5f91
+                stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+            transform: NVL("DS_PRICE_COST"."TAKE_IN_COST",0)
+          - columnReferences: []
+            transform: "0"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2009f760-e68a-421f-af22-76d0fe728f6d
+          stepCounter: 80a07f9d-e8b1-454c-b0de-13110a136c46
+        config: {}
+        dataType: NUMBER(5,2)
+        description: ""
+        name: APPLIED_TA_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fcf7236e-e968-4304-9bfd-5d72d7dd6379
+                stepCounter: 34345fae-180f-4d96-9eb7-f500b1a2892f
+            transform: NVL("DS_SUPPLIER_REBATE"."APPLIED_TA_PERCENT",0)
+          - columnReferences:
+              - columnCounter: fcf7236e-e968-4304-9bfd-5d72d7dd6379
+                stepCounter: 34345fae-180f-4d96-9eb7-f500b1a2892f
+            transform: NVL("DS_SUPPLIER_REBATE"."APPLIED_TA_PERCENT",0)
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
+          DS_PRICE_COST: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
+          DS_PRODUCT: 3c49b8ad-a39f-4dc6-975c-0dd2c4ce0f25
+          DS_SUPPLIER_REBATE: 34345fae-180f-4d96-9eb7-f500b1a2892f
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: DATASTORE
+            nodeName: DS_PRICE_COST
+          - locationName: DATASTORE
+            nodeName: DS_PRODUCT
+          - locationName: DATASTORE
+            nodeName: DS_SUPPLIER_REBATE
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATASTORE', 'DS_PRICE_COST') }} "DS_PRICE_COST"
+            JOIN {{ ref('DATASTORE', 'DS_PRODUCT')}} "DS_PRODUCT"
+            ON "DS_PRICE_COST"."PRODKEY" = "DS_PRODUCT"."PRODKEY"
+            JOIN {{ ref('DATA', 'DIM_DATE')}} "DIM_DATE"
+            ON "DS_PRICE_COST"."PC_DT" = "DIM_DATE"."CALENDAR_DATE"
+            LEFT JOIN {{ ref('DATASTORE', 'DS_SUPPLIER_REBATE') }} "DS_SUPPLIER_REBATE"
+            ON "DIM_DATE"."FINANCIAL_YEAR" = "DS_SUPPLIER_REBATE"."FINANCIAL_YEAR"
+            AND "DS_PRODUCT"."LEVEL3_CODE" = "DS_SUPPLIER_REBATE"."MA_CODE"
+            AND UPPER("DS_PRODUCT"."BRAND") = UPPER("DS_SUPPLIER_REBATE".BRAND)
+            LEFT JOIN (SELECT   ZONE_CODE, 
+                                PRODKEY, 
+                                MAX(PC_DT) PC_DT 
+                        FROM {{ ref_no_link('DATA', 'DIM_PRICE_COST_2')}} 
+                        WHERE PC_DT < CURRENT_DATE - 7
+                        GROUP BY 1,2 ) "DIM_PRICE_COST_2"
+            ON "DS_PRICE_COST"."ZONE_CODE" = DIM_PRICE_COST_2."ZONE_CODE"
+            AND "DS_PRICE_COST"."PRODKEY" = "DIM_PRICE_COST_2"."PRODKEY"
+            WHERE "DS_PRICE_COST".PC_DT >= NVL("DIM_PRICE_COST_2".PC_DT, '2000-01-01')
+        name: PRICE_COST
+        noLinkRefs:
+          - locationName: DATA
+            nodeName: DIM_PRICE_COST_2
+      - aliases:
+          DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
+          DS_PRICE_COST_FUTURE: 8dcedc32-0f23-4442-9055-b28302c5355b
+          DS_PRODUCT: 3c49b8ad-a39f-4dc6-975c-0dd2c4ce0f25
+          DS_SUPPLIER_REBATE: 34345fae-180f-4d96-9eb7-f500b1a2892f
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_DATE
+          - locationName: DATASTORE
+            nodeName: DS_PRICE_COST_FUTURE
+          - locationName: DATASTORE
+            nodeName: DS_PRODUCT
+          - locationName: DATASTORE
+            nodeName: DS_SUPPLIER_REBATE
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATASTORE', 'DS_PRICE_COST_FUTURE') }} "DS_PRICE_COST_FUTURE"
+            JOIN {{ ref('DATASTORE', 'DS_PRODUCT')}} "DS_PRODUCT"
+            ON "DS_PRICE_COST_FUTURE"."PRODKEY" = "DS_PRODUCT"."PRODKEY"
+            JOIN {{ ref('DATA', 'DIM_DATE')}} "DIM_DATE"
+            ON "DS_PRICE_COST_FUTURE"."EFFECTIVE_DATE" = "DIM_DATE"."CALENDAR_DATE"
+            LEFT JOIN {{ ref('DATASTORE', 'DS_SUPPLIER_REBATE') }} "DS_SUPPLIER_REBATE"
+            ON "DIM_DATE"."FINANCIAL_YEAR" = "DS_SUPPLIER_REBATE"."FINANCIAL_YEAR"
+            AND "DS_PRODUCT"."LEVEL3_CODE" = "DS_SUPPLIER_REBATE"."MA_CODE"
+            AND UPPER("DS_PRODUCT"."BRAND") = UPPER("DS_SUPPLIER_REBATE".BRAND)
+            WHERE DS_PRICE_COST_FUTURE."EFFECTIVE_DATE" > CURRENT_DATE
+        name: FUTURE_PRICE_COST
+        noLinkRefs: []
+  name: VW_PRICE_COST_REBATE
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,89 @@
+fileVersion: 1
+id: db08d69d-49e3-4857-8c0b-c0f4e439067a
+name: VW_SECURITY_MA_BRAND
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: true
+  database: ""
+  deployEnabled: true
+  description: Type 1 Product Dimension - no surrogate key required
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e0e53ea5-2a66-4305-90f5-2c6adf7da46a
+          stepCounter: db08d69d-49e3-4857-8c0b-c0f4e439067a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LEVEL3_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76b80dd0-990c-439c-9b2a-f320fd772670
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9f4f7818-ddc7-4d0b-868a-06dcee3f19ad
+          stepCounter: db08d69d-49e3-4857-8c0b-c0f4e439067a
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f4ad576f-9893-4276-bd90-5230454ade05
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ceca75f0-9ae0-489e-961e-d444340eaa75
+          stepCounter: db08d69d-49e3-4857-8c0b-c0f4e439067a
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: LOGIN_NAMES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 739ffea7-d204-400d-90c2-f7b584e2829b
+                stepCounter: a3d87eb5-609c-46ce-b06a-bfdb77d28943
+            transform: LISTAGG(DISTINCT UPPER("USER_SECURITY"."LOGIN_NAME"), ',')
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_PRODUCT: 99510b9e-1d3e-4709-93b8-2042202093b0
+          USER_SECURITY: a3d87eb5-609c-46ce-b06a-bfdb77d28943
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: INPUT
+            nodeName: USER_SECURITY
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            JOIN {{ ref('INPUT', 'USER_SECURITY') }}  USER_SECURITY
+              ON ("DIM_PRODUCT"."LEVEL1_DESC" = "USER_SECURITY"."LEVEL1_DESC" OR "USER_SECURITY"."LEVEL1_DESC" = '<ALL>')
+             AND ("DIM_PRODUCT"."LEVEL2_DESC" = "USER_SECURITY"."LEVEL2_DESC" OR "USER_SECURITY"."LEVEL2_DESC" = '<ALL>')
+             AND ("DIM_PRODUCT"."LEVEL3_DESC" = "USER_SECURITY"."LEVEL3_DESC" OR "USER_SECURITY"."LEVEL3_DESC" = '<ALL>')  
+             AND ("DIM_PRODUCT"."BRAND" = "USER_SECURITY"."BRAND" OR "USER_SECURITY"."BRAND" = '<ALL>')
+             GROUP BY ALL
+        name: VW_SECURITY_MA_BRAND
+        noLinkRefs: []
+  name: VW_SECURITY_MA_BRAND
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

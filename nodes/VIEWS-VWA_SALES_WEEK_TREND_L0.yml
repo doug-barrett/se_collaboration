@@ -1,0 +1,129 @@
+fileVersion: 1
+id: 988b28dc-d578-4478-94f0-323217b069c3
+name: VWA_SALES_WEEK_TREND_L0
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: VIEWS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e36eb011-324b-4bee-a9e1-7e559e82e879
+          stepCounter: 988b28dc-d578-4478-94f0-323217b069c3
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d37ebef-8f3c-4a4f-94e9-018cb65b5092
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fde0b9a8-09be-4933-8c0e-575963658f02
+          stepCounter: 988b28dc-d578-4478-94f0-323217b069c3
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        name: FINANCIAL_WEEK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: afc46ff0-5c10-40f7-b535-680415df4a42
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97a98a49-1ffc-4cdf-9d11-a87a8cafc385
+          stepCounter: 988b28dc-d578-4478-94f0-323217b069c3
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        name: LEVEL0_DESC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d4b20c23-0adf-486d-bfb0-6ae9cf0c243b
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c79894fa-c65f-4636-8250-1b0bea2c6b7b
+          stepCounter: 988b28dc-d578-4478-94f0-323217b069c3
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: AVG_UNITS_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9cfe9a5d-8944-42b2-bd32-40ae5fdd5640
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: SUM("FCT_SALES_WEEK_TREND"."AVG_UNITS_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d4677e04-72fa-4795-9f71-e3cf89d443a8
+          stepCounter: 988b28dc-d578-4478-94f0-323217b069c3
+        config: {}
+        dataType: DECIMAL(16,2)
+        description: ""
+        hashDetails: null
+        name: AVG_SALES_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 75084d10-ca2d-4eaa-b4d9-d0a10561d647
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: SUM("FCT_SALES_WEEK_TREND"."AVG_SALES_NET")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7391e024-eada-44df-b30e-589239899d16
+          stepCounter: 988b28dc-d578-4478-94f0-323217b069c3
+        config: {}
+        dataType: NUMBER(16,2)
+        description: ""
+        hashDetails: null
+        name: AVG_MARGIN_NET
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1c4e17f-2c76-482d-8ee1-b1029d37e7de
+                stepCounter: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+            transform: SUM("FCT_SALES_WEEK_TREND"."AVG_MARGIN_NET")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          FCT_SALES_WEEK_TREND: 1ee3c31b-67ec-4290-b99f-ca20fc66adcd
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: FCT_SALES_WEEK_TREND
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_SALES_WEEK_TREND') }} "FCT_SALES_WEEK_TREND"
+            GROUP BY 1, 2, 3
+        name: VWA_SALES_WEEK_TREND_L0
+        noLinkRefs: []
+  name: VWA_SALES_WEEK_TREND_L0
+  overrideSQL: false
+  schema: ""
+  sqlType: "17"
+  type: sql
+  version: 1
+type: Node

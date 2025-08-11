@@ -1,0 +1,121 @@
+fileVersion: 1
+id: 354d71c7-2420-4e03-84e1-f6283417f471
+name: DIM_SCRAPE_COMPETITOR
+operation:
+  config:
+    postSQL: ""
+    postSQL1: null
+    postSQL2: null
+    postSQL3: null
+    postSQL4: null
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DATA
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e4b6888e-a329-468f-8792-832e5924a722
+          stepCounter: 354d71c7-2420-4e03-84e1-f6283417f471
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: COMPETITOR_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcb1cdf4-5fdc-4e19-a1b5-5a48f91d86f7
+                stepCounter: 47e03487-00dc-46bb-878c-c05cb1454595
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 283b406e-6c84-4bcf-b9ea-050d13cf89a4
+          stepCounter: 354d71c7-2420-4e03-84e1-f6283417f471
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5bf0169e-c257-47bf-b987-2aa3ab07bfd6
+                stepCounter: 47e03487-00dc-46bb-878c-c05cb1454595
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 576dfa89-936e-47ae-823e-de80af9c6dce
+          stepCounter: 354d71c7-2420-4e03-84e1-f6283417f471
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_NAME_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6b50a669-6e88-435c-93d0-b727fffdf84c
+                stepCounter: 47e03487-00dc-46bb-878c-c05cb1454595
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6862acef-87f1-452a-b10d-d254228106ff
+          stepCounter: 354d71c7-2420-4e03-84e1-f6283417f471
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f2a8518-783a-47eb-bd53-2f3ac1064bcd
+          stepCounter: 354d71c7-2420-4e03-84e1-f6283417f471
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_DIM_SCRAPE_COMPETITOR
+        join:
+          joinCondition: FROM {{ ref('STAGE', 'VW_DIM_SCRAPE_COMPETITOR') }} "VW_DIM_SCRAPE_COMPETITOR"
+        name: DIM_SCRAPE_COMPETITOR
+        noLinkRefs: []
+  name: DIM_SCRAPE_COMPETITOR
+  overrideSQL: false
+  schema: ""
+  sqlType: "19"
+  type: sql
+  version: 1
+type: Node

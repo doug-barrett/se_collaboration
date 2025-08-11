@@ -1,0 +1,69 @@
+fileVersion: 1
+id: 7b0d2b59-543d-4be1-bdd7-5cca122b9a9b
+name: VW_PRODUCT_ACTIVE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 98d59a4c-735e-4bff-8189-1b460c1dd92c
+          stepCounter: 7b0d2b59-543d-4be1-bdd7-5cca122b9a9b
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b042c2b0-59dc-4ca8-8f3e-4023818df9aa
+                stepCounter: ae3955ef-970c-43cb-8889-51a7f41066c6
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26d2013f-90aa-44ff-afe6-6aad861297b6
+          stepCounter: 7b0d2b59-543d-4be1-bdd7-5cca122b9a9b
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcc39867-91fa-4c55-a8aa-68037cfef00d
+                stepCounter: 60485eef-5f0f-4e58-88de-e60de6bdd818
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_PRODUCT_ACTIVE: ae3955ef-970c-43cb-8889-51a7f41066c6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_ZONE
+          - locationName: STAGE
+            nodeName: STG_PRODUCT_ACTIVE
+        join:
+          joinCondition: |
+            FROM {{ ref('STAGE', 'STG_PRODUCT_ACTIVE') }} "STG_PRODUCT_ACTIVE"
+            CROSS JOIN (SELECT DISTINCT ZONE_GEOGRAPHY FROM {{ ref('DATA', 'DIM_ZONE') }} WHERE NVL(ZONE_GEOGRAPHY,'UNKNOWN') <> 'UNKNOWN' ) "DIM_ZONE"
+        name: VW_PRODUCT_ACTIVE
+        noLinkRefs: []
+  name: VW_PRODUCT_ACTIVE
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

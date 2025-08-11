@@ -1,0 +1,77 @@
+fileVersion: 1
+id: bac21ba3-7533-4b2d-a25e-5d232355061f
+name: VW_SECURITY_PRODUCT
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: true
+  database: ""
+  deployEnabled: true
+  description: Type 1 Product Dimension - no surrogate key required
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: da085e1b-e862-4508-be21-c5847212b940
+          stepCounter: bac21ba3-7533-4b2d-a25e-5d232355061f
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9921cb06-6ba1-403b-b62c-b07f610c59c2
+                stepCounter: 99510b9e-1d3e-4709-93b8-2042202093b0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70ea1f4d-cca0-47d1-a357-63e454f457e1
+          stepCounter: bac21ba3-7533-4b2d-a25e-5d232355061f
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: LOGIN_NAMES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 739ffea7-d204-400d-90c2-f7b584e2829b
+                stepCounter: a3d87eb5-609c-46ce-b06a-bfdb77d28943
+            transform: LISTAGG(DISTINCT UPPER("USER_SECURITY"."LOGIN_NAME"), ',')
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_PRODUCT: 99510b9e-1d3e-4709-93b8-2042202093b0
+          USER_SECURITY: a3d87eb5-609c-46ce-b06a-bfdb77d28943
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: DIM_PRODUCT
+          - locationName: INPUT
+            nodeName: USER_SECURITY
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
+            JOIN {{ ref('INPUT', 'USER_SECURITY') }}  USER_SECURITY
+              ON ("DIM_PRODUCT"."LEVEL1_DESC" = "USER_SECURITY"."LEVEL1_DESC" OR "USER_SECURITY"."LEVEL1_DESC" = '<ALL>')
+             AND ("DIM_PRODUCT"."LEVEL2_DESC" = "USER_SECURITY"."LEVEL2_DESC" OR "USER_SECURITY"."LEVEL2_DESC" = '<ALL>')
+             AND ("DIM_PRODUCT"."LEVEL3_DESC" = "USER_SECURITY"."LEVEL3_DESC" OR "USER_SECURITY"."LEVEL3_DESC" = '<ALL>')
+             AND ("DIM_PRODUCT"."LEVEL4_DESC" = "USER_SECURITY"."LEVEL4_DESC" OR "USER_SECURITY"."LEVEL4_DESC" = '<ALL>')     
+             AND ("DIM_PRODUCT"."BRAND" = "USER_SECURITY"."BRAND" OR "USER_SECURITY"."BRAND" = '<ALL>')
+             GROUP BY "DIM_PRODUCT"."PRODKEY"
+        name: VW_SECURITY_PRODUCT
+        noLinkRefs: []
+  name: VW_SECURITY_PRODUCT
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

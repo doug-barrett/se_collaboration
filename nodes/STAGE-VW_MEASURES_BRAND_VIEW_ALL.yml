@@ -1,0 +1,128 @@
+fileVersion: 1
+id: f8dbc16a-f6d6-48c2-8051-c798c710eb8f
+name: VW_MEASURES_BRAND_VIEW_ALL
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fb051abe-ce6b-4449-9b3b-cc292622df6e
+          stepCounter: f8dbc16a-f6d6-48c2-8051-c798c710eb8f
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        hashDetails: null
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4863dd9c-9a24-4970-96a6-309e2fa61c22
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fca32c6b-8dba-4ee7-978e-3508da0e4c83
+          stepCounter: f8dbc16a-f6d6-48c2-8051-c798c710eb8f
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        hashDetails: null
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bfd20a9b-f217-440a-aaa1-6dfb0a94c86d
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3706943-3d32-4077-b27e-f091c8d282fd
+          stepCounter: f8dbc16a-f6d6-48c2-8051-c798c710eb8f
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: RETAILER_MIN_PRICE_EVER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 68b60afb-0469-4392-92d0-46e570adae56
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: MIN("FCT_BRAND_VIEW_DAY"."PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 290ae016-d100-4b94-bbb0-1eed4d1265c9
+          stepCounter: f8dbc16a-f6d6-48c2-8051-c798c710eb8f
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: RETAILER_MAX_PRICE_EVER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 68b60afb-0469-4392-92d0-46e570adae56
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: MAX("FCT_BRAND_VIEW_DAY"."PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 67324768-c1be-4b6d-bdc7-43cf739aa3ea
+          stepCounter: f8dbc16a-f6d6-48c2-8051-c798c710eb8f
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_MIN_PRICE_EVER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4aab10f2-1d67-4ed4-989a-3fe52f3ec6a9
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: MIN("FCT_BRAND_VIEW_DAY"."COMPETITOR_MIN_PRICE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2de2b3af-5b40-45d2-b53a-ce88d1235e04
+          stepCounter: f8dbc16a-f6d6-48c2-8051-c798c710eb8f
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashDetails: null
+        name: COMPETITOR_MAX_PRICE_EVER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eb62f712-9d93-4e9a-b377-19fe3020eb73
+                stepCounter: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+            transform: MAX("FCT_BRAND_VIEW_DAY"."COMPETITOR_MAX_PRICE")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          FCT_BRAND_VIEW_DAY: 80a6e55c-d942-4309-91f9-8e7e0ff216c8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DATA
+            nodeName: FCT_BRAND_VIEW_DAY
+        join:
+          joinCondition: |-
+            FROM {{ ref('DATA', 'FCT_BRAND_VIEW_DAY') }} "FCT_BRAND_VIEW_DAY"
+            GROUP BY 1, 2
+        name: VW_MEASURES_BRAND_VIEW_ALL
+        noLinkRefs: []
+  name: VW_MEASURES_BRAND_VIEW_ALL
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

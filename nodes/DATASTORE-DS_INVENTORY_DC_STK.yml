@@ -1,0 +1,118 @@
+fileVersion: 1
+id: d2448fb0-ea93-4b6a-aba4-f31878348b35
+name: DS_INVENTORY_DC_STK
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DATASTORE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6bcc1511-5969-40e5-8104-3c4f00c07f98
+          stepCounter: d2448fb0-ea93-4b6a-aba4-f31878348b35
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: DC_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd39b49a-d81e-4173-8ecb-f0ec61188868
+                stepCounter: 1f8f41a9-8234-43bd-bd84-c72bb5f2f4c6
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a2a15dbd-9bc5-4770-bacb-344c976e7fc1
+          stepCounter: d2448fb0-ea93-4b6a-aba4-f31878348b35
+        config: {}
+        dataType: VARCHAR(50)
+        description: This is the product key
+        hashDetails: null
+        isBusinessKey: true
+        name: PRODKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e8ce9c6e-5fe7-410a-9a58-29e82df4c2c6
+                stepCounter: 1f8f41a9-8234-43bd-bd84-c72bb5f2f4c6
+            transform: RIGHT('000000'||"PRODKEY",6)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8778e2d-78e9-45b6-9e72-67144b91b648
+          stepCounter: d2448fb0-ea93-4b6a-aba4-f31878348b35
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        hashDetails: null
+        name: INVENTORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7b8142e8-50d7-4373-8ba8-0d93f7d6c5f7
+                stepCounter: 1f8f41a9-8234-43bd-bd84-c72bb5f2f4c6
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e024b35a-7c0c-4a0e-a233-7a721041fef0
+          stepCounter: d2448fb0-ea93-4b6a-aba4-f31878348b35
+        config: {}
+        dataType: DATE
+        description: ""
+        hashDetails: null
+        isBusinessKey: true
+        name: UPDATED_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a14dabbf-2e28-4a71-83b6-9e2cec478df0
+                stepCounter: 1f8f41a9-8234-43bd-bd84-c72bb5f2f4c6
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d3204c49-77ce-4bae-be1e-fb49b284fea8
+          stepCounter: d2448fb0-ea93-4b6a-aba4-f31878348b35
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          LAND_INVENTORY_DC_STOCK: 1f8f41a9-8234-43bd-bd84-c72bb5f2f4c6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: LAND
+            nodeName: LAND_INVENTORY_DC_STOCK
+        join:
+          joinCondition: FROM {{ ref('LAND', 'LAND_INVENTORY_DC_STOCK') }} "LAND_INVENTORY_DC_STOCK"
+        name: DS_INVENTORY_DC_STK
+        noLinkRefs: []
+  name: DS_INVENTORY_DC_STK
+  overrideSQL: false
+  schema: ""
+  sqlType: "1"
+  type: sql
+  version: 1
+type: Node
