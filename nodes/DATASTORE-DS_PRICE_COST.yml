@@ -17,18 +17,16 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ad454901-83a3-46f9-8e18-c781187bee43
+          columnCounter: fdffbece-74c7-4557-9322-31d6d196a24e
           stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
         config: {}
         dataType: DATE
         description: ""
-        hashDetails: null
-        isBusinessKey: true
-        name: PC_DT
+        name: PC_DATE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 9377887c-6861-44e7-964f-6b0938d6af8d
+              - columnCounter: 9dd80fc0-a635-497b-aefc-f6417035e754
                 stepCounter: 35c303fb-2a87-4840-9fb1-9458f2aa6456
             transform: ""
       - appliedColumnTests: {}
@@ -91,36 +89,6 @@ operation:
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 769ebab3-a4b0-4e54-805d-f8568724f064
-                stepCounter: 35c303fb-2a87-4840-9fb1-9458f2aa6456
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: a4b1190d-69ff-4b19-86d5-43fd09cbbd9b
-          stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
-        config: {}
-        dataType: DECIMAL(9,2)
-        description: ""
-        hashDetails: null
-        name: FUTURE_COST
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 1992c36f-23bf-4ef6-a0c2-7adca80b32e0
-                stepCounter: 35c303fb-2a87-4840-9fb1-9458f2aa6456
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 8d0607c4-5820-45b3-a5e0-9183b810d70c
-          stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
-        config: {}
-        dataType: DATE
-        description: ""
-        hashDetails: null
-        name: EFFECTIVE_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: b1077ca7-f219-499e-8393-16bd88f0d195
                 stepCounter: 35c303fb-2a87-4840-9fb1-9458f2aa6456
             transform: ""
       - appliedColumnTests: {}
@@ -395,8 +363,8 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('LAND', 'LAND_PRICE_COST') }} "LAND_PRICE_COST"
-            QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY "LAND_PRICE_COST"."ZONE_CODE", RIGHT('000000'||"LAND_PRICE_COST"."PRODKEY",6), "LAND_PRICE_COST"."PC_DT"
-                                           ORDER BY "LAND_PRICE_COST"."PC_DT" DESC)
+            QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY "LAND_PRICE_COST"."ZONE_CODE", RIGHT('000000'||"LAND_PRICE_COST"."PRODKEY",6), "LAND_PRICE_COST"."PC_DATE"
+                                           ORDER BY "LAND_PRICE_COST"."PC_DATE" DESC)
         name: DS_PRICE_COST
         noLinkRefs: []
   name: DS_PRICE_COST

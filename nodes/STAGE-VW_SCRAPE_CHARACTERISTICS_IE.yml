@@ -363,7 +363,7 @@ operation:
           - columnReferences:
               - columnCounter: 657d944d-f241-4024-81a0-15a6bfbbc453
                 stepCounter: cb1e43ba-bc2a-44df-8ed6-44d665aeea03
-            transform: "\"METADATA$FILENAME\""
+            transform: "''"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 05c19c4c-7e07-49f4-8e97-30cd69e154c2
@@ -377,7 +377,7 @@ operation:
           - columnReferences:
               - columnCounter: 69e2501f-a657-41a5-8f2d-1c4eeee45c9d
                 stepCounter: 7fc44ca4-167d-4a98-a98f-4251aaafe810
-            transform: "\"METADATA$FILENAME\""
+            transform: "''"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: a7d88910-3784-491c-b097-7a17d057b03b
@@ -400,10 +400,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: LAND_EXT
+          - locationName: LAND
             nodeName: EXT_SCRAPE_CHARACTERISTICS_IRELAND
         join:
-          joinCondition: FROM {{ ref('LAND_EXT', 'EXT_SCRAPE_CHARACTERISTICS_IRELAND') }} "EXT_SCRAPE_CHARACTERISTICS_IRELAND"
+          joinCondition: FROM {{ ref('LAND', 'EXT_SCRAPE_CHARACTERISTICS_IRELAND') }} "EXT_SCRAPE_CHARACTERISTICS_IRELAND"
         name: VW_SCRAPE_CHARACTERISTICS_IE
         noLinkRefs: []
   name: VW_SCRAPE_CHARACTERISTICS_IE

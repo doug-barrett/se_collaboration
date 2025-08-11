@@ -97,7 +97,7 @@ operation:
           - columnReferences:
               - columnCounter: 0576711c-9e2b-49a6-aed7-4d1a64458ce2
                 stepCounter: cefb635f-4c7c-4785-ba04-f6d326461880
-            transform: METADATA$FILENAME
+            transform: "''"
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -106,10 +106,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: LAND_EXT
+          - locationName: LAND
             nodeName: EXT_SCRAPE_COMPETITOR_CODES
         join:
-          joinCondition: FROM {{ ref('LAND_EXT', 'EXT_SCRAPE_COMPETITOR_CODES') }} "EXT_SCRAPE_COMPETITOR_CODES"
+          joinCondition: FROM {{ ref('LAND', 'EXT_SCRAPE_COMPETITOR_CODES') }} "EXT_SCRAPE_COMPETITOR_CODES"
         name: VW_SCRAPE_COMPETITORS
         noLinkRefs: []
   name: VW_SCRAPE_COMPETITORS

@@ -933,7 +933,12 @@ operation:
                AND NVL(VW_SCRAPE_RETAILER.COMPETITOR_CATEGORY_LV3,'*') = NVL(VW_SCRAPE_COMPETITOR.COMPETITOR_CATEGORY_LV3,'*')
                AND VW_SCRAPE_RETAILER.COMPETITOR_SKU <> VW_SCRAPE_COMPETITOR.COMPETITOR_SKU
               WHERE VW_SCRAPE_RETAILER.PRODKEY IS NOT NULL
-              AND (SIMILARITY_PRICE >= 95 OR SIMILARITY_PRODUCT_NAME = 100)
+              AND (
+                     SIMILARITY_PRICE >= 95 
+                  OR SIMILARITY_PRODUCT_NAME = 100
+                  OR (SIMILARITY_SPEC >= 90 AND SIMILARITY_PRICE >= 90)
+                  OR SIMILARITY >= 95
+                  )
         name: WIIBIT_MATCH
         noLinkRefs: []
       - aliases:

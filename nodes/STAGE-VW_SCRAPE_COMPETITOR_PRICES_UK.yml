@@ -349,7 +349,7 @@ operation:
           - columnReferences:
               - columnCounter: a3cef43b-8cf6-4a3e-b81f-bf30e5dbe012
                 stepCounter: caac1502-eab4-49c4-9d50-321b3da03e7d
-            transform: METADATA$FILENAME
+            transform: "''"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 07ae4908-726c-4496-bb90-d6b63eb0ca18
@@ -363,7 +363,7 @@ operation:
           - columnReferences:
               - columnCounter: a3cef43b-8cf6-4a3e-b81f-bf30e5dbe012
                 stepCounter: caac1502-eab4-49c4-9d50-321b3da03e7d
-            transform: METADATA$FILENAME
+            transform: "''"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 38375d60-5d0b-45fd-8b6b-5a2fece28e07
@@ -386,10 +386,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: LAND_EXT
+          - locationName: LAND
             nodeName: EXT_SCRAPE_COMPETITOR_PRICES_UK
         join:
-          joinCondition: FROM {{ ref('LAND_EXT', 'EXT_SCRAPE_COMPETITOR_PRICES_UK') }} "EXT_SCRAPE_COMPETITOR_PRICES_UK"
+          joinCondition: FROM {{ ref('LAND', 'EXT_SCRAPE_COMPETITOR_PRICES_UK') }} "EXT_SCRAPE_COMPETITOR_PRICES_UK"
         name: VW_SCRAPE_COMPETITOR_PRICES_UK
         noLinkRefs: []
   name: VW_SCRAPE_COMPETITOR_PRICES_UK

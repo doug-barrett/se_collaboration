@@ -349,7 +349,7 @@ operation:
           - columnReferences:
               - columnCounter: 8a92cd09-cf24-440b-b2dc-83aa35cabdd2
                 stepCounter: 440c29ac-c7ef-4cbc-824f-5f126bdad807
-            transform: METADATA$FILENAME
+            transform: "''"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: fd92999b-f573-4f23-b554-6a030c46f5ab
@@ -363,7 +363,7 @@ operation:
           - columnReferences:
               - columnCounter: 8a92cd09-cf24-440b-b2dc-83aa35cabdd2
                 stepCounter: 440c29ac-c7ef-4cbc-824f-5f126bdad807
-            transform: METADATA$FILENAME
+            transform: "''"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 54d99ee4-7c51-44a5-9b86-db76f5eae1db
@@ -386,10 +386,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: LAND_EXT
+          - locationName: LAND
             nodeName: EXT_SCRAPE_COMPETITOR_PRICES_IRELAND
         join:
-          joinCondition: FROM {{ ref('LAND_EXT', 'EXT_SCRAPE_COMPETITOR_PRICES_IRELAND') }} "EXT_SCRAPE_COMPETITOR_PRICES_IRELAND"
+          joinCondition: FROM {{ ref('LAND', 'EXT_SCRAPE_COMPETITOR_PRICES_IRELAND') }} "EXT_SCRAPE_COMPETITOR_PRICES_IRELAND"
         name: VW_SCRAPE_COMPETITOR_PRICES_IE
         noLinkRefs: []
   name: VW_SCRAPE_COMPETITOR_PRICES_IE

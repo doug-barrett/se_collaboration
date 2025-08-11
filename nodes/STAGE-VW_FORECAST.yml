@@ -32,7 +32,7 @@ operation:
           - columnReferences:
               - columnCounter: 15e21c05-58c0-4496-9d57-36bf2dd896ec
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: MD5(NVL("EVENT_INPUT"."ZONE",'UK')||RIGHT('000000'||"EVENT_INPUT"."SKU", 6)||TO_CHAR("EVENT_INPUT"."START_DATE",'YYYY-MM-DD'))
+            transform: MD5(NVL("EVENT_INPUT"."ZONE_GEOGRAPHY",'UK')||RIGHT('000000'||"EVENT_INPUT"."PRODKEY", 6)||TO_CHAR("EVENT_INPUT"."START_DATE",'YYYY-MM-DD'))
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 02d94ec7-0ea8-4319-89ea-54c0844408fa
@@ -44,9 +44,9 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 8052a7c7-d0fc-4084-b600-5a839b19b11b
+              - columnCounter: 78b4802e-d2b5-4582-956a-887d98e6b812
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"ZONE\""
+            transform: "\"EVENT_INPUT\".\"ZONE_GEOGRAPHY\""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 056fa92a-bba1-4d47-a7f2-5c67d3efe9f2
@@ -60,7 +60,7 @@ operation:
           - columnReferences:
               - columnCounter: a71c30dc-4a6f-4f41-98ec-203612621366
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: RIGHT('000000'||"EVENT_INPUT"."SKU", 6)
+            transform: RIGHT('000000'||"EVENT_INPUT"."PRODKEY", 6)
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 15b8463b-4ace-4a2f-8429-dec90d2f3cea
@@ -100,7 +100,7 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: acab5b61-5408-4361-b855-f2de450fc239
+              - columnCounter: 37b2ba87-761e-492a-b77f-cc943eafe3f5
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
             transform: TO_DATE("EVENT_INPUT"."START_DATE")
       - appliedColumnTests: {}
@@ -144,7 +144,7 @@ operation:
           - columnReferences:
               - columnCounter: b84cb466-eca7-407a-8b85-b3982b38de7c
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: DATEADD(DAY,  DATEDIFF(DAY, "EVENT_INPUT"."START_DATE", "EVENT_INPUT"."END_DATE"+1) / 2, TO_DATE("EVENT_INPUT"."START_DATE"))
+            transform: DATEADD(DAY,  DATEDIFF(DAY, TO_DATE("EVENT_INPUT"."START_DATE"), TO_DATE("EVENT_INPUT"."END_DATE")+1) / 2, TO_DATE("EVENT_INPUT"."START_DATE"))
       - appliedColumnTests: {}
         columnReference:
           columnCounter: cd72cdb6-f27a-4dec-add0-ae5ec7cb7eee
@@ -189,7 +189,7 @@ operation:
             transform: |-
               NVL("EVENT_INPUT"."NOW_PRICE", 0)  / 
               (1 + 
-                  CASE WHEN ZONE_GEOGRAPHY = 'UK' THEN {{parameters.UK_VAT}} / 100
+                  CASE WHEN "EVENT_INPUT".ZONE_GEOGRAPHY = 'UK' THEN {{parameters.UK_VAT}} / 100
                   ELSE {{parameters.IE_VAT}} / 100
                   END 
               )
@@ -335,7 +335,7 @@ operation:
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
             transform: |-
               COALESCE(
-              "EVENT_INPUT"."OVERRIDE_UNITS_WEEK" * (DAYS / 7),
+              "EVENT_INPUT"."OVERIDE_UNITS_WEEK" * (DAYS / 7),
               "STG_MEASURES_CURRENT_OPTIMIZE"."FORECAST_UNITS_PER_DAY" * DAYS,
                0)
       - appliedColumnTests: {}
@@ -590,7 +590,7 @@ operation:
           - columnReferences:
               - columnCounter: 7eaad41f-42ff-4679-b681-919a71ab49a9
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: NVL("EVENT_INPUT"."OVERRIDE_UNITS_WEEK", 0)
+            transform: NVL("EVENT_INPUT"."OVERIDE_UNITS_WEEK", 0)
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 18296204-e4f7-4f83-b941-80ac630eb578
@@ -635,7 +635,7 @@ operation:
           - columnReferences:
               - columnCounter: b0bbe202-57ed-4993-965d-4b467f9c4603
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"CAMPAIGN_ARRAY\""
+            transform: "[]"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: d8345eca-3f65-4b2e-984b-73a4ba6d9a2c
@@ -663,7 +663,7 @@ operation:
           - columnReferences:
               - columnCounter: 5a7b1fe2-9d97-49b9-9fec-84b8740b3d2e
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"CAMPAIGN_2\""
+            transform: "''"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 3a0599f6-1712-4cfa-bcd3-548640db9301
@@ -677,7 +677,7 @@ operation:
           - columnReferences:
               - columnCounter: 5ba46ac3-bc6d-4fce-ae38-f47eb579eabb
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"CAMPAIGN_3\""
+            transform: "''"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 193a6a7b-7219-4326-ad92-37bad88d68ec
@@ -691,7 +691,7 @@ operation:
           - columnReferences:
               - columnCounter: c4493e03-d4f1-4083-9a22-3c7a3da09e17
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"ADVERTISING\""
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 80bfdffc-0858-443d-a28d-86242cb61b83
@@ -705,7 +705,7 @@ operation:
           - columnReferences:
               - columnCounter: 4f2c0894-77b2-400b-b509-16e628fea820
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"AD_FIN_WEEK_NO\""
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 18243078-b84a-4723-86f0-d9e1eb6f55e9
@@ -719,7 +719,7 @@ operation:
           - columnReferences:
               - columnCounter: 27a7b2b5-be55-47dd-9276-adc934f84595
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"MECHANIC\""
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 35699af9-32f5-4372-91c4-2ed830e1053a
@@ -733,7 +733,7 @@ operation:
           - columnReferences:
               - columnCounter: 8e2e9525-9c40-4755-a96b-1229297253de
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"LOCATION_IN_STORE\""
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 5e23f5c3-196c-4a78-baee-289987fa758b
@@ -747,7 +747,7 @@ operation:
           - columnReferences:
               - columnCounter: 2f5b0412-6d85-4428-857b-cf6981fd987a
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"COMMENT\""
+            transform: ""
       - acceptedValues:
           strictMatch: false
           values: []
@@ -764,7 +764,7 @@ operation:
           - columnReferences:
               - columnCounter: 8433ee1c-d527-46cb-a40e-d07a76840262
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"OVERARCHING_DEAL\""
+            transform: ""
       - acceptedValues:
           strictMatch: false
           values: []
@@ -876,7 +876,7 @@ operation:
           - columnReferences:
               - columnCounter: 59cf0f84-e83b-4600-9c90-98e4794d5f9b
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"UPDATED_BY\""
+            transform: ""
       - acceptedValues:
           strictMatch: false
           values: []
@@ -893,33 +893,31 @@ operation:
           - columnReferences:
               - columnCounter: e281b135-d377-4292-a950-ab77f718dae6
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
-            transform: "\"EVENT_INPUT\".\"UPDATED_AT\""
+            transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases:
           DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
-          EVENT_INPUT: 3ee6f2fc-9bce-4912-9c0e-d47be8511346
+          EVENT_INPUT: de1ebd6d-baae-4843-8a92-9db3e9451786
           STG_MEASURES_CURRENT_OPTIMIZE: 0241a2df-0401-4206-99e1-9082d21eb01b
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: DATA
             nodeName: DIM_DATE
-          - locationName: STAGE
-            nodeName: VW_FORECAST_RAW
+          - locationName: INPUT
+            nodeName: EVENT_INPUT
         join:
-          joinCondition: |-
-            FROM {{ ref('STAGE', 'VW_FORECAST_RAW') }} "EVENT_INPUT"
+          joinCondition: |
+            FROM {{ ref('INPUT', 'EVENT_INPUT') }} "EVENT_INPUT"
             JOIN {{ ref('DATA', 'DIM_DATE') }} DIM_DATE
             ON DIM_DATE."CALENDAR_DATE" = MID_DATE
             LEFT JOIN {{ ref_no_link('STAGE', 'STG_MEASURES_CURRENT_OPTIMIZE') }} "STG_MEASURES_CURRENT_OPTIMIZE"
-            ON "EVENT_INPUT"."ZONE" = STG_MEASURES_CURRENT_OPTIMIZE."ZONE_GEOGRAPHY"
-            AND "EVENT_INPUT"."SKU" = "STG_MEASURES_CURRENT_OPTIMIZE"."PRODKEY"
+            ON "EVENT_INPUT"."ZONE_GEOGRAPHY" = STG_MEASURES_CURRENT_OPTIMIZE."ZONE_GEOGRAPHY"
+            AND "EVENT_INPUT"."PRODKEY" = "STG_MEASURES_CURRENT_OPTIMIZE"."PRODKEY"
             AND DISCOUNT_BUCKET_CALC = "STG_MEASURES_CURRENT_OPTIMIZE".DISCOUNT_BUCKET
             AND UPPER(NVL(DIM_DATE."HOLIDAY_NAME", 'NO_HOLIDAY')) = UPPER("STG_MEASURES_CURRENT_OPTIMIZE".HOLIDAY_NAME)
-            QUALIFY 
-                  1 = ROW_NUMBER() OVER (PARTITION BY  NVL("EVENT_INPUT"."ZONE",'UK'),RIGHT('000000'||"EVENT_INPUT"."SKU", 6),"EVENT_INPUT"."START_DATE" ORDER BY  "EVENT_INPUT"."UPDATED_AT" DESC)
         name: VW_FORECAST
         noLinkRefs:
           - locationName: STAGE
