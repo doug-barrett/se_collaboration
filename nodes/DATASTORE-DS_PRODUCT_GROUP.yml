@@ -91,7 +91,9 @@ operation:
           - locationName: LAND
             nodeName: LAND_PRODUCT_GROUP
         join:
-          joinCondition: FROM {{ ref('LAND', 'LAND_PRODUCT_GROUP') }} "LAND_PRODUCT_GROUP"
+          joinCondition: |-
+            FROM {{ ref('LAND', 'LAND_PRODUCT_GROUP') }} "LAND_PRODUCT_GROUP"
+            QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY "PRODKEY" ORDER BY "GROUP_NAME")
         name: DS_PRODUCT_GROUP
         noLinkRefs: []
   name: DS_PRODUCT_GROUP

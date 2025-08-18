@@ -63,9 +63,9 @@ operation:
               - columnCounter: ad454901-83a3-46f9-8e18-c781187bee43
                 stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
             transform: |-
-              CASE WHEN DS_PRICE_COST.PC_DT = MIN(DS_PRICE_COST.PC_DT) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.PRODKEY ORDER BY DS_PRICE_COST.PC_DT) 
+              CASE WHEN DS_PRICE_COST."PC_DATE" = MIN(DS_PRICE_COST.PC_DATE) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.PRODKEY ORDER BY DS_PRICE_COST.PC_DATE) 
                   THEN TO_DATE('2000-01-01') 
-              ELSE DS_PRICE_COST.PC_DT 
+              ELSE DS_PRICE_COST.PC_DATE 
               END
       - appliedColumnTests: {}
         columnReference:
@@ -99,7 +99,7 @@ operation:
           - columnReferences:
               - columnCounter: caf80271-9275-4e9a-a52c-733a20787f47
                 stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
-            transform: "LAG(NVL(DS_PRICE_COST.price, 0), 1, 0) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.prodkey ORDER BY DS_PRICE_COST.pc_dt) "
+            transform: "LAG(NVL(DS_PRICE_COST.PRICE, 0), 1, 0) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.PRODKEY ORDER BY DS_PRICE_COST.PC_DATE) "
         transform: ""
     cteString: ""
     enabledColumnTestIDs: []
@@ -144,8 +144,8 @@ operation:
             JOIN (SELECT ZONE_GEOGRAPHY, MIN(ZONE_CODE) ZONE_CODE FROM {{ref('DATA','DIM_ZONE')}} GROUP BY ZONE_GEOGRAPHY) DIM_ZONE 
             ON DS_PRICE_COST.ZONE_CODE = DIM_ZONE.ZONE_CODE
             QUALIFY 	
-                LAG(NVL(DS_PRICE_COST.price, 0), 1, 0) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.prodkey ORDER BY DS_PRICE_COST.pc_dt) <> NVL(DS_PRICE_COST.price,0)	
-            AND LAG(NVL(DS_PRICE_COST.price, 0), 1, 0) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.prodkey ORDER BY DS_PRICE_COST.pc_dt) > 0
+                LAG(NVL(DS_PRICE_COST.PRICE, 0), 1, 0) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.PRODKEY ORDER BY DS_PRICE_COST.PC_DATE) <> NVL(DS_PRICE_COST.PRICE,0)	
+            AND LAG(NVL(DS_PRICE_COST.PRICE, 0), 1, 0) OVER (PARTITION BY DIM_ZONE.ZONE_GEOGRAPHY, DS_PRICE_COST.PRODKEY ORDER BY DS_PRICE_COST.PC_DATE) > 0
         name: STG_PRICE_PERIOD
         noLinkRefs: []
   name: STG_PRICE_PERIOD

@@ -89,77 +89,6 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3b2cb2bb-c302-44e0-a80e-871e014f48a6
-          stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
-        config: {}
-        dataType: TIMESTAMP_LTZ(9)
-        description: ""
-        name: PROMO_EFFECTIVE_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 594b3cb6-f0ba-4fcb-a922-63d465612a05
-                stepCounter: f66a37b4-d49c-4851-9bbd-e4cc9b882a10
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 26f1271b-8eea-4c8e-b32b-6b0d3cb5588a
-          stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
-        config: {}
-        dataType: TIMESTAMP_LTZ(9)
-        description: ""
-        isBusinessKey: true
-        name: EFFECTIVE_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 991215cc-8c96-49c6-bd16-e60d73292d23
-                stepCounter: f66a37b4-d49c-4851-9bbd-e4cc9b882a10
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 8999569d-8d75-4aa4-a317-585f6fab5baf
-          stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
-        config: {}
-        dataType: VARCHAR(16777216)
-        description: ""
-        name: DSS_CREATE_USER
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: c7f92dcf-d7e5-42cc-bb50-b6c501e13cb2
-                stepCounter: f66a37b4-d49c-4851-9bbd-e4cc9b882a10
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 15453ca3-e961-451d-b413-0fcd5af77c09
-          stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
-        config: {}
-        dataType: VARCHAR(16777216)
-        description: ""
-        name: DSS_CREATE_FROM
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 84f26dca-023f-42bb-9080-b6162bcc8735
-                stepCounter: f66a37b4-d49c-4851-9bbd-e4cc9b882a10
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 01a90359-cbf6-4aae-8e99-9cd098107cb2
-          stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
-        config: {}
-        dataType: TIMESTAMP_LTZ(9)
-        description: ""
-        name: DSS_CREATE_TIME
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 96d9476a-fe20-4f5a-913c-dc30cd730a96
-                stepCounter: f66a37b4-d49c-4851-9bbd-e4cc9b882a10
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
           columnCounter: 162e8db4-8f18-47da-8e97-6ba4dcc3a5ba
           stepCounter: b218fdcc-190c-4bfe-a7aa-466fc60086d8
         config: {}
@@ -233,7 +162,7 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('INPUT', 'PLANNED_PRICE_AND_PROMOTION_EVENTS') }} "PLANNED_PRICE_AND_PROMOTION_EVENTS"
-            QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY "ZONE_GEOGRAPHY", "PRODKEY", "EFFECTIVE_DATE" ORDER BY NVL("EXPORT_YES_NO", 'NO') DESC)
+            QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY "ZONE_GEOGRAPHY", "PRODKEY", "DSS_EXPORT_TIME" ORDER BY NVL("EXPORT_YES_NO", 'NO') DESC)
         name: DS_PLANNED_PRICE_EXPORT
         noLinkRefs: []
   name: DS_PLANNED_PRICE_EXPORT

@@ -26,7 +26,7 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: ad454901-83a3-46f9-8e18-c781187bee43
+              - columnCounter: fdffbece-74c7-4557-9322-31d6d196a24e
                 stepCounter: 7d8b84ba-e9c2-45ce-955a-3f51df08c001
             transform: ""
           - columnReferences:
@@ -254,7 +254,7 @@ operation:
             JOIN {{ ref('DATASTORE', 'DS_PRODUCT')}} "DS_PRODUCT"
             ON "DS_PRICE_COST"."PRODKEY" = "DS_PRODUCT"."PRODKEY"
             JOIN {{ ref('DATA', 'DIM_DATE')}} "DIM_DATE"
-            ON "DS_PRICE_COST"."PC_DT" = "DIM_DATE"."CALENDAR_DATE"
+            ON "DS_PRICE_COST"."PC_DATE" = "DIM_DATE"."CALENDAR_DATE"
             LEFT JOIN {{ ref('DATASTORE', 'DS_SUPPLIER_REBATE') }} "DS_SUPPLIER_REBATE"
             ON "DIM_DATE"."FINANCIAL_YEAR" = "DS_SUPPLIER_REBATE"."FINANCIAL_YEAR"
             AND "DS_PRODUCT"."LEVEL3_CODE" = "DS_SUPPLIER_REBATE"."MA_CODE"
@@ -267,7 +267,7 @@ operation:
                         GROUP BY 1,2 ) "DIM_PRICE_COST_2"
             ON "DS_PRICE_COST"."ZONE_CODE" = DIM_PRICE_COST_2."ZONE_CODE"
             AND "DS_PRICE_COST"."PRODKEY" = "DIM_PRICE_COST_2"."PRODKEY"
-            WHERE "DS_PRICE_COST".PC_DT >= NVL("DIM_PRICE_COST_2".PC_DT, '2000-01-01')
+            WHERE "DS_PRICE_COST".PC_DATE >= NVL("DIM_PRICE_COST_2".PC_DT, '2000-01-01')
         name: PRICE_COST
         noLinkRefs:
           - locationName: DATA

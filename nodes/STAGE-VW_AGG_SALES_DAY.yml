@@ -1013,7 +1013,7 @@ operation:
           - columnReferences:
               - columnCounter: bb019394-c7f9-4889-b716-21520254e90e
                 stepCounter: 546c353b-029f-4c9f-b58a-4473b7e56f39
-            transform: ""
+            transform: COALESCE("FCT_SALES_DAY"."UNITS_SALES", VW_FORECAST_DAY."UNITS_PER_DAY", "FCT_FORECAST_BASE"."FORECAST_BASE_UNITS_PER_DAY", "VW_FNR_FORECAST_SALES"."FNR_FORECAST_APPROVED_UNITS", 0)
       - appliedColumnTests: {}
         columnReference:
           columnCounter: c41d5789-a75a-4c42-9f28-5e5e7b0faac4
@@ -1027,7 +1027,7 @@ operation:
           - columnReferences:
               - columnCounter: bb019394-c7f9-4889-b716-21520254e90e
                 stepCounter: 546c353b-029f-4c9f-b58a-4473b7e56f39
-            transform: "\"VW_SALES_DAY_TREND_PROD\".\"PREDICTED_UNITS_DAY\" * \"DIM_PRICE_COST_2\".\"PRICE\""
+            transform: COALESCE("FCT_SALES_DAY"."UNITS_SALES", VW_FORECAST_DAY.UNITS_PER_DAY, "FCT_FORECAST_BASE"."FORECAST_BASE_UNITS_PER_DAY", "VW_FNR_FORECAST_SALES"."FNR_FORECAST_APPROVED_UNITS", 0) * "DIM_PRICE_COST_2"."PRICE"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 545f9940-b8ef-45a8-8b57-2602dad3f0c3
@@ -1128,8 +1128,8 @@ operation:
           FCT_SALES_DAY: 91c3542a-c2f9-472c-8706-d613acb63e06
           STG_SALES_WEEK_TREND_PROD: 72b2d948-228d-4850-9dce-1af33de9e705
           VW_FNR_FORECAST_SALES: 07833d3e-cc2a-474e-8821-40934f0edc37
+          VW_FORECAST_DAY: b4bd017c-d6d5-47b3-86dc-07a136f6abd8
           VW_MARGIN_REQUIREMENTS: 8668005b-4a2e-4b48-9539-a1b6213d4d40
-          VW_SALES_DAY_TREND_PROD: 546c353b-029f-4c9f-b58a-4473b7e56f39
           VW_SALES_WEEK_PYEAR: e4e67311-1994-4c2a-afe8-6332d83cfae0
         customSQL:
           customSQL: ""
@@ -1153,9 +1153,9 @@ operation:
           - locationName: STAGE
             nodeName: VW_FNR_FORECAST_SALES
           - locationName: STAGE
-            nodeName: VW_MARGIN_REQUIREMENTS
+            nodeName: VW_FORECAST_DAY
           - locationName: STAGE
-            nodeName: VW_SALES_DAY_TREND_PROD
+            nodeName: VW_MARGIN_REQUIREMENTS
           - locationName: STAGE
             nodeName: VW_SALES_WEEK_PYEAR
         join:
@@ -1188,15 +1188,15 @@ operation:
             AND "DS_PROD_ZONE_DAY"."PRODKEY" = "VW_FNR_FORECAST_SALES"."PRODKEY"
             AND "DS_PROD_ZONE_DAY"."TRANSACTION_DATE" = "VW_FNR_FORECAST_SALES"."TRANSACTION_DATE"
 
+            LEFT JOIN {{ ref('STAGE', 'VW_FORECAST_DAY') }} "VW_FORECAST_DAY"
+            ON "DS_PROD_ZONE_DAY"."ZONE_GEOGRAPHY" = "VW_FORECAST_DAY"."ZONE_GEOGRAPHY"
+            AND "DS_PROD_ZONE_DAY"."PRODKEY" = "VW_FORECAST_DAY"."PRODKEY"
+            AND "DS_PROD_ZONE_DAY"."TRANSACTION_DATE" = "VW_FORECAST_DAY"."TRANSACTION_DATE"
+
             LEFT JOIN {{ ref('DATA', 'FCT_FORECAST_BASE') }} "FCT_FORECAST_BASE"
             ON "DS_PROD_ZONE_DAY"."ZONE_GEOGRAPHY" = "FCT_FORECAST_BASE"."ZONE_GEOGRAPHY"
             AND "DS_PROD_ZONE_DAY"."PRODKEY" = "FCT_FORECAST_BASE"."PRODKEY"
             AND "DS_PROD_ZONE_DAY"."TRANSACTION_DATE" = "FCT_FORECAST_BASE"."TRANSACTION_DATE"
-
-            LEFT JOIN {{ ref('STAGE', 'VW_SALES_DAY_TREND_PROD') }} "VW_SALES_DAY_TREND_PROD"
-            ON "DS_PROD_ZONE_DAY"."ZONE_GEOGRAPHY" = "VW_SALES_DAY_TREND_PROD"."ZONE_GEOGRAPHY"
-            AND "DS_PROD_ZONE_DAY"."PRODKEY" = "VW_SALES_DAY_TREND_PROD"."PRODKEY"
-            AND "DS_PROD_ZONE_DAY"."TRANSACTION_DATE" = "VW_SALES_DAY_TREND_PROD"."CALENDAR_DATE"
 
             LEFT JOIN {{ ref('STAGE', 'STG_SALES_WEEK_TREND_PROD') }} "STG_SALES_WEEK_TREND_PROD"
             ON "DS_PROD_ZONE_DAY"."ZONE_GEOGRAPHY" = "STG_SALES_WEEK_TREND_PROD"."ZONE_GEOGRAPHY"

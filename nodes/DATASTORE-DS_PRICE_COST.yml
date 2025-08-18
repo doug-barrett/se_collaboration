@@ -22,6 +22,7 @@ operation:
         config: {}
         dataType: DATE
         description: ""
+        isBusinessKey: true
         name: PC_DATE
         nullable: true
         sourceColumnReferences:
@@ -363,8 +364,7 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('LAND', 'LAND_PRICE_COST') }} "LAND_PRICE_COST"
-            QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY "LAND_PRICE_COST"."ZONE_CODE", RIGHT('000000'||"LAND_PRICE_COST"."PRODKEY",6), "LAND_PRICE_COST"."PC_DATE"
-                                           ORDER BY "LAND_PRICE_COST"."PC_DATE" DESC)
+            QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY "LAND_PRICE_COST"."ZONE_CODE", RIGHT('000000'||"LAND_PRICE_COST"."PRODKEY",6), "LAND_PRICE_COST"."PC_DATE" ORDER BY "LAND_PRICE_COST"."PC_DATE" DESC)
         name: DS_PRICE_COST
         noLinkRefs: []
   name: DS_PRICE_COST
