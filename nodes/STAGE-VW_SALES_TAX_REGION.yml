@@ -1,0 +1,67 @@
+fileVersion: 1
+id: b73658cc-e995-4861-b26b-1a7a394713f3
+name: VW_SALES_TAX_REGION
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48cecc43-6a7e-46ef-812c-366ca46f2410
+          stepCounter: b73658cc-e995-4861-b26b-1a7a394713f3
+        config: {}
+        dataType: VARCHAR(64)
+        description: ""
+        name: ZONE_GEOGRAPHY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1c2d47a6-bd76-4a91-9bdd-feb809a36ec7
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3c954e35-8c9b-4413-bc6f-e620fed5d6eb
+          stepCounter: b73658cc-e995-4861-b26b-1a7a394713f3
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: VAT_PERCENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 83a2bbaf-418a-4e77-ac8e-14488445aeff
+                stepCounter: 72a0e5a7-a669-4c2e-810c-418edf46939a
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          VW_PRICE_COST_REGION: 72a0e5a7-a669-4c2e-810c-418edf46939a
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGE
+            nodeName: VW_PRICE_COST_REGION
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGE', 'VW_PRICE_COST_REGION') }} "VW_PRICE_COST_REGION"
+            QUALIFY 1 = ROW_NUMBER() OVER (PARTITION BY ZONE_GEOGRAPHY ORDER BY PC_DT DESC)
+        name: VW_SALES_TAX_REGION
+        noLinkRefs: []
+  name: VW_SALES_TAX_REGION
+  overrideSQL: false
+  schema: ""
+  sqlType: "16"
+  type: sql
+  version: 1
+type: Node

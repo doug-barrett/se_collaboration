@@ -188,11 +188,7 @@ operation:
                 stepCounter: de1ebd6d-baae-4843-8a92-9db3e9451786
             transform: |-
               NVL("EVENT_INPUT"."NOW_PRICE", 0)  / 
-              (1 + 
-                  CASE WHEN "EVENT_INPUT".ZONE_GEOGRAPHY = 'UK' THEN {{parameters.UK_VAT}} / 100
-                  ELSE {{parameters.IE_VAT}} / 100
-                  END 
-              )
+              (1 + NVL(VW_SALES_TAX_REGION."VAT_PERCENT", 10) / 100)
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 0c4f932b-3b4e-45b3-89d9-effb63d22faf
@@ -901,6 +897,7 @@ operation:
           DIM_DATE: 2d9f453e-f432-4a19-a605-81709e23d574
           EVENT_INPUT: de1ebd6d-baae-4843-8a92-9db3e9451786
           STG_MEASURES_CURRENT_OPTIMIZE: 0241a2df-0401-4206-99e1-9082d21eb01b
+          VW_SALES_TAX_REGION: b73658cc-e995-4861-b26b-1a7a394713f3
         customSQL:
           customSQL: ""
         dependencies:
@@ -908,6 +905,8 @@ operation:
             nodeName: DIM_DATE
           - locationName: INPUT
             nodeName: EVENT_INPUT
+          - locationName: STAGE
+            nodeName: VW_SALES_TAX_REGION
         join:
           joinCondition: |
             FROM {{ ref('INPUT', 'EVENT_INPUT') }} "EVENT_INPUT"
@@ -918,6 +917,8 @@ operation:
             AND "EVENT_INPUT"."PRODKEY" = "STG_MEASURES_CURRENT_OPTIMIZE"."PRODKEY"
             AND DISCOUNT_BUCKET_CALC = "STG_MEASURES_CURRENT_OPTIMIZE".DISCOUNT_BUCKET
             AND UPPER(NVL(DIM_DATE."HOLIDAY_NAME", 'NO_HOLIDAY')) = UPPER("STG_MEASURES_CURRENT_OPTIMIZE".HOLIDAY_NAME)
+            LEFT JOIN {{ref('STAGE', 'VW_SALES_TAX_REGION') }} "VW_SALES_TAX_REGION"
+            ON "EVENT_INPUT"."ZONE_GEOGRAPHY" = "VW_SALES_TAX_REGION"."ZONE_GEOGRAPHY"
         name: VW_FORECAST
         noLinkRefs:
           - locationName: STAGE

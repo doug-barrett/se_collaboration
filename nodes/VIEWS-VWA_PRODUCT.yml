@@ -666,7 +666,7 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
-            JOIN {{ ref('STAGE', 'VW_PRODUCT_SECURITY') }} "VW_PRODUCT_SECURITY"
+            LEFT JOIN {{ ref('STAGE', 'VW_PRODUCT_SECURITY') }} "VW_PRODUCT_SECURITY"
             ON "DIM_PRODUCT"."PRODKEY" = "VW_PRODUCT_SECURITY"."PRODKEY"
             LEFT JOIN {{ ref('STAGE', 'STG_MEASURES_CURRENT') }} "STG_MEASURES_CURRENT"
             ON "DIM_PRODUCT"."PRODKEY" = "STG_MEASURES_CURRENT"."PRODKEY"
