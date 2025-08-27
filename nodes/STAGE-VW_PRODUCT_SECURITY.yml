@@ -27,7 +27,7 @@ operation:
           - columnReferences:
               - columnCounter: 739ffea7-d204-400d-90c2-f7b584e2829b
                 stepCounter: a3d87eb5-609c-46ce-b06a-bfdb77d28943
-            transform: "'USER'"
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 20403902-1c5a-4772-b5a1-b6dc42591d2b
@@ -58,17 +58,12 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('DATA', 'DIM_PRODUCT') }} "DIM_PRODUCT"
-
-            /* For user maintained row level security
-
             JOIN (SELECT * FROM {{ ref('INPUT', 'USER_SECURITY') }} WHERE "LOGIN_NAME" = CURRENT_USER()) USER_SECURITY
               ON ("DIM_PRODUCT"."LEVEL1_DESC" = "USER_SECURITY"."LEVEL1_DESC" OR "USER_SECURITY"."LEVEL1_DESC" = '<ALL>')
              AND ("DIM_PRODUCT"."LEVEL2_DESC" = "USER_SECURITY"."LEVEL2_DESC" OR "USER_SECURITY"."LEVEL2_DESC" = '<ALL>')
              AND ("DIM_PRODUCT"."LEVEL3_DESC" = "USER_SECURITY"."LEVEL3_DESC" OR "USER_SECURITY"."LEVEL3_DESC" = '<ALL>')
              AND ("DIM_PRODUCT"."LEVEL4_DESC" = "USER_SECURITY"."LEVEL4_DESC" OR "USER_SECURITY"."LEVEL4_DESC" = '<ALL>')     
              AND ("DIM_PRODUCT"."BRAND" = "USER_SECURITY"."BRAND" OR "USER_SECURITY"."BRAND" = '<ALL>')
-
-             */
         name: VW_PRODUCT_SECURITY
         noLinkRefs: []
   name: VW_PRODUCT_SECURITY

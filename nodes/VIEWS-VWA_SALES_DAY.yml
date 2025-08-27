@@ -3,8 +3,19 @@ id: 901bb3f4-019e-4c88-86a4-e63944c9f33a
 name: VWA_SALES_DAY
 operation:
   config:
+    clusterKey: false
+    cpygrants: false
+    downstreamOption: false
+    groupByAll: false
+    initialize: ON_CREATE
     insertStrategy: UNION
+    lagSpecification:
+      items:
+        - lagPeriod: Minutes
+          lagValue: "1"
+    refresh_mode: AUTO
     selectDistinct: false
+    warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
