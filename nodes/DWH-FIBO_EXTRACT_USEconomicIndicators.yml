@@ -1,0 +1,183 @@
+fileVersion: 1
+id: 55fc5e6c-a4c7-445c-a654-7ad4c12851d9
+name: FIBO_EXTRACT_USEconomicIndicators
+operation:
+  config:
+    binformat: HEX
+    bytemark: true
+    columnmismatch: false
+    compression: ""
+    dateformat: ""
+    emptyfield: true
+    encoding: UTF8
+    enforceLength: ""
+    errornumber: ""
+    escapeenclosed: \134
+    escapeval: ""
+    externalURI: Enter external URI-Ex:s3://snowflake-docs
+    extlocation: false
+    fieldDelim: ","
+    fieldEnclosed: \042
+    fileFormatLoc: ""
+    fileFormatName: ""
+    fileFormatType: File Format Values
+    fileNames: USEconomicIndicators.rdf
+    filePattern: ""
+    fileType: XML
+    forceLoad: ""
+    inferschema: false
+    intextstage: true
+    loadUncertainFiles: ""
+    mulline: true
+    nullchar: ('\N')
+    onError: CONTINUE
+    parsehdr: true
+    parsehdr1: true
+    purgeBehavior: ""
+    recDelim: |+
+
+    replaceinvalidcharacters: true
+    returnFailedOnly: ""
+    sizeLimit: ""
+    skipBlankLines: false
+    skipHeader: "1"
+    stageName: FIBO_DATA
+    stageStorageLocationName: SRC_FIBO
+    storageintegration: ""
+    stripouterarray: true
+    subfolder: ""
+    timeformat: ""
+    timestampformat: ""
+    trimSpace: false
+    truncateBefore: false
+    truncateColumns: ""
+    usevectscan: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 16133fce-b7b2-4c0d-a438-386fc8442bf2
+          stepCounter: 55fc5e6c-a4c7-445c-a654-7ad4c12851d9
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        name: SRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: $1
+        sysJSON: true
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ab732802-f1d3-4b35-954b-2a2034aeb80b
+          stepCounter: 55fc5e6c-a4c7-445c-a654-7ad4c12851d9
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        name: LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: current_timestamp()::timestamp_ntz
+        sysLdTs: true
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c5888e0-8852-40b2-a390-a82c96fafc05
+          stepCounter: 55fc5e6c-a4c7-445c-a654-7ad4c12851d9
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: METADATA$FILENAME
+        sysFlNm: true
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: dea25ae6-ae8a-4578-a0de-caa48b35283c
+          stepCounter: 55fc5e6c-a4c7-445c-a654-7ad4c12851d9
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: FILE_ROW_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: METADATA$FILE_ROW_NUMBER
+        sysFlRwNm: true
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 33840783-f27e-4ad3-a34e-9bea9e8bfc9b
+          stepCounter: 55fc5e6c-a4c7-445c-a654-7ad4c12851d9
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: METADATA$FILE_LAST_MODIFIED
+        sysFlLtMd: true
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f43f923-13a4-4150-846d-8b1e3cd659e6
+          stepCounter: 55fc5e6c-a4c7-445c-a654-7ad4c12851d9
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        name: SCAN_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: METADATA$START_SCAN_TIME
+        sysFlScTm: true
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: FIBO_EXTRACT_USEconomicIndicators
+        noLinkRefs: []
+  name: FIBO_EXTRACT_USEconomicIndicators
+  overrideSQL: false
+  schema: ""
+  sqlType: external-data-2-0-2:::324
+  type: sql
+  version: 1
+type: Node

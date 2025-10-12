@@ -1,0 +1,99 @@
+fileVersion: 1
+id: 6d13e901-5be8-4e31-a4bc-399861785dba
+name: STG_parsedData_filtered
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 71a8d68b-a7b5-4bbd-9dc7-0078e62fbe35
+          stepCounter: 6d13e901-5be8-4e31-a4bc-399861785dba
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2786976a-da30-4168-9da3-ea1d9bd49d72
+                stepCounter: 7d6898a6-5fb3-463a-a1af-643a31bdba18
+            transform: SPLIT_PART(SUBJECT, '/', -1)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2cd95411-3a20-4111-894a-2251fa5884b3
+          stepCounter: 6d13e901-5be8-4e31-a4bc-399861785dba
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PREDICATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 29c61a49-4d18-43cc-a57f-57c4eb24c20d
+                stepCounter: 7d6898a6-5fb3-463a-a1af-643a31bdba18
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b213912-d73c-4f58-8112-fc7eb5fbb74d
+          stepCounter: 6d13e901-5be8-4e31-a4bc-399861785dba
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3232880d-ea7d-4dd7-be66-ec98d0351fc9
+                stepCounter: 7d6898a6-5fb3-463a-a1af-643a31bdba18
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 248cbb29-a012-437f-86f4-2de9643d0af4
+          stepCounter: 6d13e901-5be8-4e31-a4bc-399861785dba
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJECT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f53089a1-7b49-4e79-8fee-68b0aecfba68
+                stepCounter: 7d6898a6-5fb3-463a-a1af-643a31bdba18
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          parsedData: 7d6898a6-5fb3-463a-a1af-643a31bdba18
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: parsedData
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'parsedData') }} "parsedData"
+            WHERE
+                OBJECT IS NOT NULL AND PREDICATE != '$'
+        name: STG_parsedData_filtered
+        noLinkRefs: []
+  name: STG_parsedData_filtered
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
