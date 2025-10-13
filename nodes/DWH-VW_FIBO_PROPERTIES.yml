@@ -1,0 +1,113 @@
+fileVersion: 1
+id: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+name: VW_FIBO_PROPERTIES
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Properties view with usage statistics
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 56d2a5fe-2984-4f8d-844d-331e35869510
+          stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PROPERTY_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 56d2a5fe-2984-4f8d-844d-331e35869510
+                stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+            transform: PREDICATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b5f451ff-5b71-4a0e-b98a-ad6f63c7b33d
+          stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PROPERTY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5f451ff-5b71-4a0e-b98a-ad6f63c7b33d
+                stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+            transform: "{{ ref('DWH', 'GET_LOCAL_NAME') }}(PREDICATE)"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a3b3d337-02c5-4755-9ab6-590a8e0e9cfe
+          stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: USAGE_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a3b3d337-02c5-4755-9ab6-590a8e0e9cfe
+                stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+            transform: COUNT(DISTINCT SUBJECT)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f88fe685-ac33-4379-af77-bc661bdb2ef7
+          stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DISTINCT_VALUES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f88fe685-ac33-4379-af77-bc661bdb2ef7
+                stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+            transform: COUNT(DISTINCT OBJECT_VALUE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87564da6-2fe5-4138-860f-844007cd7332
+          stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJECT_TYPES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87564da6-2fe5-4138-860f-844007cd7332
+                stepCounter: a9f7bcab-e887-4bdb-b44b-8bca39822dd4
+            transform: ARRAY_AGG(DISTINCT OBJECT_TYPE) WITHIN GROUP (ORDER BY OBJECT_TYPE)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_TRIPLES
+          - locationName: DWH
+            nodeName: GET_LOCAL_NAME
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FIBO_TRIPLES') }} FIBO_TRIPLES
+            GROUP BY PREDICATE
+        name: V_NODE1
+        noLinkRefs: []
+  name: VW_FIBO_PROPERTIES
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

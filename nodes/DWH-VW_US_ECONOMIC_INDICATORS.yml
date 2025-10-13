@@ -1,0 +1,190 @@
+fileVersion: 1
+id: 96d39336-f815-473a-8fa6-1a1658f9d996
+name: VW_US_ECONOMIC_INDICATORS
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: US Economic Indicators specialized view
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bcb443d7-5033-4a40-b63d-53f81050331e
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CLASS_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bcb443d7-5033-4a40-b63d-53f81050331e
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: C.CLASS_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ea9ffe12-1d26-455d-b2ed-ce17fd7a7387
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INDICATOR_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ea9ffe12-1d26-455d-b2ed-ce17fd7a7387
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: C.LABEL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3e50dc76-4579-46c4-93c4-12355d30d33c
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DEFINITION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3e50dc76-4579-46c4-93c4-12355d30d33c
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: C.DEFINITION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d5dead2d-fc4e-4597-94f4-3e874853e670
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABBREVIATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d5dead2d-fc4e-4597-94f4-3e874853e670
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: C.ABBREVIATION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 30f05f22-0195-458c-95bc-adc5c87f1d27
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARENT_CLASSES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30f05f22-0195-458c-95bc-adc5c87f1d27
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: C.PARENT_CLASSES
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c4d5dbf5-79f9-4662-aed4-148909c9bc7e
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EXPLANATORY_NOTE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c4d5dbf5-79f9-4662-aed4-148909c9bc7e
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: C.EXPLANATORY_NOTE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 798d5ee1-7818-443f-98c6-bc91c7ef758a
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INDIVIDUAL_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 798d5ee1-7818-443f-98c6-bc91c7ef758a
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: I.INDIVIDUAL_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2be9f8ab-a71e-4c75-be46-29d7cbfb7fb6
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INSTANCE_OF_CLASS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2be9f8ab-a71e-4c75-be46-29d7cbfb7fb6
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: I.INSTANCE_OF_CLASS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f1e1fb4-6d23-457c-a4e3-7a58cd94edb1
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RELATIONSHIP_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f1e1fb4-6d23-457c-a4e3-7a58cd94edb1
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: R.RELATIONSHIP_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 75ff9b80-71e8-438c-b8d8-9de916b6764d
+          stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RELATED_ENTITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 75ff9b80-71e8-438c-b8d8-9de916b6764d
+                stepCounter: 96d39336-f815-473a-8fa6-1a1658f9d996
+            transform: R.TARGET_NAME
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: VW_FIBO_CLASSES
+          - locationName: DWH
+            nodeName: VW_FIBO_INDIVIDUALS
+          - locationName: DWH
+            nodeName: VW_FIBO_RELATIONSHIPS
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'VW_FIBO_CLASSES') }} C
+            LEFT JOIN {{ ref('DWH', 'VW_FIBO_INDIVIDUALS') }} I 
+                ON I.INSTANCE_OF_CLASS LIKE '%' || C.CLASS_NAME || '%'
+            LEFT JOIN {{ ref('DWH', 'VW_FIBO_RELATIONSHIPS') }} R 
+                ON R.SOURCE_URI = C.CLASS_URI OR R.SOURCE_URI = I.INDIVIDUAL_URI
+            WHERE C.CLASS_URI LIKE '%USEconomicIndicators%'
+                OR I.INDIVIDUAL_URI LIKE '%USEconomicIndicators%'
+        name: V_NODE1
+        noLinkRefs: []
+  name: VW_US_ECONOMIC_INDICATORS
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

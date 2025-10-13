@@ -1,0 +1,185 @@
+fileVersion: 1
+id: a70998c3-4a5e-4146-89d6-aed173b455ea
+name: FIBO_TRIPLES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Base triple store table for FIBO data with RDF structure
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6436f5d0-8140-4e43-ab36-869ea37003aa
+          stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e041f210-2cc0-4d9a-9d87-f4b9f3df22e0
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: "\"EV\".\"SUBJECT\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a6e11e77-ecaa-4049-a858-283cbd1fb5b0
+          stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PREDICATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ed2f0f74-74ce-4080-b26a-e9bc35ae9107
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: "\"EV\".\"PREDICATE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2889422-b56e-4177-b625-c8401f29a1af
+          stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJECT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e2889422-b56e-4177-b625-c8401f29a1af
+                stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+            transform: |-
+              CASE 
+                      WHEN lookup.RESOURCE_VALUE IS NOT NULL THEN 'resource'
+                      WHEN lookup.DATATYPE_VALUE IS NOT NULL THEN 'typed'
+                      WHEN lookup.TEXT_VALUE IS NOT NULL THEN 'literal'
+                      WHEN TRY_PARSE_JSON(ev.ORIGINAL_VALUE):"@rdf:resource" IS NOT NULL THEN 'resource'
+                      WHEN TRY_PARSE_JSON(ev.ORIGINAL_VALUE):"$" IS NOT NULL THEN 'literal'
+                      WHEN ev.VALUE_TYPE = 'object' THEN 'complex'
+                      ELSE 'simple'
+                  END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd65ebfe-3402-4524-ab9f-2c56773304cc
+          stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJECT_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cd65ebfe-3402-4524-ab9f-2c56773304cc
+                stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+            transform: |-
+              COALESCE(
+                      lookup.RESOURCE_VALUE,
+                      lookup.TEXT_VALUE,
+                      TRY_PARSE_JSON(ev.ORIGINAL_VALUE):"@rdf:resource"::STRING,
+                      TRY_PARSE_JSON(ev.ORIGINAL_VALUE):"$"::STRING,
+                      ev.ORIGINAL_VALUE::STRING
+                  )
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f40b6b35-0004-412a-89d1-7f693dee28f3
+          stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJECT_DATATYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f40b6b35-0004-412a-89d1-7f693dee28f3
+                stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+            transform: |-
+              COALESCE(
+                      lookup.DATATYPE_VALUE,
+                      TRY_PARSE_JSON(ev.ORIGINAL_VALUE):"@rdf:datatype"::STRING
+                  ) 
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bdb5330e-904f-43a5-ae1e-6475fe03abc8
+          stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJECT_LANGUAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bdb5330e-904f-43a5-ae1e-6475fe03abc8
+                stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+            transform: |-
+              COALESCE(
+                      lookup.LANGUAGE_VALUE,
+                      TRY_PARSE_JSON(ev.ORIGINAL_VALUE):"@xml:lang"::STRING
+                  ) 
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc8899d1-227f-4e65-a702-4e6513952428
+          stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_FILE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 709ac3de-eb68-4033-9f0c-8f59758a7729
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: "\"EV\".\"SOURCE_FILE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 370710ba-eec4-4213-b30d-5d932586cfa2
+          stepCounter: a70998c3-4a5e-4146-89d6-aed173b455ea
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1dd0e9bc-f56c-4d0a-a526-6b2f1cd641f7
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: "\"EV\".\"LOAD_TIMESTAMP\""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          EV: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+          LOOKUP: d8bebb93-23e3-4769-9546-4db00920226a
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: all_expanded_values
+          - locationName: DWH
+            nodeName: TEMP_ARRAY_LOOKUP
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'all_expanded_values') }} "EV"
+            LEFT JOIN {{ ref('DWH', 'TEMP_ARRAY_LOOKUP') }} "LOOKUP" ON EV.ARRAY_INDEX_REF = LOOKUP.ARRAY_INDEX
+            WHERE EV.SUBJECT IS NOT NULL
+        name: FIBO_TRIPLES
+        noLinkRefs: []
+  name: FIBO_TRIPLES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

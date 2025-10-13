@@ -1,0 +1,73 @@
+fileVersion: 1
+id: 9b462d28-cbf8-449b-b0ae-e434d16cd854
+name: class_subjects
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Find all subjects that have owl:Class or similar in their rdf:type
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ac542ea-5b90-40d2-972a-ce90bfdf6a0a
+          stepCounter: 9b462d28-cbf8-449b-b0ae-e434d16cd854
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3ac542ea-5b90-40d2-972a-ce90bfdf6a0a
+                stepCounter: 9b462d28-cbf8-449b-b0ae-e434d16cd854
+            transform: DISTINCT T1.SUBJECT
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_TRIPLES
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FIBO_TRIPLES') }} T1
+            WHERE T1.SUBJECT LIKE '%/USEconomicIndicators/%'
+            AND EXISTS (
+                SELECT 1 FROM {{ ref('DWH', 'FIBO_TRIPLES') }} T2
+                WHERE T2.SUBJECT = T1.SUBJECT
+                AND T2.SUBJECT LIKE '%/USEconomicIndicators/%'
+                AND (
+                    T1.SUBJECT LIKE '%/AmericanStatisticsPublisher'
+                    OR T1.SUBJECT LIKE '%/ConsumerExpenditureSurvey'
+                    OR T1.SUBJECT LIKE '%/CurrentEmploymentStatistics'
+                    OR T1.SUBJECT LIKE '%/CurrentPopulationSurvey'
+                    OR T1.SUBJECT LIKE '%/EmploymentSituation%Survey'
+                    OR T1.SUBJECT LIKE '%/PointOfPurchaseSurvey'
+                    OR T1.SUBJECT LIKE '%/USProducerPriceIndex'
+                    OR T1.SUBJECT LIKE '%/UrbanConsumer%'
+                )
+            )
+        name: STG_NODE
+        noLinkRefs: []
+  name: class_subjects
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

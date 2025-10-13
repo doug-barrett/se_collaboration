@@ -1,0 +1,59 @@
+fileVersion: 1
+id: b8254df8-0888-41cc-ae4d-e88797a9efcd
+name: individual_subjects
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Find named individuals
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 29ce2eb9-ac19-4571-89f9-1f3af51f8dd4
+          stepCounter: b8254df8-0888-41cc-ae4d-e88797a9efcd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 29ce2eb9-ac19-4571-89f9-1f3af51f8dd4
+                stepCounter: b8254df8-0888-41cc-ae4d-e88797a9efcd
+            transform: DISTINCT SUBJECT
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_TRIPLES
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FIBO_TRIPLES') }} FIBO_TRIPLES
+            WHERE SUBJECT LIKE '%/BureauOfLaborStatistics'
+               OR SUBJECT LIKE '%/UnitedStatesDepartmentOfLabor'
+        name: individual_subjects
+        noLinkRefs: []
+  name: individual_subjects
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

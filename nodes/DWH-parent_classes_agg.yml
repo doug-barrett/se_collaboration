@@ -1,0 +1,73 @@
+fileVersion: 1
+id: 29b0ec8f-bff8-40ad-81b5-9eeb328d8bdf
+name: parent_classes_agg
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Aggregate parent classes for each subject
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0ead9e59-6a9b-4953-9047-0af6e8a0fbef
+          stepCounter: 29b0ec8f-bff8-40ad-81b5-9eeb328d8bdf
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ead9e59-6a9b-4953-9047-0af6e8a0fbef
+                stepCounter: 29b0ec8f-bff8-40ad-81b5-9eeb328d8bdf
+            transform: SUBJECT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 257758da-301a-47b6-bc52-21b5f511d95d
+          stepCounter: 29b0ec8f-bff8-40ad-81b5-9eeb328d8bdf
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARENT_CLASSES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 257758da-301a-47b6-bc52-21b5f511d95d
+                stepCounter: 29b0ec8f-bff8-40ad-81b5-9eeb328d8bdf
+            transform: LISTAGG(DISTINCT OBJECT_VALUE, '; ') WITHIN GROUP (ORDER BY OBJECT_VALUE)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_TRIPLES
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FIBO_TRIPLES') }} FIBO_TRIPLES
+            WHERE PREDICATE = 'rdfs:subClassOf'
+            GROUP BY SUBJECT
+        name: STG_NODE1
+        noLinkRefs: []
+  name: parent_classes_agg
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

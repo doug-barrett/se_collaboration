@@ -1,0 +1,158 @@
+fileVersion: 1
+id: 429591db-abaa-4349-9f20-1f776cfa161f
+name: VW_FIBO_INDIVIDUALS
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: View of FIBO individuals with their properties
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c013a019-4ecb-481b-928c-995a440f8731
+          stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INDIVIDUAL_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c013a019-4ecb-481b-928c-995a440f8731
+                stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+            transform: SUBJECT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f0e486d3-d857-4cc1-b2b0-2db8e2a76138
+          stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INDIVIDUAL_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0e486d3-d857-4cc1-b2b0-2db8e2a76138
+                stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+            transform: "{{ ref('DWH', 'GET_LOCAL_NAME') }}(SUBJECT)"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1bbaba5f-a42e-4d0e-916c-0a232b3b4768
+          stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INSTANCE_OF_CLASS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1bbaba5f-a42e-4d0e-916c-0a232b3b4768
+                stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+            transform: MAX(CASE WHEN PREDICATE = 'rdf:type' THEN {{ ref('DWH', 'GET_LOCAL_NAME') }}(OBJECT_VALUE) END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 58ba4e7b-dd21-4d75-9b29-82df64cd184d
+          stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LABEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 58ba4e7b-dd21-4d75-9b29-82df64cd184d
+                stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+            transform: MAX(CASE WHEN PREDICATE = 'rdfs:label' THEN OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8caabe45-4624-427a-b78d-0e4a62de605f
+          stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DEFINITION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8caabe45-4624-427a-b78d-0e4a62de605f
+                stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+            transform: MAX(CASE WHEN PREDICATE = 'skos:definition' THEN OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 087c5635-33ce-4908-aec1-badbb78091b1
+          stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABBREVIATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 087c5635-33ce-4908-aec1-badbb78091b1
+                stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+            transform: MAX(CASE WHEN PREDICATE = 'cmns-av:abbreviation' THEN OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 869c753a-35df-4877-a883-0fff7fdfd661
+          stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SEE_ALSO
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 869c753a-35df-4877-a883-0fff7fdfd661
+                stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+            transform: MAX(CASE WHEN PREDICATE = 'rdfs:seeAlso' THEN OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: baf91656-bb51-4127-8533-ef3b8161693b
+          stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EXPLANATORY_NOTE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: baf91656-bb51-4127-8533-ef3b8161693b
+                stepCounter: 429591db-abaa-4349-9f20-1f776cfa161f
+            transform: MAX(CASE WHEN PREDICATE = 'cmns-av:explanatoryNote' THEN OBJECT_VALUE END)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_TRIPLES
+          - locationName: DWH
+            nodeName: GET_LOCAL_NAME
+          - locationName: DWH
+            nodeName: individual_subjects
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FIBO_TRIPLES') }} FIBO_TRIPLES
+            WHERE SUBJECT IN (SELECT SUBJECT FROM {{ ref('DWH', 'individual_subjects') }})
+            GROUP BY SUBJECT
+        name: VW_FIBO_INDIVIDUALS
+        noLinkRefs: []
+  name: VW_FIBO_INDIVIDUALS
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,46 @@
+fileVersion: 1
+id: 07fb049f-a68e-402c-88e6-ed373f12dd57
+name: GET_LOCAL_NAME
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns: []
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            CREATE OR REPLACE FUNCTION {{ ref('DWH', 'GET_LOCAL_NAME')}} (uri VARCHAR)
+            RETURNS VARCHAR
+            LANGUAGE SQL
+            AS
+            $$
+                CASE 
+                    WHEN uri LIKE '%#%' THEN SPLIT_PART(uri, '#', -1)
+                    WHEN uri LIKE '%/%' THEN SPLIT_PART(uri, '/', -1)
+                    ELSE uri
+                END
+            $$
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: GET_LOCAL_NAME
+        noLinkRefs: []
+  name: GET_LOCAL_NAME
+  overrideSQL: true
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

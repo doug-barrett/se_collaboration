@@ -1,0 +1,142 @@
+fileVersion: 1
+id: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+name: expanded_other_values
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Handle objects and simple values (no index lookup needed)
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0221f1c1-6723-402e-ad6e-f7cae9de259d
+          stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0221f1c1-6723-402e-ad6e-f7cae9de259d
+                stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+            transform: PV.SUBJECT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: df36cfd7-87a2-414f-9b44-5831b54e6921
+          stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PREDICATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: df36cfd7-87a2-414f-9b44-5831b54e6921
+                stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+            transform: PV.PREDICATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cedd484f-329d-43f2-b510-c042beddf8e0
+          stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_FILE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cedd484f-329d-43f2-b510-c042beddf8e0
+                stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+            transform: PV.SOURCE_FILE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ef6dd70-5869-4056-90aa-0cac02e14546
+          stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3ef6dd70-5869-4056-90aa-0cac02e14546
+                stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+            transform: PV.LOAD_TIMESTAMP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0186fc75-6009-44fb-b98c-063c7bedb14d
+          stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VALUE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0186fc75-6009-44fb-b98c-063c7bedb14d
+                stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+            transform: PV.VALUE_TYPE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b6ab9df2-9ace-472c-b6c6-43431f61876f
+          stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORIGINAL_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6ab9df2-9ace-472c-b6c6-43431f61876f
+                stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+            transform: PV.PROP_VALUE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f180c69b-c8d2-4bf6-bdd7-647a7441b1d8
+          stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ARRAY_INDEX_REF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f180c69b-c8d2-4bf6-bdd7-647a7441b1d8
+                stepCounter: c11f0fce-0473-455b-bbcf-f97c7cfcd827
+            transform: "NULL"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: property_values
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'property_values') }} PV
+            WHERE PV.VALUE_TYPE IN ('object', 'simple')
+        name: STG_NODE
+        noLinkRefs: []
+  name: expanded_other_values
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

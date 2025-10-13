@@ -1,0 +1,126 @@
+fileVersion: 1
+id: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+name: property_values
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Handle both simple values and array index references
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c27c399-c22e-41fd-8792-070605f286ab
+          stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c27c399-c22e-41fd-8792-070605f286ab
+                stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+            transform: EP.SUBJECT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 40007e2c-9de0-4dc5-a903-b78487db4091
+          stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PREDICATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 40007e2c-9de0-4dc5-a903-b78487db4091
+                stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+            transform: EP.PREDICATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1dc36442-6138-462f-801a-bf783b4c7bbb
+          stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: PROP_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1dc36442-6138-462f-801a-bf783b4c7bbb
+                stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+            transform: EP.PROP_VALUE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15616cd5-c269-4f15-b45b-9c7fd3324131
+          stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_FILE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 15616cd5-c269-4f15-b45b-9c7fd3324131
+                stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+            transform: EP.SOURCE_FILE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6194f5c-1d73-4978-9fda-297a07ee900d
+          stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6194f5c-1d73-4978-9fda-297a07ee900d
+                stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+            transform: EP.LOAD_TIMESTAMP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8ab58dd-e18d-4427-bc54-a9fbeab7b7eb
+          stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VALUE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8ab58dd-e18d-4427-bc54-a9fbeab7b7eb
+                stepCounter: 3d3b7ed5-3216-45af-8e45-39da33045cfd
+            transform: CASE WHEN IS_ARRAY(EP.PROP_VALUE) THEN 'array_ref' WHEN IS_OBJECT(EP.PROP_VALUE) THEN 'object' WHEN IS_INTEGER(EP.PROP_VALUE) THEN 'index_ref' ELSE 'simple' END
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: entity_properties
+        join:
+          joinCondition: FROM {{ ref('DWH', 'entity_properties') }} EP
+        name: property_values
+        noLinkRefs: []
+  name: property_values
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

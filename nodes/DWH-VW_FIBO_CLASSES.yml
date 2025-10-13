@@ -1,0 +1,175 @@
+fileVersion: 1
+id: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+name: VW_FIBO_CLASSES
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Classes view with labels, comments, definitions and parent relationships
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 453d8ea2-e31d-4bd1-8f80-cc26151bbd9f
+          stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CLASS_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 453d8ea2-e31d-4bd1-8f80-cc26151bbd9f
+                stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+            transform: T.SUBJECT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70d7adea-4a13-4d59-b1d3-7357daa752ed
+          stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CLASS_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 70d7adea-4a13-4d59-b1d3-7357daa752ed
+                stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+            transform: "{{ ref('DWH', 'GET_LOCAL_NAME') }}(T.SUBJECT)"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49d63d15-b854-4882-8dff-95552b317510
+          stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LABEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 49d63d15-b854-4882-8dff-95552b317510
+                stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+            transform: MAX(CASE WHEN T.PREDICATE = 'rdfs:label' THEN T.OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f982b16-0034-4458-b087-227cc1cc95f3
+          stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f982b16-0034-4458-b087-227cc1cc95f3
+                stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+            transform: MAX(CASE WHEN T.PREDICATE = 'rdfs:comment' THEN T.OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c01ed99f-efd3-4029-ba0c-1cba3475c2ff
+          stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DEFINITION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c01ed99f-efd3-4029-ba0c-1cba3475c2ff
+                stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+            transform: MAX(CASE WHEN T.PREDICATE = 'skos:definition' THEN T.OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f5779a5-26f0-4985-87bf-3e5d30276e8d
+          stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EXAMPLE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2f5779a5-26f0-4985-87bf-3e5d30276e8d
+                stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+            transform: MAX(CASE WHEN T.PREDICATE = 'skos:example' THEN T.OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0da969e9-3e47-4bb3-b815-15506ff213b4
+          stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EXPLANATORY_NOTE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0da969e9-3e47-4bb3-b815-15506ff213b4
+                stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+            transform: MAX(CASE WHEN T.PREDICATE = 'cmns-av:explanatoryNote' THEN T.OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3710f1f1-02b1-436f-8adb-d021df453467
+          stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABBREVIATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3710f1f1-02b1-436f-8adb-d021df453467
+                stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+            transform: MAX(CASE WHEN T.PREDICATE = 'cmns-av:abbreviation' THEN T.OBJECT_VALUE END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 648eea1d-9abe-46ee-9d9d-51d420f74e43
+          stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARENT_CLASSES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 648eea1d-9abe-46ee-9d9d-51d420f74e43
+                stepCounter: f6de8ab7-d37b-4507-99c4-f836e669f3e7
+            transform: P.PARENT_CLASSES
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: class_subjects
+          - locationName: DWH
+            nodeName: FIBO_TRIPLES
+          - locationName: DWH
+            nodeName: GET_LOCAL_NAME
+          - locationName: DWH
+            nodeName: parent_classes_agg
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FIBO_TRIPLES') }} T
+            INNER JOIN {{ ref('DWH', 'class_subjects') }} C ON T.SUBJECT = C.SUBJECT
+            LEFT JOIN {{ ref('DWH', 'parent_classes_agg') }} P ON T.SUBJECT = P.SUBJECT
+            GROUP BY T.SUBJECT, P.PARENT_CLASSES
+        name: V_NODE
+        noLinkRefs: []
+  name: VW_FIBO_CLASSES
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

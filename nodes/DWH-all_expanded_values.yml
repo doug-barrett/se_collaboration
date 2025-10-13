@@ -1,0 +1,149 @@
+fileVersion: 1
+id: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+name: all_expanded_values
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Combine all three types of expanded values
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e041f210-2cc0-4d9a-9d87-f4b9f3df22e0
+          stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e041f210-2cc0-4d9a-9d87-f4b9f3df22e0
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: EXPANDED_ARRAY_VALUES.SUBJECT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed2f0f74-74ce-4080-b26a-e9bc35ae9107
+          stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PREDICATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ed2f0f74-74ce-4080-b26a-e9bc35ae9107
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: EXPANDED_ARRAY_VALUES.PREDICATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 709ac3de-eb68-4033-9f0c-8f59758a7729
+          stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_FILE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 709ac3de-eb68-4033-9f0c-8f59758a7729
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: EXPANDED_ARRAY_VALUES.SOURCE_FILE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1dd0e9bc-f56c-4d0a-a526-6b2f1cd641f7
+          stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1dd0e9bc-f56c-4d0a-a526-6b2f1cd641f7
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: EXPANDED_ARRAY_VALUES.LOAD_TIMESTAMP
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60679d67-6568-440f-b53a-28016883fa8a
+          stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: VALUE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 60679d67-6568-440f-b53a-28016883fa8a
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: EXPANDED_ARRAY_VALUES.VALUE_TYPE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 18ee1fb5-ba64-447d-a98f-e90eae005493
+          stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORIGINAL_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18ee1fb5-ba64-447d-a98f-e90eae005493
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: EXPANDED_ARRAY_VALUES.ORIGINAL_VALUE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c90b9824-3677-4396-82c0-0f14b6fd0570
+          stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ARRAY_INDEX_REF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c90b9824-3677-4396-82c0-0f14b6fd0570
+                stepCounter: acd8b0ee-147c-4f28-9b1e-b1b227558dcf
+            transform: EXPANDED_ARRAY_VALUES.ARRAY_INDEX_REF
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: expanded_array_values
+          - locationName: DWH
+            nodeName: expanded_other_values
+          - locationName: DWH
+            nodeName: expanded_single_values
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'expanded_array_values') }} EXPANDED_ARRAY_VALUES
+            UNION ALL
+            SELECT * FROM {{ ref('DWH', 'expanded_single_values') }} EXPANDED_SINGLE_VALUES
+            UNION ALL
+            SELECT * FROM {{ ref('DWH', 'expanded_other_values') }} EXPANDED_OTHER_VALUES
+        name: STG_NODE1
+        noLinkRefs: []
+  name: all_expanded_values
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,128 @@
+fileVersion: 1
+id: d8bebb93-23e3-4769-9546-4db00920226a
+name: TEMP_ARRAY_LOOKUP
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Lookup table for array values extracted from FIBO data
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc65cc62-43ce-4aba-b820-8bc3ad1cff50
+          stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ARRAY_INDEX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fc65cc62-43ce-4aba-b820-8bc3ad1cff50
+                stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+            transform: ARR.INDEX::INT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8eecc235-6ab2-4180-b73d-e7259212c185
+          stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: TEXT_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8eecc235-6ab2-4180-b73d-e7259212c185
+                stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+            transform: ARR.VALUE:"$"::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d193516b-d4f6-4c99-8152-e58f94555f0f
+          stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RESOURCE_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d193516b-d4f6-4c99-8152-e58f94555f0f
+                stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+            transform: ARR.VALUE:"@rdf:resource"::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f729a07-4c00-46bf-87d8-e261b8bdf6af
+          stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DATATYPE_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2f729a07-4c00-46bf-87d8-e261b8bdf6af
+                stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+            transform: ARR.VALUE:"@rdf:datatype"::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 932329e9-b77e-4720-bd09-6133a7fff961
+          stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LANGUAGE_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 932329e9-b77e-4720-bd09-6133a7fff961
+                stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+            transform: ARR.VALUE:"@xml:lang"::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 918eba38-330d-4cf1-a567-dfdd7c73c0c6
+          stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PREDICATE_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 918eba38-330d-4cf1-a567-dfdd7c73c0c6
+                stepCounter: d8bebb93-23e3-4769-9546-4db00920226a
+            transform: ARR.VALUE:"@"::STRING
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_EXTRACT_USEconomicIndicators
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FIBO_EXTRACT_USEconomicIndicators') }} FIBO_EXTRACT_USEconomicIndicators,
+                LATERAL FLATTEN(input => SRC:"$", OUTER => TRUE) AS ARR
+        name: TEMP_ARRAY_LOOKUP
+        noLinkRefs: []
+  name: TEMP_ARRAY_LOOKUP
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,133 @@
+fileVersion: 1
+id: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+name: entity_properties
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Extract all entities and their properties from FIBO data
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5a945349-5482-4bd4-be8a-a0a4ca1d9e42
+          stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBJECT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a945349-5482-4bd4-be8a-a0a4ca1d9e42
+                stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+            transform: CONCEPTS.VALUE:"@rdf:about"::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f22b7adc-9456-40eb-91b8-588a87dcf5a0
+          stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ENTITY_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f22b7adc-9456-40eb-91b8-588a87dcf5a0
+                stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+            transform: CONCEPTS.VALUE:"@"::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c097ff03-08fd-4f15-ba82-28eabc5c07b7
+          stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PREDICATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c097ff03-08fd-4f15-ba82-28eabc5c07b7
+                stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+            transform: PROPERTIES.KEY::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 46b70766-e1ff-4e22-a220-b9e2571c8cf7
+          stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: PROP_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 46b70766-e1ff-4e22-a220-b9e2571c8cf7
+                stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+            transform: PROPERTIES.VALUE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 35f3f993-b5a9-4059-91eb-cdd47b6014fe
+          stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_FILE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 35f3f993-b5a9-4059-91eb-cdd47b6014fe
+                stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+            transform: SRC_TABLE.FILENAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96b4c309-26a5-4334-85e9-e49e978ae3d0
+          stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 96b4c309-26a5-4334-85e9-e49e978ae3d0
+                stepCounter: b0b780dc-e2c7-4e22-9930-f1b7a83d82de
+            transform: SRC_TABLE.LOAD_TIMESTAMP
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_EXTRACT_USEconomicIndicators
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FIBO_EXTRACT_USEconomicIndicators') }} SRC_TABLE,
+                LATERAL FLATTEN(input => SRC:"$") AS CONCEPTS,
+                LATERAL FLATTEN(input => CONCEPTS.VALUE) AS PROPERTIES
+            WHERE 
+                CONCEPTS.VALUE:"@rdf:about" IS NOT NULL
+                AND PROPERTIES.KEY NOT LIKE '@%'
+                AND PROPERTIES.KEY NOT LIKE '$%'
+        name: entity_properties
+        noLinkRefs: []
+  name: entity_properties
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
