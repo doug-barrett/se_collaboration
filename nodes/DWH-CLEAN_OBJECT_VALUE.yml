@@ -1,0 +1,55 @@
+fileVersion: 1
+id: 3c0492ca-a2b0-4fd2-8050-74eb07a1d19e
+name: CLEAN_OBJECT_VALUE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns: []
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            CREATE OR REPLACE FUNCTION {{ ref('DWH', 'CLEAN_OBJECT_VALUE')}} (uri VARCHAR)
+            RETURNS VARCHAR
+            LANGUAGE JAVASCRIPT
+            AS
+            $$
+                if (!val || val === '') return val;
+                if (!val.startsWith('[{') && !val.startsWith('{"')) return val;
+                
+                try {
+                    var parsed = JSON.parse(val);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        return parsed[0]['@rdf:resource'] || parsed[0]['$'] || null;
+                    } else if (typeof parsed === 'object') {
+                        return parsed['@rdf:resource'] || parsed['$'] || null;
+                    }
+                } catch (e) {
+                    return null;
+                }
+                return val;
+            $$;
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: CLEAN_OBJECT_VALUE
+        noLinkRefs: []
+  name: CLEAN_OBJECT_VALUE
+  overrideSQL: true
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

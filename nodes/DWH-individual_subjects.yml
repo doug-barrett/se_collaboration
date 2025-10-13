@@ -1,5 +1,5 @@
 fileVersion: 1
-id: b8254df8-0888-41cc-ae4d-e88797a9efcd
+id: 9827872c-4d8f-40ca-8896-c85a5011e4fb
 name: individual_subjects
 operation:
   config:
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 29ce2eb9-ac19-4571-89f9-1f3af51f8dd4
-          stepCounter: b8254df8-0888-41cc-ae4d-e88797a9efcd
+          columnCounter: f856d159-af83-46e3-925d-d7657a82a2c3
+          stepCounter: 9827872c-4d8f-40ca-8896-c85a5011e4fb
         config: {}
         dataType: VARCHAR
         description: ""
@@ -28,8 +28,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 29ce2eb9-ac19-4571-89f9-1f3af51f8dd4
-                stepCounter: b8254df8-0888-41cc-ae4d-e88797a9efcd
+              - columnCounter: f856d159-af83-46e3-925d-d7657a82a2c3
+                stepCounter: 9827872c-4d8f-40ca-8896-c85a5011e4fb
             transform: DISTINCT SUBJECT
     cteString: ""
     description: ""
@@ -48,7 +48,7 @@ operation:
             FROM {{ ref('DWH', 'FIBO_TRIPLES') }} FIBO_TRIPLES
             WHERE SUBJECT LIKE '%/BureauOfLaborStatistics'
                OR SUBJECT LIKE '%/UnitedStatesDepartmentOfLabor'
-        name: individual_subjects
+        name: STG_NODE
         noLinkRefs: []
   name: individual_subjects
   overrideSQL: false

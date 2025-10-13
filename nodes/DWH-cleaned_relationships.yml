@@ -1,0 +1,89 @@
+fileVersion: 1
+id: 5de769f1-3bfa-44c5-9361-304b5af0c7f3
+name: cleaned_relationships
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Cleaned relationships excluding messy JSON data
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f1a7427f-4604-497e-9669-472810fdf8f8
+          stepCounter: 5de769f1-3bfa-44c5-9361-304b5af0c7f3
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f1a7427f-4604-497e-9669-472810fdf8f8
+                stepCounter: 5de769f1-3bfa-44c5-9361-304b5af0c7f3
+            transform: SOURCE_URI
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26c9c39b-7391-489f-8b23-2168fe004f05
+          stepCounter: 5de769f1-3bfa-44c5-9361-304b5af0c7f3
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RELATIONSHIP_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 26c9c39b-7391-489f-8b23-2168fe004f05
+                stepCounter: 5de769f1-3bfa-44c5-9361-304b5af0c7f3
+            transform: RELATIONSHIP_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3527223-e15f-454b-a6d5-b1aad885ff64
+          stepCounter: 5de769f1-3bfa-44c5-9361-304b5af0c7f3
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: TARGET_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c3527223-e15f-454b-a6d5-b1aad885ff64
+                stepCounter: 5de769f1-3bfa-44c5-9361-304b5af0c7f3
+            transform: TARGET_NAME
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          VW_FIBO_RELATIONSHIPS: 46f7f1ae-5691-48f9-b58c-fd5780c54de7
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: VW_FIBO_RELATIONSHIPS
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'VW_FIBO_RELATIONSHIPS') }} "VW_FIBO_RELATIONSHIPS"
+            WHERE TARGET_NAME IS NOT NULL
+                AND TARGET_NAME NOT LIKE '[' || CHR(123) || '%'
+                AND TARGET_NAME NOT LIKE CHR(123) || '"%'
+        name: cleaned_relationships
+        noLinkRefs: []
+  name: cleaned_relationships
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

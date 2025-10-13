@@ -1,0 +1,142 @@
+fileVersion: 1
+id: 2c8255e0-9105-4ce4-8680-13a1da48d433
+name: cleaned_classes
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Cleaned classes with non-null labels
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca198d44-afca-48fd-9bd9-a9643a7ac276
+          stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CLASS_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ca198d44-afca-48fd-9bd9-a9643a7ac276
+                stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+            transform: CLASS_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 406195e2-ea8a-4578-ad69-baad2e75ad67
+          stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INDICATOR_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 406195e2-ea8a-4578-ad69-baad2e75ad67
+                stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+            transform: LABEL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b120ed6-128e-482a-8822-7e08eb588c3e
+          stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DEFINITION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b120ed6-128e-482a-8822-7e08eb588c3e
+                stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+            transform: DEFINITION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b5fea9ba-be7a-42c8-b639-23ec201c6f54
+          stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ABBREVIATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5fea9ba-be7a-42c8-b639-23ec201c6f54
+                stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+            transform: ABBREVIATION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f824d3c-5753-4e53-ae1c-5d79f5edfd17
+          stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARENT_CLASSES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f824d3c-5753-4e53-ae1c-5d79f5edfd17
+                stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+            transform: PARENT_CLASSES
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: efe21d0d-bdfd-466e-8ec0-7ff0d86bc8ad
+          stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EXPLANATORY_NOTE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: efe21d0d-bdfd-466e-8ec0-7ff0d86bc8ad
+                stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+            transform: EXPLANATORY_NOTE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1396c4e4-3213-429f-b24b-926547c2da62
+          stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CLASS_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1396c4e4-3213-429f-b24b-926547c2da62
+                stepCounter: 2c8255e0-9105-4ce4-8680-13a1da48d433
+            transform: CLASS_URI
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: VW_FIBO_CLASSES
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'VW_FIBO_CLASSES') }} VW_FIBO_CLASSES
+            WHERE LABEL IS NOT NULL
+        name: STG_NODE
+        noLinkRefs: []
+  name: cleaned_classes
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,86 @@
+fileVersion: 1
+id: 4f6bed82-951b-4c22-9060-70f7934f9e30
+name: cleaned_individuals
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Cleaned individuals with non-null labels
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c533d9bb-073b-42da-ba58-505c74d57eb9
+          stepCounter: 4f6bed82-951b-4c22-9060-70f7934f9e30
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INDIVIDUAL_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c533d9bb-073b-42da-ba58-505c74d57eb9
+                stepCounter: 4f6bed82-951b-4c22-9060-70f7934f9e30
+            transform: INDIVIDUAL_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f9060a9f-2484-4b40-bfe5-67e4a00ee078
+          stepCounter: 4f6bed82-951b-4c22-9060-70f7934f9e30
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INSTANCE_OF_CLASS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f9060a9f-2484-4b40-bfe5-67e4a00ee078
+                stepCounter: 4f6bed82-951b-4c22-9060-70f7934f9e30
+            transform: INSTANCE_OF_CLASS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f93f17ae-7c89-4ec2-876b-0e2c1e9d0bd2
+          stepCounter: 4f6bed82-951b-4c22-9060-70f7934f9e30
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INDIVIDUAL_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f93f17ae-7c89-4ec2-876b-0e2c1e9d0bd2
+                stepCounter: 4f6bed82-951b-4c22-9060-70f7934f9e30
+            transform: INDIVIDUAL_URI
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: VW_FIBO_INDIVIDUALS
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'VW_FIBO_INDIVIDUALS') }} VW_FIBO_INDIVIDUALS
+            WHERE LABEL IS NOT NULL
+        name: STG_NODE
+        noLinkRefs: []
+  name: cleaned_individuals
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
