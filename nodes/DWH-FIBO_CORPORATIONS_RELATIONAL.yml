@@ -1,0 +1,134 @@
+fileVersion: 1
+id: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+name: FIBO_CORPORATIONS_RELATIONAL
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Query to shred XML content with trimmed CONCEPT_URI
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8982513d-2453-462c-a294-09e25d4293be
+          stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CONCEPT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8982513d-2453-462c-a294-09e25d4293be
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: CONCEPT.VALUE:"@"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03333ce9-5e0e-4114-9b6d-d02d25d877d9
+          stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CONCEPT_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 03333ce9-5e0e-4114-9b6d-d02d25d877d9
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: TRIM(CONCEPT.VALUE:"@rdf:about"::STRING, '"')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd78485f-6826-4e0b-85d8-83ddd0afee2f
+          stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LABEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cd78485f-6826-4e0b-85d8-83ddd0afee2f
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: MAX(IFF(PROP.VALUE:"@" = 'rdfs:label', PROP.VALUE:"$", NULL))::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 037271d6-2000-4543-a876-d1a70818b1d6
+          stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DEFINITION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 037271d6-2000-4543-a876-d1a70818b1d6
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: MAX(IFF(PROP.VALUE:"@" = 'skos:definition', PROP.VALUE:"$", NULL))::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fec76395-c652-4716-8d59-72177e933ffd
+          stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBCLASS_OF_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fec76395-c652-4716-8d59-72177e933ffd
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: MAX(IFF(PROP.VALUE:"@" = 'rdfs:subClassOf', PROP.VALUE:"@rdf:resource", NULL))::STRING
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8cce78ee-63c9-4642-90a7-b5eaaa7e7dfb
+          stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBPROPERTY_OF_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8cce78ee-63c9-4642-90a7-b5eaaa7e7dfb
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: MAX(IFF(PROP.VALUE:"@" = 'rdfs:subPropertyOf', PROP.VALUE:"@rdf:resource", NULL))::STRING
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          XML_CONTENT: b4d399f4-6126-45f8-812b-d0b675979b08
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: XML_CONTENT
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'XML_CONTENT') }} XML_CONTENT,
+                LATERAL FLATTEN(XML_DATA:"$") CONCEPT,
+                LATERAL FLATTEN(CONCEPT.VALUE:"$") PROP
+            WHERE
+                CONCEPT.VALUE:"@" IN ('owl:Class', 'owl:ObjectProperty', 'owl:DatatypeProperty')
+            GROUP BY
+                CONCEPT_TYPE, CONCEPT_URI
+        name: FIBO_CORPORATIONS_RELATIONAL
+        noLinkRefs: []
+  name: FIBO_CORPORATIONS_RELATIONAL
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

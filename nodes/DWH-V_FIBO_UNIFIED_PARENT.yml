@@ -1,0 +1,138 @@
+fileVersion: 1
+id: 23b5c030-1ee0-4cf8-b7e2-321857b11e0b
+name: V_FIBO_UNIFIED_PARENT
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: View that unifies parent URI columns using COALESCE for simplified hierarchy queries
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9186966d-c855-4051-a479-9a5f3c296ddd
+          stepCounter: 23b5c030-1ee0-4cf8-b7e2-321857b11e0b
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CONCEPT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8982513d-2453-462c-a294-09e25d4293be
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 19b3caf8-ddca-473c-b90b-411c757aa729
+          stepCounter: 23b5c030-1ee0-4cf8-b7e2-321857b11e0b
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CONCEPT_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 03333ce9-5e0e-4114-9b6d-d02d25d877d9
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4f21ebad-4fd5-439c-9dec-db8c6306058d
+          stepCounter: 23b5c030-1ee0-4cf8-b7e2-321857b11e0b
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LABEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cd78485f-6826-4e0b-85d8-83ddd0afee2f
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0271ffa-a7db-475b-a354-5caebe4e5d81
+          stepCounter: 23b5c030-1ee0-4cf8-b7e2-321857b11e0b
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DEFINITION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 037271d6-2000-4543-a876-d1a70818b1d6
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 541fbfec-a0fa-44dc-b5c2-4c991698d189
+          stepCounter: 23b5c030-1ee0-4cf8-b7e2-321857b11e0b
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBCLASS_OF_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fec76395-c652-4716-8d59-72177e933ffd
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b43341b-2dc4-4962-ab35-cd27a6b387cd
+          stepCounter: 23b5c030-1ee0-4cf8-b7e2-321857b11e0b
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUBPROPERTY_OF_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8cce78ee-63c9-4642-90a7-b5eaaa7e7dfb
+                stepCounter: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b7fdaea-501b-43b1-94e0-ced5f9212c94
+          stepCounter: 23b5c030-1ee0-4cf8-b7e2-321857b11e0b
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARENT_URI
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b7fdaea-501b-43b1-94e0-ced5f9212c94
+                stepCounter: 23b5c030-1ee0-4cf8-b7e2-321857b11e0b
+            transform: COALESCE(SUBCLASS_OF_URI, SUBPROPERTY_OF_URI)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          FIBO_CORPORATIONS_RELATIONAL: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_CORPORATIONS_RELATIONAL
+        join:
+          joinCondition: FROM {{ ref('DWH', 'FIBO_CORPORATIONS_RELATIONAL') }} FIBO_CORPORATIONS_RELATIONAL
+        name: V_FIBO_UNIFIED_PARENT
+        noLinkRefs: []
+  name: V_FIBO_UNIFIED_PARENT
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

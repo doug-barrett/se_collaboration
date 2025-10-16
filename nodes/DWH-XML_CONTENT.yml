@@ -1,0 +1,60 @@
+fileVersion: 1
+id: b4d399f4-6126-45f8-812b-d0b675979b08
+name: XML_CONTENT
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 010087ab-5a6e-4b9e-a219-80c4fe75a8f8
+          stepCounter: b4d399f4-6126-45f8-812b-d0b675979b08
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: XML_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: PARSE_XML(SRC)
+        systemColumnType: None
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          UNION_EXTRACT_CORPORATE_ONTOLOGY: 946dbfcf-6ee5-4988-ab9d-ce0b902e4117
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: UNION_EXTRACT_CORPORATE_ONTOLOGY
+        join:
+          joinCondition: FROM {{ ref('DWH', 'UNION_EXTRACT_CORPORATE_ONTOLOGY') }} "UNION_EXTRACT_CORPORATE_ONTOLOGY"
+        name: XML_CONTENT
+        noLinkRefs: []
+  name: XML_CONTENT
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

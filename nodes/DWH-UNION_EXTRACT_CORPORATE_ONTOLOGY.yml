@@ -1,0 +1,194 @@
+fileVersion: 1
+id: 946dbfcf-6ee5-4988-ab9d-ce0b902e4117
+name: UNION_EXTRACT_CORPORATE_ONTOLOGY
+operation:
+  config:
+    insertStrategy: UNION
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: true
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a5923111-69e1-4e5c-afa2-843d8a697f73
+          stepCounter: 946dbfcf-6ee5-4988-ab9d-ce0b902e4117
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: SRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a9fe128-50fd-4233-a748-87e50a8dbb57
+                stepCounter: bd104460-dc10-453a-8723-7acd8a15c495
+            transform: ""
+          - columnReferences:
+              - columnCounter: 5063a7b6-0ed6-432c-85c9-1586e20babf3
+                stepCounter: 851c9fee-fc3f-4507-823f-2c68b87912c8
+            transform: ""
+          - columnReferences:
+              - columnCounter: 889f7d12-3aab-4ec8-8e46-7e339e83a7fa
+                stepCounter: f5535851-d8df-439c-9540-5dd81d587e51
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b7c87cd-4b85-4530-8ba8-0c25fe7abb1a
+          stepCounter: 946dbfcf-6ee5-4988-ab9d-ce0b902e4117
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 68bde342-be20-4f23-a56a-8639178cb115
+                stepCounter: bd104460-dc10-453a-8723-7acd8a15c495
+            transform: ""
+          - columnReferences:
+              - columnCounter: cbac4eff-8592-4d0f-a931-29f4090d0ef0
+                stepCounter: 851c9fee-fc3f-4507-823f-2c68b87912c8
+            transform: ""
+          - columnReferences:
+              - columnCounter: 06d71d98-f4c3-4275-bdde-988a3b46587c
+                stepCounter: f5535851-d8df-439c-9540-5dd81d587e51
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 00bb8840-ec21-4cb9-9a2b-ba3650f4a78e
+          stepCounter: 946dbfcf-6ee5-4988-ab9d-ce0b902e4117
+        config: {}
+        dataType: STRING
+        description: ""
+        name: FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd7fabfe-9811-44da-b982-9557401f07c9
+                stepCounter: bd104460-dc10-453a-8723-7acd8a15c495
+            transform: ""
+          - columnReferences:
+              - columnCounter: 7799afce-ea94-4c3d-a485-fac1a98e575a
+                stepCounter: 851c9fee-fc3f-4507-823f-2c68b87912c8
+            transform: ""
+          - columnReferences:
+              - columnCounter: a4bfef99-fd6a-4d69-b76c-2836a84bf2fe
+                stepCounter: f5535851-d8df-439c-9540-5dd81d587e51
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc057fd8-948e-4f52-97be-053d30ddee23
+          stepCounter: 946dbfcf-6ee5-4988-ab9d-ce0b902e4117
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FILE_ROW_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 29e6b032-267b-4c99-b8e1-e58d3e914704
+                stepCounter: bd104460-dc10-453a-8723-7acd8a15c495
+            transform: ""
+          - columnReferences:
+              - columnCounter: 340fbd80-7894-47ed-801a-460040b693cd
+                stepCounter: 851c9fee-fc3f-4507-823f-2c68b87912c8
+            transform: ""
+          - columnReferences:
+              - columnCounter: a3283298-3fb3-4b42-997b-5f1bf407f867
+                stepCounter: f5535851-d8df-439c-9540-5dd81d587e51
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2dc39715-7976-4c77-9370-44d18832a3aa
+          stepCounter: 946dbfcf-6ee5-4988-ab9d-ce0b902e4117
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 451c4ea2-1cef-43eb-9db7-7d24d99f0481
+                stepCounter: bd104460-dc10-453a-8723-7acd8a15c495
+            transform: ""
+          - columnReferences:
+              - columnCounter: e9ae3bae-f436-4060-a443-234a51732c06
+                stepCounter: 851c9fee-fc3f-4507-823f-2c68b87912c8
+            transform: ""
+          - columnReferences:
+              - columnCounter: 57937630-9c0e-4b9f-86ea-ea531e047c3d
+                stepCounter: f5535851-d8df-439c-9540-5dd81d587e51
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 00e97747-7877-4e19-aa65-71bf2a44df94
+          stepCounter: 946dbfcf-6ee5-4988-ab9d-ce0b902e4117
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: SCAN_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 40cf54b3-57db-4dbe-a86b-240f1db4d167
+                stepCounter: bd104460-dc10-453a-8723-7acd8a15c495
+            transform: ""
+          - columnReferences:
+              - columnCounter: 53ae7477-b687-4fef-8a0b-7a717d661b6a
+                stepCounter: 851c9fee-fc3f-4507-823f-2c68b87912c8
+            transform: ""
+          - columnReferences:
+              - columnCounter: afd1c896-9bad-45a5-8359-a3532d69cf6d
+                stepCounter: f5535851-d8df-439c-9540-5dd81d587e51
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          FIBO_EXTRACT_CORPORATE_BODIES: bd104460-dc10-453a-8723-7acd8a15c495
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_EXTRACT_CORPORATE_BODIES
+        join:
+          joinCondition: FROM {{ ref('DWH', 'FIBO_EXTRACT_CORPORATE_BODIES') }} "FIBO_EXTRACT_CORPORATE_BODIES"
+        name: CORPORATE_BODIES
+        noLinkRefs: []
+      - aliases:
+          FIBO_EXTRACT_CORPORATIONS: 851c9fee-fc3f-4507-823f-2c68b87912c8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_EXTRACT_CORPORATIONS
+        join:
+          joinCondition: FROM {{ ref('DWH', 'FIBO_EXTRACT_CORPORATIONS') }} "FIBO_EXTRACT_CORPORATIONS"
+        name: CORPORATIONS
+        noLinkRefs: []
+      - aliases:
+          FIBO_EXTRACT_LEGALPERSONS: f5535851-d8df-439c-9540-5dd81d587e51
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_EXTRACT_LEGALPERSONS
+        join:
+          joinCondition: FROM {{ ref('DWH', 'FIBO_EXTRACT_LEGALPERSONS') }} "FIBO_EXTRACT_LEGALPERSONS"
+        name: LEGAL_PERSONS
+        noLinkRefs: []
+  name: UNION_EXTRACT_CORPORATE_ONTOLOGY
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

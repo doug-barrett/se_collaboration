@@ -1,0 +1,129 @@
+fileVersion: 1
+id: 3927d9a7-cf60-4743-86c1-67ca010550c0
+name: V_FIBO_CORPORATIONS_HIERARCHY
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: View showing hierarchy relationships between FIBO corporation concepts with self-join
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8ca3b547-aec8-405a-91eb-b5bcb1cc72a6
+          stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CHILD_CONCEPT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ca3b547-aec8-405a-91eb-b5bcb1cc72a6
+                stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+            transform: CHILD.LABEL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d1a8ac2d-65a3-483d-b5a8-e1b0e1be6636
+          stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CHILD_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d1a8ac2d-65a3-483d-b5a8-e1b0e1be6636
+                stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+            transform: CHILD.CONCEPT_TYPE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eb32001a-138a-485b-8dae-830037de6327
+          stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CHILD_DEFINITION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eb32001a-138a-485b-8dae-830037de6327
+                stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+            transform: CHILD.DEFINITION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 161f5049-cc6c-4a3e-a34f-6aec5913028a
+          stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RELATIONSHIP_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 161f5049-cc6c-4a3e-a34f-6aec5913028a
+                stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+            transform: CASE WHEN CHILD.SUBCLASS_OF_URI IS NOT NULL THEN 'is SubClass Of' WHEN CHILD.SUBPROPERTY_OF_URI IS NOT NULL THEN 'is SubProperty Of' ELSE 'is a Top-Level Concept' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed8688cf-e5eb-4431-8c51-b1a7a8c53974
+          stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARENT_CONCEPT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ed8688cf-e5eb-4431-8c51-b1a7a8c53974
+                stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+            transform: PARENT.LABEL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd451e89-61aa-4184-ab26-5b3cd7c87571
+          stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd451e89-61aa-4184-ab26-5b3cd7c87571
+                stepCounter: 3927d9a7-cf60-4743-86c1-67ca010550c0
+            transform: PARENT.CONCEPT_TYPE
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          CHILD: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+          PARENT: 8e40de4c-03bb-489a-86c1-76dff27bb9f4
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FIBO_CORPORATIONS_RELATIONAL
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FIBO_CORPORATIONS_RELATIONAL') }} CHILD
+            LEFT JOIN {{ ref('DWH', 'FIBO_CORPORATIONS_RELATIONAL') }} PARENT
+                ON CHILD.SUBCLASS_OF_URI = PARENT.CONCEPT_URI 
+                OR CHILD.SUBPROPERTY_OF_URI = PARENT.CONCEPT_URI
+        name: V_FIBO_CORPORATIONS_HIERARCHY
+        noLinkRefs: []
+  name: V_FIBO_CORPORATIONS_HIERARCHY
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
