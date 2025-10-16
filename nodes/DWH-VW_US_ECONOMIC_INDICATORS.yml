@@ -177,7 +177,7 @@ operation:
                 ON I.INSTANCE_OF_CLASS LIKE '%' || C.CLASS_NAME || '%'
             LEFT JOIN {{ ref('DWH', 'cleaned_relationships') }} R 
                 ON R.SOURCE_URI = C.CLASS_URI OR R.SOURCE_URI = I.INDIVIDUAL_URI
-        name: V_NODE
+        name: VW_US_ECONOMIC_INDICATORS
         noLinkRefs: []
   name: VW_US_ECONOMIC_INDICATORS
   overrideSQL: false
