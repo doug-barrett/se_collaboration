@@ -4,7 +4,6 @@ name: VW_AGG_SALES_DAY
 operation:
   config:
     insertStrategy: UNION
-    postSQL: null
     preSQL: DELETE FROM {{this}} WHERE TRANSACTION_DATE < DATEADD(YEAR, -2, CURRENT_DATE)
     selectDistinct: false
     testsEnabled: false

@@ -4,7 +4,6 @@ name: STG_SALES_MA_DAY_PROFILE
 operation:
   config:
     insertStrategy: UNION
-    postSQL: null
     preSQL: |-
       DELETE FROM {{this}}
       WHERE DAYNAME(CURRENT_DATE) = 'Sat'
