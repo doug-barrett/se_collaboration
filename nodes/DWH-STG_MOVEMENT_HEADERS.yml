@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 63cb16a2-110f-449f-adbd-e9d840157f56
-name: STG_MKPF
+id: 2d867662-0db4-450c-b339-5acec1a429ac
+name: STG_MOVEMENT_HEADERS
 operation:
   config:
     insertStrategy: INSERT
@@ -19,12 +19,12 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: f3607b90-71fa-4553-aec0-2591a6c71a35
-          stepCounter: 63cb16a2-110f-449f-adbd-e9d840157f56
+          columnCounter: 3e83cc9f-bd30-461b-8acc-7ea9eab5f8a9
+          stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
         config: {}
         dataType: VARCHAR(3)
         description: ""
-        name: MANDT
+        name: CLIENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -33,12 +33,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b6b09de4-7dbb-4fec-a1bc-49e3e8a293b3
-          stepCounter: 63cb16a2-110f-449f-adbd-e9d840157f56
+          columnCounter: edd1ccce-4b32-42fe-b07e-cd983c5f3ac1
+          stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
         config: {}
         dataType: VARCHAR(10)
         description: ""
-        name: MBLNR
+        name: NUMBER_OF_MATERIAL_DOCUMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -47,12 +47,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: cb119eed-d94f-4086-93bd-3eb8d6b33b48
-          stepCounter: 63cb16a2-110f-449f-adbd-e9d840157f56
+          columnCounter: 393f03e3-2226-4081-9c0b-d225a9662f6d
+          stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
         config: {}
         dataType: NUMBER(4,0)
         description: ""
-        name: MJAHR
+        name: MATERIAL_DOCUMENT_YEAR
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -61,12 +61,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 6bb5bc37-f7be-483f-a16c-32ebb96d19ff
-          stepCounter: 63cb16a2-110f-449f-adbd-e9d840157f56
+          columnCounter: 1cfe38c9-15b7-4dfa-9b85-07bbda00279f
+          stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
         config: {}
         dataType: VARCHAR(2)
         description: ""
-        name: BLART
+        name: DOCUMENT_TYPE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -75,12 +75,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: dcf94b2d-f008-4727-9175-f6cd8a1d8e68
-          stepCounter: 63cb16a2-110f-449f-adbd-e9d840157f56
+          columnCounter: aca6fc24-db66-4cb5-9667-2a0c9c18d161
+          stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
         config: {}
         dataType: DATE
         description: ""
-        name: BLDAT
+        name: DOCUMENT_DATE_IN_DOCUMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -89,12 +89,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 39186075-6953-43c7-b885-45784b5414ea
-          stepCounter: 63cb16a2-110f-449f-adbd-e9d840157f56
+          columnCounter: 0dab09fb-667c-4547-83e2-15435f5f7e0d
+          stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
         config: {}
         dataType: DATE
         description: ""
-        name: BUDAT
+        name: POSTING_DATE_IN_THE_DOCUMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -103,12 +103,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 000c749f-6d00-4f00-a0ac-4ea9a0609fd1
-          stepCounter: 63cb16a2-110f-449f-adbd-e9d840157f56
+          columnCounter: 909d1c39-d6ae-480f-b870-09a7ad36ada3
+          stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
         config: {}
         dataType: VARCHAR(12)
         description: ""
-        name: USNAM
+        name: USER_NAME
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -116,7 +116,10 @@ operation:
                 stepCounter: 5b09156e-12c0-4f04-b0dc-bd9346bb6a6d
             transform: ""
     cteString: ""
+    description: ""
+    destinationName: ""
     enabledColumnTestIDs: []
+    materializationOption: ""
     sourceMapping:
       - aliases:
           MKPF: 5b09156e-12c0-4f04-b0dc-bd9346bb6a6d
@@ -127,9 +130,9 @@ operation:
             nodeName: MKPF
         join:
           joinCondition: FROM {{ ref('SRC_SAP_INVENTORY', 'MKPF') }} "MKPF"
-        name: STG_MKPF
+        name: STG_MOVEMENT_HEADERS
         noLinkRefs: []
-  name: STG_MKPF
+  name: STG_MOVEMENT_HEADERS
   overrideSQL: false
   schema: ""
   sqlType: Stage

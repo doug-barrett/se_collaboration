@@ -1,6 +1,6 @@
 fileVersion: 1
-id: ed758e53-95f6-4cb1-8e7f-b66790cfc36b
-name: STG_T001
+id: 22d38c00-1ba3-45a1-ac2c-bfbf92fa5474
+name: STG_COMPANY_CODES
 operation:
   config:
     insertStrategy: INSERT
@@ -19,12 +19,12 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b5a2a965-4c38-4945-872e-7d0d6a022918
-          stepCounter: ed758e53-95f6-4cb1-8e7f-b66790cfc36b
+          columnCounter: 36305a8f-5960-4842-adc0-485552427ece
+          stepCounter: 22d38c00-1ba3-45a1-ac2c-bfbf92fa5474
         config: {}
         dataType: VARCHAR(3)
         description: ""
-        name: MANDT
+        name: CLIENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -33,12 +33,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 93f87da6-0dd7-4ec4-83ba-0c79f5919265
-          stepCounter: ed758e53-95f6-4cb1-8e7f-b66790cfc36b
+          columnCounter: 7fdb6144-6778-4990-b064-685da3f16cdb
+          stepCounter: 22d38c00-1ba3-45a1-ac2c-bfbf92fa5474
         config: {}
         dataType: VARCHAR(4)
         description: ""
-        name: BUKRS
+        name: COMPANY_CODE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -47,12 +47,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 8a119231-44c2-4dc3-b6af-51529bf159ed
-          stepCounter: ed758e53-95f6-4cb1-8e7f-b66790cfc36b
+          columnCounter: 2370d2f0-910e-47c0-a546-0e6763104767
+          stepCounter: 22d38c00-1ba3-45a1-ac2c-bfbf92fa5474
         config: {}
         dataType: VARCHAR(256)
         description: ""
-        name: BUTXT
+        name: NAME_OF_COMPANY_CODE_OR_COMPANY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -61,12 +61,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a6df5a68-61f2-4913-bc8e-a78c306bd4a2
-          stepCounter: ed758e53-95f6-4cb1-8e7f-b66790cfc36b
+          columnCounter: 95b47d16-4cfe-4ea8-bdc8-5edf19651fca
+          stepCounter: 22d38c00-1ba3-45a1-ac2c-bfbf92fa5474
         config: {}
         dataType: VARCHAR(25)
         description: ""
-        name: ORT01
+        name: CITY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -75,12 +75,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 1695e97d-e0ba-4d12-a879-9345bce98c9f
-          stepCounter: ed758e53-95f6-4cb1-8e7f-b66790cfc36b
+          columnCounter: c1011bd5-be23-4234-b450-85e34f65162d
+          stepCounter: 22d38c00-1ba3-45a1-ac2c-bfbf92fa5474
         config: {}
         dataType: VARCHAR(3)
         description: ""
-        name: LAND1
+        name: COUNTRY_REGION_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -89,12 +89,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a9ed0d00-65ed-4583-9088-15fde21c1d85
-          stepCounter: ed758e53-95f6-4cb1-8e7f-b66790cfc36b
+          columnCounter: 65af5272-0852-4984-ae5d-e8599b438edc
+          stepCounter: 22d38c00-1ba3-45a1-ac2c-bfbf92fa5474
         config: {}
         dataType: VARCHAR(5)
         description: ""
-        name: WAERS
+        name: CURRENCY_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -103,12 +103,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: f79109bf-26a6-4b19-931b-01b7d3a222c5
-          stepCounter: ed758e53-95f6-4cb1-8e7f-b66790cfc36b
+          columnCounter: 692b5a3d-495c-4854-a041-f14b71dc83a7
+          stepCounter: 22d38c00-1ba3-45a1-ac2c-bfbf92fa5474
         config: {}
         dataType: VARCHAR(1)
         description: ""
-        name: SPRAS
+        name: LANGUAGE_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -116,7 +116,10 @@ operation:
                 stepCounter: 7d84fbd2-5d2b-49d9-bc6e-ab195f351a49
             transform: ""
     cteString: ""
+    description: ""
+    destinationName: ""
     enabledColumnTestIDs: []
+    materializationOption: ""
     sourceMapping:
       - aliases:
           T001: 7d84fbd2-5d2b-49d9-bc6e-ab195f351a49
@@ -127,9 +130,9 @@ operation:
             nodeName: T001
         join:
           joinCondition: FROM {{ ref('SRC_SAP_INVENTORY', 'T001') }} "T001"
-        name: STG_T001
+        name: STG_COMPANY_CODES
         noLinkRefs: []
-  name: STG_T001
+  name: STG_COMPANY_CODES
   overrideSQL: false
   schema: ""
   sqlType: Stage

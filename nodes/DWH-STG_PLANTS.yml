@@ -1,6 +1,6 @@
 fileVersion: 1
-id: ed7b4097-232f-4180-bcc4-f748d60c65e8
-name: STG_T001W
+id: 55f772bb-6469-4598-a83e-ac993e325d0a
+name: STG_PLANTS
 operation:
   config:
     insertStrategy: INSERT
@@ -19,12 +19,12 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 85606d55-1a08-46fb-832d-96d16578cae6
-          stepCounter: ed7b4097-232f-4180-bcc4-f748d60c65e8
+          columnCounter: 0640864b-2390-4986-bf4b-c5de2eb7be25
+          stepCounter: 55f772bb-6469-4598-a83e-ac993e325d0a
         config: {}
         dataType: VARCHAR(3)
         description: ""
-        name: MANDT
+        name: CLIENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -33,12 +33,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a42b0673-de4b-42ad-8e04-6579b8ff95c4
-          stepCounter: ed7b4097-232f-4180-bcc4-f748d60c65e8
+          columnCounter: 71d7424a-2f3f-4a9a-9693-c6d22411039d
+          stepCounter: 55f772bb-6469-4598-a83e-ac993e325d0a
         config: {}
         dataType: VARCHAR(4)
         description: ""
-        name: WERKS
+        name: PLANT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -47,12 +47,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 98985234-e51e-4b91-8413-bd4d20608ea7
-          stepCounter: ed7b4097-232f-4180-bcc4-f748d60c65e8
+          columnCounter: 32077695-0a73-412b-82a9-e2949670d6fc
+          stepCounter: 55f772bb-6469-4598-a83e-ac993e325d0a
         config: {}
         dataType: VARCHAR(30)
         description: ""
-        name: NAME1
+        name: NAME
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -61,12 +61,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2af382d3-2f15-4985-9533-0242112178e6
-          stepCounter: ed7b4097-232f-4180-bcc4-f748d60c65e8
+          columnCounter: d34a1c19-b495-4d76-a89a-c8e2d5724477
+          stepCounter: 55f772bb-6469-4598-a83e-ac993e325d0a
         config: {}
         dataType: VARCHAR(4)
         description: ""
-        name: BUKRS
+        name: COMPANY_CODE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -75,12 +75,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b82c8b21-81b2-47cf-a80c-845be2c64035
-          stepCounter: ed7b4097-232f-4180-bcc4-f748d60c65e8
+          columnCounter: 92007407-f6a0-46f3-b6c8-55bf5f2739d4
+          stepCounter: 55f772bb-6469-4598-a83e-ac993e325d0a
         config: {}
         dataType: VARCHAR(25)
         description: ""
-        name: ORT01
+        name: CITY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -89,12 +89,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 00c103c0-bd39-489f-9a33-08e99f608c16
-          stepCounter: ed7b4097-232f-4180-bcc4-f748d60c65e8
+          columnCounter: 4d88ac8c-56b2-4e7e-bc73-887f1979d93d
+          stepCounter: 55f772bb-6469-4598-a83e-ac993e325d0a
         config: {}
         dataType: VARCHAR(10)
         description: ""
-        name: PSTLZ
+        name: POSTAL_CODE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -103,12 +103,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 9f7aea0d-7524-40e4-84dc-de15fae98e1e
-          stepCounter: ed7b4097-232f-4180-bcc4-f748d60c65e8
+          columnCounter: a1a86fe1-064f-4e1c-880b-c30e8d75ca9c
+          stepCounter: 55f772bb-6469-4598-a83e-ac993e325d0a
         config: {}
         dataType: VARCHAR(3)
         description: ""
-        name: LAND1
+        name: COUNTRY_REGION_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -116,7 +116,10 @@ operation:
                 stepCounter: da8a505e-5973-4e7e-8cb6-068e3f426164
             transform: ""
     cteString: ""
+    description: ""
+    destinationName: ""
     enabledColumnTestIDs: []
+    materializationOption: ""
     sourceMapping:
       - aliases:
           T001W: da8a505e-5973-4e7e-8cb6-068e3f426164
@@ -127,9 +130,9 @@ operation:
             nodeName: T001W
         join:
           joinCondition: FROM {{ ref('SRC_SAP_INVENTORY', 'T001W') }} "T001W"
-        name: STG_T001W
+        name: STG_PLANTS
         noLinkRefs: []
-  name: STG_T001W
+  name: STG_PLANTS
   overrideSQL: false
   schema: ""
   sqlType: Stage

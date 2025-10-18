@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
-name: STG_T001L
+id: 1d68aad5-6486-446b-81c6-b78aacb24963
+name: STG_STORAGE_LOCATIONS
 operation:
   config:
     insertStrategy: INSERT
@@ -19,12 +19,12 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: e44d8986-ff46-4c4e-856d-004c4e84c634
-          stepCounter: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
+          columnCounter: e66e0411-fdf2-432c-87a6-74422d4930f9
+          stepCounter: 1d68aad5-6486-446b-81c6-b78aacb24963
         config: {}
         dataType: VARCHAR(3)
         description: ""
-        name: MANDT
+        name: CLIENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -33,12 +33,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 673ddc4b-9b3b-4b82-ba7b-9cd1307e9a66
-          stepCounter: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
+          columnCounter: 0b89dfb1-f6fd-40ed-bd02-a104a7374eb1
+          stepCounter: 1d68aad5-6486-446b-81c6-b78aacb24963
         config: {}
         dataType: VARCHAR(4)
         description: ""
-        name: WERKS
+        name: PLANT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -47,12 +47,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 70312e82-79a7-4be8-90da-3e097e79690b
-          stepCounter: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
+          columnCounter: e70d1afd-3c57-4576-a5bd-daf4dfab8e4b
+          stepCounter: 1d68aad5-6486-446b-81c6-b78aacb24963
         config: {}
         dataType: VARCHAR(4)
         description: ""
-        name: LGORT
+        name: STORAGE_LOCATION
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -61,12 +61,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: dcac429e-fdaf-410c-91bd-4a5e10dd712e
-          stepCounter: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
+          columnCounter: de193d2d-3d3e-4f02-adde-dc22763be6dc
+          stepCounter: 1d68aad5-6486-446b-81c6-b78aacb24963
         config: {}
         dataType: VARCHAR(50)
         description: ""
-        name: LGOBE
+        name: DESCRIPTION_OF_STORAGE_LOCATION
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -74,7 +74,10 @@ operation:
                 stepCounter: d9d7231d-37cb-481b-9751-b12daf39bc71
             transform: ""
     cteString: ""
+    description: ""
+    destinationName: ""
     enabledColumnTestIDs: []
+    materializationOption: ""
     sourceMapping:
       - aliases:
           T001L: d9d7231d-37cb-481b-9751-b12daf39bc71
@@ -85,9 +88,9 @@ operation:
             nodeName: T001L
         join:
           joinCondition: FROM {{ ref('SRC_SAP_INVENTORY', 'T001L') }} "T001L"
-        name: STG_T001L
+        name: STG_STORAGE_LOCATIONS
         noLinkRefs: []
-  name: STG_T001L
+  name: STG_STORAGE_LOCATIONS
   overrideSQL: false
   schema: ""
   sqlType: Stage

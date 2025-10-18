@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 79228dd6-4a79-4de8-85f8-5c068f1c500c
-name: STG_MARC
+id: fe14d20c-0c4e-434b-9058-1165cb0b4876
+name: STG_PRODUCT_PLANT_DATA
 operation:
   config:
     insertStrategy: INSERT
@@ -19,12 +19,12 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: fa36829f-9585-42d6-92b9-0c7aaa1dcfea
-          stepCounter: 79228dd6-4a79-4de8-85f8-5c068f1c500c
+          columnCounter: 2bc625b2-f194-4524-b650-15cdbc9f05d6
+          stepCounter: fe14d20c-0c4e-434b-9058-1165cb0b4876
         config: {}
         dataType: VARCHAR(3)
         description: ""
-        name: MANDT
+        name: CLIENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -33,12 +33,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: dde531aa-97ab-46ef-b285-36b19b00318f
-          stepCounter: 79228dd6-4a79-4de8-85f8-5c068f1c500c
+          columnCounter: 58ceae63-b27d-47ba-84da-1aa7dbb0cd8e
+          stepCounter: fe14d20c-0c4e-434b-9058-1165cb0b4876
         config: {}
         dataType: VARCHAR(18)
         description: ""
-        name: MATNR
+        name: MATERIAL_NUMBER
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -47,12 +47,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a06b1e46-d619-4ee8-a07a-9d4abd8e646d
-          stepCounter: 79228dd6-4a79-4de8-85f8-5c068f1c500c
+          columnCounter: 34650cf1-2944-459b-914d-72c43733af87
+          stepCounter: fe14d20c-0c4e-434b-9058-1165cb0b4876
         config: {}
         dataType: VARCHAR(4)
         description: ""
-        name: WERKS
+        name: PLANT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -61,12 +61,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: e93943ac-fa72-4b94-955a-9118e3ba1cc7
-          stepCounter: 79228dd6-4a79-4de8-85f8-5c068f1c500c
+          columnCounter: 2914a9cd-c99d-42b6-a1dc-feeaaf86d8e2
+          stepCounter: fe14d20c-0c4e-434b-9058-1165cb0b4876
         config: {}
         dataType: VARCHAR(15)
         description: ""
-        name: PSTAT
+        name: MAINTENANCE_STATUS
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -75,12 +75,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a86903b7-13f5-42ec-bc8e-ed513f0d4db3
-          stepCounter: 79228dd6-4a79-4de8-85f8-5c068f1c500c
+          columnCounter: d41c10d5-89df-48e6-972b-5016e4007db0
+          stepCounter: fe14d20c-0c4e-434b-9058-1165cb0b4876
         config: {}
         dataType: VARCHAR(3)
         description: ""
-        name: DISPO
+        name: MRP_CONTROLLER
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -89,12 +89,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2db09ef9-d025-43d4-b160-8b8e5d649ab1
-          stepCounter: 79228dd6-4a79-4de8-85f8-5c068f1c500c
+          columnCounter: 7c58647d-37c8-4ab4-8902-310f3c9b26e5
+          stepCounter: fe14d20c-0c4e-434b-9058-1165cb0b4876
         config: {}
         dataType: VARCHAR(2)
         description: ""
-        name: DISMM
+        name: MRP_TYPE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -103,12 +103,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2a9148f3-fa11-43a0-930f-b252a3f9fd29
-          stepCounter: 79228dd6-4a79-4de8-85f8-5c068f1c500c
+          columnCounter: 11c2e84a-f799-4569-8b28-0caac698de26
+          stepCounter: fe14d20c-0c4e-434b-9058-1165cb0b4876
         config: {}
         dataType: VARCHAR(1)
         description: ""
-        name: BESKZ
+        name: PROCUREMENT_TYPE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -116,7 +116,10 @@ operation:
                 stepCounter: 9e7b0d83-22c8-430c-80fc-44ae052cf5a7
             transform: ""
     cteString: ""
+    description: ""
+    destinationName: ""
     enabledColumnTestIDs: []
+    materializationOption: ""
     sourceMapping:
       - aliases:
           MARC: 9e7b0d83-22c8-430c-80fc-44ae052cf5a7
@@ -127,9 +130,9 @@ operation:
             nodeName: MARC
         join:
           joinCondition: FROM {{ ref('SRC_SAP_INVENTORY', 'MARC') }} "MARC"
-        name: STG_MARC
+        name: STG_PRODUCT_PLANT_DATA
         noLinkRefs: []
-  name: STG_MARC
+  name: STG_PRODUCT_PLANT_DATA
   overrideSQL: false
   schema: ""
   sqlType: Stage
