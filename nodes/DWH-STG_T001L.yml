@@ -1,0 +1,96 @@
+fileVersion: 1
+id: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
+name: STG_T001L
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e44d8986-ff46-4c4e-856d-004c4e84c634
+          stepCounter: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7bba5f8f-c620-4b0a-bd02-ce671a67ae58
+                stepCounter: d9d7231d-37cb-481b-9751-b12daf39bc71
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 673ddc4b-9b3b-4b82-ba7b-9cd1307e9a66
+          stepCounter: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: WERKS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7b103090-e1ec-4847-9bfe-0f723ab5180d
+                stepCounter: d9d7231d-37cb-481b-9751-b12daf39bc71
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70312e82-79a7-4be8-90da-3e097e79690b
+          stepCounter: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: LGORT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d80e2b6e-c3d3-4b2e-9165-f74923cfc80d
+                stepCounter: d9d7231d-37cb-481b-9751-b12daf39bc71
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dcac429e-fdaf-410c-91bd-4a5e10dd712e
+          stepCounter: 7a9f99f3-8333-4e77-a5fa-25b3952d1f0b
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LGOBE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3a02bf8c-10cb-42b3-9a31-17a435c1f904
+                stepCounter: d9d7231d-37cb-481b-9751-b12daf39bc71
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          T001L: d9d7231d-37cb-481b-9751-b12daf39bc71
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP_INVENTORY
+            nodeName: T001L
+        join:
+          joinCondition: FROM {{ ref('SRC_SAP_INVENTORY', 'T001L') }} "T001L"
+        name: STG_T001L
+        noLinkRefs: []
+  name: STG_T001L
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

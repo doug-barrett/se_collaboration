@@ -1,0 +1,138 @@
+fileVersion: 1
+id: 99edf411-972b-4bff-b247-c1ef2b895f40
+name: STG_MARA
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3d2d4609-51d6-4c16-9f67-903b788802d6
+          stepCounter: 99edf411-972b-4bff-b247-c1ef2b895f40
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: MANDT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5b1c435d-afb2-4664-a015-80c4761e39ce
+                stepCounter: 20f6e33c-fcaf-4e00-a77f-e04a29cfa3e9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2663e027-eedd-4d05-bebe-16394d6d7a14
+          stepCounter: 99edf411-972b-4bff-b247-c1ef2b895f40
+        config: {}
+        dataType: VARCHAR(18)
+        description: ""
+        name: MATNR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 897be58f-4aad-4f9c-a8ae-2700190b20af
+                stepCounter: 20f6e33c-fcaf-4e00-a77f-e04a29cfa3e9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96fdedc2-2d88-48fe-b85a-2c99ef1a0a85
+          stepCounter: 99edf411-972b-4bff-b247-c1ef2b895f40
+        config: {}
+        dataType: DATE
+        description: ""
+        name: ERSDA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8058fe86-294a-4551-97a4-f1b9b36f6788
+                stepCounter: 20f6e33c-fcaf-4e00-a77f-e04a29cfa3e9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e9e36b7-b931-43ad-9e32-bc5dd1f2ac16
+          stepCounter: 99edf411-972b-4bff-b247-c1ef2b895f40
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: MTART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8167b0c8-7a8c-4514-a4c8-cbe7ea6b7286
+                stepCounter: 20f6e33c-fcaf-4e00-a77f-e04a29cfa3e9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e972ddc4-ff25-4649-8579-1c03479ea3ab
+          stepCounter: 99edf411-972b-4bff-b247-c1ef2b895f40
+        config: {}
+        dataType: VARCHAR(9)
+        description: ""
+        name: MATKL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: acb946a1-151e-410f-a035-95334f52b310
+                stepCounter: 20f6e33c-fcaf-4e00-a77f-e04a29cfa3e9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ecff51c-1b84-4c0c-9fea-e932ac922afc
+          stepCounter: 99edf411-972b-4bff-b247-c1ef2b895f40
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: MEINS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4e3550de-8638-4fa2-a6e8-f5312c555d19
+                stepCounter: 20f6e33c-fcaf-4e00-a77f-e04a29cfa3e9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32954092-e495-418c-bfdb-56e51f47b677
+          stepCounter: 99edf411-972b-4bff-b247-c1ef2b895f40
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: MAKTX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ed8d68f-1afe-4405-a9e1-838455ebeb7f
+                stepCounter: 20f6e33c-fcaf-4e00-a77f-e04a29cfa3e9
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          MARA: 20f6e33c-fcaf-4e00-a77f-e04a29cfa3e9
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAP_INVENTORY
+            nodeName: MARA
+        join:
+          joinCondition: FROM {{ ref('SRC_SAP_INVENTORY', 'MARA') }} "MARA"
+        name: STG_MARA
+        noLinkRefs: []
+  name: STG_MARA
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
