@@ -1,0 +1,196 @@
+fileVersion: 1
+id: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+name: FCT_MATERIAL_MOVEMENT
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aecd75ec-fbbe-4667-88bb-0e3daf1520ad
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: NUMBER(13,3)
+        description: ""
+        name: QUANTITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4473fa6b-c139-4eab-ab7e-904a53539178
+                stepCounter: e6a13931-e407-4782-985d-578bbf995cf1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 283b7cd5-0289-42db-9d04-d54128fc66c2
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: DOCUMENT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd2e6db9-07e5-4a4c-85e5-0f8d9fdbefb9
+                stepCounter: e6a13931-e407-4782-985d-578bbf995cf1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a4b00a2-12ac-46bf-a203-e8d999e0ff93
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: PLANT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0f5ff36c-941a-4f96-86ef-c9eec98ad773
+                stepCounter: e6a13931-e407-4782-985d-578bbf995cf1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f46ebd2f-aaf2-4647-9885-8bb16aa55966
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: VARCHAR(18)
+        description: ""
+        name: MATERIAL_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 042ae314-7084-4bd7-8b78-10c7432fcdb6
+                stepCounter: e6a13931-e407-4782-985d-578bbf995cf1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2343931a-a75b-4f24-9d64-d098741ae7c5
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: VARCHAR(2)
+        description: ""
+        name: DOCUMENT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1cfe38c9-15b7-4dfa-9b85-07bbda00279f
+                stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9206cff8-cba4-42ac-a2e1-f6ab0de9cc89
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: DATE
+        description: ""
+        name: POSTING_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0dab09fb-667c-4547-83e2-15435f5f7e0d
+                stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c0c665e7-491c-4ff6-b299-4512bacb307a
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: VARCHAR(12)
+        description: ""
+        name: USER_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 909d1c39-d6ae-480f-b870-09a7ad36ada3
+                stepCounter: 2d867662-0db4-450c-b339-5acec1a429ac
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fe9bec2e-2672-43fc-b628-eaa19d52de75
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: INTEGER
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: ADJUSTED_QUANTITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CASE WHEN DEBIT_CREDIT_INDICATOR = 'H' THEN QUANTITY * -1 ELSE QUANTITY END
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: dba5cd0c-19f8-47ed-a290-71bd7ede35f5
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 968d7229-fcea-4aa8-97ea-02ef2c90f0ea
+          stepCounter: 833afa23-1041-4f2f-88ef-49e68f2bbc67
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_MOVEMENT_HEADERS: 2d867662-0db4-450c-b339-5acec1a429ac
+          STG_MOVEMENT_ITEMS: e6a13931-e407-4782-985d-578bbf995cf1
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: STG_MOVEMENT_HEADERS
+          - locationName: DWH
+            nodeName: STG_MOVEMENT_ITEMS
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'STG_MOVEMENT_ITEMS') }} "STG_MOVEMENT_ITEMS"
+            INNER JOIN {{ ref('DWH', 'STG_MOVEMENT_HEADERS') }} "STG_MOVEMENT_HEADERS"
+            ON "STG_MOVEMENT_ITEMS"."DOCUMENT_ID" = "STG_MOVEMENT_HEADERS"."DOCUMENT_ID"
+        name: FCT_MATERIAL_MOVEMENT
+        noLinkRefs: []
+  name: FCT_MATERIAL_MOVEMENT
+  overrideSQL: false
+  schema: ""
+  sqlType: Fact
+  type: sql
+  version: 1
+type: Node
