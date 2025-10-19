@@ -1,6 +1,6 @@
 fileVersion: 1
 id: f4595077-bb09-4204-8281-2762c6706a37
-name: FCT_CURRENT_STOCK_BALANCES
+name: FCT_INVENTORY_SNAPSHOT
 operation:
   config:
     postSQL: ""
@@ -131,9 +131,9 @@ operation:
             nodeName: STG_CURRENT_STOCK_BALANCES
         join:
           joinCondition: FROM {{ ref('DWH', 'STG_CURRENT_STOCK_BALANCES') }} "STG_CURRENT_STOCK_BALANCES"
-        name: FCT_CURRENT_STOCK_BALANCES
+        name: FCT_INVENTORY_SNAPSHOT
         noLinkRefs: []
-  name: FCT_CURRENT_STOCK_BALANCES
+  name: FCT_INVENTORY_SNAPSHOT
   overrideSQL: false
   schema: ""
   sqlType: Fact

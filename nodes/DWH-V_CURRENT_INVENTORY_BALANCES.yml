@@ -1,0 +1,203 @@
+fileVersion: 1
+id: 0f6751c0-cd35-46d1-98e2-591f01522a47
+name: V_CURRENT_INVENTORY_BALANCES
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd952781-14f7-4472-96ed-3599e13c3714
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: CLIENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a8715c30-02a6-4c47-bb7d-5b02209a366c
+                stepCounter: 6c9a5ec8-c724-4080-adca-bc1731c70ad5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6ed52b8-b663-4d02-abf9-ac5fe0473c2f
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: PRODUCT_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f25d7e45-e28c-44cf-877e-d55868bdd236
+                stepCounter: fabf0939-d1e9-4383-8170-54f37b1c2898
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9f1e8bc5-7722-4f4b-b063-9071a7bff1de
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: VARCHAR(3)
+        description: ""
+        name: BASE_UNIT_OF_MEASURE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d5e297e-a283-4229-bc05-d6a88c1942da
+                stepCounter: fabf0939-d1e9-4383-8170-54f37b1c2898
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cf2721d1-20fc-4cbb-946a-4ae1fb5e3e16
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: VARCHAR(18)
+        description: ""
+        name: MATERIAL_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2dbae3b5-40ab-4620-85ec-5663ef94c5d4
+                stepCounter: f4595077-bb09-4204-8281-2762c6706a37
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4dd43b86-7a4b-4354-9497-d670f9dc8170
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: PLANT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e369c88b-1d84-4346-b80b-3d5a59c4c780
+                stepCounter: f4595077-bb09-4204-8281-2762c6706a37
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 66128857-a40f-47c9-b957-f8c0d4952a37
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: VARCHAR(30)
+        description: ""
+        name: PLANT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a4fd3196-dc59-4f86-b6fb-635272bd9835
+                stepCounter: 6c9a5ec8-c724-4080-adca-bc1731c70ad5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8829294-df47-4ba7-b1f7-0adb7eb6311d
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: VARCHAR(4)
+        description: ""
+        name: STORAGE_LOCATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eb807668-af6d-4f5d-8a36-4d32e2c0fe10
+                stepCounter: f4595077-bb09-4204-8281-2762c6706a37
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 71f32eee-7196-4b59-8a9b-65eadba6d69a
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: DESCRIPTION_OF_STORAGE_LOCATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e59ebfbe-02d8-43a5-9b8b-e0792642c777
+                stepCounter: 6c9a5ec8-c724-4080-adca-bc1731c70ad5
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a9c35b80-a9fd-44ee-a525-fcd066371aef
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: NUMBER(13,3)
+        description: ""
+        name: ON_HAND_STOCK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db6779be-73e0-42dd-8a94-a2004d1ba7f9
+                stepCounter: f4595077-bb09-4204-8281-2762c6706a37
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5af0855e-7bc8-46f8-a8e8-bcdb38c52bf0
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 274bf935-e358-4e31-8c5a-f381cfa75483
+                stepCounter: f4595077-bb09-4204-8281-2762c6706a37
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dae55e1d-81b4-4292-bc94-163a054de2c7
+          stepCounter: 0f6751c0-cd35-46d1-98e2-591f01522a47
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b491aa5-e8e0-44de-b927-cff052ab3c99
+                stepCounter: f4595077-bb09-4204-8281-2762c6706a37
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_PRODUCT_MASTER: fabf0939-d1e9-4383-8170-54f37b1c2898
+          DIM_STORAGE_LOCATIONS: 6c9a5ec8-c724-4080-adca-bc1731c70ad5
+          FCT_INVENTORY_SNAPSHOT: f4595077-bb09-4204-8281-2762c6706a37
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: DIM_PRODUCT_MASTER
+          - locationName: DWH
+            nodeName: DIM_STORAGE_LOCATIONS
+          - locationName: DWH
+            nodeName: FCT_INVENTORY_SNAPSHOT
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FCT_INVENTORY_SNAPSHOT') }} "FCT_INVENTORY_SNAPSHOT"
+            LEFT JOIN {{ ref('DWH', 'DIM_STORAGE_LOCATIONS') }} "DIM_STORAGE_LOCATIONS"
+            ON "FCT_INVENTORY_SNAPSHOT"."PLANT" = "DIM_STORAGE_LOCATIONS"."PLANT"
+               AND "FCT_INVENTORY_SNAPSHOT"."STORAGE_LOCATION" = "DIM_STORAGE_LOCATIONS"."STORAGE_LOCATION"
+            LEFT JOIN {{ ref('DWH', 'DIM_PRODUCT_MASTER') }} "DIM_PRODUCT_MASTER"
+            ON "FCT_INVENTORY_SNAPSHOT"."MATERIAL_NUMBER" = "DIM_PRODUCT_MASTER"."PRODUCT_ID"
+        name: V_CURRENT_INVENTORY_BALANCES
+        noLinkRefs: []
+  name: V_CURRENT_INVENTORY_BALANCES
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
