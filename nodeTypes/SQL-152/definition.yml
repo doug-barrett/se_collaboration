@@ -1,0 +1,40 @@
+fileVersion: 1
+id: "152"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: SQL
+    short: SQL
+    plural: SQLs
+    tagColor: '#F527EB'
+
+    config:
+    - groupName: Options
+      items:
+      - displayName: Create SQL
+        attributeName: createSQL
+        type: textBox
+        syntax: sql
+        isRequired: true
+      - displayName: Run SQL
+        attributeName: runSQL
+        type: textBox
+        syntax: sql
+        isRequired: true
+
+    systemColumns:
+    - displayName: SQL_SEQ
+      transform: ''
+      dataType: NUMBER IDENTITY
+      placement: beginning
+      attributeName: isSurrogateKey
+
+    - displayName: SYSTEM_START_DATE
+      transform: ''
+      dataType: TIMESTAMP
+      placement: end
+      attributeName: isSystemStartDate
+name: SQL
+type: NodeType

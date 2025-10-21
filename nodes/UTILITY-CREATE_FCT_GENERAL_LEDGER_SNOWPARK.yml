@@ -1,0 +1,205 @@
+fileVersion: 1
+id: 5ffeb1da-1c4d-4509-bba7-bc0f58e8d4cd
+name: CREATE_FCT_GENERAL_LEDGER_SNOWPARK
+operation:
+  config:
+    SQL1: |-
+      CALL SAP_DEMO_JJ_SCHEMA.CREATE_FCT_GENERAL_LEDGER(
+          'SAP_DEMO_JJ',                  -- source_database: Your database name
+          'SAP_DEMO_JJ_RAW_SCHEMA',       -- source_schema: Schema with BSEG, BKPF, etc.
+          'SAP_DEMO_JJ_SCHEMA'            -- target_schema: Schema for FCT_GENERAL_LEDGER
+      );
+    createSQL: |-
+      CREATE OR REPLACE PROCEDURE {{ ref_no_link(node.location.name, node.name) }}(
+          SOURCE_DATABASE VARCHAR,
+          SOURCE_SCHEMA VARCHAR,
+          TARGET_DATABASE VARCHAR,
+          TARGET_SCHEMA VARCHAR,
+          TARGET_TABLE_NAME VARCHAR
+      )
+      RETURNS VARCHAR
+      LANGUAGE PYTHON
+      RUNTIME_VERSION = '3.9'
+      PACKAGES = ('snowflake-snowpark-python')
+      HANDLER = 'create_fct_general_ledger'
+      AS
+      $$
+      from snowflake.snowpark import Session
+      import snowflake.snowpark.functions as F
+      from snowflake.snowpark.types import *
+
+      def create_fct_general_ledger(
+          session: Session,
+          source_database: str,
+          source_schema: str,
+          target_database: str,
+          target_schema: str,
+          target_table_name: str
+      ) -> str:
+          """
+          This stored procedure transforms raw SAP general ledger data (BSEG, BKPF, SKA1, T001)
+          into a clean, governed general ledger fact table.
+          """
+          try:
+              # --- 1. Load Source DataFrames ---
+              bseg_df = session.table(f'"{source_database}"."{source_schema}"."BSEG"')
+              bkpf_df = session.table(f'"{source_database}"."{source_schema}"."BKPF"')
+              ska1_df = session.table(f'"{source_database}"."{source_schema}"."SKA1"')
+              t001_df = session.table(f'"{source_database}"."{source_schema}"."T001"')
+              
+              if bseg_df.count() == 0:
+                  return "ERROR: Source table BSEG is empty. No data to process."
+
+              # --- 2. Perform the Primary Join ---
+              gl_joined_df = bseg_df.join(
+                  bkpf_df,
+                  (bseg_df["MANDT"] == bkpf_df["MANDT"]) &
+                  (bseg_df["BUKRS"] == bkpf_df["BUKRS"]) &
+                  (bseg_df["BELNR"] == bkpf_df["BELNR"]) &
+                  (bseg_df["GJAHR"] == bkpf_df["GJAHR"]),
+                  "inner"
+              )
+              
+              if gl_joined_df.count() == 0:
+                  return "ERROR: The join between BSEG and BKPF produced 0 rows."
+
+              # --- 3. Create Unambiguous DataFrame after first join ---
+              # Select and alias columns immediately to avoid any ambiguity
+              unambiguous_df = gl_joined_df.select(
+                  bseg_df["MANDT"].alias("MANDT"),
+                  bseg_df["BUKRS"].alias("BUKRS"),
+                  bseg_df["BELNR"].alias("BELNR"),
+                  bseg_df["GJAHR"].alias("GJAHR"),
+                  bseg_df["BUZEI"].alias("BUZEI"),
+                  bseg_df["SAKNR"].alias("SAKNR"),
+                  bseg_df["FILKD"].alias("FILKD"),
+                  bseg_df["KUNNR"].alias("KUNNR"),
+                  bseg_df["LIFNR"].alias("LIFNR"),
+                  bseg_df["PPRCT"].alias("PPRCT"),
+                  bseg_df["SGTXT"].alias("SGTXT"),
+                  bseg_df["SHKZG"].alias("SHKZG"),
+                  bseg_df["BSCHL"].alias("BSCHL"),
+                  bseg_df["KOSTL"].alias("KOSTL"),
+                  bseg_df["GSBER"].alias("GSBER"),
+                  bseg_df["MATNR"].alias("MATNR"),
+                  bseg_df["DMBTR"].alias("DMBTR"),
+                  bseg_df["MENGE"].alias("MENGE"),
+                  bkpf_df["WAERS"].alias("WAERS"),
+                  bkpf_df["USNAM"].alias("USNAM"),
+                  bkpf_df["BUDAT"].alias("BUDAT"),
+                  bkpf_df["BKTXT"].alias("BKTXT")
+              )
+
+              # --- 4. Create Final DataFrame with Transformations ---
+              # Now we can safely use F.col() since all columns have been aliased
+              final_gl_df = unambiguous_df.select(
+                  F.col("SAKNR").alias("GL_ACCOUNT_NUMBER"),
+                  F.col("FILKD").alias("RECONCILIATION_ACCOUNT_NUMBER"),
+                  F.col("KUNNR").alias("CUSTOMER_NUMBER"),
+                  F.col("LIFNR").alias("VENDOR_NUMBER"),
+                  F.col("PPRCT").alias("PROFIT_CENTER"),
+                  F.col("SGTXT").alias("LINE_ITEM_DESCRIPTION"),
+                  F.col("SHKZG").alias("DEBIT_CREDIT_INDICATOR"),
+                  F.col("BSCHL").alias("POSTING_KEY"),
+                  F.col("WAERS").alias("DOCUMENT_CURRENCY_KEY"),
+                  F.col("USNAM").alias("USER_NAME"),
+                  F.col("BUDAT").alias("POSTING_DATE"),
+                  F.col("BKTXT").alias("DOCUMENT_HEADER_DESCRIPTION"),
+                  F.col("KOSTL").alias("COST_CENTER"),
+                  F.col("GSBER").alias("BUSINESS_AREA"),
+                  F.col("MATNR").alias("MATERIAL_NUMBER"),
+                  F.col("BUZEI").alias("LINE_ITEM_NUMBER"),
+                  F.col("BUKRS").alias("COMPANY_CODE"),
+                  F.col("BELNR").alias("DOCUMENT_NUMBER"),
+                  F.col("GJAHR").alias("FISCAL_YEAR"),
+                  F.col("DMBTR").alias("AMOUNT_LOCAL_CURRENCY"),
+                  F.col("MENGE").alias("QUANTITY"),
+                  F.when(F.col("SHKZG") == 'S', F.col("DMBTR")).otherwise(0).alias("DEBIT_AMOUNT"),
+                  F.when(F.col("SHKZG") == 'H', F.col("DMBTR")).otherwise(0).alias("CREDIT_AMOUNT"),
+                  F.current_timestamp().alias("SYSTEM_CREATE_DATE"),
+                  F.current_timestamp().alias("SYSTEM_UPDATE_DATE")
+              )
+
+              # --- 5. Write the Result to the Target Table ---
+              final_count = final_gl_df.count()
+              if final_count == 0:
+                  return "ERROR: The final transformation produced 0 rows. No table was created."
+
+              final_gl_df.write.mode("overwrite").save_as_table(
+                  f'"{target_database}"."{target_schema}"."{target_table_name}"'
+              )
+
+              return f"SUCCESS: {target_table_name} created successfully with {final_count} rows."
+
+          except Exception as e:
+              return f"ERROR: An unexpected exception occurred: {str(e)}"
+      $$;
+    runSQL: |-
+      CALL {{ ref('UTILITY', 'CREATE_FCT_GENERAL_LEDGER_SNOWPARK') }}(
+          'SAP_DEMO',                  -- source_database: Your database name
+          'SAP_ERP_DATA_DEMO_SAP',        -- source_schema: Schema with BSEG, BKPF, etc.
+          'SAP_DEMO_JJ',                  -- target_db  
+          'SAP_DEMO_JJ_SCHEMA',            -- target_schema: Schema for FCT_GENERAL_LEDGER
+          'FCT_GENERAL_LEDGER_SNOWPARK'   -- target_table_name  
+      );
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: UTILITY
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d23bce8-1170-4406-b8c5-5ecfbaa46758
+          stepCounter: 5ffeb1da-1c4d-4509-bba7-bc0f58e8d4cd
+        config: {}
+        dataType: NUMBER IDENTITY
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: SQL_SEQ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7891e84b-4307-4c02-a234-0b87a7c40162
+          stepCounter: 5ffeb1da-1c4d-4509-bba7-bc0f58e8d4cd
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: CREATE_FCT_GENERAL_LEDGER_SNOWPARK
+        noLinkRefs: []
+  name: CREATE_FCT_GENERAL_LEDGER_SNOWPARK
+  overrideSQL: false
+  schema: ""
+  sqlType: "152"
+  type: sql
+  version: 1
+type: Node
