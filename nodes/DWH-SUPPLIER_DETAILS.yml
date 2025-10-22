@@ -1,0 +1,88 @@
+fileVersion: 1
+id: 808e8764-3d76-4182-9fb9-a704f9fe5fdd
+name: SUPPLIER_DETAILS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: JJ_DEV
+  deployEnabled: true
+  description: Supplier details with names and nations
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4987b8e5-c174-40a4-8175-fc4e7f5cbbf4
+          stepCounter: 808e8764-3d76-4182-9fb9-a704f9fe5fdd
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4987b8e5-c174-40a4-8175-fc4e7f5cbbf4
+                stepCounter: 808e8764-3d76-4182-9fb9-a704f9fe5fdd
+            transform: S.S_SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 64c855dd-e27b-4524-93e1-4f41f10ae736
+          stepCounter: 808e8764-3d76-4182-9fb9-a704f9fe5fdd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SUPP_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 64c855dd-e27b-4524-93e1-4f41f10ae736
+                stepCounter: 808e8764-3d76-4182-9fb9-a704f9fe5fdd
+            transform: S.S_NAME || ' (' || N.N_NAME || ')'
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 61c4dd9f-bb61-41b1-bfd6-7ec8428855d6
+          stepCounter: 808e8764-3d76-4182-9fb9-a704f9fe5fdd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 61c4dd9f-bb61-41b1-bfd6-7ec8428855d6
+                stepCounter: 808e8764-3d76-4182-9fb9-a704f9fe5fdd
+            transform: N.N_NAME
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SAMPLE
+            nodeName: NATION
+          - locationName: SRC_SAMPLE
+            nodeName: SUPPLIER
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC_SAMPLE', 'SUPPLIER') }} S
+            JOIN {{ ref('SRC_SAMPLE', 'NATION') }} N ON S.S_NATIONKEY = N.N_NATIONKEY
+        name: STG_NODE
+        noLinkRefs: []
+  name: SUPPLIER_DETAILS
+  overrideSQL: false
+  schema: JJ_DEV_SCHEMA
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

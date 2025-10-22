@@ -1,0 +1,88 @@
+fileVersion: 1
+id: efa14ac6-f47e-4a4e-8fef-412abeaf991e
+name: MID_NATION_SALES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: JJ_DEV
+  deployEnabled: true
+  description: Middle tier nations by sales per supplier
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: caee8651-95fa-457e-b4a2-196e46e6df59
+          stepCounter: efa14ac6-f47e-4a4e-8fef-412abeaf991e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: caee8651-95fa-457e-b4a2-196e46e6df59
+                stepCounter: efa14ac6-f47e-4a4e-8fef-412abeaf991e
+            transform: NR.SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77fff7cc-43f0-4185-8830-ed4e328ac25f
+          stepCounter: efa14ac6-f47e-4a4e-8fef-412abeaf991e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SALES_AMT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 77fff7cc-43f0-4185-8830-ed4e328ac25f
+                stepCounter: efa14ac6-f47e-4a4e-8fef-412abeaf991e
+            transform: SUM(NR.SALES_AMT)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8f2e176-46ba-459c-8038-f86bdba252b9
+          stepCounter: efa14ac6-f47e-4a4e-8fef-412abeaf991e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MID_NATIONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8f2e176-46ba-459c-8038-f86bdba252b9
+                stepCounter: efa14ac6-f47e-4a4e-8fef-412abeaf991e
+            transform: LISTAGG(NR.NATION, ',') WITHIN GROUP (ORDER BY NR.NATION_RANK)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          NR: 48154856-0615-4e68-839f-7811cc3cfdd0
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: NATION_RANK
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'NATION_RANK') }} NR
+            WHERE NR.NATION_RANK > 10 AND NR.NATION_RANK_REV > 10
+            GROUP BY NR.SUPPKEY
+        name: STG_NATION_RANK
+        noLinkRefs: []
+  name: MID_NATION_SALES
+  overrideSQL: false
+  schema: JJ_DEV_SCHEMA
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
