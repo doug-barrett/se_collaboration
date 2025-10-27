@@ -1,0 +1,216 @@
+fileVersion: 1
+id: a946dcf6-2c57-4f47-93e3-73203a115121
+name: V_FACT_ORDER_LINE
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Cleaned order detail data with calculated extended prices and normalized discount amounts
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87a89721-684b-4167-9ac8-64c013099710
+          stepCounter: a946dcf6-2c57-4f47-93e3-73203a115121
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TRUCK_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d811b9ef-a86c-47ce-90fd-89e7b661d71f
+                stepCounter: 4dc06977-b5b9-4f4d-ad16-d4c5e5e3957c
+            transform: f."TRUCK_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 81650054-10bf-49f1-afc3-f6c0e588c7f7
+          stepCounter: a946dcf6-2c57-4f47-93e3-73203a115121
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PRIMARY_CITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c4ea6aac-3c13-4f2d-b945-c9051a7f08ed
+                stepCounter: e0ebd57a-654a-4364-be83-729a8998d3af
+            transform: t."PRIMARY_CITY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 08372c04-a5d3-4361-9daf-39cdc61a4b78
+          stepCounter: a946dcf6-2c57-4f47-93e3-73203a115121
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: REGION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 12e4c73e-b27f-4e5c-8a89-7c4f5b19cc57
+                stepCounter: e0ebd57a-654a-4364-be83-729a8998d3af
+            transform: t."REGION"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ba65e58-abb6-498e-a72c-4c142467bcc6
+          stepCounter: a946dcf6-2c57-4f47-93e3-73203a115121
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MAKE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0670b11f-240d-4e61-b6cc-b145a95c5cd5
+                stepCounter: e0ebd57a-654a-4364-be83-729a8998d3af
+            transform: t."MAKE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97a7dbba-94ea-4a53-b526-0c6ac969c4a1
+          stepCounter: a946dcf6-2c57-4f47-93e3-73203a115121
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: MODEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c75a2143-f923-4adf-af2a-c43a9bfbaf88
+                stepCounter: e0ebd57a-654a-4364-be83-729a8998d3af
+            transform: t."MODEL"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d725162-d7a7-40de-93ee-548bff26c630
+          stepCounter: a946dcf6-2c57-4f47-93e3-73203a115121
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: TRUCK_COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd798f2b-3860-4fff-ae00-86541121e550
+                stepCounter: e0ebd57a-654a-4364-be83-729a8998d3af
+            transform: t."COUNTRY"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a8f4a446-08dd-4ae2-a302-9ce6a313c014
+          stepCounter: a946dcf6-2c57-4f47-93e3-73203a115121
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: DAYPART
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: |-
+              CASE
+                  WHEN EXTRACT(HOUR FROM h.ORDER_DATE) BETWEEN 5  AND 10 THEN 'Breakfast'
+                  WHEN EXTRACT(HOUR FROM h.ORDER_DATE) BETWEEN 11 AND 14 THEN 'Lunch'
+                  WHEN EXTRACT(HOUR FROM h.ORDER_DATE) BETWEEN 15 AND 17 THEN 'Afternoon'
+                  WHEN EXTRACT(HOUR FROM h.ORDER_DATE) BETWEEN 18 AND 21 THEN 'Dinner'
+                  ELSE 'Late Night'
+                END
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79cc3064-009f-4136-8f59-2ca41925316b
+          stepCounter: a946dcf6-2c57-4f47-93e3-73203a115121
+        config: {}
+        dataType: DECIMAL
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: TOTAL_REVENUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: SUM(f.EXT_PRICE)
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 90539989-4a20-4420-98eb-75b464d42d07
+          stepCounter: a946dcf6-2c57-4f47-93e3-73203a115121
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: TOTAL_ORDERS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: COUNT(DISTINCT f.ORDER_ID)
+        systemColumnType: None
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          F: 4dc06977-b5b9-4f4d-ad16-d4c5e5e3957c
+          H: b2b41efd-90a3-49a3-8376-abcfdf2efe0a
+          T: e0ebd57a-654a-4364-be83-729a8998d3af
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: DIM_TRUCK
+          - locationName: DWH
+            nodeName: FACT_ORDER_LINE
+          - locationName: DWH
+            nodeName: STG_ORDER_HEADER_CLEAN
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FACT_ORDER_LINE') }} f
+            JOIN {{ ref('DWH', 'STG_ORDER_HEADER_CLEAN') }} h
+              ON f.ORDER_ID = h.ORDER_ID
+            LEFT JOIN {{ ref('DWH', 'DIM_TRUCK') }} t
+              ON f.TRUCK_ID = t.TRUCK_ID
+              AND NVL(t.SYSTEM_CURRENT_FLAG,'Y') IN ('Y','1','TRUE')
+
+              GROUP BY
+              f.TRUCK_ID,
+              t.MAKE,
+              t.MODEL,
+              t.PRIMARY_CITY,
+              t.REGION,
+              t.COUNTRY,
+              CASE
+                WHEN EXTRACT(HOUR FROM h.ORDER_DATE) BETWEEN 5  AND 10 THEN 'Breakfast'
+                WHEN EXTRACT(HOUR FROM h.ORDER_DATE) BETWEEN 11 AND 14 THEN 'Lunch'
+                WHEN EXTRACT(HOUR FROM h.ORDER_DATE) BETWEEN 15 AND 17 THEN 'Afternoon'
+                WHEN EXTRACT(HOUR FROM h.ORDER_DATE) BETWEEN 18 AND 21 THEN 'Dinner'
+                ELSE 'Late Night'
+              END
+            ORDER BY TOTAL_REVENUE DESC
+        name: V_FACT_ORDER_LINE
+        noLinkRefs: []
+  name: V_FACT_ORDER_LINE
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

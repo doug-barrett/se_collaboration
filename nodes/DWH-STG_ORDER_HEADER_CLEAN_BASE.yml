@@ -1,0 +1,295 @@
+fileVersion: 1
+id: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+name: STG_ORDER_HEADER_CLEAN_BASE
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: JJ_DEV
+  deployEnabled: true
+  description: Base transformation for order header data with normalized channels and fixed data types
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4b20f1e4-2e13-4771-b98e-d4cf1599f5fb
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDER_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02015218-8564-4508-b643-711c8b4a3990
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22d937ac-df4b-4f7a-8142-8a29dc611838
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TRUCK_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3d864968-c45e-4c76-930c-ddd36eb8192b
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f5717e2d-3ea6-4fbf-a550-8c83467a0c2f
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d0caf231-2a65-48de-8edf-d5922a813fa1
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: TRY_TO_NUMBER(TO_VARCHAR(STG_ORDER_HEADER.LOCATION_ID))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2db320ff-4081-4b82-8ac1-f938c7334d65
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CUSTOMER_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e450685f-45fa-4a1d-8473-b74689e093b3
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2bda23e-265f-43a0-b28d-2f118c82945f
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DISCOUNT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c39ec216-d544-4fbe-82d7-9b5e1d2494aa
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 33140efe-6ae4-4fcb-9ddc-f65a28e68701
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SHIFT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ffa9a67a-1fd5-4b58-a7a4-bcc50915825b
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db10cfff-813e-4909-8113-6ced3aeb95d1
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORDER_CHANNEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ea0118bb-9db4-4f32-99c8-8422464dd2d9
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: CASE UPPER(TRIM(STG_ORDER_HEADER.ORDER_CHANNEL)) WHEN 'APP' THEN 'APP' WHEN 'WEB' THEN 'WEB' WHEN 'WALKUP' THEN 'WALKUP' WHEN 'POS' THEN 'POS' WHEN 'KIOSK' THEN 'KIOSK' ELSE COALESCE(NULLIF(UPPER(TRIM(STG_ORDER_HEADER.ORDER_CHANNEL)), ''), 'UNKNOWN') END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bebee6d4-045a-48ac-a18e-80505bf81526
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: ORDER_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 23e95153-1228-4d71-9cb7-3d0d20b7485e
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3d6f547-0915-4b4f-9b33-1ba2f092ccac
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: ORDER_HOUR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 796a0992-e17d-4997-be80-e2a604ec0e24
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8047d5c-7ff6-4f6c-b991-c0ab06c2f372
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SERVED_TS_TS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 862f499a-56b6-48ed-933c-12ceed934723
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: TRY_TO_TIMESTAMP_NTZ(STG_ORDER_HEADER.SERVED_TS)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a74f11b-0117-432d-9986-7a4832d37e4a
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SERVED_TS_RAW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 862f499a-56b6-48ed-933c-12ceed934723
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dde1f047-d2bc-4b40-86e5-9c700c2a94dd
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORDER_CURRENCY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ec9c3385-fc82-4594-a318-8172871d8eff
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ea5af64-100c-4b1c-baef-12403995f936
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDER_AMOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: edf89ab8-17d9-433b-bc95-5b000c6f0eeb
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76559462-4706-4fb6-a936-05eff4b0b7be
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDER_TAX_AMOUNT_NUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d561a175-cc25-4f7a-a7c6-5b32e5468df1
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: TRY_TO_DECIMAL(STG_ORDER_HEADER.ORDER_TAX_AMOUNT, 38, 4)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8404a797-2668-4119-a486-0877ea7c14ee
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDER_DISCOUNT_AMOUNT_NUM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 90e3a11d-22b4-43f5-a797-6e5892aee79e
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: TRY_TO_DECIMAL(STG_ORDER_HEADER.ORDER_DISCOUNT_AMOUNT, 38, 4)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a9e6642b-8bd0-4740-821c-a971bbe0d7b1
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDER_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 49a92907-b367-4612-aacd-6fc21df8e08d
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a6937ff-b3f4-4b47-b7de-5c7a667615cf
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT_START_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c27eb530-1b66-4296-99c3-3722c59a3101
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1619464a-af76-456c-b6e6-fb87f1668642
+          stepCounter: d613eaf4-b1b5-4653-9728-9f930ee2d76f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT_END_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 40ddf892-fec7-4176-b1f5-d42ff879732a
+                stepCounter: ec02defb-6240-491d-9704-87dcedcaff17
+            transform: ""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          STG_ORDER_HEADER: ec02defb-6240-491d-9704-87dcedcaff17
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: STG_ORDER_HEADER
+        join:
+          joinCondition: FROM {{ ref('DWH', 'STG_ORDER_HEADER') }} STG_ORDER_HEADER
+        name: STG_ORDER_HEADER_CLEAN_BASE
+        noLinkRefs: []
+  name: STG_ORDER_HEADER_CLEAN_BASE
+  overrideSQL: false
+  schema: JJ_DEV_SCHEMA
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
