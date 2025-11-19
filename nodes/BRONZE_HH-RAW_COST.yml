@@ -1,0 +1,92 @@
+fileVersion: 1
+id: d733591f-703c-4144-8816-ca2c26196bb9
+name: RAW_COST
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: BRONZE_HH
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a7d794c-696a-4db7-a27a-5832d2d6476d
+          stepCounter: d733591f-703c-4144-8816-ca2c26196bb9
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: FK to RAW_SUPPLIER
+        name: SUPPLIER_ID
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 01930b58-9f27-4158-be2c-7fc10280c66c
+          stepCounter: d733591f-703c-4144-8816-ca2c26196bb9
+        config: {}
+        dataType: VARCHAR(50)
+        defaultValue: ""
+        description: FK to RAW_INGREDIENT
+        name: INGREDIENT_SKU
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6640b908-5c1d-4235-b6f7-2eeca7d0c75e
+          stepCounter: d733591f-703c-4144-8816-ca2c26196bb9
+        config: {}
+        dataType: NUMBER(10,4)
+        defaultValue: ""
+        description: ""
+        name: COST_PER_UNIT
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d28e0c2e-dd82-436d-9111-5d4991a5d253
+          stepCounter: d733591f-703c-4144-8816-ca2c26196bb9
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: Date this cost became effective
+        name: EFFECTIVE_DATE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: RAW_COST
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

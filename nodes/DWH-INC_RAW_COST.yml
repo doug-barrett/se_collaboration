@@ -1,0 +1,94 @@
+fileVersion: 1
+id: 14bdb94f-b840-435d-8e21-357b979506d5
+name: INC_RAW_COST
+operation:
+  config:
+    persistTableLocation: "ex: TARGET"
+    persistTableName: "ex: DIM_ORDERS"
+    refTable: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8385102d-2b32-44ee-a403-95f49ea115b4
+          stepCounter: 14bdb94f-b840-435d-8e21-357b979506d5
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_SUPPLIER
+        name: SUPPLIER_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0a7d794c-696a-4db7-a27a-5832d2d6476d
+                stepCounter: d733591f-703c-4144-8816-ca2c26196bb9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bdf49382-d49e-41f2-8177-6c0765856bce
+          stepCounter: 14bdb94f-b840-435d-8e21-357b979506d5
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGREDIENT_SKU
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 01930b58-9f27-4158-be2c-7fc10280c66c
+                stepCounter: d733591f-703c-4144-8816-ca2c26196bb9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 516905f6-98c9-4131-adf3-9304278e5825
+          stepCounter: 14bdb94f-b840-435d-8e21-357b979506d5
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: COST_PER_UNIT
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6640b908-5c1d-4235-b6f7-2eeca7d0c75e
+                stepCounter: d733591f-703c-4144-8816-ca2c26196bb9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0f52542-1849-4311-afed-fe7aeb34a09c
+          stepCounter: 14bdb94f-b840-435d-8e21-357b979506d5
+        config: {}
+        dataType: DATE
+        description: Date this cost became effective
+        name: EFFECTIVE_DATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d28e0c2e-dd82-436d-9111-5d4991a5d253
+                stepCounter: d733591f-703c-4144-8816-ca2c26196bb9
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RAW_COST: d733591f-703c-4144-8816-ca2c26196bb9
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_HH
+            nodeName: RAW_COST
+        join:
+          joinCondition: FROM {{ ref('BRONZE_HH', 'RAW_COST') }} "RAW_COST"
+        name: INC_RAW_COST
+        noLinkRefs: []
+  name: INC_RAW_COST
+  overrideSQL: false
+  schema: ""
+  sqlType: incremental-loading-2-0-0:::230
+  type: sql
+  version: 1
+type: Node

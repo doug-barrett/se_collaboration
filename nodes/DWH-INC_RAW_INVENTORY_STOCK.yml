@@ -1,0 +1,108 @@
+fileVersion: 1
+id: 0d11deea-9d81-480e-933e-c5b2628725a3
+name: INC_RAW_INVENTORY_STOCK
+operation:
+  config:
+    persistTableLocation: "ex: TARGET"
+    persistTableName: "ex: DIM_ORDERS"
+    refTable: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78ff642d-2de7-46cd-b05c-4fa2680aa1b9
+          stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+        config: {}
+        dataType: DATE
+        description: Date the stock level was recorded or received
+        name: DATE_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 15bc006d-f887-40ae-8a0a-7b8d0d97acbd
+                stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ed51ce1-c807-4b02-98f9-c606ae2a7469
+          stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_FRANCHISE_LOCATIONS
+        name: FRANCHISE_LOCATION_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a3fb172-a9fd-4aa7-bf4b-3ea037460073
+                stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1579bdc4-37cd-4f20-857c-72c2b9093f91
+          stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGREDIENT_SKU
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2022dcfa-6eba-4c99-8221-5e7a94b44deb
+                stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 05658150-a954-45b5-bc72-2bc7190c3f46
+          stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+        config: {}
+        dataType: NUMBER(12,4)
+        description: Starting inventory when data model begins (for initial load only)
+        name: INITIAL_STOCK_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 55892cd7-75e1-4100-a09d-287804d5dfb6
+                stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c81bfcf0-32b6-4475-836c-c1bb05e52f0c
+          stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+        config: {}
+        dataType: NUMBER(12,4)
+        description: Amount of ingredient received on this date
+        name: RECEIVED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 807d8cf2-e5e4-4b70-94fc-f94d0fa6c5b2
+                stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RAW_INVENTORY_STOCK: bd9caff6-09d6-46ee-8143-df765149011b
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_HH
+            nodeName: RAW_INVENTORY_STOCK
+        join:
+          joinCondition: FROM {{ ref('BRONZE_HH', 'RAW_INVENTORY_STOCK') }} "RAW_INVENTORY_STOCK"
+        name: INC_RAW_INVENTORY_STOCK
+        noLinkRefs: []
+  name: INC_RAW_INVENTORY_STOCK
+  overrideSQL: false
+  schema: ""
+  sqlType: incremental-loading-2-0-0:::230
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,220 @@
+fileVersion: 1
+id: 5cc91981-9dc2-4244-8b51-e13423dfff32
+name: DIM_RAW_INGREDIENT
+operation:
+  config:
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    insertZeroKey: false
+    insertZeroKeyDate: 01-01-1900
+    insertZeroKeyStr: UNKNOWN
+    insertZeroKeySurrogateKey: "0"
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f70dd1f7-48ae-4273-a596-9abbd8f63836
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_RAW_INGREDIENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ee336722-5e33-4ac9-a854-e19724ed8b90
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: VARCHAR(50)
+        description: Business Key (e.g., FLOUR-AP)
+        isBusinessKey: true
+        name: INGREDIENT_SKU
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 082afec0-3cc8-4e59-a860-4cf4ccb8ff78
+                stepCounter: e78ca930-7433-4eb6-a8f7-88cd08ebc6a2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aca58ead-9941-4184-b630-3aeb51acc53d
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: INGREDIENT_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fc6af89b-529a-45ce-8b1c-63f2e0072356
+                stepCounter: e78ca930-7433-4eb6-a8f7-88cd08ebc6a2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1612ce8c-cd69-4753-af0f-6ea28f7254c6
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: UNIT_OF_MEASURE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c64a7e1f-8923-49f7-812b-4888109c268e
+                stepCounter: e78ca930-7433-4eb6-a8f7-88cd08ebc6a2
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b5d60c18-0e5f-4ff3-8760-d9e7d180c3a1
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c3e55af-efad-4372-a319-27e5cb4ce13a
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b31d082-5db5-4c8c-9480-d97c3b4b373e
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96843a0f-64ef-4200-bcdc-2440334ed27e
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: acb7f715-e318-4d19-93e6-c92d18d187ed
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cddb11d6-83ea-4e74-a6ed-cad05f094ae7
+          stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          WRK_RAW_INGREDIENT: e78ca930-7433-4eb6-a8f7-88cd08ebc6a2
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: WRK_RAW_INGREDIENT
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'WRK_RAW_INGREDIENT') }} "WRK_RAW_INGREDIENT"
+        name: DIM_RAW_INGREDIENT
+        noLinkRefs: []
+  name: DIM_RAW_INGREDIENT
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::388
+  type: sql
+  version: 1
+type: Node

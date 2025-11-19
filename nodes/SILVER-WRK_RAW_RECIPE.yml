@@ -1,0 +1,373 @@
+fileVersion: 1
+id: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+name: WRK_RAW_RECIPE
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a915e1c5-9514-44e1-adca-ec4d208a242d
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_ITEM
+        name: ITEM_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 12c40c22-4136-43a0-afe5-28278f5eab74
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ac8d357-809b-4f85-bd5d-78daceeae935
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: DATE
+        description: Date this recipe became effective
+        name: EFFECTIVE_DATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 96c2e643-02f6-4154-a50b-8568f65af55f
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 46f3f6de-51d6-4656-b8d4-51666b04c135
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: INGR_1_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: adab29a3-34a8-4c3d-a81a-6d058b24a9b9
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 627a0a66-5e6c-4335-ae50-02083daf42e2
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 50f21138-8591-4823-ad29-41fd53326137
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5436ca9a-a83d-454c-99b5-b10dd575dd12
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: INGR_2_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 663591f0-3b37-4950-a02d-031aaf005ccd
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b29b0e3e-65ed-4d2e-8d10-9d3d56ba5d3b
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 64864b96-b197-4983-93fd-d4f0e8fd511b
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b86a23b-d966-4365-a79a-92af8d25d2f5
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: INGR_3_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cf0fa0d0-48bf-4773-bece-a7289eb22494
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 993d2029-e7d0-4eb0-9ff4-c74199cdc33c
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6ad190d-3e06-45b4-9ae9-f57a1e9c82fc
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 029d1aeb-c5e5-4979-9157-95ef7b65b673
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGR_4_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9517f2db-d8e6-43c8-a24e-8d3c7fe0df17
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 199a2ed0-4d41-442e-9d79-0623f50202db
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9d1cf42-97f2-485b-9357-3a07c7b7488b
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 31b99123-cee8-455a-845c-97728b22de4e
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGR_5_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5cddb0da-20b8-4f59-91e5-77c6ef018863
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 813cee18-e91a-4a06-9c23-af2e63aabac8
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_5
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18ef95d6-d448-42d6-a658-7d6bf49b4adb
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 30e4c863-0991-4883-8b39-84e82ae6eab1
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGR_6_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a9fa95f6-d61f-4481-9394-1f5a9ff31244
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87606b3f-396f-4dba-8389-215f5af518a9
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_6
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18d465bc-4a30-4c37-8175-ec2cf646fdac
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e01fe70-2d28-439c-87a1-92d884e94053
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGR_7_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5495915-a1f6-4f34-913b-272aa5b6ca68
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06f07024-02f0-42b7-981f-a087d060d097
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_7
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1b383be-bcae-4e5d-b8b8-5d73aa08d96b
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 284aceea-2c71-484b-b117-4dbb6ce8c462
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGR_8_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 915ad8ff-ba6b-4c95-9eeb-e0d44df051d8
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 087b4a32-f1dc-47f8-81d1-d0e473468e03
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_8
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 65bf102a-72a5-417b-a6cb-b1f443893be7
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ef03576b-c4ca-4969-bf12-373a28f48326
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGR_9_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ceb1013-986e-4f42-b672-51c17ed9debc
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 033d7fb7-69f2-4d8f-9f61-3fff32737de0
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_9
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f2510735-d2ba-4124-b86e-07c6a61846bd
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 998ddcb1-e293-42bf-afcd-777794de0d77
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGR_10_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cc309fc2-dd8d-4868-a1aa-9e449a97a23c
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c604e7d1-ce33-46ca-8d4c-30f83bed019d
+          stepCounter: 4edd5ebc-5e4e-4eee-85df-b935438fb6ef
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_INGR_10
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2248c829-2fea-45c8-b152-cf2e03f93339
+                stepCounter: c3f3163a-2dbd-44f6-b15e-575f23767957
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RAW_RECIPE: c3f3163a-2dbd-44f6-b15e-575f23767957
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_HH
+            nodeName: RAW_RECIPE
+        join:
+          joinCondition: |2-
+
+
+             
+              FROM  {{ ref('BRONZE_HH', 'RAW_RECIPE') }} RAW_RECIPE
+        name: WRK_RAW_RECIPE
+        noLinkRefs: []
+  name: WRK_RAW_RECIPE
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,92 @@
+fileVersion: 1
+id: 494f75a3-49c9-42a0-868e-9fd18730f004
+name: RAW_MENU_PRICES
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: BRONZE_HH
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7b01f8e-6774-4c13-a023-4d828a914cb2
+          stepCounter: 494f75a3-49c9-42a0-868e-9fd18730f004
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: FK to RAW_ITEM
+        name: ITEM_ID
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15b216e5-6d0c-4214-b955-af0fd5989c0d
+          stepCounter: 494f75a3-49c9-42a0-868e-9fd18730f004
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: FK to RAW_FRANCHISE_LOCATIONS
+        name: FRANCHISE_LOCATION_ID
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b60ac8a-e32d-45a6-a426-a3ff6410031c
+          stepCounter: 494f75a3-49c9-42a0-868e-9fd18730f004
+        config: {}
+        dataType: NUMBER(10,2)
+        defaultValue: ""
+        description: ""
+        name: UNIT_PRICE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: de939870-93c3-4d3b-aa1d-5cca72d17177
+          stepCounter: 494f75a3-49c9-42a0-868e-9fd18730f004
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: Date this price became effective
+        name: EFFECTIVE_DATE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: RAW_MENU_PRICES
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

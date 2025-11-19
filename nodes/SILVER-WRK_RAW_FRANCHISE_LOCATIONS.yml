@@ -1,0 +1,121 @@
+fileVersion: 1
+id: 42a029f4-20aa-48a8-877a-fc0fb60795b6
+name: WRK_RAW_FRANCHISE_LOCATIONS
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 37f384a5-0f77-4d3d-a0d8-e50db9bc9ede
+          stepCounter: 42a029f4-20aa-48a8-877a-fc0fb60795b6
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Business Key (1XX IDs)
+        name: FRANCHISE_LOCATION_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9d19e368-ef81-4fb4-9017-bee955c2f2bd
+                stepCounter: cacf383d-2203-4b41-8aff-3d14e06564eb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6de5c94f-2b42-4bd3-99ef-13ee3d2669d9
+          stepCounter: 42a029f4-20aa-48a8-877a-fc0fb60795b6
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: LOCATION_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e5df4b13-05db-45e8-b9af-60d948dd7274
+                stepCounter: cacf383d-2203-4b41-8aff-3d14e06564eb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4255b0f7-34eb-4b1b-916e-d95259ca3ec5
+          stepCounter: 42a029f4-20aa-48a8-877a-fc0fb60795b6
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: REGION
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6f4302b4-d8a7-4d73-927d-02fc5aebd8ab
+                stepCounter: cacf383d-2203-4b41-8aff-3d14e06564eb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ab774c07-6437-4eb3-9fad-fb1b4920ed88
+          stepCounter: 42a029f4-20aa-48a8-877a-fc0fb60795b6
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_CONTACT
+        name: MANAGER_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c043fbb9-d0af-4a2f-ad2f-2c949ee27513
+                stepCounter: cacf383d-2203-4b41-8aff-3d14e06564eb
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RAW_FRANCHISE_LOCATIONS: cacf383d-2203-4b41-8aff-3d14e06564eb
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_HH
+            nodeName: RAW_FRANCHISE_LOCATIONS
+        join:
+          joinCondition: |2-
+
+
+             
+              FROM  {{ ref('BRONZE_HH', 'RAW_FRANCHISE_LOCATIONS') }} RAW_FRANCHISE_LOCATIONS
+        name: WRK_RAW_FRANCHISE_LOCATIONS
+        noLinkRefs: []
+  name: WRK_RAW_FRANCHISE_LOCATIONS
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

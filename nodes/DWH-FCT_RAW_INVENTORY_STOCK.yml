@@ -1,0 +1,160 @@
+fileVersion: 1
+id: acc5af90-5b07-42bd-9b6e-a153a06b817e
+name: FCT_RAW_INVENTORY_STOCK
+operation:
+  config:
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dfc4e328-c2db-4785-af3f-cd636d5dec8a
+          stepCounter: acc5af90-5b07-42bd-9b6e-a153a06b817e
+        config: {}
+        dataType: DATE
+        description: Date the stock level was recorded or received
+        isBusinessKey: true
+        name: DATE_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78ff642d-2de7-46cd-b05c-4fa2680aa1b9
+                stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88503cd8-0f7b-4fc9-ab77-2828286bb7cd
+          stepCounter: acc5af90-5b07-42bd-9b6e-a153a06b817e
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_FRANCHISE_LOCATIONS
+        name: FRANCHISE_LOCATION_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ed51ce1-c807-4b02-98f9-c606ae2a7469
+                stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bbbd82d2-455f-42de-81e4-3e61ebf8305a
+          stepCounter: acc5af90-5b07-42bd-9b6e-a153a06b817e
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        isBusinessKey: true
+        name: INGREDIENT_SKU
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1579bdc4-37cd-4f20-857c-72c2b9093f91
+                stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 707fe0d7-bea5-4285-8d76-65f80643bc0e
+          stepCounter: acc5af90-5b07-42bd-9b6e-a153a06b817e
+        config: {}
+        dataType: NUMBER(12,4)
+        description: Starting inventory when data model begins (for initial load only)
+        name: INITIAL_STOCK_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 05658150-a954-45b5-bc72-2bc7190c3f46
+                stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9cb8fa65-6b5e-4c33-8c58-822e5e33ea78
+          stepCounter: acc5af90-5b07-42bd-9b6e-a153a06b817e
+        config: {}
+        dataType: NUMBER(12,4)
+        description: Amount of ingredient received on this date
+        name: RECEIVED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c81bfcf0-32b6-4475-836c-c1bb05e52f0c
+                stepCounter: 0d11deea-9d81-480e-933e-c5b2628725a3
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d18089b-e008-4265-bb00-374000a1d702
+          stepCounter: acc5af90-5b07-42bd-9b6e-a153a06b817e
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fde4efba-61e0-4ac5-8501-472b1050d583
+          stepCounter: acc5af90-5b07-42bd-9b6e-a153a06b817e
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          INC_RAW_INVENTORY_STOCK: 0d11deea-9d81-480e-933e-c5b2628725a3
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: INC_RAW_INVENTORY_STOCK
+        join:
+          joinCondition: FROM {{ ref('DWH', 'INC_RAW_INVENTORY_STOCK') }} "INC_RAW_INVENTORY_STOCK"
+        name: FCT_RAW_INVENTORY_STOCK
+        noLinkRefs: []
+  name: FCT_RAW_INVENTORY_STOCK
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::389
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,107 @@
+fileVersion: 1
+id: e78ca930-7433-4eb6-a8f7-88cd08ebc6a2
+name: WRK_RAW_INGREDIENT
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 082afec0-3cc8-4e59-a860-4cf4ccb8ff78
+          stepCounter: e78ca930-7433-4eb6-a8f7-88cd08ebc6a2
+        config: {}
+        dataType: VARCHAR(50)
+        description: Business Key (e.g., FLOUR-AP)
+        name: INGREDIENT_SKU
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 565be051-d1a3-4fe5-b471-1e252ded91e5
+                stepCounter: 6f555fed-7904-443b-883f-4d0a2f970246
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc6af89b-529a-45ce-8b1c-63f2e0072356
+          stepCounter: e78ca930-7433-4eb6-a8f7-88cd08ebc6a2
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: INGREDIENT_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f174b4ff-e28b-4351-a911-8f560bca4c33
+                stepCounter: 6f555fed-7904-443b-883f-4d0a2f970246
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c64a7e1f-8923-49f7-812b-4888109c268e
+          stepCounter: e78ca930-7433-4eb6-a8f7-88cd08ebc6a2
+        config: {}
+        dataType: VARCHAR(20)
+        description: ""
+        name: UNIT_OF_MEASURE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 205ee969-d334-4a7c-9b02-97eb8a18bcf7
+                stepCounter: 6f555fed-7904-443b-883f-4d0a2f970246
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RAW_INGREDIENT: 6f555fed-7904-443b-883f-4d0a2f970246
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_HH
+            nodeName: RAW_INGREDIENT
+        join:
+          joinCondition: |2-
+
+
+             
+              FROM  {{ ref('BRONZE_HH', 'RAW_INGREDIENT') }} RAW_INGREDIENT
+        name: WRK_RAW_INGREDIENT
+        noLinkRefs: []
+  name: WRK_RAW_INGREDIENT
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

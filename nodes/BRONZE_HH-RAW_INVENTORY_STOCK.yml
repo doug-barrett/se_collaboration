@@ -1,0 +1,111 @@
+fileVersion: 1
+id: bd9caff6-09d6-46ee-8143-df765149011b
+name: RAW_INVENTORY_STOCK
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: BRONZE_HH
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15bc006d-f887-40ae-8a0a-7b8d0d97acbd
+          stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: Date the stock level was recorded or received
+        name: DATE_KEY
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a3fb172-a9fd-4aa7-bf4b-3ea037460073
+          stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: FK to RAW_FRANCHISE_LOCATIONS
+        name: FRANCHISE_LOCATION_ID
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2022dcfa-6eba-4c99-8221-5e7a94b44deb
+          stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+        config: {}
+        dataType: VARCHAR(50)
+        defaultValue: ""
+        description: FK to RAW_INGREDIENT
+        name: INGREDIENT_SKU
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 55892cd7-75e1-4100-a09d-287804d5dfb6
+          stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+        config: {}
+        dataType: NUMBER(12,4)
+        defaultValue: ""
+        description: Starting inventory when data model begins (for initial load only)
+        name: INITIAL_STOCK_QTY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 807d8cf2-e5e4-4b70-94fc-f94d0fa6c5b2
+          stepCounter: bd9caff6-09d6-46ee-8143-df765149011b
+        config: {}
+        dataType: NUMBER(12,4)
+        defaultValue: ""
+        description: Amount of ingredient received on this date
+        name: RECEIVED_QTY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: RAW_INVENTORY_STOCK
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

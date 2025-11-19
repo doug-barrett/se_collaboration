@@ -1,0 +1,233 @@
+fileVersion: 1
+id: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+name: DIM_MENU_PRICES
+operation:
+  config:
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    insertZeroKey: false
+    insertZeroKeyDate: 01-01-1900
+    insertZeroKeyStr: UNKNOWN
+    insertZeroKeySurrogateKey: "0"
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e80770b6-d5b2-46be-b293-6792bd508816
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_MENU_PRICES_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ddb949c-efb6-46e6-91de-46fd9b957895
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_ITEM
+        name: ITEM_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 90df5ee8-7c3b-4c58-9765-1d75ba99b9e8
+                stepCounter: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9694d423-1a34-4f54-972e-d0523be5d73d
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_FRANCHISE_LOCATIONS
+        name: FRANCHISE_LOCATION_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 71711a08-3de8-46e9-bc33-e292f5d59538
+                stepCounter: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b136e0c3-f25e-4e3a-bd6e-791ef3a3480f
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: NUMBER(10,2)
+        description: ""
+        name: UNIT_PRICE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 47c88ea2-adcb-4086-bd52-15ee9c5679df
+                stepCounter: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39c6b926-5396-40e8-8a5b-a5bcda0fd9b3
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: DATE
+        description: Date this price became effective
+        name: EFFECTIVE_DATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eb03d2bc-ccee-46c1-900d-dd7715f61c42
+                stepCounter: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 555bc7b4-9b5c-46fc-ae39-9d8bcbb64218
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c5a7081-978c-40f2-a065-06ec685081e6
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cab36616-02b1-4f9f-90e0-4309e0bf21ae
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 373ce23d-2306-46c0-9604-6c9f105c7de0
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d40a962-f035-47b8-b13a-460b46d244fd
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 561466bc-5234-40d4-886c-826aa69376bd
+          stepCounter: 5287316e-7d1e-40a1-982f-65d12fb70bd9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          INC_RAW_MENU_PRICES: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: INC_RAW_MENU_PRICES
+        join:
+          joinCondition: FROM {{ ref('DWH', 'INC_RAW_MENU_PRICES') }} "INC_RAW_MENU_PRICES"
+        name: DIM_MENU_PRICES
+        noLinkRefs: []
+  name: DIM_MENU_PRICES
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::388
+  type: sql
+  version: 1
+type: Node

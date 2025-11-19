@@ -1,0 +1,107 @@
+fileVersion: 1
+id: 5eb27906-d462-4b31-83fd-f7da37bd7215
+name: WRK_RAW_ITEM
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 92d16b56-8c02-43c4-b12d-cb4590b02d2a
+          stepCounter: 5eb27906-d462-4b31-83fd-f7da37bd7215
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Business Key (2XX IDs)
+        name: ITEM_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: df562f97-c784-483a-b154-548e021f3c30
+                stepCounter: 3e1fa070-5e3e-43bd-bd52-be397ef8421e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c9b0e403-245b-4aa9-bccc-1b4923f242c3
+          stepCounter: 5eb27906-d462-4b31-83fd-f7da37bd7215
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: ITEM_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 88fe7ece-6b66-4c3a-b50d-b2bb76cf024a
+                stepCounter: 3e1fa070-5e3e-43bd-bd52-be397ef8421e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9075a9d0-1f40-482f-9268-845277d1df08
+          stepCounter: 5eb27906-d462-4b31-83fd-f7da37bd7215
+        config: {}
+        dataType: NUMBER(10,2)
+        description: ""
+        name: BASE_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 32f37bbc-2d40-4b38-bf58-b5e0f3183d47
+                stepCounter: 3e1fa070-5e3e-43bd-bd52-be397ef8421e
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RAW_ITEM: 3e1fa070-5e3e-43bd-bd52-be397ef8421e
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_HH
+            nodeName: RAW_ITEM
+        join:
+          joinCondition: |2-
+
+
+             
+              FROM  {{ ref('BRONZE_HH', 'RAW_ITEM') }} RAW_ITEM
+        name: WRK_RAW_ITEM
+        noLinkRefs: []
+  name: WRK_RAW_ITEM
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

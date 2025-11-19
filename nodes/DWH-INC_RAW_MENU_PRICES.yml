@@ -1,0 +1,94 @@
+fileVersion: 1
+id: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+name: INC_RAW_MENU_PRICES
+operation:
+  config:
+    persistTableLocation: "ex: TARGET"
+    persistTableName: "ex: DIM_ORDERS"
+    refTable: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 90df5ee8-7c3b-4c58-9765-1d75ba99b9e8
+          stepCounter: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_ITEM
+        name: ITEM_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7b01f8e-6774-4c13-a023-4d828a914cb2
+                stepCounter: 494f75a3-49c9-42a0-868e-9fd18730f004
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 71711a08-3de8-46e9-bc33-e292f5d59538
+          stepCounter: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_FRANCHISE_LOCATIONS
+        name: FRANCHISE_LOCATION_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 15b216e5-6d0c-4214-b955-af0fd5989c0d
+                stepCounter: 494f75a3-49c9-42a0-868e-9fd18730f004
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 47c88ea2-adcb-4086-bd52-15ee9c5679df
+          stepCounter: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+        config: {}
+        dataType: NUMBER(10,2)
+        description: ""
+        name: UNIT_PRICE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b60ac8a-e32d-45a6-a426-a3ff6410031c
+                stepCounter: 494f75a3-49c9-42a0-868e-9fd18730f004
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eb03d2bc-ccee-46c1-900d-dd7715f61c42
+          stepCounter: 4d9fde95-7e89-41ba-bdfd-71d77ee47086
+        config: {}
+        dataType: DATE
+        description: Date this price became effective
+        name: EFFECTIVE_DATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: de939870-93c3-4d3b-aa1d-5cca72d17177
+                stepCounter: 494f75a3-49c9-42a0-868e-9fd18730f004
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RAW_MENU_PRICES: 494f75a3-49c9-42a0-868e-9fd18730f004
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_HH
+            nodeName: RAW_MENU_PRICES
+        join:
+          joinCondition: FROM {{ ref('BRONZE_HH', 'RAW_MENU_PRICES') }} "RAW_MENU_PRICES"
+        name: INC_RAW_MENU_PRICES
+        noLinkRefs: []
+  name: INC_RAW_MENU_PRICES
+  overrideSQL: false
+  schema: ""
+  sqlType: incremental-loading-2-0-0:::230
+  type: sql
+  version: 1
+type: Node

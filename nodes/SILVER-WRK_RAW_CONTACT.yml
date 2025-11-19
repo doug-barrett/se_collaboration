@@ -1,0 +1,135 @@
+fileVersion: 1
+id: 4d4f961e-bac4-4ae1-ab09-a755fc047849
+name: WRK_RAW_CONTACT
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fe41a96-3eda-45c2-978f-c4ab1b8e66c9
+          stepCounter: 4d4f961e-bac4-4ae1-ab09-a755fc047849
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Business Key
+        name: CONTACT_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8af08d0-6afb-4062-9374-06b9a388b9fc
+                stepCounter: ff2a0f47-5ed9-495a-9cbc-444f54eb86fc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 34425ad3-c9e8-4777-9497-25f5bcd8e87c
+          stepCounter: 4d4f961e-bac4-4ae1-ab09-a755fc047849
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: CONTACT_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 253fcfce-f5b9-4701-b050-e8482b6abe0f
+                stepCounter: ff2a0f47-5ed9-495a-9cbc-444f54eb86fc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26808524-f55d-4246-99a0-082f763032e2
+          stepCounter: 4d4f961e-bac4-4ae1-ab09-a755fc047849
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: CONTACT_TYPE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7236cc0c-dd5f-4794-a903-6da74d8684a5
+                stepCounter: ff2a0f47-5ed9-495a-9cbc-444f54eb86fc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04a11fb1-532c-47e9-a6fc-f03af20a77e1
+          stepCounter: 4d4f961e-bac4-4ae1-ab09-a755fc047849
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: CONTACT_EMAIL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 38f136e1-7700-417c-993c-2a39272ae066
+                stepCounter: ff2a0f47-5ed9-495a-9cbc-444f54eb86fc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a2723b8-7a89-4af8-b733-7ddb405fec9e
+          stepCounter: 4d4f961e-bac4-4ae1-ab09-a755fc047849
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: CONTACT_PHONE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c52a88e6-2ef3-4290-9e44-286a747d9706
+                stepCounter: ff2a0f47-5ed9-495a-9cbc-444f54eb86fc
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RAW_CONTACT: ff2a0f47-5ed9-495a-9cbc-444f54eb86fc
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_HH
+            nodeName: RAW_CONTACT
+        join:
+          joinCondition: |2-
+
+
+             
+              FROM  {{ ref('BRONZE_HH', 'RAW_CONTACT') }} RAW_CONTACT
+        name: WRK_RAW_CONTACT
+        noLinkRefs: []
+  name: WRK_RAW_CONTACT
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

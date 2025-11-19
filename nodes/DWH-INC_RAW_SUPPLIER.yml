@@ -1,0 +1,108 @@
+fileVersion: 1
+id: 95c398ad-c505-4805-9b8c-114d0e5cbbbf
+name: INC_RAW_SUPPLIER
+operation:
+  config:
+    persistTableLocation: "ex: TARGET"
+    persistTableName: "ex: DIM_ORDERS"
+    refTable: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DWH
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ecb4a5fe-2595-4015-a03a-a8d7c4293e4a
+          stepCounter: 95c398ad-c505-4805-9b8c-114d0e5cbbbf
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Business Key
+        name: SUPPLIER_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9637da87-aed9-4621-b93f-dabf888f47c8
+                stepCounter: 3c243283-bb83-470a-b71c-3da63c5bc117
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ae89ac6-cfab-4121-bd34-e93e5fef7c14
+          stepCounter: 95c398ad-c505-4805-9b8c-114d0e5cbbbf
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: SUPPLIER_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30d16425-ce50-4dc1-aeed-1277dd0fc2c3
+                stepCounter: 3c243283-bb83-470a-b71c-3da63c5bc117
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 954370ab-d94d-42b7-a825-37a5ad2aba01
+          stepCounter: 95c398ad-c505-4805-9b8c-114d0e5cbbbf
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: REGION
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d66826d-320e-4c2f-b55b-7a3f46126970
+                stepCounter: 3c243283-bb83-470a-b71c-3da63c5bc117
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83669b51-831f-41b2-9b41-869ecd1ae5ac
+          stepCounter: 95c398ad-c505-4805-9b8c-114d0e5cbbbf
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_CONTACT
+        name: CONTACT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 68bbe82a-d603-4d9a-843f-e89f501f3f7c
+                stepCounter: 3c243283-bb83-470a-b71c-3da63c5bc117
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7bdb5116-92a5-4167-b9b1-1bfeab28c2f3
+          stepCounter: 95c398ad-c505-4805-9b8c-114d0e5cbbbf
+        config: {}
+        dataType: DATE
+        description: Date this supplier record became valid
+        name: START_DATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b29ff348-63ef-4ca6-9171-a006968a83d2
+                stepCounter: 3c243283-bb83-470a-b71c-3da63c5bc117
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RAW_SUPPLIER: 3c243283-bb83-470a-b71c-3da63c5bc117
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_HH
+            nodeName: RAW_SUPPLIER
+        join:
+          joinCondition: FROM {{ ref('BRONZE_HH', 'RAW_SUPPLIER') }} "RAW_SUPPLIER"
+        name: INC_RAW_SUPPLIER
+        noLinkRefs: []
+  name: INC_RAW_SUPPLIER
+  overrideSQL: false
+  schema: ""
+  sqlType: incremental-loading-2-0-0:::230
+  type: sql
+  version: 1
+type: Node
