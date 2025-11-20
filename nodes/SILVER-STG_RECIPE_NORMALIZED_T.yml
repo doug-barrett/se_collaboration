@@ -1,6 +1,6 @@
 fileVersion: 1
 id: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
-name: UNION_RECIPE
+name: STG_RECIPE_NORMALIZED_T
 operation:
   config:
     insertStrategy: UNION ALL
@@ -37,6 +37,18 @@ operation:
             transform: "\"DIM_RECIPE3\".\"ITEM_ID\""
           - columnReferences: []
             transform: "\"DIM_RECIPE4\".\"ITEM_ID\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE5\".\"ITEM_ID\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE6\".\"ITEM_ID\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE7\".\"ITEM_ID\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE8\".\"ITEM_ID\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE9\".\"ITEM_ID\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE10\".\"ITEM_ID\""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: dc27060d-7278-44d0-996a-be0bce599b58
@@ -57,6 +69,18 @@ operation:
             transform: "\"DIM_RECIPE3\".\"SYSTEM_START_DATE\""
           - columnReferences: []
             transform: "\"DIM_RECIPE4\".\"SYSTEM_START_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE5\".\"SYSTEM_START_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE6\".\"SYSTEM_START_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE7\".\"SYSTEM_START_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE8\".\"SYSTEM_START_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE9\".\"SYSTEM_START_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE10\".\"SYSTEM_START_DATE\""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: eeed5e72-7aaa-4ac1-a275-c3023217dba0
@@ -77,6 +101,18 @@ operation:
             transform: "\"DIM_RECIPE3\".\"SYSTEM_END_DATE\""
           - columnReferences: []
             transform: "\"DIM_RECIPE4\".\"SYSTEM_END_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE5\".\"SYSTEM_END_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE6\".\"SYSTEM_END_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE7\".\"SYSTEM_END_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE8\".\"SYSTEM_END_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE9\".\"SYSTEM_END_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE10\".\"SYSTEM_END_DATE\""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 1609cca2-adf9-49e0-a73a-753430ded01f
@@ -97,6 +133,18 @@ operation:
             transform: "\"DIM_RECIPE3\".\"INGR_3_SKU\""
           - columnReferences: []
             transform: "\"DIM_RECIPE4\".\"INGR_4_SKU\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE5\".\"INGR_5_SKU\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE6\".\"INGR_6_SKU\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE7\".\"INGR_7_SKU\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE8\".\"INGR_8_SKU\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE9\".\"INGR_9_SKU\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE10\".\"INGR_10_SKU\""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 50bf3e32-9198-4572-8c09-0011a580f4a7
@@ -117,6 +165,18 @@ operation:
             transform: "\"DIM_RECIPE3\".\"QTY_INGR_3\""
           - columnReferences: []
             transform: "\"DIM_RECIPE4\".\"QTY_INGR_4\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE5\".\"QTY_INGR_5\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE6\".\"QTY_INGR_6\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE7\".\"QTY_INGR_7\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE8\".\"QTY_INGR_8\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE9\".\"QTY_INGR_9\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE10\".\"QTY_INGR_10\""
     cteString: ""
     description: ""
     destinationName: ""
@@ -250,7 +310,73 @@ operation:
           joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE4"
         name: INGR_4
         noLinkRefs: []
-  name: UNION_RECIPE
+      - aliases:
+          DIM_RECIPE5: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE5"
+        name: INGR_5
+        noLinkRefs: []
+      - aliases:
+          DIM_RECIPE6: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE6"
+        name: INGR_6
+        noLinkRefs: []
+      - aliases:
+          DIM_RECIPE7: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE7"
+        name: INGR_7
+        noLinkRefs: []
+      - aliases:
+          DIM_RECIPE8: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE8"
+        name: INGR_8
+        noLinkRefs: []
+      - aliases:
+          DIM_RECIPE9: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE9"
+        name: INGR_9
+        noLinkRefs: []
+      - aliases:
+          DIM_RECIPE10: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE10"
+        name: INGR_10
+        noLinkRefs: []
+  name: STG_RECIPE_NORMALIZED_T
   overrideSQL: false
   schema: ""
   sqlType: Stage
