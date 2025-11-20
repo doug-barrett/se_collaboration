@@ -1,0 +1,113 @@
+fileVersion: 1
+id: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+name: CONSUMPTION_CALC
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculates ingredient consumption per line item based on orders and recipes
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22007ec6-a823-4c64-8451-1e7a1bcb641a
+          stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+        config: {}
+        dataType: DATE
+        description: ""
+        name: CONSUMPTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22007ec6-a823-4c64-8451-1e7a1bcb641a
+                stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+            transform: TO_DATE(T1.PICKUP_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5659ea78-146b-488e-a069-5e5a38b1ea3d
+          stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5659ea78-146b-488e-a069-5e5a38b1ea3d
+                stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+            transform: T3.FRANCHISE_LOCATION_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 99bf2395-8b81-4f9d-bb3e-6ca534c0f7ac
+          stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INGREDIENT_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 99bf2395-8b81-4f9d-bb3e-6ca534c0f7ac
+                stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+            transform: T5.INGREDIENT_SKU
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c568d75-d6e5-4558-8c27-e43cd742f636
+          stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CONSUMED_QTY_PER_LINEITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c568d75-d6e5-4558-8c27-e43cd742f636
+                stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+            transform: (T1.ORDERED_QTY * T5.QTY_REQUIRED)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_FRANCHISE_LOCATIONS
+          - locationName: GOLD
+            nodeName: DIM_MENU_ITEM
+          - locationName: SILVER
+            nodeName: STG_ORDERS_LINEITEM
+          - locationName: SILVER
+            nodeName: STG_RECIPE_NORMALIZED_T
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_ORDERS_LINEITEM') }} T1
+            INNER JOIN {{ ref('GOLD', 'DIM_MENU_ITEM') }} T2 ON 
+                REPLACE(UPPER(T1.ITEM_NAME_RAW), '_', ' ') = UPPER(T2.ITEM_NAME)
+            INNER JOIN {{ ref('GOLD', 'DIM_FRANCHISE_LOCATIONS') }} T3 ON 
+                T1.PICKUP_LOCATION = T3.LOCATION_NAME
+            INNER JOIN {{ ref('SILVER', 'STG_RECIPE_NORMALIZED_T') }} T5 ON 
+                T2.ITEM_ID = T5.ITEM_ID
+                AND T1.PICKUP_DATE BETWEEN TO_DATE(T5.SYSTEM_START_DATE) AND TO_DATE(T5.SYSTEM_END_DATE)
+            WHERE T1.ORDERED_QTY > 0
+        name: CONSUMPTION_CALC
+        noLinkRefs: []
+  name: CONSUMPTION_CALC
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

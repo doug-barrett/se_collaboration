@@ -1,0 +1,181 @@
+fileVersion: 1
+id: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+name: UPVT_RAW_ORDERS
+operation:
+  config:
+    includenull: true
+    inferunpivot: false
+    nameColTextBox: ITEM_NAME_RAW
+    tabValueColumn:
+      items:
+        - ColTextBox: CLASSIC_SUGAR_COOKIE_BOX
+        - ColTextBox: GINGERBREAD_LOAF
+        - ColTextBox: HOT_COCOA_BOMB_SET
+        - ColTextBox: PEPPERMINT_BROWNIE_SLAB
+        - ColTextBox: CRANBERRY_ORANGE_SCONE
+        - ColTextBox: APPLE_CINNAMON_TART
+        - ColTextBox: EGGNOG_WHOOPIE_PIES
+        - ColTextBox: MAPLE_PECAN_ROLL
+        - ColTextBox: SPICED_MOLASSES_COOKIE
+        - ColTextBox: HOLIDAY_SPRINKLE_DONUTS
+    testsEnabled: false
+    truncateBefore: false
+    valColTextBox: ORDERED_QTY
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a3a84a9e-ff11-4e27-94ec-66969dd85efe
+          stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: ORDER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: UUID_STRING()
+        systemColumnType: None
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7e78ba6e-4d4c-4c51-8828-e901e8af599e
+          stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fb642b20-a669-477f-8d58-7b174be3b5f8
+                stepCounter: 9c01960b-998c-4260-be76-31aec57b2d75
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c127d899-d450-4f43-b733-55326bf04db3
+          stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: EMAIL_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4428316f-292c-4383-9c6c-cf124214716e
+                stepCounter: 9c01960b-998c-4260-be76-31aec57b2d75
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 003f4e87-d3ef-411e-a06c-b062c1428328
+          stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: FULL_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bdc88ec3-b8a6-4422-aad0-fac724f397c7
+                stepCounter: 9c01960b-998c-4260-be76-31aec57b2d75
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f5419df2-03ba-4c75-a8c5-3bdcfe7d41e9
+          stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PICKUP_LOCATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 29742983-5d1b-497d-8687-28a8d90ca9a8
+                stepCounter: 9c01960b-998c-4260-be76-31aec57b2d75
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5798c0d6-541c-4c27-80db-c4d659352661
+          stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PICKUP_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7c8eb1ae-32f5-4b71-a6a2-cb1258f83d34
+                stepCounter: 9c01960b-998c-4260-be76-31aec57b2d75
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad149836-4e48-4ac5-b332-988825695c0b
+          stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: ITEM_NAME_RAW
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a4ccb100-03a4-41a3-8ca3-ad8a8be0d73c
+          stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: ORDERED_QTY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          WRK_ORDERS: 9c01960b-998c-4260-be76-31aec57b2d75
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: WRK_ORDERS
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'WRK_ORDERS') }} "WRK_ORDERS"
+        name: UPVT_RAW_ORDERS
+        noLinkRefs: []
+  name: UPVT_RAW_ORDERS
+  overrideSQL: false
+  schema: ""
+  sqlType: functional-node-types-4-2-2:::399
+  type: sql
+  version: 1
+type: Node

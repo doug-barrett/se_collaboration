@@ -1,0 +1,177 @@
+fileVersion: 1
+id: f6146a53-d8f2-4c29-9b02-2067b6313f35
+name: STG_ORDERS_LINEITEM
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d8d22d2-d96b-4712-83f2-48be6e4838d5
+          stepCounter: f6146a53-d8f2-4c29-9b02-2067b6313f35
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORDER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a3a84a9e-ff11-4e27-94ec-66969dd85efe
+                stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 803c7f24-c942-4d4c-b145-cda6a9e95b83
+          stepCounter: f6146a53-d8f2-4c29-9b02-2067b6313f35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7e78ba6e-4d4c-4c51-8828-e901e8af599e
+                stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 668b602e-de05-4872-b38b-f183b3ecff57
+          stepCounter: f6146a53-d8f2-4c29-9b02-2067b6313f35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: EMAIL_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c127d899-d450-4f43-b733-55326bf04db3
+                stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7ea808c5-d0e5-4637-a78f-b0b58c968c7d
+          stepCounter: f6146a53-d8f2-4c29-9b02-2067b6313f35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: FULL_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 003f4e87-d3ef-411e-a06c-b062c1428328
+                stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c5b3da75-4cfa-42c9-8c24-992e73d3286f
+          stepCounter: f6146a53-d8f2-4c29-9b02-2067b6313f35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PICKUP_LOCATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f5419df2-03ba-4c75-a8c5-3bdcfe7d41e9
+                stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ebcf7de2-f1d7-4eff-b8e3-db7b575c72d5
+          stepCounter: f6146a53-d8f2-4c29-9b02-2067b6313f35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PICKUP_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5798c0d6-541c-4c27-80db-c4d659352661
+                stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04df3039-aa35-4e86-bde2-e340f31a39c2
+          stepCounter: f6146a53-d8f2-4c29-9b02-2067b6313f35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ITEM_NAME_RAW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ad149836-4e48-4ac5-b332-988825695c0b
+                stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8706555-72fc-42a1-82c8-c64cd0b37c99
+          stepCounter: f6146a53-d8f2-4c29-9b02-2067b6313f35
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: ORDERED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a4ccb100-03a4-41a3-8ca3-ad8a8be0d73c
+                stepCounter: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          UPVT_RAW_ORDERS: f4d9f046-e6cd-497a-9e82-a4529b4d6be2
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: UPVT_RAW_ORDERS
+        join:
+          joinCondition: |2-
+
+
+             
+              FROM  {{ ref('SILVER', 'UPVT_RAW_ORDERS') }} UPVT_RAW_ORDERS
+        name: STG_ORDERS_LINEITEM
+        noLinkRefs: []
+  name: STG_ORDERS_LINEITEM
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

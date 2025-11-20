@@ -1,0 +1,259 @@
+fileVersion: 1
+id: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
+name: UNION_RECIPE
+operation:
+  config:
+    insertStrategy: UNION ALL
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: true
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c032a28-c515-4544-8cb0-cd5a88d18c04
+          stepCounter: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_ITEM
+        name: ITEM_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f29eca12-c4e6-460e-a0c9-b8ddb1bd445d
+                stepCounter: 21cef42e-2fc8-4b06-b287-6481b200acf6
+            transform: ""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE2\".\"ITEM_ID\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE3\".\"ITEM_ID\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE4\".\"ITEM_ID\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc27060d-7278-44d0-996a-be0bce599b58
+          stepCounter: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1070d445-c2f5-4a79-8eca-8d4c612a15fe
+                stepCounter: 21cef42e-2fc8-4b06-b287-6481b200acf6
+            transform: ""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE2\".\"SYSTEM_START_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE3\".\"SYSTEM_START_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE4\".\"SYSTEM_START_DATE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eeed5e72-7aaa-4ac1-a275-c3023217dba0
+          stepCounter: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aae34776-5f65-437f-ad3d-5498d7ce9921
+                stepCounter: 21cef42e-2fc8-4b06-b287-6481b200acf6
+            transform: ""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE2\".\"SYSTEM_END_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE3\".\"SYSTEM_END_DATE\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE4\".\"SYSTEM_END_DATE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1609cca2-adf9-49e0-a73a-753430ded01f
+          stepCounter: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: INGREDIENT_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6dcd64ce-79de-429d-bb19-acc1749b97f4
+                stepCounter: 21cef42e-2fc8-4b06-b287-6481b200acf6
+            transform: ""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE2\".\"INGR_2_SKU\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE3\".\"INGR_3_SKU\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE4\".\"INGR_4_SKU\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 50bf3e32-9198-4572-8c09-0011a580f4a7
+          stepCounter: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_REQUIRED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 31909544-8314-4342-9747-9e1cb72d6a0a
+                stepCounter: 21cef42e-2fc8-4b06-b287-6481b200acf6
+            transform: ""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE2\".\"QTY_INGR_2\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE3\".\"QTY_INGR_3\""
+          - columnReferences: []
+            transform: "\"DIM_RECIPE4\".\"QTY_INGR_4\""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          DIM_RECIPE: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: |-
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_1_SKU IS NOT NULL
+            UNION ALL
+            SELECT 
+                "DIM_RECIPE".ITEM_ID,
+                "DIM_RECIPE".SYSTEM_START_DATE,
+                "DIM_RECIPE".SYSTEM_END_DATE,
+                "DIM_RECIPE".INGR_2_SKU,
+                "DIM_RECIPE".QTY_INGR_2
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_2_SKU IS NOT NULL
+            UNION ALL
+            SELECT 
+                "DIM_RECIPE".ITEM_ID,
+                "DIM_RECIPE".SYSTEM_START_DATE,
+                "DIM_RECIPE".SYSTEM_END_DATE,
+                "DIM_RECIPE".INGR_3_SKU,
+                "DIM_RECIPE".QTY_INGR_3
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_3_SKU IS NOT NULL
+            UNION ALL
+            SELECT 
+                "DIM_RECIPE".ITEM_ID,
+                "DIM_RECIPE".SYSTEM_START_DATE,
+                "DIM_RECIPE".SYSTEM_END_DATE,
+                "DIM_RECIPE".INGR_4_SKU,
+                "DIM_RECIPE".QTY_INGR_4
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_4_SKU IS NOT NULL
+            UNION ALL
+            SELECT 
+                "DIM_RECIPE".ITEM_ID,
+                "DIM_RECIPE".SYSTEM_START_DATE,
+                "DIM_RECIPE".SYSTEM_END_DATE,
+                "DIM_RECIPE".INGR_5_SKU,
+                "DIM_RECIPE".QTY_INGR_5
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_5_SKU IS NOT NULL
+            UNION ALL
+            SELECT 
+                "DIM_RECIPE".ITEM_ID,
+                "DIM_RECIPE".SYSTEM_START_DATE,
+                "DIM_RECIPE".SYSTEM_END_DATE,
+                "DIM_RECIPE".INGR_6_SKU,
+                "DIM_RECIPE".QTY_INGR_6
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_6_SKU IS NOT NULL
+            UNION ALL
+            SELECT 
+                "DIM_RECIPE".ITEM_ID,
+                "DIM_RECIPE".SYSTEM_START_DATE,
+                "DIM_RECIPE".SYSTEM_END_DATE,
+                "DIM_RECIPE".INGR_7_SKU,
+                "DIM_RECIPE".QTY_INGR_7
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_7_SKU IS NOT NULL
+            UNION ALL
+            SELECT 
+                "DIM_RECIPE".ITEM_ID,
+                "DIM_RECIPE".SYSTEM_START_DATE,
+                "DIM_RECIPE".SYSTEM_END_DATE,
+                "DIM_RECIPE".INGR_8_SKU,
+                "DIM_RECIPE".QTY_INGR_8
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_8_SKU IS NOT NULL
+            UNION ALL
+            SELECT 
+                "DIM_RECIPE".ITEM_ID,
+                "DIM_RECIPE".SYSTEM_START_DATE,
+                "DIM_RECIPE".SYSTEM_END_DATE,
+                "DIM_RECIPE".INGR_9_SKU,
+                "DIM_RECIPE".QTY_INGR_9
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_9_SKU IS NOT NULL
+            UNION ALL
+            SELECT 
+                "DIM_RECIPE".ITEM_ID,
+                "DIM_RECIPE".SYSTEM_START_DATE,
+                "DIM_RECIPE".SYSTEM_END_DATE,
+                "DIM_RECIPE".INGR_10_SKU,
+                "DIM_RECIPE".QTY_INGR_10
+            FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE" 
+            WHERE "DIM_RECIPE".INGR_10_SKU IS NOT NULL
+        name: INGR_1
+        noLinkRefs: []
+      - aliases:
+          DIM_RECIPE2: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE2"
+        name: INGR_2
+        noLinkRefs: []
+      - aliases:
+          DIM_RECIPE3: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE3"
+        name: INGR_3
+        noLinkRefs: []
+      - aliases:
+          DIM_RECIPE4: 21cef42e-2fc8-4b06-b287-6481b200acf6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_RECIPE
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'DIM_RECIPE') }} "DIM_RECIPE4"
+        name: INGR_4
+        noLinkRefs: []
+  name: UNION_RECIPE
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
