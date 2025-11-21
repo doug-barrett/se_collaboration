@@ -1,0 +1,98 @@
+fileVersion: 1
+id: 2a33b53c-6a67-46fb-b95a-2ba5a4488db6
+name: TRF_CONSUMPTION_DAILY
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculates ingredient consumption per line item based on orders and recipes
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f63c1ce5-1a2d-4428-ae1c-d0e452173828
+          stepCounter: 2a33b53c-6a67-46fb-b95a-2ba5a4488db6
+        config: {}
+        dataType: DATE
+        description: ""
+        name: CONSUMPTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22007ec6-a823-4c64-8451-1e7a1bcb641a
+                stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e88adc2-e4d5-4ac3-8268-458ccc78f403
+          stepCounter: 2a33b53c-6a67-46fb-b95a-2ba5a4488db6
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5659ea78-146b-488e-a069-5e5a38b1ea3d
+                stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 167e85d0-f708-4600-afec-9fb66633531b
+          stepCounter: 2a33b53c-6a67-46fb-b95a-2ba5a4488db6
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INGREDIENT_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 99bf2395-8b81-4f9d-bb3e-6ca534c0f7ac
+                stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a3f6752d-b268-41d5-95d2-c3ccf2255309
+          stepCounter: 2a33b53c-6a67-46fb-b95a-2ba5a4488db6
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_DAILY_CONSUMED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c568d75-d6e5-4558-8c27-e43cd742f636
+                stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+            transform: SUM(CONSUMED_QTY_PER_LINEITEM)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CONSUMPTION_CALC: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: CONSUMPTION_CALC
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'CONSUMPTION_CALC') }} "CONSUMPTION_CALC"
+            GROUP BY ALL
+        name: TRF_CONSUMPTION_DAILY
+        noLinkRefs: []
+  name: TRF_CONSUMPTION_DAILY
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
