@@ -220,10 +220,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: DWH
+          - locationName: SILVER
             nodeName: INC_RAW_COST
         join:
-          joinCondition: FROM {{ ref('DWH', 'INC_RAW_COST') }} "INC_RAW_COST"
+          joinCondition: FROM {{ ref('SILVER', 'INC_RAW_COST') }} "INC_RAW_COST"
         name: DIM_COST
         noLinkRefs: []
   name: DIM_COST

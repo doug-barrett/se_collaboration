@@ -26,7 +26,7 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: DWH
+  locationName: GOLD
   materializationType: table
   metadata:
     appliedNodeTests: []
@@ -145,10 +145,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: DWH
+          - locationName: SILVER
             nodeName: INC_RAW_INVENTORY_STOCK
         join:
-          joinCondition: FROM {{ ref('DWH', 'INC_RAW_INVENTORY_STOCK') }} "INC_RAW_INVENTORY_STOCK"
+          joinCondition: FROM {{ ref('SILVER', 'INC_RAW_INVENTORY_STOCK') }} "INC_RAW_INVENTORY_STOCK"
         name: FCT_RAW_INVENTORY_STOCK
         noLinkRefs: []
   name: FCT_RAW_INVENTORY_STOCK

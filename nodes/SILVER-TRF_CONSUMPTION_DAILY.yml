@@ -12,7 +12,7 @@ operation:
   deployEnabled: true
   description: Calculates ingredient consumption per line item based on orders and recipes
   isMultisource: false
-  locationName: DWH
+  locationName: SILVER
   materializationType: table
   metadata:
     appliedNodeTests: []
@@ -81,11 +81,11 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: DWH
+          - locationName: SILVER
             nodeName: CONSUMPTION_CALC
         join:
           joinCondition: |-
-            FROM {{ ref('DWH', 'CONSUMPTION_CALC') }} "CONSUMPTION_CALC"
+            FROM {{ ref('SILVER', 'CONSUMPTION_CALC') }} "CONSUMPTION_CALC"
             GROUP BY ALL
         name: TRF_CONSUMPTION_DAILY
         noLinkRefs: []

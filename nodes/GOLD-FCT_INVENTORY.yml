@@ -1,0 +1,179 @@
+fileVersion: 1
+id: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+name: FCT_INVENTORY
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2cf08551-6b82-4901-9296-bdd7ad119089
+          stepCounter: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_FRANCHISE_LOCATIONS
+        isBusinessKey: true
+        name: FRANCHISE_LOCATION_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3aa65ddd-185d-4839-8ded-f82bfc8f4e25
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 971129ea-7d01-4b16-9bb9-b69f643990bc
+          stepCounter: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+        config: {}
+        dataType: DATE
+        description: Date the stock level was recorded or received
+        isBusinessKey: true
+        name: DATE_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: efb7b1d8-c91f-4004-b81e-2965df90f579
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d323bff-3116-4e46-923c-e168a642fc29
+          stepCounter: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        isBusinessKey: true
+        name: INGREDIENT_SKU
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 67774f96-4b25-4d60-a2b0-b51fdaeb79de
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6015c35-5769-4b19-ba52-1a4513ac5c55
+          stepCounter: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: BEGINNING_STOCK_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 08087b52-cbe2-4acf-9342-8aa3138df749
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad74c41c-98b4-4142-a827-a5db4f939acc
+          stepCounter: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+        config: {}
+        dataType: NUMBER(12,4)
+        description: Amount of ingredient received on this date
+        name: STOCK_RECEIVED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6462a91a-62d0-4314-8d91-c281502349c0
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e84fa2d2-89d6-46d5-a842-c519e9ffde80
+          stepCounter: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDERS_CONSUMED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22665613-1ff7-487a-8de7-71a4572c9932
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec9936e8-c3cd-46dd-8720-65e6a3228445
+          stepCounter: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: ENDING_STOCK_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: (PREVIOUS_ENDING_STOCK_QTY + RECEIVED_QTY - CONSUMED_QTY)
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2eeb29ae-ece9-48ff-8010-d363c5418bdc
+          stepCounter: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6497e074-195c-4d9a-8a98-ffca15c8dc47
+          stepCounter: 5789a6b5-50da-4ae0-a76a-10fa8dc28413
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DAILY_INVENTORY_SOURCE: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: DAILY_INVENTORY_SOURCE
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'DAILY_INVENTORY_SOURCE') }} "DAILY_INVENTORY_SOURCE"
+        name: FCT_INVENTORY
+        noLinkRefs: []
+  name: FCT_INVENTORY
+  overrideSQL: false
+  schema: ""
+  sqlType: Fact
+  type: sql
+  version: 1
+type: Node

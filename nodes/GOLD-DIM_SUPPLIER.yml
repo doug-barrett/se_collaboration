@@ -233,10 +233,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: DWH
+          - locationName: SILVER
             nodeName: INC_RAW_SUPPLIER
         join:
-          joinCondition: FROM {{ ref('DWH', 'INC_RAW_SUPPLIER') }} "INC_RAW_SUPPLIER"
+          joinCondition: FROM {{ ref('SILVER', 'INC_RAW_SUPPLIER') }} "INC_RAW_SUPPLIER"
         name: DIM_SUPPLIER
         noLinkRefs: []
   name: DIM_SUPPLIER
