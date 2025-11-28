@@ -1,0 +1,163 @@
+fileVersion: 1
+id: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+name: COMPONENTS_W_METRICS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculates beginning and ending stock quantities using window functions over inventory calculations
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7d0e908-9420-493e-bd94-3bbe5ceeaf70
+          stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019acbe6-49bf-777e-8a6a-9c59352c989f
+                stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 18fa1b99-2d86-4d24-9ca8-304f2351dcea
+          stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019acbe6-49bf-777e-8a6a-a0a37574dd9d
+                stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 031af7fc-f2d0-478a-9b19-16422d23d5cc
+          stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INGREDIENT_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019acbe6-49bf-777e-8a6a-a76056effec3
+                stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7509799-5e49-49d1-825f-4e4e0e91ead3
+          stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CALCULATED_BEGINNING_STOCK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019acbe6-49bf-777e-8a6a-ad4d0175cb0f
+                stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 915831bd-10a9-4efa-9f45-16a69cfadad2
+          stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ENDING_STOCK_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019acbe6-49bf-777e-8a6a-ab88ef052835
+                stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d9458a1a-c6b3-4b7e-8835-73269bc56ab9
+          stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: CONSUMED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: COALESCE(D.TOTAL_DAILY_CONSUMED_QTY, 0)
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a4487e97-96cd-473e-89e0-fdf45ec947e8
+          stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: RECEIVED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: COALESCE(R.RECEIVED_QTY, 0)
+        systemColumnType: None
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          D: 2a33b53c-6a67-46fb-b95a-2ba5a4488db6
+          R: acc5af90-5b07-42bd-9b6e-a153a06b817e
+          STG_FINAL_COMPONENTS: 2a9010b5-98c7-46df-9146-045b07c705ff
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: FCT_RAW_INVENTORY_STOCK
+          - locationName: SILVER
+            nodeName: STG_FINAL_COMPONENTS
+          - locationName: SILVER
+            nodeName: TRF_CONSUMPTION_DAILY
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_FINAL_COMPONENTS') }} "STG_FINAL_COMPONENTS"
+            -- Look up Consumption
+                LEFT JOIN {{ ref('SILVER', 'TRF_CONSUMPTION_DAILY') }} D 
+                    ON "STG_FINAL_COMPONENTS".DATE_KEY = D.CONSUMPTION_DATE AND "STG_FINAL_COMPONENTS".FRANCHISE_LOCATION_ID = D.FRANCHISE_LOCATION_ID AND "STG_FINAL_COMPONENTS".INGREDIENT_SKU = D.INGREDIENT_SKU
+                -- Look up Received Stock
+                LEFT JOIN {{ ref('GOLD', 'FCT_RAW_INVENTORY_STOCK') }} R 
+                    ON "STG_FINAL_COMPONENTS".DATE_KEY = R.DATE_KEY AND "STG_FINAL_COMPONENTS".FRANCHISE_LOCATION_ID = R.FRANCHISE_LOCATION_ID AND "STG_FINAL_COMPONENTS".INGREDIENT_SKU = R.INGREDIENT_SKU
+        name: COMPONENTS_W_METRICS
+        noLinkRefs: []
+  name: COMPONENTS_W_METRICS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

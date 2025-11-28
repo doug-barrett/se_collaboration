@@ -1,0 +1,180 @@
+fileVersion: 1
+id: 5fbb111b-adf9-4afc-9400-463071e30485
+name: STG_FCT_INVENTORY
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculates beginning and ending stock quantities using window functions over inventory calculations
+  isMultisource: false
+  locationName: DWH
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b24ca86-6056-40f5-98d8-3d9510281754
+          stepCounter: 5fbb111b-adf9-4afc-9400-463071e30485
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_RAW_INGREDIENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f70dd1f7-48ae-4273-a596-9abbd8f63836
+                stepCounter: 5cc91981-9dc2-4244-8b51-e13423dfff32
+            transform: I."DIM_RAW_INGREDIENT_KEY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 91b9d118-ff54-4b6a-9e38-a6078f521356
+          stepCounter: 5fbb111b-adf9-4afc-9400-463071e30485
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_FRANCHISE_LOCATIONS_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 566c127a-0e0a-4ef5-960b-8effe44ace42
+                stepCounter: de17f699-45e2-457a-aa00-40996ce54ebd
+            transform: L."DIM_FRANCHISE_LOCATIONS_KEY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f96d6909-c006-4fae-910f-25a8cf01e51e
+          stepCounter: 5fbb111b-adf9-4afc-9400-463071e30485
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7d0e908-9420-493e-bd94-3bbe5ceeaf70
+                stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85ff8ab1-8045-4f79-91bc-1c750e183877
+          stepCounter: 5fbb111b-adf9-4afc-9400-463071e30485
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18fa1b99-2d86-4d24-9ca8-304f2351dcea
+                stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 08e49162-3539-4e6f-abd0-65ef0fe59a0b
+          stepCounter: 5fbb111b-adf9-4afc-9400-463071e30485
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INGREDIENT_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 031af7fc-f2d0-478a-9b19-16422d23d5cc
+                stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 82b60259-7a5b-4d3e-aa45-3e854674ee9a
+          stepCounter: 5fbb111b-adf9-4afc-9400-463071e30485
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CALCULATED_BEGINNING_STOCK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7509799-5e49-49d1-825f-4e4e0e91ead3
+                stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 865a1a3a-8b98-424f-ba68-0eaebe6b3c50
+          stepCounter: 5fbb111b-adf9-4afc-9400-463071e30485
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ENDING_STOCK_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 915831bd-10a9-4efa-9f45-16a69cfadad2
+                stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c14ddd9-84cf-40de-9088-2209a8dadc05
+          stepCounter: 5fbb111b-adf9-4afc-9400-463071e30485
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CONSUMED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d9458a1a-c6b3-4b7e-8835-73269bc56ab9
+                stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 250b0877-a71e-4d89-96c7-638d1adcccf5
+          stepCounter: 5fbb111b-adf9-4afc-9400-463071e30485
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: RECEIVED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a4487e97-96cd-473e-89e0-fdf45ec947e8
+                stepCounter: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          COMPONENTS_W_METRICS: 8f6f0004-1ad3-450a-86fe-3fd640232cee
+          I: 5cc91981-9dc2-4244-8b51-e13423dfff32
+          L: de17f699-45e2-457a-aa00-40996ce54ebd
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_FRANCHISE_LOCATIONS
+          - locationName: GOLD
+            nodeName: DIM_RAW_INGREDIENT
+          - locationName: SILVER
+            nodeName: COMPONENTS_W_METRICS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'COMPONENTS_W_METRICS') }} "COMPONENTS_W_METRICS"
+            /* 1. LOOKUP JOIN: Franchise Location SK */
+            INNER JOIN {{ ref('GOLD', 'DIM_FRANCHISE_LOCATIONS') }} L
+                ON "COMPONENTS_W_METRICS".FRANCHISE_LOCATION_ID = L.FRANCHISE_LOCATION_ID 
+
+            /* 2. LOOKUP JOIN: Ingredient SK */
+            INNER JOIN {{ ref('GOLD', 'DIM_RAW_INGREDIENT') }} I
+                ON "COMPONENTS_W_METRICS".INGREDIENT_SKU = I.INGREDIENT_SKU;
+        name: STG_FCT_INVENTORY
+        noLinkRefs: []
+  name: STG_FCT_INVENTORY
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
