@@ -1,0 +1,193 @@
+fileVersion: 1
+id: 6887c930-4bd2-4eb3-8d3c-300773e697d3
+name: FCT_INVENTORY_CALC
+operation:
+  config:
+    insertStrategy: UNION ALL
+    persistTableLocation: "ex: TARGET"
+    persistTableName: "ex: DIM_ORDERS"
+    refTable: false
+    srcTable: false
+    suffixlength: ex:1
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: run view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 90c9c3b1-907c-4358-b4bb-5db0d36073c4
+          stepCounter: 6887c930-4bd2-4eb3-8d3c-300773e697d3
+        config: {}
+        dataType: DATE
+        description: Date the stock level was recorded or received
+        name: DATE_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: efb7b1d8-c91f-4004-b81e-2965df90f579
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e369e54a-9fa6-4f0a-aad1-479fdeb8823f
+          stepCounter: 6887c930-4bd2-4eb3-8d3c-300773e697d3
+        config: {}
+        dataType: NUMBER(38,0)
+        description: FK to RAW_FRANCHISE_LOCATIONS
+        name: FRANCHISE_LOCATION_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3aa65ddd-185d-4839-8ded-f82bfc8f4e25
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d38e5e0f-818d-4915-813b-0099a8043312
+          stepCounter: 6887c930-4bd2-4eb3-8d3c-300773e697d3
+        config: {}
+        dataType: VARCHAR(50)
+        description: FK to RAW_INGREDIENT
+        name: INGREDIENT_SKU
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 67774f96-4b25-4d60-a2b0-b51fdaeb79de
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c5ae1f98-d538-4c0f-902c-da1ae096bbbf
+          stepCounter: 6887c930-4bd2-4eb3-8d3c-300773e697d3
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ENDING_STOCK_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 08087b52-cbe2-4acf-9342-8aa3138df749
+                stepCounter: 236b5bf1-8f0d-4cbf-8ee2-b74828dcdc15
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          FCT_RAW_INVENTORY_STOCK: acc5af90-5b07-42bd-9b6e-a153a06b817e
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            CREATE OR REPLACE VIEW {{ ref('SILVER', 'FCT_INVENTORY_CALC') }} AS
+            	WITH 
+
+            -- 1. DATE_GRID: Generates a sequential list of all dates in the range
+            DATE_GRID AS (
+                SELECT DATEADD(day, SEQ4(), '2025-11-01'::DATE) AS DATE_KEY
+                FROM TABLE(GENERATOR(ROWCOUNT => 63)) 
+            ),
+
+            -- 2. DAILY_EVENTS (Source Events): Calculates net supply/demand for all recorded events (Logic remains the same)
+            DAILY_EVENTS AS (
+                -- Net Change = (Initial + Received) - Consumed for all known event dates
+                SELECT
+                    R.DATE_KEY,
+                    R.FRANCHISE_LOCATION_ID,
+                    R.INGREDIENT_SKU,
+                    (COALESCE(R.INITIAL_STOCK_QTY, 0) + COALESCE(R.RECEIVED_QTY, 0) - COALESCE(C.TOTAL_DAILY_CONSUMED_QTY, 0)) AS NET_CHANGE
+                FROM {{ ref('GOLD', 'FCT_RAW_INVENTORY_STOCK') }} R
+                LEFT JOIN "JJ_DEV"."JJ_DEMO_SILVER"."TRF_CONSUMPTION_DAILY" C
+                    ON R.DATE_KEY = C.CONSUMPTION_DATE AND R.FRANCHISE_LOCATION_ID = C.FRANCHISE_LOCATION_ID AND R.INGREDIENT_SKU = C.INGREDIENT_SKU
+                UNION
+                -- Add consumption events that might not have a stock record (net change is negative)
+                SELECT
+                    C.CONSUMPTION_DATE AS DATE_KEY, C.FRANCHISE_LOCATION_ID, C.INGREDIENT_SKU,
+                    (-1 * C.TOTAL_DAILY_CONSUMED_QTY) AS NET_CHANGE
+                FROM {{ ref('SILVER', 'TRF_CONSUMPTION_DAILY') }} C
+                WHERE NOT EXISTS (SELECT 1 FROM "JJ_DEV"."JJ_DEMO_GOLD"."FCT_RAW_INVENTORY_STOCK" R WHERE R.DATE_KEY = C.CONSUMPTION_DATE AND R.FRANCHISE_LOCATION_ID = C.FRANCHISE_LOCATION_ID AND R.INGREDIENT_SKU = C.INGREDIENT_SKU)
+            ),
+
+            -- 3. DENSE_SNAPSHOT: Creates the full matrix AND joins events in one CTE (Fix for scoping issue)
+            DENSE_SNAPSHOT AS (
+                SELECT
+                    G.DATE_KEY,
+                    L.FRANCHISE_LOCATION_ID,
+                    I.INGREDIENT_SKU,
+                    COALESCE(E.NET_CHANGE, 0) AS NET_CHANGE_FOR_DAY
+                FROM DATE_GRID G
+                -- CROSS JOIN the dimension tables to create the full grid
+                CROSS JOIN {{ ref('GOLD', 'DIM_FRANCHISE_LOCATIONS') }} L
+                CROSS JOIN {{ ref('GOLD', 'DIM_RAW_INGREDIENT') }} I
+                -- LEFT JOIN the sparse event data to the dense grid
+                LEFT JOIN DAILY_EVENTS E
+                    ON G.DATE_KEY = E.DATE_KEY
+                    AND L.FRANCHISE_LOCATION_ID = E.FRANCHISE_LOCATION_ID
+                    AND I.INGREDIENT_SKU = E.INGREDIENT_SKU
+            ),
+
+            -- 4. RECURSIVE_INVENTORY_BALANCE (The Core Fix: Logic remains the same)
+            RECURSIVE_INVENTORY_BALANCE (DATE_KEY, FRANCHISE_LOCATION_ID, INGREDIENT_SKU, ENDING_STOCK_QTY) AS (
+                -- Anchor Member (Day 1)
+                SELECT
+                    DATE_KEY,
+                    FRANCHISE_LOCATION_ID,
+                    INGREDIENT_SKU,
+                    NET_CHANGE_FOR_DAY AS ENDING_STOCK_QTY
+                FROM DENSE_SNAPSHOT
+                WHERE DATE_KEY = '2025-11-01'::DATE
+
+                UNION ALL
+
+                -- Recursive Member (Day N): Previous Day's End + Today's Net Change
+                SELECT
+                    T.DATE_KEY,
+                    T.FRANCHISE_LOCATION_ID,
+                    T.INGREDIENT_SKU,
+                    R.ENDING_STOCK_QTY + T.NET_CHANGE_FOR_DAY AS ENDING_STOCK_QTY
+                FROM DENSE_SNAPSHOT T
+                INNER JOIN RECURSIVE_INVENTORY_BALANCE R
+                    -- Join Today's data (T) to Yesterday's Result (R)
+                    ON R.DATE_KEY = DATEADD(day, -1, T.DATE_KEY) 
+                    AND T.FRANCHISE_LOCATION_ID = R.FRANCHISE_LOCATION_ID
+                    AND T.INGREDIENT_SKU = R.INGREDIENT_SKU
+                -- Ensure we process only dates after the anchor
+                WHERE T.DATE_KEY > '2025-11-01'::DATE
+            )
+
+            -- 5. FINAL_OUTPUT: Select the calculated closing balance for every day
+            SELECT
+                RIB.DATE_KEY,
+                RIB.FRANCHISE_LOCATION_ID,
+                RIB.INGREDIENT_SKU,
+                RIB.ENDING_STOCK_QTY
+            FROM RECURSIVE_INVENTORY_BALANCE RIB
+            ORDER BY RIB.DATE_KEY, RIB.FRANCHISE_LOCATION_ID, RIB.INGREDIENT_SKU
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_FRANCHISE_LOCATIONS
+          - locationName: GOLD
+            nodeName: DIM_RAW_INGREDIENT
+          - locationName: GOLD
+            nodeName: FCT_RAW_INVENTORY_STOCK
+          - locationName: SILVER
+            nodeName: TRF_CONSUMPTION_DAILY
+        join:
+          joinCondition: |-
+            {{ ref_link('GOLD', 'FCT_RAW_INVENTORY_STOCK') }}
+            {{ ref_link('SILVER', 'TRF_CONSUMPTION_DAILY') }}
+            {{ ref_link('GOLD', 'DIM_FRANCHISE_LOCATIONS') }}
+            {{ ref_link('GOLD', 'DIM_RAW_INGREDIENT') }} 
+        name: FCT_INVENTORY_CALC
+        noLinkRefs: []
+  name: FCT_INVENTORY_CALC
+  overrideSQL: true
+  schema: ""
+  sqlType: incr-loading-2-0-1:::281
+  type: sql
+  version: 1
+type: Node

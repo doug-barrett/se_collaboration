@@ -1,0 +1,102 @@
+fileVersion: 1
+id: 2a9010b5-98c7-46df-9146-045b07c705ff
+name: STG_FINAL_COMPONENTS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculates beginning and ending stock quantities using window functions over inventory calculations
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019acbe6-49bf-777e-8a6a-9c59352c989f
+          stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: C.DATE_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019acbe6-49bf-777e-8a6a-a0a37574dd9d
+          stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: C.FRANCHISE_LOCATION_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019acbe6-49bf-777e-8a6a-a76056effec3
+          stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INGREDIENT_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: C.INGREDIENT_SKU
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019acbe6-49bf-777e-8a6a-ab88ef052835
+          stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ENDING_STOCK_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: C.ENDING_STOCK_QTY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019acbe6-49bf-777e-8a6a-ad4d0175cb0f
+          stepCounter: 2a9010b5-98c7-46df-9146-045b07c705ff
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CALCULATED_BEGINNING_STOCK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: LAG(C.ENDING_STOCK_QTY, 1, 0) OVER (PARTITION BY C.FRANCHISE_LOCATION_ID, C.INGREDIENT_SKU ORDER BY C.DATE_KEY)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: FCT_INVENTORY_CALC
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'FCT_INVENTORY_CALC') }} C
+        name: STG_FINAL_COMPONENTS
+        noLinkRefs: []
+  name: STG_FINAL_COMPONENTS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
