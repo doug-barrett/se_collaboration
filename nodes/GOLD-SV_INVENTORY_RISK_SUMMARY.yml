@@ -1,6 +1,6 @@
 fileVersion: 1
 id: 59d0efdb-640e-47c0-a40a-57152e5690f9
-name: SV_INVENTORY_TOTALS
+name: SV_INVENTORY_RISK_SUMMARY
 operation:
   config:
     postSQL: ""
@@ -538,9 +538,9 @@ operation:
             ON "FCT_INVENTORY"./*COLUMN*/ = "DIM_RAW_INGREDIENT"."INGREDIENT_SKU"
             LEFT JOIN {{ ref('GOLD', 'DIM_FRANCHISE_LOCATIONS') }} "DIM_FRANCHISE_LOCATIONS"
             ON "FCT_INVENTORY"./*COLUMN*/ = "DIM_FRANCHISE_LOCATIONS"."FRANCHISE_LOCATION_ID"
-        name: SV_INVENTORY_TOTALS
+        name: SV_INVENTORY_RISK_SUMMARY
         noLinkRefs: []
-  name: SV_INVENTORY_TOTALS
+  name: SV_INVENTORY_RISK_SUMMARY
   overrideSQL: false
   schema: ""
   sqlType: "155"
