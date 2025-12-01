@@ -1,0 +1,262 @@
+fileVersion: 1
+id: f80116ff-e56c-40d5-8412-a3de42b965f8
+name: FCT_ORDER_LINE_ITEM
+operation:
+  config:
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: Final order profit calculation combining revenue and cost of goods sold metrics
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac16a83a-b870-4d51-8003-113c94297e1f
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORDER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-1757c9c72abc
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a37aa08b-40ce-481d-9822-edb535b11b4f
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: ITEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f9b9607b-0d23-4596-ae37-75c70d5ba5ff
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e9fcb9c-46b1-4db5-9076-d45274c9e970
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: ORDER_HEADER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-1b943327e9ad
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b5e23951-ec2d-4fe0-ba0d-f2eb0f5bf462
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: DATE
+        description: ""
+        isBusinessKey: true
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-1c28deaa2ffb
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83c3bf37-49e5-4c65-b121-22ebd8b7f02c
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_MENU_ITEM_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-22a2e67d9b49
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ddaed2c-18d6-47d7-9da3-8da77bfd1c8a
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_FRANCHISE_LOCATIONS_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-27b7057a94ac
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0cff737-86e1-470d-b74f-f2b6af5f1e97
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_MENU_PRICES_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-2bb9f0ade511
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e66f9f6e-e3b1-4986-a37b-ce331dded7a0
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDERED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-2ce8b2d28878
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 72c5d273-1322-49e4-b470-a9ca7d90b88f
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: DECIMAL(6,2)
+        description: ""
+        name: UNIT_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-302fa17f5980
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4108e439-048f-492d-8679-01db6a322557
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: DECIMAL(6,2)
+        description: ""
+        name: TOTAL_REVENUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-367e3945d556
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7f54758-c860-42be-8cc7-6fc24807d9bd
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: DECIMAL(6,2)
+        description: ""
+        name: TOTAL_COGS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-3959094199d9
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e82b93a9-2e0c-4ab6-b2c7-aa47d5676822
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: DECIMAL(6,2)
+        description: ""
+        name: TOTAL_PROFIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-3f9333237746
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 149b44b0-edb5-461c-b72a-c8bd7175ac51
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4d0200bd-bf78-40c0-a8ec-d4cfd4ea9d6b
+          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          TRF_ORDER_PROFIT: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: TRF_ORDER_PROFIT
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'TRF_ORDER_PROFIT') }} "TRF_ORDER_PROFIT"
+        name: FCT_ORDER_LINE_ITEM
+        noLinkRefs: []
+  name: FCT_ORDER_LINE_ITEM
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::389
+  type: sql
+  version: 1
+type: Node

@@ -77,6 +77,23 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: COALESCE(C.TOTAL_ITEM_COST_PER_UNIT, 0.00)
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d442765a-ae3f-4fd1-8ca2-9359f7a5478c
+          stepCounter: 5b3a3e61-e8ee-4d9b-b84c-ad19e9a48cdb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ITEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-61fc-729f-b7c1-d80f17d8fd8e
+                stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+            transform: B."ITEM_ID"
     cteString: ""
     description: ""
     destinationName: ""
