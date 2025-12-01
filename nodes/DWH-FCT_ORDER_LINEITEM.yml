@@ -1,40 +1,24 @@
 fileVersion: 1
-id: f80116ff-e56c-40d5-8412-a3de42b965f8
-name: FCT_ORDER_LINE_ITEM
+id: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+name: FCT_ORDER_LINEITEM
 operation:
   config:
-    clusterKey: false
-    clusterKeyConfig:
-      items:
-        - {}
-    clusterKeyConfigExpressions:
-      items:
-        - {}
-    clusterKeyExpressions: false
-    groupByAll: false
-    insertStrategy: UNION ALL
-    orderby: false
-    orderbycolumn:
-      items:
-        - {}
     postSQL: ""
     preSQL: ""
-    selectDistinct: false
-    testsEnabled: false
-    truncateBefore: false
+    testsEnabled: true
   database: ""
   deployEnabled: true
   description: Final order profit calculation combining revenue and cost of goods sold metrics
   isMultisource: false
-  locationName: GOLD
+  locationName: DWH
   materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ac16a83a-b870-4d51-8003-113c94297e1f
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: 1efe2449-77da-42c2-a361-1fca4776018e
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
         dataType: VARCHAR
         description: ""
@@ -45,28 +29,10 @@ operation:
               - columnCounter: 019ad5ec-8e0a-7007-8ce5-1757c9c72abc
                 stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
             transform: ""
-      - acceptedValues:
-          strictMatch: false
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: a37aa08b-40ce-481d-9822-edb535b11b4f
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
-        config: {}
-        dataType: NUMBER
-        description: ""
-        isBusinessKey: true
-        name: ITEM_ID
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: f9b9607b-0d23-4596-ae37-75c70d5ba5ff
-                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
-            transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 8e9fcb9c-46b1-4db5-9076-d45274c9e970
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: 57a1ce95-cb19-401d-8842-444d43af2bf4
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
         dataType: VARCHAR
         description: ""
@@ -80,8 +46,23 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b5e23951-ec2d-4fe0-ba0d-f2eb0f5bf462
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: 0bc6434c-5518-4f5a-8400-457be9ce7d95
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: ITEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f9b9607b-0d23-4596-ae37-75c70d5ba5ff
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2dceb40b-1e22-4b7c-96b8-20d430720952
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
         dataType: DATE
         description: ""
@@ -95,8 +76,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 83c3bf37-49e5-4c65-b121-22ebd8b7f02c
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: bc5d5815-42fc-47c0-9952-1c690e8af425
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
         dataType: NUMBER
         description: ""
@@ -109,8 +90,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2ddaed2c-18d6-47d7-9da3-8da77bfd1c8a
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: 1947c77f-f6fc-4b99-b35a-8e0ae1135196
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
         dataType: NUMBER
         description: ""
@@ -123,8 +104,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: d0cff737-86e1-470d-b74f-f2b6af5f1e97
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: 65f5675c-3dfa-4194-9535-5e2c529efcbe
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
         dataType: NUMBER
         description: ""
@@ -137,8 +118,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: e66f9f6e-e3b1-4986-a37b-ce331dded7a0
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: 42fb6a9b-0695-49fd-a40d-315e50c7df5a
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
         dataType: NUMBER
         description: ""
@@ -151,10 +132,10 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 72c5d273-1322-49e4-b470-a9ca7d90b88f
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: 592af2a3-17fc-43db-9e2f-df722e497319
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
-        dataType: DECIMAL(6,2)
+        dataType: NUMBER
         description: ""
         name: UNIT_PRICE
         nullable: true
@@ -165,10 +146,10 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 4108e439-048f-492d-8679-01db6a322557
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: 7389769a-f63c-4f03-8227-3ca71b6392a0
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
-        dataType: DECIMAL(6,2)
+        dataType: NUMBER
         description: ""
         name: TOTAL_REVENUE
         nullable: true
@@ -179,10 +160,10 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a7f54758-c860-42be-8cc7-6fc24807d9bd
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: c9985e31-c4b2-491d-a6ee-841a2a01adb2
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
-        dataType: DECIMAL(6,2)
+        dataType: NUMBER
         description: ""
         name: TOTAL_COGS
         nullable: true
@@ -193,10 +174,10 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: e82b93a9-2e0c-4ab6-b2c7-aa47d5676822
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: a561fe4e-fd53-4cbb-a1a3-cdf9f25c6a83
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
-        dataType: DECIMAL(6,2)
+        dataType: NUMBER
         description: ""
         name: TOTAL_PROFIT
         nullable: true
@@ -205,13 +186,41 @@ operation:
               - columnCounter: 019ad5ec-8e0a-7007-8ce5-3f9333237746
                 stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
             transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ffd2a662-9db7-43ed-81ae-cfe878f38923
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-41888bf30b41
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 65380023-4250-412d-9937-afc3fc156f11
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ad5ec-8e0a-7007-8ce5-463d6b420043
+                stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 149b44b0-edb5-461c-b72a-c8bd7175ac51
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: 4bbf7564-ad97-440c-a466-7f6c897d2307
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -227,8 +236,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4d0200bd-bf78-40c0-a8ec-d4cfd4ea9d6b
-          stepCounter: f80116ff-e56c-40d5-8412-a3de42b965f8
+          columnCounter: a5c0822c-9257-49a6-8325-4b675d21ab2e
+          stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -251,12 +260,12 @@ operation:
             nodeName: TRF_ORDER_PROFIT
         join:
           joinCondition: FROM {{ ref('SILVER', 'TRF_ORDER_PROFIT') }} "TRF_ORDER_PROFIT"
-        name: FCT_ORDER_LINE_ITEM
+        name: FCT_ORDER_LINEITEM
         noLinkRefs: []
-  name: FCT_ORDER_LINE_ITEM
+  name: FCT_ORDER_LINEITEM
   overrideSQL: false
   schema: ""
-  sqlType: base-nodes-advanced-deploy-1-2-0:::389
+  sqlType: Fact
   type: sql
   version: 1
 type: Node
