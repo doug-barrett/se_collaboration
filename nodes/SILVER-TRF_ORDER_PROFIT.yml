@@ -1,0 +1,242 @@
+fileVersion: 1
+id: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+name: TRF_ORDER_PROFIT
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Final order profit calculation combining revenue and cost of goods sold metrics
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-1757c9c72abc
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: ORDER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: PL.ORDER_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-1b943327e9ad
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ORDER_HEADER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: PL.ORDER_HEADER_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-1c28deaa2ffb
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: DATE
+        description: ""
+        isBusinessKey: false
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: PL.ORDER_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-22a2e67d9b49
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: DIM_MENU_ITEM_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: DI.DIM_MENU_ITEM_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-27b7057a94ac
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: DIM_FRANCHISE_LOCATIONS_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: DL.DIM_FRANCHISE_LOCATIONS_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-2bb9f0ade511
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: DIM_MENU_PRICES_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: PL.DIM_MENU_PRICES_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-2ce8b2d28878
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: ORDERED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: PL.ORDERED_QTY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-302fa17f5980
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: UNIT_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: PL.UNIT_PRICE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-367e3945d556
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: TOTAL_REVENUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: PL.ORDERED_QTY * PL.UNIT_PRICE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-3959094199d9
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: TOTAL_COGS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: PL.ORDERED_QTY * CC.COST_PER_UNIT_ITEM
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-3f9333237746
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: TOTAL_PROFIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: (PL.ORDERED_QTY * PL.UNIT_PRICE) - (PL.ORDERED_QTY * CC.COST_PER_UNIT_ITEM)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-41888bf30b41
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP()
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-8e0a-7007-8ce5-463d6b420043
+          stepCounter: 7a2cb2f5-b8e5-430d-85e9-fb802a8923cc
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        isBusinessKey: false
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP()
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_FRANCHISE_LOCATIONS
+          - locationName: GOLD
+            nodeName: DIM_MENU_ITEM
+          - locationName: SILVER
+            nodeName: COGS_CALC
+          - locationName: SILVER
+            nodeName: PRICE_LOOKUP
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'PRICE_LOOKUP') }} PL
+            INNER JOIN {{ ref('SILVER', 'COGS_CALC') }} CC ON PL.ORDER_KEY = CC.ORDER_KEY
+            INNER JOIN {{ ref('GOLD', 'DIM_MENU_ITEM') }} DI ON PL.ITEM_ID = DI.ITEM_ID
+            INNER JOIN {{ ref('GOLD', 'DIM_FRANCHISE_LOCATIONS') }} DL ON PL.FRANCHISE_LOCATION_ID = DL.FRANCHISE_LOCATION_ID
+        name: TRF_ORDER_PROFIT
+        noLinkRefs: []
+  name: TRF_ORDER_PROFIT
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

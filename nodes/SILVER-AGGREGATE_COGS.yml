@@ -1,0 +1,104 @@
+fileVersion: 1
+id: 2fa7650e-d85c-4251-92fa-44be932d2131
+name: AGGREGATE_COGS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Type II SCD lookup joining recipes, suppliers, and costs by date to calculate ingredient costs per menu item
+  isMultisource: false
+  locationName: SILVER
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eede0c97-6f65-48a0-8ae9-8f5673e02def
+          stepCounter: 2fa7650e-d85c-4251-92fa-44be932d2131
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53a665e6-397e-4433-b316-5814d57ed3c9
+                stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 626dad04-01c4-4f63-9fd2-9bcd9a3e9983
+          stepCounter: 2fa7650e-d85c-4251-92fa-44be932d2131
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: baf52c84-ec32-44eb-ae07-cde3a7fa9e04
+                stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db7cb191-5237-4b18-981e-c7fe9afbdb1e
+          stepCounter: 2fa7650e-d85c-4251-92fa-44be932d2131
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ITEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d77726ac-7efa-4b7e-bbe1-eb7721215938
+                stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f1de367f-0ab7-4406-a418-2e8e94e10e6d
+          stepCounter: 2fa7650e-d85c-4251-92fa-44be932d2131
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: TOTAL_ITEM_COST_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: SUM("RECIPE_COST_LOOKUP"."QTY_REQUIRED" * "RECIPE_COST_LOOKUP"."COST_PER_UNIT")
+        systemColumnType: None
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          RECIPE_COST_LOOKUP: 95f4b1f6-38ca-4d43-ace8-00e8424c1512
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: RECIPE_COST_LOOKUP
+        join:
+          joinCondition: |
+            FROM {{ ref('SILVER', 'RECIPE_COST_LOOKUP') }} "RECIPE_COST_LOOKUP"
+            GROUP BY 1,2,3
+        name: AGGREGATE_COGS
+        noLinkRefs: []
+  name: AGGREGATE_COGS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

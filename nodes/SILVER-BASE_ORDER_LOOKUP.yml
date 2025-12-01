@@ -1,0 +1,150 @@
+fileVersion: 1
+id: 2e541ab0-c676-4fc3-bec5-ca6000bbcae6
+name: BASE_ORDER_LOOKUP
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Joins the raw order line items to Type I dimensions
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-4c31-74a1-993c-9f1f0a2f86ad
+          stepCounter: 2e541ab0-c676-4fc3-bec5-ca6000bbcae6
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: ORDER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: T1.ORDER_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-4c31-74a1-993c-a1b5edcbe972
+          stepCounter: 2e541ab0-c676-4fc3-bec5-ca6000bbcae6
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ORDER_HEADER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: T1.ORDER_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-4c31-74a1-993c-a7f6728fad49
+          stepCounter: 2e541ab0-c676-4fc3-bec5-ca6000bbcae6
+        config: {}
+        dataType: DATE
+        description: ""
+        isBusinessKey: false
+        name: ORDER_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_DATE(T1.PICKUP_DATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-4c31-74a1-993c-aaa6d26af7f6
+          stepCounter: 2e541ab0-c676-4fc3-bec5-ca6000bbcae6
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: ORDERED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: T1.ORDERED_QTY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-4c31-74a1-993c-ac2936d469cd
+          stepCounter: 2e541ab0-c676-4fc3-bec5-ca6000bbcae6
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: ITEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: T3.ITEM_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-4c31-74a1-993c-b260024791cb
+          stepCounter: 2e541ab0-c676-4fc3-bec5-ca6000bbcae6
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: T4.FRANCHISE_LOCATION_ID
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_FRANCHISE_LOCATIONS
+          - locationName: GOLD
+            nodeName: DIM_MENU_ITEM
+          - locationName: SILVER
+            nodeName: STG_ORDERS_LINEITEM
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_ORDERS_LINEITEM') }} T1
+            INNER JOIN {{ ref('GOLD', 'DIM_MENU_ITEM') }} T3 
+                ON REPLACE(UPPER(T1.ITEM_NAME_RAW), '_', ' ') = UPPER(T3.ITEM_NAME)
+            INNER JOIN {{ ref('GOLD', 'DIM_FRANCHISE_LOCATIONS') }} T4 
+                ON T1.PICKUP_LOCATION = T4.LOCATION_NAME
+        name: BASE_ORDER_LOOKUP
+        noLinkRefs: []
+  name: BASE_ORDER_LOOKUP
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

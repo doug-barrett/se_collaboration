@@ -1,0 +1,111 @@
+fileVersion: 1
+id: 5b3a3e61-e8ee-4d9b-b84c-ad19e9a48cdb
+name: COGS_CALC
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculates the Cost of Goods Sold by joining to daily item cost calculations
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-7185-71a6-b6e7-479101d46351
+          stepCounter: 5b3a3e61-e8ee-4d9b-b84c-ad19e9a48cdb
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: ORDER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: B.ORDER_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-7185-71a6-b6e7-49e977a4c8ee
+          stepCounter: 5b3a3e61-e8ee-4d9b-b84c-ad19e9a48cdb
+        config: {}
+        dataType: DATE
+        description: ""
+        isBusinessKey: false
+        name: ORDER_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: B.ORDER_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-7185-71a6-b6e7-4ef4d83c9c94
+          stepCounter: 5b3a3e61-e8ee-4d9b-b84c-ad19e9a48cdb
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: COST_PER_UNIT_ITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: COALESCE(C.TOTAL_ITEM_COST_PER_UNIT, 0.00)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          B: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+          C: d147f17f-2f47-4787-aed4-8fecb252c03c
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: PRICE_LOOKUP
+          - locationName: SILVER
+            nodeName: TRF_ITEM_COST_DAILY
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'PRICE_LOOKUP') }} B
+            LEFT JOIN {{ ref('SILVER', 'TRF_ITEM_COST_DAILY') }} C 
+                ON B.ITEM_ID = C.ITEM_ID
+                AND B.FRANCHISE_LOCATION_ID = C.FRANCHISE_LOCATION_ID
+                AND B.ORDER_DATE = C.DATE_KEY
+        name: COGS_CALC
+        noLinkRefs: []
+  name: COGS_CALC
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

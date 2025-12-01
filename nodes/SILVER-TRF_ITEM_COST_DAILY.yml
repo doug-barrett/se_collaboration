@@ -1,0 +1,96 @@
+fileVersion: 1
+id: 60013b5d-a340-481d-9fcd-edfbca999de4
+name: TRF_ITEM_COST_DAILY
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Type II SCD lookup joining recipes, suppliers, and costs by date to calculate ingredient costs per menu item
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd19f15e-030f-48b8-82ea-abb3095ff166
+          stepCounter: 60013b5d-a340-481d-9fcd-edfbca999de4
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eede0c97-6f65-48a0-8ae9-8f5673e02def
+                stepCounter: 2fa7650e-d85c-4251-92fa-44be932d2131
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 926da619-c44f-452f-859d-fc277fc0b38e
+          stepCounter: 60013b5d-a340-481d-9fcd-edfbca999de4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 626dad04-01c4-4f63-9fd2-9bcd9a3e9983
+                stepCounter: 2fa7650e-d85c-4251-92fa-44be932d2131
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1706ac9e-fcd1-4a0a-9d95-902b636309d0
+          stepCounter: 60013b5d-a340-481d-9fcd-edfbca999de4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ITEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db7cb191-5237-4b18-981e-c7fe9afbdb1e
+                stepCounter: 2fa7650e-d85c-4251-92fa-44be932d2131
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b879bb5c-779d-4b9f-8250-7f1ff89133ab
+          stepCounter: 60013b5d-a340-481d-9fcd-edfbca999de4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_ITEM_COST_PER_UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f1de367f-0ab7-4406-a418-2e8e94e10e6d
+                stepCounter: 2fa7650e-d85c-4251-92fa-44be932d2131
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          AGGREGATE_COGS: 2fa7650e-d85c-4251-92fa-44be932d2131
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: AGGREGATE_COGS
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'AGGREGATE_COGS') }} "AGGREGATE_COGS"
+        name: TRF_ITEM_COST_DAILY
+        noLinkRefs: []
+  name: TRF_ITEM_COST_DAILY
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,174 @@
+fileVersion: 1
+id: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+name: PRICE_LOOKUP
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Joins to the correct historical menu price (Type II Lookup)
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-61fc-729f-b7c1-cb6782921db2
+          stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: ORDER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: B.ORDER_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-61fc-729f-b7c1-cfff616ea3e0
+          stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ORDER_HEADER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: B.ORDER_HEADER_KEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-61fc-729f-b7c1-d059d8e49797
+          stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+        config: {}
+        dataType: DATE
+        description: ""
+        isBusinessKey: false
+        name: ORDER_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: B.ORDER_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-61fc-729f-b7c1-d45a3f44c3ee
+          stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: ORDERED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: B.ORDERED_QTY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-61fc-729f-b7c1-d80f17d8fd8e
+          stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: ITEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: B.ITEM_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-61fc-729f-b7c1-dff0e2ed1694
+          stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: B.FRANCHISE_LOCATION_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-61fc-729f-b7c1-e39a26640845
+          stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: UNIT_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: P.UNIT_PRICE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ad5ec-61fc-729f-b7c1-e6e4386ff228
+          stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: DIM_MENU_PRICES_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: P.DIM_MENU_PRICES_KEY
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_MENU_PRICES
+          - locationName: SILVER
+            nodeName: BASE_ORDER_LOOKUP
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'BASE_ORDER_LOOKUP') }} B
+            INNER JOIN {{ ref('GOLD', 'DIM_MENU_PRICES') }} P
+                ON B.ITEM_ID = P.ITEM_ID 
+                AND B.FRANCHISE_LOCATION_ID = P.FRANCHISE_LOCATION_ID
+                AND B.ORDER_DATE BETWEEN P.SYSTEM_START_DATE AND P.SYSTEM_END_DATE
+        name: PRICE_LOOKUP
+        noLinkRefs: []
+  name: PRICE_LOOKUP
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node

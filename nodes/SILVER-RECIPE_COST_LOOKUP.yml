@@ -1,0 +1,167 @@
+fileVersion: 1
+id: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+name: RECIPE_COST_LOOKUP
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculates ingredient consumption per line item based on orders and recipes
+  isMultisource: false
+  locationName: SILVER
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53a665e6-397e-4433-b316-5814d57ed3c9
+          stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af30b1d2-c391-46f0-ab78-39aa9be50bf6
+                stepCounter: 85987993-238d-4401-bd72-37d8a5dd264d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: baf52c84-ec32-44eb-ae07-cde3a7fa9e04
+          stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 34df0293-3a5f-4270-a97d-67132cfbe9e4
+                stepCounter: 85987993-238d-4401-bd72-37d8a5dd264d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d77726ac-7efa-4b7e-bbe1-eb7721215938
+          stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Business Key (2XX IDs)
+        name: ITEM_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78048c88-05a6-462f-81c5-e99336c0ee06
+                stepCounter: 85987993-238d-4401-bd72-37d8a5dd264d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b10a684-6980-4e88-b212-dd854653effc
+          stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: INGREDIENT_SKU
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1609cca2-adf9-49e0-a73a-753430ded01f
+                stepCounter: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
+            transform: RN."INGREDIENT_SKU"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3e89568-3334-4eb8-be73-742594ff1886
+          stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: QTY_REQUIRED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 50bf3e32-9198-4572-8c09-0011a580f4a7
+                stepCounter: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
+            transform: RN."QTY_REQUIRED"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76005c36-de35-4d68-89e9-4dde1cddd68d
+          stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_COST_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 13815068-15f1-45c0-908b-21b38b345bf0
+                stepCounter: e30d65d1-d99a-4f10-956f-c5c85ed07ab0
+            transform: DC."DIM_COST_KEY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96e75191-9ed4-40ca-bd44-1dfdb42003b6
+          stepCounter: 1fcc91e3-ae8c-4556-8972-34478f43eea6
+        config: {}
+        dataType: NUMBER(10,4)
+        description: ""
+        name: COST_PER_UNIT
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9c04cef9-f059-4aa2-bfe8-b30e7b6d16ba
+                stepCounter: e30d65d1-d99a-4f10-956f-c5c85ed07ab0
+            transform: DC."COST_PER_UNIT"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DAILY_JOIN_GRID: 85987993-238d-4401-bd72-37d8a5dd264d
+          DC: e30d65d1-d99a-4f10-956f-c5c85ed07ab0
+          DS: d5e0cc39-e827-4b1b-a2ff-77c05408e74a
+          RN: 97d5a2ca-f81d-45d6-af0c-687857c5e2fb
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_COST
+          - locationName: GOLD
+            nodeName: DIM_SUPPLIER
+          - locationName: SILVER
+            nodeName: DAILY_JOIN_GRID
+          - locationName: SILVER
+            nodeName: STG_RECIPE_NORMALIZED_T
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'DAILY_JOIN_GRID') }} "DAILY_JOIN_GRID"
+
+            -- A. Join to Recipe Version active on the DATE_KEY
+                INNER JOIN {{ ref('SILVER', 'STG_RECIPE_NORMALIZED_T') }} RN
+                    ON "DAILY_JOIN_GRID".ITEM_ID = RN.ITEM_ID
+                    AND "DAILY_JOIN_GRID".DATE_KEY BETWEEN TO_DATE(RN.SYSTEM_START_DATE) AND TO_DATE(RN.SYSTEM_END_DATE)
+
+            -- B. Join to Supplier Dimension to find the regional cost supplier
+                INNER JOIN {{ ref('GOLD', 'DIM_SUPPLIER') }} DS
+                    ON "DAILY_JOIN_GRID".REGION = DS.REGION -- Join by Region
+                    AND "DAILY_JOIN_GRID".DATE_KEY BETWEEN TO_DATE(DS.SYSTEM_START_DATE) AND TO_DATE(DS.SYSTEM_END_DATE) -- Supplier history
+
+            -- C. Join to Ingredient Cost Version active on the DATE_KEY
+                INNER JOIN {{ ref('GOLD', 'DIM_COST') }} DC
+                    ON DS.SUPPLIER_ID = DC.SUPPLIER_ID -- Join by Supplier Business Key
+                    AND RN.INGREDIENT_SKU = DC.INGREDIENT_SKU
+                    AND "DAILY_JOIN_GRID".DATE_KEY BETWEEN TO_DATE(DC.SYSTEM_START_DATE) AND TO_DATE(DC.SYSTEM_END_DATE) -- Cost history
+                    
+                -- Calculation: Total Cost for this ingredient = QTY_REQUIRED * COST_PER_UNIT
+                WHERE RN.QTY_REQUIRED * DC.COST_PER_UNIT > 0
+        name: RECIPE_COST_LOOKUP
+        noLinkRefs: []
+  name: RECIPE_COST_LOOKUP
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

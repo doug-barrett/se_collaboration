@@ -1,0 +1,141 @@
+fileVersion: 1
+id: 85987993-238d-4401-bd72-37d8a5dd264d
+name: DAILY_JOIN_GRID
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: true
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculates ingredient consumption per line item based on orders and recipes
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0bab7d42-6fbd-443b-93d5-9b2d478a0e7a
+          stepCounter: 85987993-238d-4401-bd72-37d8a5dd264d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_FRANCHISE_LOCATIONS_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 566c127a-0e0a-4ef5-960b-8effe44ace42
+                stepCounter: de17f699-45e2-457a-aa00-40996ce54ebd
+            transform: L."DIM_FRANCHISE_LOCATIONS_KEY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: af30b1d2-c391-46f0-ab78-39aa9be50bf6
+          stepCounter: 85987993-238d-4401-bd72-37d8a5dd264d
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f63c1ce5-1a2d-4428-ae1c-d0e452173828
+                stepCounter: 2a33b53c-6a67-46fb-b95a-2ba5a4488db6
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 34df0293-3a5f-4270-a97d-67132cfbe9e4
+          stepCounter: 85987993-238d-4401-bd72-37d8a5dd264d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e88adc2-e4d5-4ac3-8268-458ccc78f403
+                stepCounter: 2a33b53c-6a67-46fb-b95a-2ba5a4488db6
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78048c88-05a6-462f-81c5-e99336c0ee06
+          stepCounter: 85987993-238d-4401-bd72-37d8a5dd264d
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Business Key (2XX IDs)
+        name: ITEM_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b8d25483-026e-42dc-ab4f-82f4bb79304e
+                stepCounter: 99cf900f-9938-4753-85a5-88dfe9c37a4c
+            transform: I."ITEM_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b42f7209-4f17-4b94-b6d1-115e624746cc
+          stepCounter: 85987993-238d-4401-bd72-37d8a5dd264d
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: REGION
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ee09368-1cce-436f-9010-7111ed4e39e4
+                stepCounter: de17f699-45e2-457a-aa00-40996ce54ebd
+            transform: L."REGION"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          I: 99cf900f-9938-4753-85a5-88dfe9c37a4c
+          L: de17f699-45e2-457a-aa00-40996ce54ebd
+          TRF_CONSUMPTION_DAILY: 2a33b53c-6a67-46fb-b95a-2ba5a4488db6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: DIM_FRANCHISE_LOCATIONS
+          - locationName: GOLD
+            nodeName: DIM_MENU_ITEM
+          - locationName: SILVER
+            nodeName: TRF_CONSUMPTION_DAILY
+        join:
+          joinCondition: |-
+            FROM  {{ ref('SILVER', 'TRF_CONSUMPTION_DAILY') }} TRF_CONSUMPTION_DAILY
+            CROSS JOIN {{ ref('GOLD', 'DIM_MENU_ITEM') }} I
+                INNER JOIN {{ ref('GOLD', 'DIM_FRANCHISE_LOCATIONS') }} L
+                    ON TRF_CONSUMPTION_DAILY.FRANCHISE_LOCATION_ID = L.FRANCHISE_LOCATION_ID
+        name: DAILY_JOIN_GRID
+        noLinkRefs: []
+  name: DAILY_JOIN_GRID
+  overrideSQL: false
+  schema: ""
+  sqlType: base-nodes-advanced-deploy-1-2-0:::179
+  type: sql
+  version: 1
+type: Node
