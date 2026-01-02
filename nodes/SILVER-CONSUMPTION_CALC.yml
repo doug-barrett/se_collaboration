@@ -15,9 +15,15 @@ operation:
   locationName: SILVER
   materializationType: table
   metadata:
-    appliedNodeTests: []
+    appliedNodeTests:
+      - continueOnFailure: true
+        description: ""
+        name: Test
+        runOrder: Before
+        templateString: select * from {{this}} where CONSUMED_QTY_PER_LINEITEM > 0
     columns:
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: true
         columnReference:
           columnCounter: 22007ec6-a823-4c64-8451-1e7a1bcb641a
           stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
@@ -31,7 +37,8 @@ operation:
               - columnCounter: 22007ec6-a823-4c64-8451-1e7a1bcb641a
                 stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
             transform: TO_DATE(T1.PICKUP_DATE)
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: true
         columnReference:
           columnCounter: 5659ea78-146b-488e-a069-5e5a38b1ea3d
           stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
@@ -45,7 +52,8 @@ operation:
               - columnCounter: 5659ea78-146b-488e-a069-5e5a38b1ea3d
                 stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
             transform: T3.FRANCHISE_LOCATION_ID
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 99bf2395-8b81-4f9d-bb3e-6ca534c0f7ac
           stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
@@ -59,7 +67,8 @@ operation:
               - columnCounter: 99bf2395-8b81-4f9d-bb3e-6ca534c0f7ac
                 stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
             transform: T5.INGREDIENT_SKU
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 2c568d75-d6e5-4558-8c27-e43cd742f636
           stepCounter: 0a9cbbbe-f101-45df-8f1d-0547a6d37860
@@ -76,7 +85,8 @@ operation:
     cteString: ""
     description: ""
     destinationName: ""
-    enabledColumnTestIDs: []
+    enabledColumnTestIDs:
+      - hasNull
     materializationOption: ""
     sourceMapping:
       - aliases: {}
