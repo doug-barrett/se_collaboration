@@ -5,7 +5,8 @@ operation:
   config:
     insertStrategy: INSERT
     postSQL: ""
-    preSQL: ""
+    preSQL: |
+      CALL PROD_EDI_SILVER.REPORTING.REPORTS_ACTIVEPOLICYSUMMARY_MISSINGPOLICIES_SP({{parameters.parameter_name}})
     testsEnabled: true
     truncateBefore: true
   database: ""
