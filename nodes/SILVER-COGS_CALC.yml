@@ -49,7 +49,9 @@ operation:
         name: ORDER_KEY
         nullable: true
         sourceColumnReferences:
-          - columnReferences: []
+          - columnReferences:
+              - columnCounter: 019ad5ec-61fc-729f-b7c1-cb6782921db2
+                stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
             transform: B.ORDER_KEY
       - appliedColumnTests: {}
         columnReference:
@@ -62,7 +64,9 @@ operation:
         name: ORDER_DATE
         nullable: true
         sourceColumnReferences:
-          - columnReferences: []
+          - columnReferences:
+              - columnCounter: 019ad5ec-61fc-729f-b7c1-d059d8e49797
+                stepCounter: 10d5c814-219b-41f2-85be-81cb4a40c4ea
             transform: B.ORDER_DATE
       - appliedColumnTests: {}
         columnReference:
@@ -75,7 +79,9 @@ operation:
         name: COST_PER_UNIT_ITEM
         nullable: true
         sourceColumnReferences:
-          - columnReferences: []
+          - columnReferences:
+              - columnCounter: b879bb5c-779d-4b9f-8250-7f1ff89133ab
+                stepCounter: 60013b5d-a340-481d-9fcd-edfbca999de4
             transform: COALESCE(C.TOTAL_ITEM_COST_PER_UNIT, 0.00)
       - acceptedValues:
           strictMatch: false
