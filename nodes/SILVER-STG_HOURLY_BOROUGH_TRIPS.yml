@@ -1,0 +1,85 @@
+fileVersion: 1
+id: d5e01451-db24-4943-ba19-a9c7dd11d091
+name: STG_HOURLY_BOROUGH_TRIPS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Hourly aggregation of yellow cab trips by borough with congestion metrics
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019cd0b4-a8b1-738f-9bdf-96eeeb0a16e2
+          stepCounter: d5e01451-db24-4943-ba19-a9c7dd11d091
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: TRUNC_HOUR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 31bbd3a7-9cc6-4379-a855-f59d0ef2883a
+                stepCounter: 1071b060-08d3-4a37-b76b-3b47c74b61ed
+            transform: DATE_TRUNC('HOUR', "FCT_YELLOW_CAB_TRIPS"."PICKUP_DATETIME")::TIMESTAMP_NTZ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019cd0b4-a8b1-738f-9bdf-98f907c29650
+          stepCounter: d5e01451-db24-4943-ba19-a9c7dd11d091
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PU_BOROUGH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6d2b6962-19d9-46c5-beb2-cda297feebe6
+                stepCounter: 1071b060-08d3-4a37-b76b-3b47c74b61ed
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019cd0b4-a8b1-738f-9bdf-9da5e511676c
+          stepCounter: d5e01451-db24-4943-ba19-a9c7dd11d091
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_TRIPS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: COUNT(*)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          FCT_YELLOW_CAB_TRIPS: 1071b060-08d3-4a37-b76b-3b47c74b61ed
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: FCT_YELLOW_CAB_TRIPS
+        join:
+          joinCondition: |-
+            FROM {{ ref('GOLD', 'FCT_YELLOW_CAB_TRIPS') }}
+            GROUP BY 1, 2
+        name: STG_HOURLY_BOROUGH_TRIPS
+        noLinkRefs: []
+  name: STG_HOURLY_BOROUGH_TRIPS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
