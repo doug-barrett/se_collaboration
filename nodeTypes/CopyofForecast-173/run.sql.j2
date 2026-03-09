@@ -1,0 +1,203 @@
+{#
+    Copyright (c) 2023 Coalesce. All rights reserved.
+This script and its associated documentation are confidential and proprietary to Coalesce.
+Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
+Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+does not permit copying or modification for any other purpose.  
+#}
+{# == Node Type Version        : 1  == #}
+{# == Node Type Name           : ML Forecast == #}
+{# == Node Type Description    : This node creates a forecast table  == #}
+
+
+{# INitialize forecast model name #}
+
+{% set source = sources[0] %}
+{% set src_node = source.dependencies[0].node %}
+{% set forecast_name = config.mname %}
+{% set result = ref_no_link(node.location.name, node.name) %}
+
+{%- set nsVariables = namespace(squotes="") -%}
+
+{# Check series column datatype to determine if quoted required for series value #}
+
+
+
+{% if config.series_value %}
+        {% for col in source.columns  %} 
+            {% if col.id == config.seriescol.id %}
+			    {%if  (col.dataType | replace("0", "")
+    | replace("1", "")
+    | replace("2", "")
+    | replace("3", "")
+    | replace("4", "")
+    | replace("5", "")
+    | replace("6", "")
+    | replace("7", "")
+    | replace("8", "")
+    | replace("9", "") |replace("(","")|replace(")",""))  in ('STRING','VARCHAR','CHAR','TEXT') %}
+				   {% set  nsVariables.squotes ="'" %}
+				{% else %}
+				   {% set  nsVariables.squotes = ""  %}
+                    {{ col.dataType}}
+				{% endif %}
+			{% endif %}
+        {% endfor %}
+
+{% endif %}
+
+{{ stage('Model check') }}
+
+{% if not config.Forcecreate %}
+
+ CALL {{ ref_no_link(node.location.name, forecast_name) }}!FORECAST(FORECASTING_PERIODS =>1);
+
+ {% else %}
+
+select 'Model will be created'
+
+{% endif %}
+
+
+{# Forecast table truncated #}
+
+{{ stage('Truncate Forecast table') }}
+
+TRUNCATE IF EXISTS {{ this }}
+
+{# Initial training data inserted into forecast table #}
+
+{{ stage('Populate Forecast Table with Historical Data') }}
+
+{% if not config.exvar %}
+
+INSERT INTO {{ this }}
+(
+    {%- for col in source.columns  %} 
+        "{{ col.name }}" {%- if not loop.last -%}, {% endif %}
+    {%- endfor %}
+)
+SELECT 
+    {% for col in source.columns  %} 
+        {{ get_source_transform(col) }} AS "{{ col.name }}"
+        {%- if not loop.last -%}, {% endif %}
+    {% endfor %}
+{{ source.join }}
+
+{% else %}
+
+       INSERT INTO {{ this }}
+      (
+       {%- for col in source.columns  %} 
+        "{{ col.name }}" {%- if not loop.last -%}, {% endif %}
+       {%- endfor %}
+       )
+
+        {% for source in sources %}
+		    SELECT 
+   			{% for col in source.columns %}
+                {{ get_source_transform(col) }} AS "{{ col.name }}"
+				{%- if not loop.last -%}, {% endif %}
+			{% endfor %}
+	
+                {{ source.join }}
+             {% if not loop.last %}
+			   {% if node.isMultisource %}
+				UNION
+			   {% endif %}
+             {% endif %}
+	
+		{% endfor %}  
+
+{% endif %}
+
+
+{# Forecast model created #}
+
+{{ stage('Forecast Model Instance') }}
+
+{% if config.Forcecreate%}
+CREATE OR REPLACE SNOWFLAKE.ML.FORECAST
+ {{ ref_no_link(node.location.name, forecast_name) }}(
+    INPUT_DATA => SYSTEM$QUERY_REFERENCE('
+        SELECT
+        {%- for col in columns if not (col.forecast or col.upper_bound or col.lower_bound) %}
+            "{{col.name}}"{%- if not loop.last %}, {%- endif %}
+        {%- endfor %}            
+        FROM {{ this }}
+        WHERE  "{{ config.tgtcol.name }}" IS NOT NULL
+    '),
+    {% if config.multiseries %}SERIES_COLNAME => '{{ config.seriescol.name }}', {% endif %}
+    TIMESTAMP_COLNAME => '{{ config.tscol.name }}',
+    TARGET_COLNAME => '{{ config.tgtcol.name }}'
+)
+
+{% else %}
+
+ SHOW SNOWFLAKE.ML.FORECAST LIKE '{{ forecast_name }}' IN SCHEMA {{ result.split('.')[:2]|join('.') }}
+
+
+{% endif %}
+
+{# Forecast data based on model with predicted values  is inserted into forecast table #}
+
+{{ stage('Insert Forecast data') }}
+BEGIN
+
+
+{% if config.exvar %}
+    CALL {{ ref_no_link(node.location.name, forecast_name) }}!FORECAST(
+        INPUT_DATA => SYSTEM$QUERY_REFERENCE('
+        SELECT 
+        {%- for col in columns if not (col.forecast or col.upper_bound or col.lower_bound) %}
+            "{{col.name}}"{%- if not loop.last %}, {%- endif %}
+        {%- endfor %}            
+        FROM {{ this }}
+        WHERE  "{{ config.tgtcol.name }}" IS NULL
+    '),
+    {%if config.multiseries %}SERIES_COLNAME => '{{ config.seriescol.name }}', {% endif %}
+    TIMESTAMP_COLNAME => '{{ config.tscol.name }}' 
+    {% if config.series_value %}, SERIES_VALUE => {{ nsVariables.squotes}}{{config.svalue}}{{nsVariables.squotes}}  :: Variant {% endif %}
+    {% if config.cobject %},CONFIG_OBJECT => {'prediction_interval': {{ config.predictioninterval }}} {% endif %});
+
+
+    UPDATE {{ this }} SRC
+    SET 
+        {%- for col in columns if  col.forecast or col.lower_bound or col.upper_bound %}
+            "{{ col.name }}" = RES."{{ col.name }}" {%- if not loop.last %}, {%- endif %}
+        {%- endfor %}
+    FROM TABLE(RESULT_SCAN(-1)) RES
+    WHERE 
+        RES."TS" = SRC."{{ config.tscol.name }}"
+        {%- if config.multiseries  %}
+        AND RES."SERIES" = SRC."{{ config.seriescol.name }}"            
+        {%- endif %};
+
+
+{% else %}
+
+
+    CALL {{ ref_no_link(node.location.name, forecast_name) }}!FORECAST(FORECASTING_PERIODS =>{{ config.fcdays }}
+    {% if config.series_value %},SERIES_VALUE =>{{ nsVariables.squotes}}{{config.svalue}}{{nsVariables.squotes}}  :: Variant {% endif %}
+    {% if config.cobject %},CONFIG_OBJECT => {'prediction_interval': {{ config.predictioninterval }}} {% endif %});
+
+
+    INSERT INTO {{ this }}
+    (
+        {%- for col in source.columns  %} 
+            "{{ col.name }}" {%- if not loop.last -%}, {% endif %}
+        {%- endfor %}
+    )
+    SELECT 
+        {% for col in source.columns %}
+            {%- if config.multiseries and col.id == config.seriescol.id %}"SERIES"
+            {%- elif col.id == config.tscol.id %}"TS"
+            {%- elif col.id == config.tgtcol.id %}NULL
+            {%- elif col.forecast or col.lower_bound or col.upper_bound %}"{{ col.name }}"
+            {%- else %}{{ get_source_transform(col) }} AS "{{ col.name }}"
+            {%- endif %}{%- if not loop.last %}, {%- endif %}
+        {% endfor %}
+    FROM TABLE(RESULT_SCAN(-1)) RES;
+{% endif %}
+
+END
