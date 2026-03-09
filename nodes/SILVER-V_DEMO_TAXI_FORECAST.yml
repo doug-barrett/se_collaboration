@@ -1,0 +1,79 @@
+fileVersion: 1
+id: e38a3bae-1106-4ffa-83a5-bc9f61884f87
+name: V_DEMO_TAXI_FORECAST
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Hourly aggregation of yellow cab trips by borough with congestion metrics
+  isMultisource: false
+  locationName: SILVER
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79a0a37f-4882-49cb-afbd-aaa4e4840136
+          stepCounter: e38a3bae-1106-4ffa-83a5-bc9f61884f87
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: TRUNC_HOUR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019cd0b4-a8b1-738f-9bdf-96eeeb0a16e2
+                stepCounter: d5e01451-db24-4943-ba19-a9c7dd11d091
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb34d40b-f3f6-4bbb-99a8-237afaf010da
+          stepCounter: e38a3bae-1106-4ffa-83a5-bc9f61884f87
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PU_BOROUGH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019cd0b4-a8b1-738f-9bdf-98f907c29650
+                stepCounter: d5e01451-db24-4943-ba19-a9c7dd11d091
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fae0a3de-bdd9-46d0-9a4e-131ef1e44331
+          stepCounter: e38a3bae-1106-4ffa-83a5-bc9f61884f87
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_TRIPS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019cd0b4-a8b1-738f-9bdf-9da5e511676c
+                stepCounter: d5e01451-db24-4943-ba19-a9c7dd11d091
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_HOURLY_BOROUGH_TRIPS: d5e01451-db24-4943-ba19-a9c7dd11d091
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_HOURLY_BOROUGH_TRIPS
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'STG_HOURLY_BOROUGH_TRIPS') }} "STG_HOURLY_BOROUGH_TRIPS"
+        name: V_DEMO_TAXI_FORECAST
+        noLinkRefs: []
+  name: V_DEMO_TAXI_FORECAST
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
