@@ -3,12 +3,12 @@ id: e38a3bae-1106-4ffa-83a5-bc9f61884f87
 name: V_DEMO_TAXI_FORECAST
 operation:
   config:
-    insertStrategy: UNION
+    insertStrategy: UNION ALL
     selectDistinct: false
   database: ""
   deployEnabled: true
-  description: Hourly aggregation of yellow cab trips by borough with congestion metrics
-  isMultisource: false
+  description: Forecasted taxi ride demand by borough.
+  isMultisource: true
   locationName: SILVER
   materializationType: view
   metadata:
@@ -21,12 +21,16 @@ operation:
         config: {}
         dataType: TIMESTAMP
         description: ""
-        name: TRUNC_HOUR
+        name: TS
         nullable: true
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 019cd0b4-a8b1-738f-9bdf-96eeeb0a16e2
                 stepCounter: d5e01451-db24-4943-ba19-a9c7dd11d091
+            transform: ""
+          - columnReferences:
+              - columnCounter: 2bc7020f-666d-41d3-b238-b83a50d2b916
+                stepCounter: f7d6fc6b-cc1c-44b7-8c74-f2a7ae375b0e
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -42,6 +46,10 @@ operation:
               - columnCounter: 019cd0b4-a8b1-738f-9bdf-98f907c29650
                 stepCounter: d5e01451-db24-4943-ba19-a9c7dd11d091
             transform: ""
+          - columnReferences:
+              - columnCounter: c8a7331e-57d4-45f7-85a1-4c2989b345a1
+                stepCounter: f7d6fc6b-cc1c-44b7-8c74-f2a7ae375b0e
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: fae0a3de-bdd9-46d0-9a4e-131ef1e44331
@@ -49,13 +57,39 @@ operation:
         config: {}
         dataType: NUMBER
         description: ""
-        name: TOTAL_TRIPS
+        name: ACTUAL
         nullable: true
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 019cd0b4-a8b1-738f-9bdf-9da5e511676c
                 stepCounter: d5e01451-db24-4943-ba19-a9c7dd11d091
             transform: ""
+          - columnReferences:
+              - columnCounter: 474f15d5-a596-4aef-aed9-b84db4b538b5
+                stepCounter: f7d6fc6b-cc1c-44b7-8c74-f2a7ae375b0e
+            transform: "NULL"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8678c610-1ddc-43a1-aeba-0e823e795489
+          stepCounter: e38a3bae-1106-4ffa-83a5-bc9f61884f87
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: FORECAST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+          - columnReferences:
+              - columnCounter: 7ac0d843-6744-4dda-abf8-6472c501cc81
+                stepCounter: f7d6fc6b-cc1c-44b7-8c74-f2a7ae375b0e
+            transform: ""
+        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -68,7 +102,18 @@ operation:
             nodeName: STG_HOURLY_BOROUGH_TRIPS
         join:
           joinCondition: FROM {{ ref('SILVER', 'STG_HOURLY_BOROUGH_TRIPS') }} "STG_HOURLY_BOROUGH_TRIPS"
-        name: V_DEMO_TAXI_FORECAST
+        name: HISTORIC
+        noLinkRefs: []
+      - aliases:
+          ML_FCSTS_HOURLY_BOROUGH_TRIPS: f7d6fc6b-cc1c-44b7-8c74-f2a7ae375b0e
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: ML_FCSTS_HOURLY_BOROUGH_TRIPS
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'ML_FCSTS_HOURLY_BOROUGH_TRIPS') }} "ML_FCSTS_HOURLY_BOROUGH_TRIPS"
+        name: FORECAST
         noLinkRefs: []
   name: V_DEMO_TAXI_FORECAST
   overrideSQL: false
