@@ -161,11 +161,7 @@ operation:
           - locationName: SILVER
             nodeName: UPVT_RAW_ORDERS
         join:
-          joinCondition: |2-
-
-
-             
-              FROM  {{ ref('SILVER', 'UPVT_RAW_ORDERS') }} UPVT_RAW_ORDERS
+          joinCondition: FROM  {{ ref('SILVER', 'UPVT_RAW_ORDERS') }} UPVT_RAW_ORDERS
         name: STG_ORDERS_LINEITEM
         noLinkRefs: []
   name: STG_ORDERS_LINEITEM
