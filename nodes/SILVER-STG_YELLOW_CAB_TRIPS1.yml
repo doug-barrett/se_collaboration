@@ -637,7 +637,7 @@ operation:
             nodeName: DIM_RATE_CODE
           - locationName: GOLD
             nodeName: DIM_VENDOR
-          - locationName: SILVER
+          - locationName: GOLD
             nodeName: DIM_VENDOR_DETAILS
           - locationName: SILVER
             nodeName: DROPOFF_LOCATION
@@ -653,7 +653,7 @@ operation:
             LEFT JOIN {{ ref('GOLD', 'DIM_VENDOR') }} "DIM_VENDOR"
             ON "STG_YELLOW_CAB_TRIPS"."VENDOR_ID"= "DIM_VENDOR"."VENDOR_ID"
 
-            LEFT JOIN {{ ref('SILVER', 'DIM_VENDOR_DETAILS') }} "DIM_VENDOR_DETAILS"
+            LEFT JOIN {{ ref('GOLD', 'DIM_VENDOR_DETAILS') }} "DIM_VENDOR_DETAILS"
             ON "DIM_VENDOR"."VENDOR_ID" = "DIM_VENDOR_DETAILS"."VENDOR_ID"
 
             LEFT JOIN {{ ref('GOLD', 'DIM_PAYMENT_TYPE') }} "DIM_PAYMENT_TYPE"
