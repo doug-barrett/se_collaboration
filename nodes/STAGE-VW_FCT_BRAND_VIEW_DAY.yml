@@ -200,6 +200,23 @@ operation:
               - columnCounter: c02fd85d-2713-4719-8259-b9221f638b39
                 stepCounter: f5d78cde-c680-4fd5-a97a-eeda91c22b94
             transform: LISTAGG(CASE WHEN "FCT_BRAND_VIEW"."CURRY_CHEAPEST" = 'N' THEN "FCT_BRAND_VIEW"."COMPETITOR_NAME" END,', ') WITHIN GROUP (ORDER BY "FCT_BRAND_VIEW"."COMPETITOR_PRICE")
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc49c85c-6340-4de7-87b1-9b556ea52304
+          stepCounter: 11a376f1-ac42-4de6-ac9d-dad4150ddc2f
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: PRICE_FIXED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9918f0ba-7912-4c68-bdda-67d94ec2130a
+                stepCounter: f5d78cde-c680-4fd5-a97a-eeda91c22b94
+            transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

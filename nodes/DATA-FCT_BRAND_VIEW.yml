@@ -218,6 +218,20 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
+          columnCounter: 9918f0ba-7912-4c68-bdda-67d94ec2130a
+          stepCounter: f5d78cde-c680-4fd5-a97a-eeda91c22b94
+        config: {}
+        dataType: DECIMAL(9,2)
+        description: ""
+        name: PRICE_FIXED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1429e207-b1a0-4ea3-9e49-f0992c02be66
+                stepCounter: 060566dc-400a-41ac-ac06-31b6a531a3f1
+            transform: CASE WHEN PRICE IS NULL THEN 0 ELSE PRICE END
+      - appliedColumnTests: {}
+        columnReference:
           columnCounter: 56322586-cafb-4a6f-aadd-253e6e29e36d
           stepCounter: f5d78cde-c680-4fd5-a97a-eeda91c22b94
         config: {}

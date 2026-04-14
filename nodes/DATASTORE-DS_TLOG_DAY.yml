@@ -276,9 +276,7 @@ operation:
             WHERE "TRANSACTION_DATE" > (SELECT NVL(MAX("TRANSACTION_DATE"),'2000-01-01') FROM {{this}})
             GROUP BY "TRANSACTION_DATE", "ZONE_CODE", "PRODKEY"
         name: DS_TLOG_DAY
-        noLinkRefs:
-          - locationName: DATASTORE
-            nodeName: DS_TLOG_DAY
+        noLinkRefs: []
   name: DS_TLOG_DAY
   overrideSQL: false
   schema: ""
