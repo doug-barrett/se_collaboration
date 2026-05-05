@@ -1,0 +1,13 @@
+@id("5d54df6f-a428-4df3-be71-4c4439ea357e")
+@nodeType("176")
+SELECT
+     "P_PARTKEY" AS "P_PARTKEY",
+     "P_NAME" AS "P_NAME",
+     "P_MFGR" AS "P_MFGR",
+     "P_BRAND" AS "P_BRAND",
+     "P_TYPE" AS "P_TYPE",
+     "P_SIZE" AS "P_SIZE",
+     "P_CONTAINER" AS "P_CONTAINER",
+     "P_RETAILPRICE" AS "P_RETAILPRICE",
+     "P_COMMENT" AS "P_COMMENT"
+FROM {{ ref('SRC_SAMPLE', 'PART') }} "PART"

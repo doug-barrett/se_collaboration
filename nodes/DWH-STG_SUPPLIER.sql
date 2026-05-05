@@ -1,0 +1,11 @@
+@id("61930381-f6b9-4ee6-84ca-9b8dbcb3fb48")
+@nodeType("176")
+SELECT
+     "S_SUPPKEY" AS "S_SUPPKEY",
+     "S_NAME" AS "S_NAME",
+     "S_ADDRESS" AS "S_ADDRESS",
+     "S_NATIONKEY" AS "S_NATIONKEY",
+     "S_PHONE" AS "S_PHONE",
+     "S_ACCTBAL" AS "S_ACCTBAL",
+     "S_COMMENT" AS "S_COMMENT"
+FROM {{ ref('SRC_SAMPLE', 'SUPPLIER') }} "SUPPLIER"
