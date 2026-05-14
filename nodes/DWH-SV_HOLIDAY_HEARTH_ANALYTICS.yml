@@ -1,0 +1,326 @@
+fileVersion: 1
+id: a40620b9-55cd-47c0-91f8-4c64c82b3332
+name: SV_HOLIDAY_HEARTH_ANALYTICS
+operation:
+  config:
+    DimConfig:
+      items:
+        - dimAlias: LOCATION_NAME
+          dimCol: null
+          dimComment: ""
+          dimSynonym: ""
+          dimTransform: LOCATIONS.LOCATION_NAME
+        - dimAlias: REGION
+          dimCol: null
+          dimComment: ""
+          dimSynonym: ""
+          dimTransform: LOCATIONS.REGION
+        - dimAlias: DATE_KEY
+          dimCol: null
+          dimComment: ""
+          dimSynonym: ""
+          dimTransform: ORDERS.DATE_KEY
+    deriveCol: false
+    dimToggle: true
+    factDetConfig:
+      items:
+        - factAlias: ORDERED_QTY
+          factCol: null
+          factComment: ""
+          factSynonym: ""
+          factTranform: ORDERS.ORDERED_QTY
+        - factAlias: UNIT_PRICE
+          factCol: null
+          factComment: ""
+          factSynonym: ""
+          factTranform: ORDERS.UNIT_PRICE
+    factToggle: true
+    foreignKeyConfig:
+      items:
+        - foreignKey:
+            columnCounter: 019e243d-a95e-7169-9816-cdc8729bb8fa
+            stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+          refAlias: ""
+          refTable: LOCATIONS
+    foreignToggle: false
+    metricConfig:
+      items:
+        - metricAlias: TOTAL_REVENUE
+          metricCol:
+            columnCounter: 019e2464-3b09-70fc-89dc-702e8c80c024
+            stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+          metricComment: ""
+          metricSynonym: ""
+          metricTransform: SUM
+          metricTransformExprn: ""
+        - metricAlias: TOTAL_PROFIT
+          metricCol:
+            columnCounter: 019e2464-3b09-70fc-89dc-78ace49875d1
+            stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+          metricComment: ""
+          metricSynonym: ""
+          metricTransform: SUM
+          metricTransformExprn: ""
+        - metricAlias: TOTAL_COGS
+          metricCol:
+            columnCounter: 019e2464-3b09-70fc-89dc-77365928f71d
+            stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+          metricComment: ""
+          metricSynonym: ""
+          metricTransform: SUM
+          metricTransformExprn: ""
+        - metricAlias: ORDER_COUNT
+          metricCol:
+            columnCounter: 019e243d-a95e-7169-9816-a40cdc550515
+            stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+          metricComment: ""
+          metricSynonym: ""
+          metricTransform: COUNT
+          metricTransformExprn: ""
+    metricToggle: true
+    primaryKeyConfig:
+      items:
+        - primAlias: ORDERS
+          primComment: ""
+          primSynonym: ""
+          primaryKey:
+            columnCounter: 019e243d-a95e-7169-9816-a40cdc550515
+            stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        - primAlias: ""
+          primComment: ""
+          primSynonym: ""
+          primaryKey:
+            columnCounter: 019e243d-a95e-7169-9816-a839c3b4df34
+            stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        - primAlias: LOCATIONS
+          primComment: ""
+          primSynonym: ""
+          primaryKey:
+            columnCounter: 019e243d-a95e-7169-9816-cdc8729bb8fa
+            stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+    semanticMaterialization: semantic view
+    tableOnlyToggle: false
+  database: ""
+  deployEnabled: true
+  description: Semantic view for Holiday Hearth business analytics with dimensions, facts, and metrics sourced directly from fact and dimension tables
+  isMultisource: false
+  locationName: DWH
+  materializationType: semantic view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e243d-a95e-7169-9816-a40cdc550515
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: ORDER_KEY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1efe2449-77da-42c2-a361-1fca4776018e
+                stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e243d-a95e-7169-9816-a839c3b4df34
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: ITEM_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0bc6434c-5518-4f5a-8400-457be9ce7d95
+                stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e243d-a95e-7169-9816-cdc8729bb8fa
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: FRANCHISE_LOCATION_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4853e992-dff2-41ac-928b-f15b86b391cd
+                stepCounter: de17f699-45e2-457a-aa00-40996ce54ebd
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e2464-3b09-70fc-89dc-6a7cb3f81dfb
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDERED_QTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42fb6a9b-0695-49fd-a40d-315e50c7df5a
+                stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e2464-3b09-70fc-89dc-6d79a280f547
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: UNIT_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 592af2a3-17fc-43db-9e2f-df722e497319
+                stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e2464-3b09-70fc-89dc-702e8c80c024
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_REVENUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7389769a-f63c-4f03-8227-3ca71b6392a0
+                stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e2464-3b09-70fc-89dc-77365928f71d
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_COGS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9985e31-c4b2-491d-a6ee-841a2a01adb2
+                stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e2464-3b09-70fc-89dc-78ace49875d1
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_PROFIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a561fe4e-fd53-4cbb-a1a3-cdf9f25c6a83
+                stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e2464-3b09-70fc-89dc-7f1b88f68785
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ITEM_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a82c18bd-fd6b-499f-b6e8-590fb9787094
+                stepCounter: 99cf900f-9938-4753-85a5-88dfe9c37a4c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e2464-3b09-70fc-89dc-836dc5f673b7
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LOCATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 09b443a5-f3dd-4a5b-be72-6370f9fdd911
+                stepCounter: de17f699-45e2-457a-aa00-40996ce54ebd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e2464-3b09-70fc-89dc-857dbdb6c1d7
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: REGION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ee09368-1cce-436f-9010-7111ed4e39e4
+                stepCounter: de17f699-45e2-457a-aa00-40996ce54ebd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019e2464-3b09-70fc-89dc-884fd7990bda
+          stepCounter: a40620b9-55cd-47c0-91f8-4c64c82b3332
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2dceb40b-1e22-4b7c-96b8-20d430720952
+                stepCounter: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+            transform: ""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          DIM_FRANCHISE_LOCATIONS: de17f699-45e2-457a-aa00-40996ce54ebd
+          DIM_MENU_ITEM: 99cf900f-9938-4753-85a5-88dfe9c37a4c
+          FCT_ORDER_LINEITEM: ea535d62-8b45-41ba-8915-f2ebd0e560a7
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DWH
+            nodeName: FCT_ORDER_LINEITEM
+          - locationName: GOLD
+            nodeName: DIM_FRANCHISE_LOCATIONS
+          - locationName: GOLD
+            nodeName: DIM_MENU_ITEM
+        join:
+          joinCondition: |-
+            FROM {{ ref('DWH', 'FCT_ORDER_LINEITEM') }} FCT_ORDER_LINEITEM
+            LEFT JOIN {{ ref('GOLD', 'DIM_MENU_ITEM') }} DIM_MENU_ITEM 
+              ON FCT_ORDER_LINEITEM.DIM_MENU_ITEM_KEY = DIM_MENU_ITEM.DIM_MENU_ITEM_KEY
+            LEFT JOIN {{ ref('GOLD', 'DIM_FRANCHISE_LOCATIONS') }} DIM_FRANCHISE_LOCATIONS 
+              ON FCT_ORDER_LINEITEM.DIM_FRANCHISE_LOCATIONS_KEY = DIM_FRANCHISE_LOCATIONS.DIM_FRANCHISE_LOCATIONS_KEY
+        name: SV_HOLIDAY_HEARTH_ANALYTICS
+        noLinkRefs: []
+  name: SV_HOLIDAY_HEARTH_ANALYTICS
+  overrideSQL: false
+  schema: ""
+  sqlType: "178"
+  type: sql
+  version: 1
+type: Node

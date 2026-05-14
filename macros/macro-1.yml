@@ -1,6 +1,6 @@
 fileVersion: 1
 id: "1"
-macroString: |+
+macroString: |
   {%- macro row_number(order_by, partition_by=[], order='') -%}
       ROW_NUMBER() OVER (
           {%- for p_col in partition_by %}
@@ -98,5 +98,227 @@ macroString: |+
       where {{column}} not in (select distinct {{ref_table_col}} from {{ref_table}} )
   {%- endmacro %}
 
+
+  {###########################################################################################
+    **Macro: build_expr(expr)**
+
+    **Description** Formats a transformation expression by removing any table prefix from a column reference and quoting the column name.
+    This is useful when dynamically generating SQL where expressions like `COUNT(table.column)` must become `COUNT("column")` in the final query.
+
+    **Input** expr (string) - A SQL transformation expression. It may contain a function with a table-qualified column reference such as `COUNT(orders.o_orderkey)
+
+    **Output** - Returns a formatted SQL expression with the column name quoted and the table prefix removed.
+      and/or triggers a stage-level warning UI notification for critical switches.
+  #############################################################################################}
+  {% macro build_expr(expr) -%}
+      {%- if expr and '(' in expr -%}
+          {%- set func = expr.split('(')[0] -%}
+          {%- set inner = expr.split('(')[1].replace(')','') -%}
+          {%- set col = inner.split('.')[-1] -%}
+
+          {%- if col == '*' -%}
+              {{ func ~ '(*)' }}
+          {%- else -%}
+              {{ func ~ '("' ~ col ~ '")' }}
+          {%- endif -%}
+
+      {%- else -%}
+          {{ expr }}
+      {%- endif -%}
+  {%- endmacro %}
+
+  {###########################################################################################
+  **Macro: build_alias(alias)
+
+  **Description** Extracts the final column name from a dot-separated alias.
+  If the alias is provided as `table.column`, the macro returns only column
+
+  **Input** alias (string) - A column alias that may include a prefix such as customer.cust_name
+  **Output** Returns the final column name without the prefix.
+      and/or triggers a stage-level warning UI notification for critical switches.
+  #############################################################################################}
+  {% macro build_alias(alias) -%}
+      {{- alias.split('.')[-1] if alias else '' -}}
+  {%- endmacro %}
+
+  {###########################################################################################
+  Description: Renders WITH SYNONYMS and COMMENT clauses if synonym or comment values exist.
+
+  Input: obj – Object or list of objects containing optional synonym and comment fields.
+
+  Output: WITH SYNONYMS ('value') if synonym exists
+          COMMENT = 'value' if comment exists
+      and/or triggers a stage-level warning UI notification for critical switches.
+  #############################################################################################}
+  {% macro renderSynonymAndComment(obj) %}
+
+      {%- if obj.synonym is defined or obj.comment is defined -%}
+
+          {%- if obj.synonym is defined and obj.synonym | trim != '' %}
+              {%- set syn_list = obj.synonym.split(',') | map('trim') | reject('equalto','') | list -%}
+              WITH SYNONYMS ('{{ syn_list | join("', '") }}')
+          {%- endif %}
+
+          {%- if obj.comment is defined and obj.comment | trim != '' %}
+          COMMENT = '{{ obj.comment }}'
+          {%- endif %}
+
+      {%- else -%}
+
+          {# grouped case (item.list) #}
+          {%- set synonyms = obj
+              | selectattr('synonym','defined')
+              | map(attribute='synonym')
+              | map('trim')
+              | reject('equalto','')
+              | unique
+              | list
+          -%}
+
+          {%- if synonyms %}
+          WITH SYNONYMS ({{ "'" ~ synonyms | join("', '") ~ "'" }})
+          {%- endif %}
+
+          {%- set comments = obj
+              | selectattr('comment','defined')
+              | map(attribute='comment')
+              | map('trim')
+              | reject('equalto','')
+              | unique
+              | list
+          -%}
+
+          {%- if comments %}
+          COMMENT = '{{ comments | join(', ') }}'
+          {%- endif %}
+
+      {%- endif %}
+
+  {%- endmacro %}
+
+  {###########################################################################################
+  Description: Builds an SQL ORDER BY clause from the configured sort columns.
+
+  Input: config.orderby – enables ordering
+  config.orderbycolumn.items – list of columns with sortColName.name and sortOrder
+
+  Output: Returns a formatted ORDER BY clause or an empty string if no ordering is defined.
+      and/or triggers a stage-level warning UI notification for critical switches.
+  #############################################################################################}
+  {%- macro sortOrderByColumn() -%}
+
+      {%- set ns = namespace(sortCols="") -%}
+
+      {%- if config.orderby -%}
+
+          {%- for item in config.orderbycolumn.get('items') -%}
+
+              {%- set colName  = item.sortColName.name -%}
+              {%- set colOrder = item.sortOrder -%}
+
+              {%- if loop.first -%}
+                  {%- set ns.sortCols = colName ~ ' ' ~ colOrder -%}
+              {%- else -%}
+                  {%- set ns.sortCols = ns.sortCols ~ ', ' ~ colName ~ ' ' ~ colOrder -%}
+              {%- endif -%}
+
+          {%- endfor -%}
+
+          {%- set ns.sortCols = 'ORDER BY ' ~ ns.sortCols -%}
+
+      {%- endif -%}
+
+      {{- ns.sortCols -}}
+
+  {%- endmacro -%}
+
+  {###########################################################################################
+  Description: Extracts the WHERE, GROUP BY, or ORDER BY clause from a SQL string.
+
+  Input: join – SQL text that may contain filtering or sorting clauses.
+
+  Output: Returns the SQL portion starting from WHERE, GROUP BY, or ORDER BY. Returns an empty string if none are found.
+      and/or triggers a stage-level warning UI notification for critical switches.
+  #############################################################################################}
+  {%- macro extractClause(join) -%}
+
+      {%- set sql = join | replace('\n',' ') -%}
+      {%- set lowerSql = sql | lower -%}
+
+      {%- set whereClause = lowerSql.find(' where ') -%}
+      {%- set groupByClause = lowerSql.find(' group by ') -%}
+      {%- set orderByClause = lowerSql.find(' order by ') -%}
+
+      {%- set idx = [whereClause, groupByClause, orderByClause] | reject('equalto', -1) | list | min if [whereClause, groupByClause, orderByClause] | reject('equalto', -1) | list else -1 -%}
+
+      {{ sql[idx:] | trim if idx != -1 else '' }}
+
+  {%- endmacro -%}
+
+  {###########################################################################################
+  Purpose: Determines the correct Snowflake DROP object syntax based on the materialization type.
+   
+  Input: materialization (string): The Snowflake object type to be dropped
+    (e.g., table, view, materialized view, dynamic table, external table).
+   
+  Returns: string: The appropriate DROP object keyword with IF EXISTS
+    (e.g., 'table IF EXISTS', 'view IF EXISTS', 'materialized view IF EXISTS').
+  #############################################################################################}
+  {% macro dropMaterialization(materialization) %}
+      {%- if materialization | lower in ['table', 'transient table','temporary table', 'hybrid table'] -%}
+          TABLE IF EXISTS
+      {%- elif materialization | lower in ['view', 'secure view', 'run view', 'cortex search service'] -%}
+          VIEW IF EXISTS
+      {%- elif materialization | lower in ['dynamic table','transient dynamic table', 'dynamic iceberg table'] -%}
+          DYNAMIC TABLE IF EXISTS
+      {%- elif materialization | lower == 'semantic view' -%}
+          SEMANTIC VIEW IF EXISTS
+      {%- elif materialization | lower == 'materialized view' -%}
+          MATERIALIZED VIEW IF EXISTS
+      {%- elif materialization | lower == 'external table' -%}
+          EXTERNAL TABLE IF EXISTS
+      {%- elif materialization | lower == 'iceberg table' -%}
+          ICEBERG TABLE IF EXISTS
+      {%- elif materialization | lower == 'interactive table' -%}
+          INTERACTIVE TABLE IF EXISTS
+      {%- elif materialization | lower == 'stream' -%}
+          STREAM IF EXISTS
+      {%- else -%}
+          TABLE IF EXISTS
+      {%- endif %}
+  {% endmacro %}
+
+  {###########################################################################################
+  Purpose: Generates SQL-commented warnings or UI notifications when a user attempts to 
+  change the Node Type or Materialization Type of a node. It identifies 
+  critical node configurations (Tasks, Streams, Hybrid Views, Cortex, etc.) 
+  that could lead to data loss or broken dependencies if switched.
+
+  Input: None
+
+  Returns: A string containing a SQL comment warning (starting with '-- ⚠️') 
+      and/or triggers a stage-level warning UI notification for critical switches.
+  #############################################################################################}
+  {% macro getNodeTypeSwitchWarning() %}
+      {%- if currentState.node.nodeType.split(':::')[-1] in ['300', '301'] -%}
+          {# Current Node Type: Deferred Merge Nodes #}
+          -- ⚠️ Warning: This table may be linked to streams and hybrid views. Any required updates/drops must be handled manually.
+      {%- elif currentState.node.nodeType.split(':::')[-1] in ['549', '550', '154', '155'] -%}
+          {# Current Node Type: Root and Resume Tasks Nodes #}
+          -- ⚠️ Warning: These node types are not ideal for switching, as they may act as root or resume tasks. Changing them may disrupt related tasks, cause inconsistencies, or result in data loss. Any required updates/drops must be handled manually.
+      {%- elif currentState.node.nodeType.split(':::')[-1] in ['416', '448'] -%}
+          {# Current Node Type: Data Quality related statis table/view #}
+          -- ⚠️ Warning: This node is used for data quality checks and may not represent the final static schema. Deployment or execution could fail or interrupt email notifications and task failures.
+      {%- elif currentState.node.materializationType | lower in ['task'] or currentState.node.nodeType.split(':::')[-1] in ['429', '567'] -%}
+          {# Current Node Type: Tasks Related, Insert or Merge with Task, Document AI Nodes#}
+          -- ⚠️ Warning: Tasks or streams are attached to this node. Changing its type may cause task failures, stream inconsistencies, or data loss. Any required updates/drops must be handled manually.
+      {%- elif currentState.node.materializationType | lower in ['stream'] -%}
+          {# Current Node Type: Stream Nodes #}
+          -- ⚠️ Warning: This is a stream node. Changing its type may cause task failures, stream inconsistencies, or data loss. Any required updates/drops must be handled manually.
+      {%- elif currentState.node.materializationType | lower in ['cortex search service'] -%}
+          {# Current Node Type: Cortex Nodes #}
+          -- ⚠️ Warning: Cortex search service is attached to this node. Changing its type may cause service failures, inconsistencies, or data loss. Any required updates/drops must be handled manually.
+      {%- endif %}
+  {% endmacro %}
 name: macro
 type: Macro

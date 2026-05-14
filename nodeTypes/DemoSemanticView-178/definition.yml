@@ -1,0 +1,285 @@
+fileVersion: 1
+id: "178"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: Demo Semantic View
+    short: SMV
+    plural: Semantic Views
+    tagColor: '#6B5BD2'
+
+    deployStrategy: advanced
+    isColumnResyncEnabled: true
+
+    config:
+    -   groupName: Semantic View Options
+        items:
+
+        -   type: label
+            displayName: 🚨 Re-sync after creation to fetch columns for downstream node access
+            attributeName: labelFactSourceColumnWarnig
+            enableIf: "{% if config.deriveCol %} true {% else %} false {% endif %}"
+
+        -   type: toggleButton
+            displayName: Create Schema Table
+            attributeName: deriveCol
+            isRequired: false
+            default: true
+
+        -   type: materializationSelector
+            isRequired: true
+            attributeName: semanticMaterialization
+            default: semantic view
+            enableIf: "{% if config.deriveCol %} false {% else %} true {% endif %}"
+            options:
+                - semantic view
+
+        -   type: toggleButton
+            displayName: Consider Table Only(No primary Key)
+            attributeName: tableOnlyToggle
+            isRequired: false
+            default: false
+            enableIf: "{% if config.deriveCol %} false {% else %} true {% endif %}"
+
+        -   type: tabular
+            displayName: TABLES (Primary Key)
+            attributeName: primaryKeyConfig
+            isRequired: false
+            enableIf: 'true'
+
+            columns:
+            -   type: columnDropdownSelector
+                displayName: Source Column
+                attributeName: primaryKey
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Alias
+                attributeName: primAlias
+                isRequired: false
+                enableIf: ""
+
+            -   type: textBox
+                displayName: Synonym
+                attributeName: primSynonym
+                isRequired: false
+                enableIf: ""
+
+            -   type: textBox
+                displayName: Comment
+                attributeName: primComment
+                isRequired: false
+                enableIf: ""
+
+        -   type: toggleButton
+            displayName: Enable Relationships
+            attributeName: foreignToggle
+            isRequired: false
+            default: false
+
+        -   type: tabular
+            displayName: RELATIONSHIPS (Foreign Key)
+            attributeName: foreignKeyConfig
+            isRequired: false
+            enableIf: "{% if config.foreignToggle %} true {% else %} false {% endif %}"
+
+            columns:
+            -   type: columnDropdownSelector
+                displayName: Source Column
+                attributeName: foreignKey
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Reference Table
+                attributeName: refTable
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Alias
+                attributeName: refAlias
+                isRequired: false
+                enableIf: ""
+
+        -   type: toggleButton
+            displayName: Enable Facts
+            attributeName: factToggle
+            isRequired: false
+            default: false
+
+        -   type: tabular
+            displayName: FACTS
+            attributeName: factDetConfig
+            isRequired: false
+            enableIf: "{% if config.factToggle %} true {% else %} false {% endif %}"
+
+            columns:
+
+            -   type: dropdownSelector
+                displayName: Derived Stage
+                attributeName: factLayer
+                default: '1'
+                options:
+                - '1'
+                - '2'
+                - '3'
+                isRequired: false
+                enableIf: "{% if config.deriveCol %} true {% else %} false {% endif %}"
+
+            -   type: columnDropdownSelector
+                displayName: Source Column
+                attributeName: factCol
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Transform
+                attributeName: factTranform
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Alias
+                attributeName: factAlias
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Synonym
+                attributeName: factSynonym
+                isRequired: false
+                enableIf: ""
+
+            -   type: textBox
+                displayName: Comment
+                attributeName: factComment
+                isRequired: false
+                enableIf: ""
+
+        -   type: toggleButton
+            displayName: Enable Dimensions
+            attributeName: dimToggle
+            isRequired: false
+            default: false
+
+        -   type: tabular
+            displayName: DIMENSIONS
+            attributeName: DimConfig
+            isRequired: false
+            enableIf: "{% if config.dimToggle %} true {% else %} false {% endif %}"
+
+            columns:
+
+            -   type: dropdownSelector
+                displayName: Derived Stage
+                attributeName: dimLayer
+                default: '1'
+                options:
+                - '1'
+                - '2'
+                - '3'
+                isRequired: false
+                enableIf: "{% if config.deriveCol %} true {% else %} false {% endif %}"
+
+            -   type: columnDropdownSelector
+                displayName: Source Column
+                attributeName: dimCol
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Transform
+                attributeName: dimTransform
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Alias
+                attributeName: dimAlias
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Synonym
+                attributeName: dimSynonym
+                isRequired: false
+                enableIf: ""
+
+            -   type: textBox
+                displayName: Comment
+                attributeName: dimComment
+                isRequired: false
+                enableIf: ""
+
+        -   type: toggleButton
+            displayName: Enable Metrics
+            attributeName: metricToggle
+            isRequired: false
+            default: false
+
+        -   type: tabular
+            displayName: METRICS
+            attributeName: metricConfig
+            isRequired: false
+            enableIf: "{% if config.metricToggle %} true {% else %} false {% endif %}"
+
+            columns:
+
+            -   type: dropdownSelector
+                displayName: Derived Stage
+                attributeName: metricLayer
+                default: '1'
+                options:
+                - '1'
+                - '2'
+                - '3'
+                isRequired: false
+                enableIf: "{% if config.deriveCol %} true {% else %} false {% endif %}"
+
+            -   type: dropdownSelector
+                displayName: Metric Applied
+                attributeName: metricTransform
+                options:
+                - COUNT
+                - SUM
+                - AVG
+                - MIN
+                - MAX
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: columnDropdownSelector
+                displayName: Source Column
+                attributeName: metricCol
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Derived Column
+                attributeName: metricTransformExprn
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Alias
+                attributeName: metricAlias
+                isRequired: false
+                enableIf: 'true'
+
+            -   type: textBox
+                displayName: Synonym
+                attributeName: metricSynonym
+                isRequired: false
+                enableIf: ""
+
+            -   type: textBox
+                displayName: Comment
+                attributeName: metricComment
+                isRequired: false
+                enableIf: ""
+name: Demo Semantic View
+type: NodeType

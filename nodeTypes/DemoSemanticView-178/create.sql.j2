@@ -1,0 +1,435 @@
+{#
+    Copyright (c) 2026 Coalesce. All rights reserved.
+This script and its associated documentation are confidential and proprietary to Coalesce.
+Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
+Coalesce permits you to copy and modify this script for the purposes of using with Coalesce but
+does not permit copying or modification for any other purpose.
+#}
+{# == Node Type Name  : Semantic View == #}
+{# == Node Type Description : This node creates basic semantic view == #}
+
+{% if desiredState and (currentState == undefined or (currentState != undefined and desiredState != currentState)) %}
+
+    {%- if currentState != undefined and currentState.node.nodeType != desiredState.node.nodeType %}
+        {%- set warningMsg = getNodeTypeSwitchWarning() | default('') %}
+
+        {# Warning display - Node type changes can impact related tasks, streams, or services. #}
+        {%- if warningMsg | trim | length > 0 -%}
+            {{ stage('Warning! Node Type Switching Detected', false) }}
+            {{ warningMsg }}
+            select 1=0
+        {%- endif -%}
+
+        {{ stage('Drop ' + ref_no_link(currentState.node.location.name, currentState.node.name)) }}
+        {%- set materialization = dropMaterialization(currentState.node.materializationType) %}
+        DROP {{ materialization }} {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+
+    {%- endif -%}
+
+    {% set nsSVvariables = namespace(primKey=[], foreignKey=[], factDetails=[], dimDetails=[], metricDetails=[]) %}
+    {% set objectFullPath = ref_no_link(desiredState.node.location.name, desiredState.node.name) %}
+    {% set desiredDatabase = desiredState.storageLocations
+                                | selectattr('name', 'equalto', desiredState.node.location.name)
+                                | map(attribute='database')
+                                | first %}
+    {% set desiredSchema = desiredState.storageLocations 
+                                | selectattr('name', 'equalto', desiredState.node.location.name)
+                                | map(attribute='schema')
+                                | first %}
+
+    {% for col in desiredState.config.primaryKeyConfig.get('items') %}
+
+        {% set pk = col.primaryKey %}
+        {%- set srcTableLocName = desiredState.sources[0].columns 
+                                | selectattr('id','eq', pk.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | map(attribute='node.location.name')
+                                | first -%}
+
+        {%- set srcTableName = desiredState.sources[0].columns 
+                                | selectattr('id','eq', pk.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | map(attribute='node.name')
+                                | first -%}
+
+        {% set _ = nsSVvariables.primKey.append({
+            "id": pk.id,
+            "name": pk.name,
+            "alias": col.primAlias | trim,
+            "synonym": col.primSynonym | trim,
+            "comment": col.primComment | trim,
+            "srcTablePath" : ref_no_link(srcTableLocName, srcTableName)
+        }) %}
+
+    {% endfor %}
+
+    {% set ns = namespace(aliasMap={}) %}
+    {% for item in nsSVvariables.primKey | groupby('srcTablePath') %}
+
+        {# extract valid aliases #}
+        {% set aliases = item.list
+            | selectattr('alias','defined')
+            | map(attribute='alias')
+            | map('trim')
+            | reject('equalto','')
+            | list
+        %}
+
+        {# fallback to table name if alias missing #}
+        {% set tbl_alias = aliases[0] if aliases else item.grouper.split('.')[-1] | replace('"','') %}
+
+        {# store in alias map #}
+        {% set _ = ns.aliasMap.update({ item.grouper: tbl_alias }) %}
+
+    {% endfor %}
+
+    {% for col in desiredState.config.foreignKeyConfig.get('items') if desiredState.config.foreignToggle | default(false) %}
+
+        {% set fk = col.foreignKey %}
+        {%- set srcTableName = desiredState.sources[0].columns 
+                                | selectattr('id','eq', fk.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | map(attribute='node.name')
+                                | first -%}
+
+        {%- set srcTableLocName = desiredState.sources[0].columns 
+                                | selectattr('id','eq', fk.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | map(attribute='node.location.name')
+                                | first -%}
+
+        {% set _ = nsSVvariables.foreignKey.append({
+            "id": fk.id,
+            "name": fk.name,
+            "alias": col.refAlias | trim,
+            "srcTablePath" : ref_no_link(srcTableLocName, srcTableName),
+            "refTable": col.refTable | trim
+        }) %}
+    {% endfor %}
+
+    {% for item in desiredState.config.factDetConfig.get('items') if desiredState.config.factToggle | default(false) %}
+
+        {% set col = item.factCol %}
+        {%- set srcTableName = desiredState.sources[0].columns 
+                                | selectattr('id', 'eq', col.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | select('defined')
+                                | selectattr('node', 'defined')
+                                | map(attribute='node.name') 
+                                | first 
+                                | default('', true) -%}
+
+        {%- set srcTableLocName = desiredState.sources[0].columns 
+                                | selectattr('id','eq', col.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | select('defined')
+                                | selectattr('node', 'defined')
+                                | map(attribute='node.location.name') 
+                                | first 
+                                | default('', true) -%}
+        
+        {% set _ = nsSVvariables.factDetails.append({
+            "id":   col.id   if col else None,
+            "name": col.name if col else None,
+            "srcTablePath": ref_no_link(srcTableLocName, srcTableName) if srcTableLocName and srcTableName else "",
+            "transform": item.factTranform | trim or "",
+            "alias": item.factAlias | trim or "",
+            "layer": item.factLayer,
+            "synonym": item.factSynonym | trim,
+            "comment": item.factComment | trim
+        }) %}
+    {% endfor %}
+
+    {% for item in desiredState.config.DimConfig.get('items') if desiredState.config.dimToggle | default(false) %}
+
+        {% set col = item.dimCol %}
+        {%- set srcTableName = desiredState.sources[0].columns 
+                                | selectattr('id', 'eq', col.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | select('defined')
+                                | selectattr('node', 'defined')
+                                | map(attribute='node.name') 
+                                | first 
+                                | default('', true) -%}
+
+        {%- set srcTableLocName = desiredState.sources[0].columns 
+                                | selectattr('id','eq', col.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | select('defined')
+                                | selectattr('node', 'defined')
+                                | map(attribute='node.location.name') 
+                                | first 
+                                | default('', true) -%}
+
+        {% set _ = nsSVvariables.dimDetails.append({
+            "id": col.id if col else None,
+            "name": col.name if col else None,
+            "srcTablePath": ref_no_link(srcTableLocName, srcTableName) if srcTableLocName and srcTableName else "",
+            "transform": item.dimTransform | trim or "",
+            "alias": item.dimAlias | trim or "",
+            "layer": item.dimLayer,
+            "synonym": item.dimSynonym | trim,
+            "comment": item.dimComment | trim
+        }) %}
+    {% endfor %}
+
+    {% for item in desiredState.config.metricConfig.get('items') if desiredState.config.metricToggle | default(false) %}
+
+        {% set col = item.metricCol %}
+        {%- set srcTableName = desiredState.sources[0].columns 
+                                | selectattr('id', 'eq', col.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | select('defined')
+                                | selectattr('node', 'defined')
+                                | map(attribute='node.name') 
+                                | first 
+                                | default('', true) -%}
+
+        {%- set srcTableLocName = desiredState.sources[0].columns 
+                                | selectattr('id','eq', col.id)
+                                | map(attribute='sourceColumns')
+                                | first 
+                                | select('defined')
+                                | selectattr('node', 'defined')
+                                | map(attribute='node.location.name') 
+                                | first 
+                                | default('', true) -%}
+
+        {% set col = item.metricCol %}
+        {% set _ = nsSVvariables.metricDetails.append({
+            "id": col.id if col else None,
+            "name": col.name if col else None,
+            "src": item.srcTable if item.srcTable else "",
+            "metric": item.metricTransform,
+            "derived": item.metricTransformExprn | trim if item.metricTransformExprn else "",
+            "srcTablePath": ref_no_link(srcTableLocName, srcTableName) if srcTableLocName and srcTableName else "",
+            "alias": item.metricAlias | trim if item.metricAlias else "",
+            "layer": item.metricLayer,
+            "synonym": item.metricSynonym | trim,
+            "comment": item.metricComment | trim,
+        }) %}
+    {% endfor %}
+
+    {% set baseCombined = nsSVvariables.primKey
+                        +  nsSVvariables.foreignKey %}
+    {% set layerCombined = nsSVvariables.factDetails
+                        + nsSVvariables.dimDetails
+                        + nsSVvariables.metricDetails %}
+
+    {% set allBaseIds = baseCombined
+        | map(attribute='id')
+        | list
+        | unique
+        | list
+    %}
+    {% set allLayerIds = layerCombined
+        | map(attribute='id')
+        | list
+        | unique
+        | list
+    %}
+
+    {% set all_ids = allBaseIds + allLayerIds %}
+    {% set allSrcTables = nsSVvariables.primKey | map(attribute='srcTablePath') | list | unique | list %}
+
+    {# -------------------------------------------------------------- #}
+
+    {% if desiredState.config.deriveCol %}
+
+        {{ stage('Drop Semantic View') }}
+        EXECUTE IMMEDIATE $$
+        DECLARE
+        -- Default to NULL or 'NONE' so the IF checks don't crash
+        target_type STRING DEFAULT 'NONE';
+        BEGIN
+        -- 1. Use INTO to capture the result
+        SELECT count(*) 
+            INTO :target_type
+            FROM {{desiredDatabase}}.information_schema.semantic_views
+            WHERE name = '{{ desiredState.node.name }}'
+            AND schema = '{{ desiredSchema }}'
+            LIMIT 1;
+
+        -- 2. Drop the existing object based on its type
+        IF (target_type = 1) THEN
+            DROP SEMANTIC VIEW {{ objectFullPath }};
+            RETURN 'Success: Semantic View found and dropped.';
+        END IF;
+        END;
+        $$;
+
+        {{ stage('Create Schema Table', true, "sql", "create") }}
+        CREATE OR REPLACE TABLE {{ objectFullPath }}
+        AS
+        SELECT
+            layer2Columns.*
+        {%- for group in [nsSVvariables.factDetails, nsSVvariables.dimDetails, nsSVvariables.metricDetails] %}
+        {%- for col in group if col.id is none and col.layer == '3' %}
+        {%- if col.transform %}
+        {%- set final_expr = build_expr(col.transform) -%}
+        {%- else %}
+        {%- set final_expr = build_expr(col.metric + '(' + col.derived + ')') -%}
+        {%- endif -%}
+        {%- set alias = build_alias(col.alias) -%}
+        , {{ final_expr }} AS "{{ alias }}"
+        {%- endfor %}
+        {%- endfor %}
+        FROM
+        (
+            SELECT
+                layer1Columns.*
+        {%- for group in [nsSVvariables.factDetails, nsSVvariables.dimDetails, nsSVvariables.metricDetails] %}
+        {%- for col in group if col.id is none and col.layer == '2' %}
+        {%- if col.transform %}
+        {%- set final_expr = build_expr(col.transform) -%}
+        {%- else %}
+        {%- set final_expr = build_expr(col.metric + '(' + col.derived + ')') -%}
+        {%- endif -%}
+        {%- set alias = build_alias(col.alias) -%}
+        , {{ final_expr }} AS "{{ alias }}"
+        {%- endfor %}
+        {%- endfor %}
+            FROM
+            (
+                SELECT
+        {%- for col in desiredState.sources[0].columns if col.id in all_ids %}
+                    {{ col.name }} AS "{{ col.name }}"
+        {%- if not loop.last %},{% endif %}
+        {%- endfor %}
+
+        {%- for group in [nsSVvariables.factDetails, nsSVvariables.dimDetails, nsSVvariables.metricDetails] %}
+        {%- for col in group if col.layer == '1' %}
+        {%- set alias = build_alias(col.alias) -%}
+
+        {%- if col.id and col.alias|trim != '' %}
+        , {{ col.name }} AS "{{ alias }}"
+
+        {%- elif col.id is none %}
+        {%- set expr = build_expr(col.transform) | replace('"', '') -%}
+        , {{ expr }} AS "{{ alias }}"
+
+        {%- endif %}
+        {%- endfor %}
+        {%- endfor %}
+
+                FROM
+        {%- for tablePath in allSrcTables %}
+                    {{ tablePath }} {{ tablePath.split('.')[-1].replace('"','') }}
+        {%- if not loop.last %}, {% endif %}
+        {%- endfor %}
+                GROUP BY ALL
+            ) layer1Columns
+            GROUP BY ALL
+        ) layer2Columns
+        WHERE 1=0
+        GROUP BY ALL
+    {% else %}
+
+        {{ stage('Drop Schema Table') }}
+        EXECUTE IMMEDIATE $$
+        DECLARE
+        -- Default to NULL or 'NONE' so the IF checks don't crash
+        target_type STRING DEFAULT 'NONE';
+        BEGIN
+        -- 1. Use INTO to capture the result
+        SELECT table_type 
+            INTO :target_type
+            FROM {{desiredDatabase}}.information_schema.tables
+            WHERE table_name = '{{ desiredState.node.name }}'
+            AND table_schema = '{{ desiredSchema }}'
+            LIMIT 1;
+
+        -- 2. Drop the existing object based on its type
+        IF (target_type = 'BASE TABLE') THEN
+            DROP TABLE {{ objectFullPath }};
+            RETURN 'Success: Table found and dropped.';
+        END IF;
+        END;
+        $$;
+
+        {{ stage('Create Semantic View', true, "sql", "create") }}
+        CREATE OR REPLACE SEMANTIC VIEW {{ objectFullPath }}
+
+        TABLES
+        (
+            {%- for item in nsSVvariables.primKey | groupby('srcTablePath') -%}
+
+            {{ ns.aliasMap[item.grouper] }} AS {{ item.grouper | replace('"','') }}
+
+            {%- if desiredState.config.tableOnlyToggle == false %}
+            PRIMARY KEY (
+                {{ item.list | map(attribute='name') | join(', ') }}
+            )
+            {%- endif %}
+            {%- if not loop.last %},{%- endif %}
+            {%- endfor %}
+        )
+
+        {%- if desiredState.config.foreignToggle | default(false) -%}
+        RELATIONSHIPS
+        (
+            {%- for item in nsSVvariables.foreignKey -%}
+                {{ ns.aliasMap[item.srcTablePath] }}({{ item.name }}) REFERENCES {{ item.refTable }}({{ item.name }})
+                {%- if not loop.last %},{% endif %}
+            {%- endfor %}
+        )
+        {%- endif %}
+
+        {%- if desiredState.config.factToggle | default(false) %}
+        FACTS (
+            {%- for col in nsSVvariables.factDetails -%}
+                {%- if col.transform %}
+                    {{ col.transform }} AS {{ col.alias if col.alias else col.name }}
+                {%- else %}
+                    {{ ns.aliasMap[col.srcTablePath] }}.{{ col.name }} AS {{ col.alias if col.alias else col.name }}
+                {%- endif %}
+                {%- if not loop.last %},{% endif %}
+            {%- endfor %}
+        )
+        {%- endif %}
+
+        {%- if desiredState.config.dimToggle | default(false) %}
+        DIMENSIONS (
+            {%- for col in nsSVvariables.dimDetails -%}
+                {%- if col.transform != '' %}
+                    {{ col.transform }} AS {{ col.alias if col.alias else col.name }}
+                {%- else %}
+                    {{ ns.aliasMap[col.srcTablePath] }}.{{ col.name }} AS {{ col.alias if col.alias else col.name }}
+                {%- endif %}
+                {%- if not loop.last %},{% endif %}
+            {%- endfor %}
+        )
+        {%- endif %}
+
+        {%- if desiredState.config.metricToggle | default(false) %}
+        METRICS
+        (
+            {%- for item in nsSVvariables.metricDetails -%}
+                {%- if item.derived and item.derived != "" %}
+                    {{ ns.aliasMap[item.srcTablePath] }}.{{ item.alias }} AS {{ item.metric }}({{ item.derived }})
+                {%- elif item.metric and item.name %}
+                    {{ ns.aliasMap[item.srcTablePath] }}.{{ item.alias }} AS {{ item.metric }}({{ item.name }})
+                {%- endif %}
+                {%- if not loop.last %},{% endif %}
+            {%- endfor %}
+        )
+        {%- if desiredState.node.description | length > 0 %} 
+        COMMENT = '{{ desiredState.node.description | escape }}'
+        {%- endif %}
+        {%- endif %}
+    {%- endif %}
+
+{%- elif desiredState == undefined and currentState != undefined %}
+    {{ stage('Drop ' + '{{currentState.node.materializationType}}') }}
+    {%- set materialization = dropMaterialization(currentState.node.materializationType) %}
+    DROP {{ materialization }} {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+{%- endif %}
