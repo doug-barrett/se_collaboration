@@ -1,17 +1,16 @@
-fileVersion: 1
-id: "426"
+fileVersion: 2
+id: "6"
 isDisabled: false
 metadata:
-  defaultStorageLocation: SILVER
+  defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |
-    capitalized: Copy of Stage
-    short: STG
-    plural: Stages
+    capitalized: SQL Stage
+    short: SQL
+    plural: SQLStages
     tagColor: '#2EB67D'
-    version: 2`
 
-    config:
+    config: 
     - groupName: Options
       items:
       - type: materializationSelector
@@ -35,7 +34,7 @@ metadata:
         - "INSERT"
         - "UNION"
         - "UNION ALL"
-        isRequired: true
+        isRequired: false
         enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
 
       - displayName: Truncate Before
@@ -59,5 +58,5 @@ metadata:
         type: textBox
         syntax: sql
         isRequired: false
-name: SQL Stage
+name: SQL Stage v2
 type: NodeType
