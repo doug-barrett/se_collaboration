@@ -1,0 +1,93 @@
+fileVersion: 2
+id: featureStore
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Feature Store
+    short: FS
+    plural: Feature Stores
+    tagColor: '#7D3EB6'
+
+    config:
+    - groupName: Dynamic Table Options
+      items:
+      - displayName: Target Lag
+        attributeName: targetLag
+        type: textBox
+        default: DOWNSTREAM
+        isRequired: true
+
+      - displayName: Warehouse
+        attributeName: warehouse
+        type: textBox
+        isRequired: true
+
+      - displayName: Refresh Mode
+        attributeName: refreshMode
+        type: dropdownSelector
+        default: AUTO
+        options:
+        - AUTO
+        - FULL
+        - INCREMENTAL
+        isRequired: true
+
+      - displayName: Initialize
+        attributeName: initialize
+        type: dropdownSelector
+        default: ON_CREATE
+        options:
+        - ON_CREATE
+        - ON_SCHEDULE
+        isRequired: true
+
+    - groupName: Feature Store Model Registry
+      items:
+      - displayName: Register Model
+        attributeName: registerModel
+        type: toggleButton
+        default: true
+
+      - displayName: Feature Store Model Name
+        attributeName: modelName
+        type: textBox
+        isRequired: true
+
+      - displayName: Model Version
+        attributeName: modelVersion
+        type: textBox
+        isRequired: true
+
+      - displayName: Model Comment
+        attributeName: modelComment
+        type: textBox
+        isRequired: false
+
+      - displayName: Registration Procedure
+        attributeName: registerProc
+        type: textBox
+        default: REGISTER_FEATURE_STORE_MODEL
+        isRequired: false
+
+    - groupName: Options
+      items:
+      - displayName: Enable Tests
+        attributeName: testsEnabled
+        type: toggleButton
+        default: true
+
+      - displayName: Pre-SQL
+        attributeName: preSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+
+      - displayName: Post-SQL
+        attributeName: postSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+name: Feature Store
+type: NodeType

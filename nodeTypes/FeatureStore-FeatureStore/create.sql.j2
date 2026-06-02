@@ -1,0 +1,72 @@
+{# == Node Type Name        : Feature Store == #}
+{# == Node Type Description : Snowflake dynamic table that backs a feature store object, #}
+{#                            with model-registry registration gated on the config version. == #}
+{#-------------------------------------------------------------------------------------------#}
+
+{# --- Create the dynamic table (feature store backing object) --- #}
+{{ stage('Create Feature Store Dynamic Table') }}
+
+CREATE OR REPLACE DYNAMIC TABLE {{ ref_no_link(node.location.name, node.name) }}
+(
+    {%- for col in columns %}
+        "{{ col.name }}"
+        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+        {%- if not loop.last -%}, {%- endif %}
+    {%- endfor %}
+)
+    TARGET_LAG = {% if config.targetLag.parameters[0] | upper == 'DOWNSTREAM' %}DOWNSTREAM{% else %}'{{ config.targetLag.parameters[0] }}'{% endif %}
+
+    WAREHOUSE = {{ config.warehouse.parameters[0] }}
+    REFRESH_MODE = {{ config.refreshMode.parameters[0] }}
+    INITIALIZE = {{ config.initialize.parameters[0] }}
+{%- if node.description | length > 0 %}
+    COMMENT = '{{ node.description | escape }}'
+{%- endif %}
+AS
+{%- for source in sources %}
+    {{ source.cteString }}
+    SELECT
+    {%- for col in source.columns %}
+        {{ get_source_transform(col) }} AS "{{ col.name }}"{% if not loop.last %}, {% endif %}
+    {%- endfor %}
+    {{ source.join }}
+    {%- if not loop.last %} UNION ALL {%- endif %}
+{%- endfor %};
+
+{# --- Register the feature store model in the Snowflake model registry --- #}
+{# The configured version is the registration key: registration only runs when that      #}
+{# version string is not already present. Bump the version after a schema/logic change to #}
+{# force a re-registration; leave it unchanged to skip re-registering an identical build. #}
+{%- if config.registerModel %}
+    {%- set model_name = config.modelName.parameters[0] %}
+    {%- set model_version = config.modelVersion.parameters[0] %}
+    {%- set model_comment = config.modelComment.parameters[0] | default('', true) %}
+    {%- set register_proc = config.registerProc.parameters[0] | default('REGISTER_FEATURE_STORE_MODEL', true) %}
+
+    {{ stage('Register Feature Store Model') }}
+
+    EXECUTE IMMEDIATE $$
+    DECLARE
+        version_count INTEGER DEFAULT 0;
+    BEGIN
+        BEGIN
+            SHOW VERSIONS IN MODEL {{ model_name }};
+            SELECT COUNT(*) INTO :version_count
+            FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()))
+            WHERE "name" ILIKE '{{ model_version }}';
+        EXCEPTION
+            WHEN OTHER THEN
+                version_count := 0;
+        END;
+
+        IF (version_count = 0) THEN
+            CALL {{ register_proc }}(
+                '{{ model_name }}',
+                '{{ model_version }}',
+                '{{ ref_no_link(node.location.name, node.name) }}',
+                '{{ model_comment | escape }}'
+            );
+        END IF;
+    END;
+    $$;
+{%- endif %}
