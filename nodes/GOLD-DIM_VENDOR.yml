@@ -60,23 +60,6 @@ operation:
                 stepCounter: e8d0ce9f-896c-4484-b131-fc1f54540898
             transform: ""
       - appliedColumnTests:
-          acceptedValues: true
-          hasNull: true
-        columnReference:
-          columnCounter: 15debf93-1390-4e0a-aaf8-d2b9ec17aaf1
-          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
-        config: {}
-        dataType: VARCHAR(10)
-        description: "Vendor Category: ENTERPRISE (>= 100 drivers) or COMMERCIAL (< 100 drivers)"
-        isChangeTracking: true
-        name: VENDOR_CATEGORY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 9427c17e-03a2-472a-85bb-f22b5001a477
-                stepCounter: c471c45e-650c-4a81-b0ac-a764b91a6768
-            transform: ""
-      - appliedColumnTests:
           hasNull: true
         columnReference:
           columnCounter: 83d21fb4-589d-4c5f-a3bf-5adaec75ccdb
@@ -186,19 +169,13 @@ operation:
     sourceMapping:
       - aliases:
           STG_VENDOR: e8d0ce9f-896c-4484-b131-fc1f54540898
-          STG_VENDOR_DETAILS: c471c45e-650c-4a81-b0ac-a764b91a6768
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: SILVER
             nodeName: STG_VENDOR
-          - locationName: SILVER
-            nodeName: STG_VENDOR_DETAILS
         join:
-          joinCondition: |-
-            FROM {{ ref('SILVER', 'STG_VENDOR') }} "STG_VENDOR"
-            LEFT JOIN {{ ref('SILVER', 'STG_VENDOR_DETAILS') }} "STG_VENDOR_DETAILS"
-              ON "STG_VENDOR"."VENDOR_ID" = "STG_VENDOR_DETAILS"."VENDOR_ID"
+          joinCondition: FROM {{ ref('SILVER', 'STG_VENDOR') }} "STG_VENDOR"
         name: DIM_VENDOR
         noLinkRefs: []
   name: DIM_VENDOR
