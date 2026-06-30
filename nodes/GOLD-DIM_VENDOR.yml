@@ -15,10 +15,7 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 5694f692-c9f5-49e1-96a4-1c07ee99077e
           stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
@@ -54,6 +51,7 @@ operation:
         config: {}
         dataType: STRING
         description: ""
+        isChangeTracking: true
         name: VENDOR_NAME
         nullable: true
         sourceColumnReferences:
@@ -61,10 +59,40 @@ operation:
               - columnCounter: 2f446965-06d8-484f-96a5-17224abaea3d
                 stepCounter: e8d0ce9f-896c-4484-b131-fc1f54540898
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests:
+          acceptedValues: true
+          hasNull: true
+        columnReference:
+          columnCounter: 15debf93-1390-4e0a-aaf8-d2b9ec17aaf1
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: VARCHAR(10)
+        description: "Vendor Category: ENTERPRISE (>= 100 drivers) or COMMERCIAL (< 100 drivers)"
+        isChangeTracking: true
+        name: VENDOR_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9427c17e-03a2-472a-85bb-f22b5001a477
+                stepCounter: c471c45e-650c-4a81-b0ac-a764b91a6768
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+        columnReference:
+          columnCounter: 83d21fb4-589d-4c5f-a3bf-5adaec75ccdb
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: NUMBER(3,0)
+        description: Number of drivers employed by the vendor
+        isChangeTracking: true
+        name: DRIVERS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36f0a873-bd7f-42af-930d-57a4eb05442e
+                stepCounter: c471c45e-650c-4a81-b0ac-a764b91a6768
+            transform: ""
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: f087a8d0-9c56-4586-8b56-40cfbc4f0091
           stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
@@ -78,10 +106,7 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: bb3515fb-3f0f-4132-9033-86298b1bdafc
           stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
@@ -95,10 +120,7 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 1338ee98-98eb-4033-8d52-a7b81ca9e949
           stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
@@ -112,10 +134,7 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: c2283400-ce9a-4f77-8828-a88463fb752a
           stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
@@ -129,10 +148,7 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 22c025a6-20d6-4eb8-82f4-27aabad1d682
           stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
@@ -146,10 +162,7 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 50df23b9-221a-41c8-804e-157e9f525283
           stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
@@ -164,23 +177,35 @@ operation:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
     cteString: ""
-    enabledColumnTestIDs: []
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - acceptedValues
+    materializationOption: ""
     sourceMapping:
       - aliases:
           STG_VENDOR: e8d0ce9f-896c-4484-b131-fc1f54540898
+          STG_VENDOR_DETAILS: c471c45e-650c-4a81-b0ac-a764b91a6768
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: SILVER
             nodeName: STG_VENDOR
+          - locationName: SILVER
+            nodeName: STG_VENDOR_DETAILS
         join:
-          joinCondition: FROM {{ ref('SILVER', 'STG_VENDOR') }} "STG_VENDOR"
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_VENDOR') }} "STG_VENDOR"
+            LEFT JOIN {{ ref('SILVER', 'STG_VENDOR_DETAILS') }} "STG_VENDOR_DETAILS"
+              ON "STG_VENDOR"."VENDOR_ID" = "STG_VENDOR_DETAILS"."VENDOR_ID"
         name: DIM_VENDOR
         noLinkRefs: []
   name: DIM_VENDOR
   overrideSQL: false
   schema: ""
   sqlType: Dimension
+  table: DIM_VENDOR
   type: sql
   version: 1
 type: Node

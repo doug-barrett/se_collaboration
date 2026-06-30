@@ -1,0 +1,106 @@
+fileVersion: 1
+id: c471c45e-650c-4a81-b0ac-a764b91a6768
+name: STG_VENDOR_DETAILS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Staged and cleaned vendor details with derived VENDOR_CATEGORY classification
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: true
+        columnReference:
+          columnCounter: 83fec0a1-890a-4e8f-8567-46823ef3302f
+          stepCounter: c471c45e-650c-4a81-b0ac-a764b91a6768
+        config: {}
+        dataType: NUMBER
+        description: Unique identifier for the vendor
+        name: VENDOR_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 31c186e8-fc39-4afd-a88d-5ce0e1a2fb36
+                stepCounter: cb171b97-0fe7-4940-aca8-cb6a8e1dc022
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+        columnReference:
+          columnCounter: 36f0a873-bd7f-42af-930d-57a4eb05442e
+          stepCounter: c471c45e-650c-4a81-b0ac-a764b91a6768
+        config: {}
+        dataType: NUMBER(3,0)
+        description: Number of drivers employed by the vendor
+        name: DRIVERS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3459a55b-4cd7-4878-bef7-0f38473bcb97
+                stepCounter: cb171b97-0fe7-4940-aca8-cb6a8e1dc022
+            transform: ""
+      - appliedColumnTests:
+          acceptedValues: true
+          hasNull: true
+        columnReference:
+          columnCounter: 9427c17e-03a2-472a-85bb-f22b5001a477
+          stepCounter: c471c45e-650c-4a81-b0ac-a764b91a6768
+        config: {}
+        dataType: VARCHAR(10)
+        description: "Vendor Category: ENTERPRISE (>= 100 drivers) or COMMERCIAL (< 100 drivers)"
+        name: VENDOR_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3459a55b-4cd7-4878-bef7-0f38473bcb97
+                stepCounter: cb171b97-0fe7-4940-aca8-cb6a8e1dc022
+            transform: CASE WHEN "VENDOR_DETAILS"."DRIVERS" >= 100 THEN 'ENTERPRISE' ELSE 'COMMERCIAL' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fcded375-1fbe-4d9b-a90a-48ec2c6bf385
+          stepCounter: c471c45e-650c-4a81-b0ac-a764b91a6768
+        config: {}
+        dataType: TEXT
+        description: Vendor contact phone number
+        name: PHONE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 136fab6d-0fe7-48f3-87c9-2645f82cc80f
+                stepCounter: cb171b97-0fe7-4940-aca8-cb6a8e1dc022
+            transform: ""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - acceptedValues
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          VENDOR_DETAILS: cb171b97-0fe7-4940-aca8-cb6a8e1dc022
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: VENDOR_DETAILS
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'VENDOR_DETAILS') }} "VENDOR_DETAILS"
+        name: STG_VENDOR_DETAILS
+        noLinkRefs: []
+  name: STG_VENDOR_DETAILS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  table: STG_VENDOR_DETAILS
+  type: sql
+  version: 1
+type: Node
