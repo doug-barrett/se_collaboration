@@ -104,20 +104,6 @@ operation:
             transform: SUM("FCT_YELLOW_CAB_TRIPS"."FARE_AMOUNT")
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: fc4a795d-b4a5-4480-acb5-17b3c86285e4
-          stepCounter: 567ec716-0a53-4e84-930d-bfa612f368af
-        config: {}
-        dataType: NUMBER(12,4)
-        description: "Fare Revenue Per Mile: SUM(fare_amount) / SUM(trip_distance) — yield efficiency metric ($/mi)"
-        name: FARE_REVENUE_PER_MILE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 66c4c17f-a73a-4720-b89b-dda7ab2ba9da
-                stepCounter: 1071b060-08d3-4a37-b76b-3b47c74b61ed
-            transform: SUM("FCT_YELLOW_CAB_TRIPS"."FARE_AMOUNT") / NULLIF(SUM("FCT_YELLOW_CAB_TRIPS"."TRIP_DISTANCE"), 0)
-      - appliedColumnTests: {}
-        columnReference:
           columnCounter: 9df4316a-a742-45ca-b94a-94a816e4c776
           stepCounter: 567ec716-0a53-4e84-930d-bfa612f368af
         config: {}
