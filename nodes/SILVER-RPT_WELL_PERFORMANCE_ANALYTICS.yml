@@ -177,8 +177,8 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('GOLD', 'FCT_MONTHLY_WELL_PRODUCTION') }} "FCT_MONTHLY_WELL_PRODUCTION"
-            JOIN {{ ref('SILVER', 'STG_WELL_HEADER') }} "STG_WELL_HEADER"
-              ON 1=1
+            INNER JOIN {{ ref('SILVER', 'STG_WELL_HEADER') }} "STG_WELL_HEADER"
+              ON "FCT_MONTHLY_WELL_PRODUCTION"."API14" = "STG_WELL_HEADER"."API14"
             WHERE "STG_WELL_HEADER"."STATUS" <> 'DRILLING'
         name: RPT_WELL_PERFORMANCE_ANALYTICS
         noLinkRefs: []
