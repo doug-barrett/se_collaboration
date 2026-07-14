@@ -1,0 +1,169 @@
+fileVersion: 1
+id: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+name: STG_WELL_HEADER
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Staging layer for WELL_HEADER with business key API14 and metadata column _LOAD_TIMESTAMP
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1e059184-f106-4742-b3ef-feb0fa9096c2
+          stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        config: {}
+        dataType: VARCHAR(256)
+        description: Business key - API 14-digit well identifier
+        name: API14
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4cb150a5-4768-4837-9b31-3761c10c47eb
+                stepCounter: 3f1020e7-85aa-49a9-8d64-286a24cefc2d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 123b6835-58a6-4a2f-9ade-7798912b14e5
+          stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: WELL_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 88561cce-1a95-4b72-8bc8-12b62930a348
+                stepCounter: 3f1020e7-85aa-49a9-8d64-286a24cefc2d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 543001d4-08d3-41aa-9713-9051677629e1
+          stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: OPERATOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6cdb8ecd-c934-4429-a7e3-eb824b52faf4
+                stepCounter: 3f1020e7-85aa-49a9-8d64-286a24cefc2d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c7b296c-32d7-40ec-a4aa-331c06ba32c5
+          stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: FIELD_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cce97c84-e4dc-4fff-8038-40a101534abd
+                stepCounter: 3f1020e7-85aa-49a9-8d64-286a24cefc2d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 889b11c6-1410-4654-9a98-ef5900e24f20
+          stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COUNTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3a53253b-7d68-4f51-9b35-24cd6bc9e5b1
+                stepCounter: 3f1020e7-85aa-49a9-8d64-286a24cefc2d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c127f958-f590-4680-bd7c-876ebd01dfa9
+          stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: STATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5cec0c8d-c0cd-4540-9183-419f64725fdc
+                stepCounter: 3f1020e7-85aa-49a9-8d64-286a24cefc2d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 855108f9-0c5a-47ea-8fd2-c15d6e65c86a
+          stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SPUD_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d27e021-2002-43e2-b38d-82f460ad5974
+                stepCounter: 3f1020e7-85aa-49a9-8d64-286a24cefc2d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e954bc7a-7bae-4d21-b172-1824cd110d26
+          stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2192c5fe-9493-44ad-8fa1-db081d2c2e57
+                stepCounter: 3f1020e7-85aa-49a9-8d64-286a24cefc2d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 855e3baa-ac08-4c16-b573-d6bedea4ced3
+          stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: "System-added metadata: load timestamp"
+        name: _LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP()
+        transform: CURRENT_TIMESTAMP()
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          WELL_HEADER: 3f1020e7-85aa-49a9-8d64-286a24cefc2d
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_MEWBOURNE
+            nodeName: WELL_HEADER
+        join:
+          joinCondition: FROM {{ ref('BRONZE_MEWBOURNE', 'WELL_HEADER') }} "WELL_HEADER"
+        name: STG_WELL_HEADER
+        noLinkRefs: []
+  name: STG_WELL_HEADER
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  table: STG_WELL_HEADER
+  type: sql
+  version: 1
+type: Node

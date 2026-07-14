@@ -1,0 +1,192 @@
+fileVersion: 1
+id: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+name: RPT_WELL_PERFORMANCE_ANALYTICS
+operation:
+  config:
+    OverrideSQLCreate: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    secureoption: false
+    selectDistinct: false
+    testsEnabled: false
+  database: ""
+  deployEnabled: true
+  description: Reporting view combining monthly production metrics with well header attributes. Excludes wells with STATUS = DRILLING.
+  isMultisource: false
+  locationName: SILVER
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 248f0000-b8da-4e7d-9cdf-7c5a279a237b
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: VARCHAR(256)
+        description: Business key - well identifier
+        name: API14
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 117e1761-4b9e-4d2f-8378-654f10cc211c
+                stepCounter: 969fc927-92ab-421c-974d-2a87b83c2985
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b1e28bd5-4aa4-447f-94b9-d92e7a3b2d5a
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: DATE
+        description: Monthly aggregation grain
+        name: PRODUCTION_MONTH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6653f4a3-efec-4b94-9d8d-e14e86785e3e
+                stepCounter: 969fc927-92ab-421c-974d-2a87b83c2985
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 12872910-9d86-43f5-957a-507ff03b2bb7
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: WELL_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 123b6835-58a6-4a2f-9ade-7798912b14e5
+                stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e73bed3b-8f87-489b-a87a-14219550a5fa
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: FIELD_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0c7b296c-32d7-40ec-a4aa-331c06ba32c5
+                stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b51aa0fd-099f-49b6-b088-ae70ccb223d8
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: COUNTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 889b11c6-1410-4654-9a98-ef5900e24f20
+                stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f5639c08-0072-47b8-82c8-cc1cb978357f
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: VARCHAR(256)
+        description: ""
+        name: STATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c127f958-f590-4680-bd7c-876ebd01dfa9
+                stepCounter: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0b997697-466b-42fa-ba8b-ece14cf07dcf
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: NUMBER(38,4)
+        description: Total oil production in barrels for the month
+        name: TOTAL_OIL_BBL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2a7f1df7-3770-4344-976d-3277605f870d
+                stepCounter: 969fc927-92ab-421c-974d-2a87b83c2985
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a172da6-9d09-4715-bf6a-7bf3f5958ad5
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: NUMBER(38,4)
+        description: Total gas production in MCF for the month
+        name: TOTAL_GAS_MCF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 668db3c1-1185-47df-bd91-2206ffd0b621
+                stepCounter: 969fc927-92ab-421c-974d-2a87b83c2985
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f0eca957-7510-4fa3-8a58-e2591177df90
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: NUMBER(38,4)
+        description: Total water production in barrels for the month
+        name: TOTAL_WATER_BBL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c0c12714-329c-46e8-b561-9e0d15128bf0
+                stepCounter: 969fc927-92ab-421c-974d-2a87b83c2985
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8ef0bf9e-2710-4c82-93ab-b73934dd43ef
+          stepCounter: 08ffd1ea-f0a3-47ab-ae59-7d2b6b3802d9
+        config: {}
+        dataType: NUMBER(38,6)
+        description: Gas-Oil Ratio (TOTAL_GAS_MCF / TOTAL_OIL_BBL)
+        name: GOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c264d5dd-bee0-46e9-a216-ffbaeedc9e47
+                stepCounter: 969fc927-92ab-421c-974d-2a87b83c2985
+            transform: ""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          FCT_MONTHLY_WELL_PRODUCTION: 969fc927-92ab-421c-974d-2a87b83c2985
+          STG_WELL_HEADER: af2c1e78-69cd-428b-8a5b-d620989f3ba4
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: FCT_MONTHLY_WELL_PRODUCTION
+          - locationName: SILVER
+            nodeName: STG_WELL_HEADER
+        join:
+          joinCondition: |-
+            FROM {{ ref('GOLD', 'FCT_MONTHLY_WELL_PRODUCTION') }} "FCT_MONTHLY_WELL_PRODUCTION"
+            JOIN {{ ref('SILVER', 'STG_WELL_HEADER') }} "STG_WELL_HEADER"
+              ON "FCT_MONTHLY_WELL_PRODUCTION"."API14" = "STG_WELL_HEADER"."API14"
+            WHERE "STG_WELL_HEADER"."STATUS" <> 'DRILLING'
+        name: RPT_WELL_PERFORMANCE_ANALYTICS
+        noLinkRefs: []
+  name: RPT_WELL_PERFORMANCE_ANALYTICS
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  table: RPT_WELL_PERFORMANCE_ANALYTICS
+  type: sql
+  version: 1
+type: Node

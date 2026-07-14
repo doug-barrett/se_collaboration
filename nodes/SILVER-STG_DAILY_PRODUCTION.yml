@@ -1,0 +1,141 @@
+fileVersion: 1
+id: 52759989-18df-44b4-aac5-e003df69bb25
+name: STG_DAILY_PRODUCTION
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Staging layer for DAILY_PRODUCTION with business key API14 and metadata column _LOAD_TIMESTAMP
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 19520579-2b5c-4941-94b8-48d6ec04376b
+          stepCounter: 52759989-18df-44b4-aac5-e003df69bb25
+        config: {}
+        dataType: VARCHAR(256)
+        description: Business key - API 14-digit well identifier
+        name: API14
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ee41d7a4-5533-41f0-9de3-fbdb8fd89000
+                stepCounter: bc2c4590-2bf0-4412-a5d7-53b8009d3438
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dee45511-452e-4fdc-bfa6-e8eedf1fcd7a
+          stepCounter: 52759989-18df-44b4-aac5-e003df69bb25
+        config: {}
+        dataType: DATE
+        description: ""
+        name: PRODUCTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7f879408-3e96-4a9f-a729-e3558b89eba3
+                stepCounter: bc2c4590-2bf0-4412-a5d7-53b8009d3438
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fc0f75b-c522-404c-8ae8-2ba7d175514a
+          stepCounter: 52759989-18df-44b4-aac5-e003df69bb25
+        config: {}
+        dataType: NUMBER(38,4)
+        description: ""
+        name: OIL_BBL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e08e6fa-84b6-4646-a03b-bc348d7b95d6
+                stepCounter: bc2c4590-2bf0-4412-a5d7-53b8009d3438
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6cb7b63b-32cb-4959-9a9d-7885ccd33067
+          stepCounter: 52759989-18df-44b4-aac5-e003df69bb25
+        config: {}
+        dataType: NUMBER(38,4)
+        description: ""
+        name: GAS_MCF
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 11b024ca-0519-4ec6-b629-07253899e25b
+                stepCounter: bc2c4590-2bf0-4412-a5d7-53b8009d3438
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a0d7d776-bed4-4849-abb2-d703309b1b4e
+          stepCounter: 52759989-18df-44b4-aac5-e003df69bb25
+        config: {}
+        dataType: NUMBER(38,4)
+        description: ""
+        name: WATER_BBL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d2326f5a-5649-4c6f-97c3-66b0e77138da
+                stepCounter: bc2c4590-2bf0-4412-a5d7-53b8009d3438
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 183d9eff-89ff-40c9-89e1-c4df9b66fe13
+          stepCounter: 52759989-18df-44b4-aac5-e003df69bb25
+        config: {}
+        dataType: NUMBER(38,4)
+        description: ""
+        name: CHOKE_SIZE_64THS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: abe39336-5cb3-409c-ac72-581b9b97521c
+                stepCounter: bc2c4590-2bf0-4412-a5d7-53b8009d3438
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 640cbe7b-d1c5-41f3-b32f-248f5210eaae
+          stepCounter: 52759989-18df-44b4-aac5-e003df69bb25
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: "System-added metadata: load timestamp"
+        name: _LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP()
+        transform: CURRENT_TIMESTAMP()
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          DAILY_PRODUCTION: bc2c4590-2bf0-4412-a5d7-53b8009d3438
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_MEWBOURNE
+            nodeName: DAILY_PRODUCTION
+        join:
+          joinCondition: FROM {{ ref('BRONZE_MEWBOURNE', 'DAILY_PRODUCTION') }} "DAILY_PRODUCTION"
+        name: STG_DAILY_PRODUCTION
+        noLinkRefs: []
+  name: STG_DAILY_PRODUCTION
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  table: STG_DAILY_PRODUCTION
+  type: sql
+  version: 1
+type: Node
