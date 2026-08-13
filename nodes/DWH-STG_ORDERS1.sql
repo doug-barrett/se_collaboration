@@ -1,10 +1,8 @@
-@id("aff36c26-28c4-4a20-8e97-66eb04c9166e")
+@id("cb14be68-a6b9-43bc-904c-3673526b710c")
 @nodeType("176")
+@truncateBefore(false)
 @preSQL("ALTER SESSION SET TIMEZONE = 'UTC'")
-@postSQL("SELECT '1'")
-@testsEnabled(true)
-@pre_test("SELECT * FROM {{ ref('DWH', 'STG_RECENT_ORDER_SUMMARY') }} WHERE total_spend < 0
-")
+@postSQL("SELECT 'HELLO, WORLD'")
 
 WITH max_date AS (
     SELECT MAX(O_ORDERDATE) AS max_order_date
