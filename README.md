@@ -1,1 +1,3 @@
 # Welcome from Coalesce!
+
+Build me a taxi analytics pipeline: clean reference data for vendors, locations, payment types, and rate codes into proper dimensions, then stage the last 30 days of trips, work out trip duration, speed, and time of day, tag each trip with its dimensions, and land it as a trips fact table. Then roll trips up monthly by vendor into separate financial and operational views.Build me a taxi analytics pipeline: clean reference data for vendors, locations, payment types, and rate codes into proper dimensions, then stage the last 30 days of trips, work out trip duration, speed, and time of day, tag each trip with its dimensions, and land it as a trips fact table. Then roll trips up monthly by vendor into separate financial and operational views.

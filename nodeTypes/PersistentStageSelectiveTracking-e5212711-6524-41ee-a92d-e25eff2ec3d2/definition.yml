@@ -1,0 +1,262 @@
+fileVersion: 1
+id: e5212711-6524-41ee-a92d-e25eff2ec3d2
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Persistent Stage Advanced Deploy (Selective Tracking)
+    short: PSTG
+    plural: Persistent Stages
+    tagColor: '#29B2DB'
+
+    deployStrategy: advanced
+
+    config:
+    - groupName: Options
+      items:
+      - type: materializationSelector
+        isRequired: true
+        default: table
+        options:
+        - table
+        - transient table
+
+      - type: multisourceToggle
+        enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
+
+      - displayName: Multi Source Strategy
+        attributeName: insertStrategy
+        type: dropdownSelector
+        default: UNION ALL
+        options:
+        - "UNION"
+        - "UNION ALL"
+        isRequired: false
+        enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: clusterKey
+        displayName: Cluster Key
+        default: false
+        isRequired: false
+        enableIf: "{% if node.materializationType == 'table' or node.materializationType == 'transient table' %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: clusterKeyExpressions
+        displayName: Allow Expressions in Cluster Key
+        default: false
+        isRequired: false
+        enableIf: "{% if config.clusterKey %} true {% else %} false {% endif %}"
+
+      - type: tabular
+        displayName: 'Cluster Key'
+        attributeName: clusterKeyConfig
+        columns:
+
+        -  type: columnDropdownSelector
+           displayName: Column Name
+           attributeName: columnName
+           isRequired: false
+
+        isRequired: false
+        enableIf: "{% if (config.clusterKey and not config.clusterKeyExpressions) %} true {% else %} false {% endif %}"
+
+      - type: tabular
+        displayName: 'Cluster Key'
+        attributeName: clusterKeyConfigExpressions
+        columns:
+
+        -  type: columnDropdownSelector
+           displayName: Column Name
+           attributeName: columnNameExpressions
+           isRequired: false
+
+        -  type: textBox
+           displayName: Expression(Column name to be enclosed within double quotes)
+           attributeName: sqlExpression
+           default: "ex. trunc(\"<column_name>\", -5)"
+           isRequired: false
+
+        isRequired: false
+        enableIf: "{% if (config.clusterKey and config.clusterKeyExpressions) %} true {% else %} false {% endif %}"
+
+      - type: businessKeyColumns
+        isRequired: false
+
+      - type: toggleButton
+        attributeName: lastModifiedComparison
+        displayName: Last Modified Comparison
+        default: false
+        enableIf: "{% if node.materializationType != 'view' and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
+
+      - type: label
+        attributeName: note1
+        displayName: Last Modified columns can be either a timestamp or incremental id column
+        enableIf: "{% if config.lastModifiedComparison  %} true {% else %} false {% endif %}"
+
+
+      - type: columnDropdownSelector
+        attributeName: lastModifiedColumn
+        displayName: Last Modified Column
+        enableIf: "{% if node.materializationType != 'view' and config.lastModifiedComparison %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: type2Dimension
+        displayName: Type 2 Dimension
+        default: false
+        enableIf: "{% if config.lastModifiedComparison %} true {% else %} false {% endif %}"
+
+
+      - type: changeTrackingColumns
+        isRequired: false
+        attributeName: changeTrackingColumn
+        displayName: Change Tracking
+        enableIf: "{% if config.lastModifiedComparison  or node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+      - displayName: Delete Strategy 
+        attributeName: deleteStrategy
+        type: dropdownSelector
+        default: "NO DELETE"
+        options:
+        - "NO DELETE"
+        - "SOFT DELETE"
+        - "HARD DELETE"
+        isRequired: false
+        enableIf: "{% if (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
+
+      - displayName: Column that Identifies DML Operations*(DELETE)
+        attributeName: dmlCol
+        type: columnDropdownSelector
+        enableIf: "{% if config.deleteStrategy != 'NO DELETE' and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
+
+      - displayName: Delete Value *
+        attributeName: dmlDelete
+        type: textBox
+        default: D
+        enableIf: "{% if config.deleteStrategy != 'NO DELETE' and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
+
+
+      - displayName: Truncate Before
+        attributeName: truncateBefore
+        type: toggleButton
+        default: false
+
+
+      - displayName: Enable Tests
+        attributeName: testsEnabled
+        type: toggleButton
+        default: false
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+
+      - displayName: Distinct
+        attributeName: selectDistinct
+        type: toggleButton
+        enableIf: "{% if config.groupByAll %} false {% else %} true {% endif %}"
+        default: false
+
+      - displayName: Group By All
+        attributeName: groupByAll
+        type: toggleButton
+        enableIf: "{% if config.selectDistinct %} false {% else %} true {% endif %}"
+        default: false
+
+      - displayName: Order By
+        attributeName: orderby
+        type: toggleButton
+        default: false
+
+      - type: tabular
+        displayName: 'Sort column'
+        attributeName: orderbycolumn
+        columns:
+
+          -  type: columnDropdownSelector
+             displayName: Column Name
+             attributeName: sortColName
+
+          -  type: dropdownSelector
+             displayName: Sort Order
+             attributeName: sortOrder
+             default: desc
+             options:
+             - desc
+             - asc
+
+        isRequired: true
+        enableIf: "{% if config.orderby %} true {% else %} false {% endif %}"    
+
+      - displayName: Pre-SQL
+        attributeName: preSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+
+      - displayName: Post-SQL
+        attributeName: postSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+    systemColumns:
+
+    - displayName: '{{NODE_NAME}}_KEY'
+      transform: ''
+      dataType: NUMBER
+      placement: beginning
+      attributeName: isSurrogateKey
+
+    - displayName: SYSTEM_VERSION
+      transform: ''
+      dataType: NUMBER
+      placement: end
+      attributeName: isSystemVersion
+
+    - displayName: SYSTEM_CURRENT_FLAG
+      transform: ''
+      dataType: VARCHAR
+      placement: end
+      attributeName: isSystemCurrentFlag
+
+    - displayName: SYSTEM_START_DATE
+      transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      dataType: TIMESTAMP
+      placement: end
+      attributeName: isSystemStartDate
+
+    - displayName: SYSTEM_END_DATE
+      transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      dataType: TIMESTAMP
+      placement: end
+      attributeName: isSystemEndDate
+
+    - displayName: SYSTEM_CREATE_DATE
+      transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      dataType: TIMESTAMP
+      placement: end
+      attributeName: isSystemCreateDate
+
+    - displayName: SYSTEM_UPDATE_DATE
+      transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      dataType: TIMESTAMP
+      placement: end
+      attributeName: isSystemUpdateDate
+
+name: Persistent Stage Advanced Deploy (Selective Tracking)
+type: NodeType

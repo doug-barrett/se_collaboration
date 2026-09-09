@@ -1,0 +1,6 @@
+@id("ec492233-7c14-41d0-b861-2816270ab9ce")
+@nodeType("6")
+SELECT
+  PAYMENT_TYPE_ID,
+  PAYMENT_TYPE
+FROM {{ ref("BRONZE", "PAYMENT_TYPE") }}

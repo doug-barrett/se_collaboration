@@ -25,7 +25,7 @@ operation:
         config: {}
         dataType: NUMBER
         defaultValue: ""
-        description: Surrogate key for the location dimension. Uniquely identifies each location record. Used as the primary key for the dimension. Enables efficient joins with fact tables like Trip and Payment. Supports location-based reporting and analysis. System-generated during the data warehousing process. Not sourced from any specific source column. Integer value with no inherent business meaning beyond identification. Increments automatically with each new location.
+        description: Surrogate key for the location dimension.
         isSurrogateKey: true
         name: DIM_LOCATION_KEY
         nullable: true
@@ -38,7 +38,7 @@ operation:
           stepCounter: 71a23170-60d6-4664-9108-7052a7a4919a
         config: {}
         dataType: NUMBER(3,0)
-        description: Business key for the location dimension. Identifies each location record. Sourced from LOCATION_ID column in the source data. Used to track location-specific metrics in reports. Helps in identifying unique location. Integer value. No transformations applied. Used for auditing and data reconciliation. Part of the composite key along with other attributes. Enables tracking of changes to location attributes over time.
+        description: Business key for the location dimension.
         isBusinessKey: true
         name: LOCATION_ID
         nullable: true
@@ -53,7 +53,7 @@ operation:
           stepCounter: 71a23170-60d6-4664-9108-7052a7a4919a
         config: {}
         dataType: VARCHAR(16777216)
-        description: Borough in which the location is situated. Sourced from the BOROUGH column in the source data. Used in location-based analytics and reporting. Helps in understanding the distribution of activity across different boroughs. String value. No transformations applied. Enables filtering and grouping of data by borough. Part of the location's descriptive information. Essential for geographic segmentation and analysis.
+        description: Borough in which the location is situated.
         name: BOROUGH
         nullable: true
         sourceColumnReferences:
@@ -67,7 +67,7 @@ operation:
           stepCounter: 71a23170-60d6-4664-9108-7052a7a4919a
         config: {}
         dataType: VARCHAR(16777216)
-        description: Zone within the borough where the location is situated. Sourced from the ZONE column in the source data. Used in location-based analytics and reporting. Helps in understanding the distribution of activity across different zones. String value. No transformations applied. Enables filtering and grouping of data by zone. Part of the location's descriptive information. Essential for geographic segmentation and analysis.
+        description: Zone within the borough where the location is situated.
         name: ZONE
         nullable: true
         sourceColumnReferences:
@@ -81,7 +81,7 @@ operation:
           stepCounter: 71a23170-60d6-4664-9108-7052a7a4919a
         config: {}
         dataType: VARCHAR(16777216)
-        description: Service zone associated with the location. Sourced from the SERVICE_ZONE column in the source data. Used in location-based analytics and reporting. Helps in understanding the distribution of activity across different service zones. String value. No transformations applied. Enables filtering and grouping of data by service zone. Part of the location's descriptive information. Essential for operational analysis.
+        description: Service zone associated with the location.
         name: SERVICE_ZONE
         nullable: true
         sourceColumnReferences:
@@ -95,7 +95,7 @@ operation:
           stepCounter: 71a23170-60d6-4664-9108-7052a7a4919a
         config: {}
         dataType: VARCHAR(16777216)
-        description: Name of the source file from which the location data was loaded. Sourced from the FILENAME column in the source data. Used for auditing and data lineage purposes. Helps in tracking the origin of the data. String value. No transformations applied. Enables identification of the specific file that contributed to a location record. Useful for troubleshooting and data quality monitoring. Supports data governance efforts.
+        description: Name of the source file from which the location data was loaded.
         name: FILENAME
         nullable: true
         sourceColumnReferences:
@@ -113,7 +113,7 @@ operation:
         config: {}
         dataType: NUMBER
         defaultValue: ""
-        description: Version number of the location record. System-generated column. Used for tracking changes to location attributes over time. Integer value. Increments automatically with each update to a location record. Enables historical analysis and auditing of data changes. Supports temporal data warehousing. Not sourced from any specific source column. Essential for maintaining data integrity and consistency. Facilitates point-in-time reporting.
+        description: Version number of the location record.
         isSystemVersion: true
         name: SYSTEM_VERSION
         nullable: true
@@ -130,7 +130,7 @@ operation:
         config: {}
         dataType: VARCHAR
         defaultValue: ""
-        description: Flag indicating whether the location record is the most current version. System-generated column. Used for identifying the active location record. String value ('Y' or 'N'). Enables efficient querying of current location data. Supports real-time reporting and analysis. Not sourced from any specific source column. Essential for maintaining data accuracy and relevance. Simplifies data retrieval for current state analysis.
+        description: Flag indicating whether the location record is the most current version.
         isSystemCurrentFlag: true
         name: SYSTEM_CURRENT_FLAG
         nullable: true
@@ -147,7 +147,7 @@ operation:
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
-        description: Timestamp indicating the start date and time when the location record became active. System-generated column. Used for tracking the effective date of location attributes. Timestamp value. Derived using the CURRENT_TIMESTAMP function. Enables historical analysis and auditing of data changes. Supports temporal data warehousing. Not sourced from any specific source column. Essential for maintaining data integrity and consistency.
+        description: Timestamp indicating the start date and time when the location record became active.
         isSystemStartDate: true
         name: SYSTEM_START_DATE
         nullable: true
@@ -164,7 +164,7 @@ operation:
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
-        description: Timestamp indicating the end date and time when the location record became inactive. System-generated column. Used for tracking the expiration date of location attributes. Timestamp value. Defaults to '2999-12-31 00:00:00' for current records. Enables historical analysis and auditing of data changes. Supports temporal data warehousing. Not sourced from any specific source column. Essential for maintaining data integrity.
+        description: Timestamp indicating the end date and time when the location record became inactive.
         isSystemEndDate: true
         name: SYSTEM_END_DATE
         nullable: true
@@ -181,7 +181,7 @@ operation:
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
-        description: Timestamp indicating the date and time when the location record was created. System-generated column. Used for auditing and data lineage purposes. Timestamp value. Derived using the CURRENT_TIMESTAMP function. Enables tracking of the creation time of location records. Not sourced from any specific source column. Essential for maintaining data integrity and consistency. Facilitates data governance efforts and troubleshooting.
+        description: Timestamp indicating the date and time when the location record was created.
         isSystemCreateDate: true
         name: SYSTEM_CREATE_DATE
         nullable: true
@@ -198,7 +198,7 @@ operation:
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
-        description: Timestamp indicating the date and time when the location record was last updated. System-generated column. Used for auditing and data lineage purposes. Timestamp value. Derived using the CURRENT_TIMESTAMP function. Enables tracking of the last modification time of location records. Not sourced from any specific source column. Essential for maintaining data integrity and consistency. Facilitates data governance efforts.
+        description: Timestamp indicating the date and time when the location record was last updated.
         isSystemUpdateDate: true
         name: SYSTEM_UPDATE_DATE
         nullable: true

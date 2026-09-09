@@ -1,0 +1,231 @@
+fileVersion: 1
+id: 823d4bf9-8860-478a-bdb6-efd072072981
+name: DIM_VENDOR
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Reference data of all New York City taxi ride vendors
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5694f692-c9f5-49e1-96a4-1c07ee99077e
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_VENDOR_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a0041e1-2a27-425d-9c23-983b195ddbe1
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: true
+        name: VENDOR_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: VENDOR_ID
+                stepCounter: 3312f255-b4b1-4b70-9d63-588fcc5c50d8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ab5b8c5-5706-4f45-a866-3e94a37e72d5
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        isChangeTracking: true
+        name: VENDOR_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: VENDOR_NAME
+                stepCounter: 3312f255-b4b1-4b70-9d63-588fcc5c50d8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c1de3d5-4b6f-4c30-9d4f-4f6f6d2a9c11
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: VARCHAR(10)
+        description: ENTERPRISE at 100 or more active drivers, otherwise COMMERCIAL.
+          Change tracked so a vendor moving between tiers opens a new dimension version
+        isChangeTracking: true
+        name: VENDOR_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: VENDOR_CATEGORY
+                stepCounter: 3312f255-b4b1-4b70-9d63-588fcc5c50d8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e8a1f47-3c92-4d18-8b55-0a7e5c9d6b23
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Active driver count behind VENDOR_CATEGORY. Not change tracked,
+          so routine headcount movement does not open a new version
+        name: DRIVER_COUNT_ACTIVE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: DRIVER_COUNT_ACTIVE
+                stepCounter: 3312f255-b4b1-4b70-9d63-588fcc5c50d8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d4c7b81-6e35-4a72-95c8-1f2b8e4a7d56
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: DRIVER_COUNT_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: DRIVER_COUNT_TOTAL
+                stepCounter: 3312f255-b4b1-4b70-9d63-588fcc5c50d8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4f7e2a93-8d61-4c05-b47a-3e9d5c8f1b62
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: NUMBER(3,2)
+        description: ""
+        name: DRIVER_RATING_AVG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: DRIVER_RATING_AVG
+                stepCounter: 3312f255-b4b1-4b70-9d63-588fcc5c50d8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f087a8d0-9c56-4586-8b56-40cfbc4f0091
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb3515fb-3f0f-4132-9033-86298b1bdafc
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1338ee98-98eb-4033-8d52-a7b81ca9e949
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c2283400-ce9a-4f77-8828-a88463fb752a
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22c025a6-20d6-4eb8-82f4-27aabad1d682
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 50df23b9-221a-41c8-804e-157e9f525283
+          stepCounter: 823d4bf9-8860-478a-bdb6-efd072072981
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - acceptedValues
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          SQL_VENDOR_ENRICHED: 3312f255-b4b1-4b70-9d63-588fcc5c50d8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SQL_VENDOR_ENRICHED
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'SQL_VENDOR_ENRICHED') }} "SQL_VENDOR_ENRICHED"
+        name: DIM_VENDOR
+        noLinkRefs: []
+  name: DIM_VENDOR
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  table: DIM_VENDOR
+  type: sql
+  version: 1
+type: Node

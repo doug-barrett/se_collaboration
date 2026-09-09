@@ -1,0 +1,9 @@
+@id("de263dd4-d12c-4a97-8958-18f8f17a7d62")
+@nodeType("6")
+SELECT
+  LOCATION_ID,
+  BOROUGH,
+  ZONE,
+  SERVICE_ZONE,
+  FILENAME
+FROM {{ ref("BRONZE", "LOCATION") }}

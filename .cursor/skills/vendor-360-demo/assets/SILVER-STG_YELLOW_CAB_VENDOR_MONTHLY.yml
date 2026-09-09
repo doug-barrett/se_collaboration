@@ -104,6 +104,54 @@ operation:
             transform: SUM("FCT_YELLOW_CAB_TRIPS"."FARE_AMOUNT")
       - appliedColumnTests: {}
         columnReference:
+          columnCounter: a0df31bb-1fc4-4432-ba9f-1ba27bd4fe57
+          stepCounter: 567ec716-0a53-4e84-930d-bfa612f368af
+        config: {}
+        dataType: NUMBER(12,2)
+        description: Numerator for Fare Revenue per Mile. Base fare only, void trips excluded
+        name: TOTAL_FARE_AMOUNT_BILLABLE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 66c4c17f-a73a-4720-b89b-dda7ab2ba9da
+                stepCounter: 1071b060-08d3-4a37-b76b-3b47c74b61ed
+            transform: SUM(CASE WHEN COALESCE("FCT_YELLOW_CAB_TRIPS"."PAYMENT_TYPE", '')
+              <> 'Void' THEN "FCT_YELLOW_CAB_TRIPS"."FARE_AMOUNT" END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b578cc6-79b5-43f4-8bd4-19bcc540eb00
+          stepCounter: 567ec716-0a53-4e84-930d-bfa612f368af
+        config: {}
+        dataType: NUMBER(12,4)
+        description: Denominator for Fare Revenue per Mile. Void trips excluded
+        name: TRIP_DISTANCE_TOTAL_BILLABLE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 78391b4d-adee-434e-93ad-8113ce018af7
+                stepCounter: 1071b060-08d3-4a37-b76b-3b47c74b61ed
+            transform: SUM(CASE WHEN COALESCE("FCT_YELLOW_CAB_TRIPS"."PAYMENT_TYPE", '')
+              <> 'Void' THEN "FCT_YELLOW_CAB_TRIPS"."TRIP_DISTANCE" END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d46a3426-9139-4392-84b9-92a3a3ed3d5c
+          stepCounter: 567ec716-0a53-4e84-930d-bfa612f368af
+        config: {}
+        dataType: NUMBER(12,4)
+        description: Ratio of totals within the vendor/month. Only valid at this grain,
+          re-aggregate from the numerator and denominator instead
+        name: FARE_REVENUE_PER_MILE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 66c4c17f-a73a-4720-b89b-dda7ab2ba9da
+                stepCounter: 1071b060-08d3-4a37-b76b-3b47c74b61ed
+            transform: SUM(CASE WHEN COALESCE("FCT_YELLOW_CAB_TRIPS"."PAYMENT_TYPE", '')
+              <> 'Void' THEN "FCT_YELLOW_CAB_TRIPS"."FARE_AMOUNT" END) / NULLIF(SUM(CASE
+              WHEN COALESCE("FCT_YELLOW_CAB_TRIPS"."PAYMENT_TYPE", '') <> 'Void' THEN
+              "FCT_YELLOW_CAB_TRIPS"."TRIP_DISTANCE" END), 0)
+      - appliedColumnTests: {}
+        columnReference:
           columnCounter: 9df4316a-a742-45ca-b94a-94a816e4c776
           stepCounter: 567ec716-0a53-4e84-930d-bfa612f368af
         config: {}
