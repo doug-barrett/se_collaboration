@@ -1,0 +1,414 @@
+# yaml-language-server: $schema=https://schemas.synq.io/synq-monitors/v1/config.schema.json
+
+version: v1beta2
+namespace: taxi-data-quality
+
+defaults:
+  severity: ERROR
+
+entities:
+  # =========================================================================
+  # Source: TAXI_SRC.TRIPS
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_src::trips
+
+    monitors:
+      - id: src_trips_volume
+        type: volume
+
+      - id: src_trips_freshness
+        type: freshness
+        expression: LAST_MODIFIED_TS
+
+    tests:
+      - type: not_null
+        id: src_trips_not_null_trip_id
+        name: "Source trip ID must not be null"
+        columns: [TRIP_ID]
+        save_failures: true
+
+      - type: not_null
+        id: src_trips_not_null_vendor_id
+        name: "Source vendor ID must not be null"
+        columns: [VENDOR_ID]
+        save_failures: true
+
+      - type: not_null
+        id: src_trips_not_null_pickup_dt
+        name: "Source pickup datetime must not be null"
+        columns: [PICKUP_DATETIME]
+        save_failures: true
+
+      - type: not_null
+        id: src_trips_not_null_dropoff_dt
+        name: "Source dropoff datetime must not be null"
+        columns: [DROPOFF_DATETIME]
+        save_failures: true
+
+      - type: not_null
+        id: src_trips_not_null_load_date
+        name: "Source load date must not be null"
+        columns: [LOAD_DATE]
+        save_failures: true
+
+      - type: unique
+        id: src_trips_unique_trip_id
+        name: "Source trip ID must be unique"
+        columns: [TRIP_ID]
+        save_failures: true
+
+  # =========================================================================
+  # STG_YELLOW_CAB_TRIPS — trip staging
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_yellow_cab_trips
+
+    monitors:
+      - id: stg_trips_volume
+        type: volume
+
+    tests:
+      - type: not_null
+        id: stg_trips_not_null_trip_id
+        name: "Trip ID must not be null"
+        columns: [TRIP_ID]
+        save_failures: true
+
+      - type: not_null
+        id: stg_trips_not_null_vendor_id
+        name: "Vendor ID must not be null"
+        columns: [VENDOR_ID]
+        save_failures: true
+
+      - type: not_null
+        id: stg_trips_not_null_pickup_dt
+        name: "Pickup datetime must not be null"
+        columns: [PICKUP_DATETIME]
+        save_failures: true
+
+      - type: not_null
+        id: stg_trips_not_null_dropoff_dt
+        name: "Dropoff datetime must not be null"
+        columns: [DROPOFF_DATETIME]
+        save_failures: true
+
+      - type: not_null
+        id: stg_trips_not_null_payment_type_id
+        name: "Payment type ID must not be null"
+        columns: [PAYMENT_TYPE_ID]
+        save_failures: true
+
+      - type: not_null
+        id: stg_trips_not_null_rate_code_id
+        name: "Rate code ID must not be null"
+        columns: [RATE_CODE_ID]
+        save_failures: true
+
+      - type: unique
+        id: stg_trips_unique_trip_id
+        name: "Trip ID must be unique"
+        columns: [TRIP_ID]
+        save_failures: true
+
+      - type: business_rule
+        id: stg_trips_positive_distance
+        name: "Trip distance must be non-negative"
+        sql_expression: "TRIP_DISTANCE >= 0"
+        save_failures: true
+
+      # --- PLANNED FAILURE: planted NULL PU_LOCATION_ID defect ---
+      - type: not_null
+        id: stg_trips_not_null_pu_location
+        name: "Pickup location must not be null (source data entry issue)"
+        columns: [PU_LOCATION_ID]
+        save_failures: true
+
+  # =========================================================================
+  # STG_VENDOR
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_vendor
+
+    tests:
+      - type: not_null
+        id: stg_vendor_not_null_id
+        name: "Vendor ID must not be null"
+        columns: [VENDOR_ID]
+        save_failures: true
+
+      - type: unique
+        id: stg_vendor_unique_id
+        name: "Vendor ID must be unique"
+        columns: [VENDOR_ID]
+        save_failures: true
+
+      - type: not_null
+        id: stg_vendor_not_null_name
+        name: "Vendor name must not be null"
+        columns: [VENDOR_NAME]
+        save_failures: true
+
+  # =========================================================================
+  # STG_LOCATION
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_location
+
+    tests:
+      - type: not_null
+        id: stg_location_not_null_id
+        name: "Location ID must not be null"
+        columns: [LOCATION_ID]
+        save_failures: true
+
+      - type: unique
+        id: stg_location_unique_id
+        name: "Location ID must be unique"
+        columns: [LOCATION_ID]
+        save_failures: true
+
+      - type: not_null
+        id: stg_location_not_null_borough
+        name: "Borough must not be null"
+        columns: [BOROUGH]
+        save_failures: true
+
+      - type: not_null
+        id: stg_location_not_null_zone
+        name: "Zone must not be null"
+        columns: [ZONE]
+        save_failures: true
+
+      - type: not_null
+        id: stg_location_not_null_svczone
+        name: "Service zone must not be null"
+        columns: [SERVICE_ZONE]
+        save_failures: true
+
+  # =========================================================================
+  # STG_PAYMENT_TYPE
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_payment_type
+
+    tests:
+      - type: not_null
+        id: stg_payment_not_null_id
+        name: "Payment type ID must not be null"
+        columns: [PAYMENT_TYPE_ID]
+        save_failures: true
+
+      - type: unique
+        id: stg_payment_unique_id
+        name: "Payment type ID must be unique"
+        columns: [PAYMENT_TYPE_ID]
+        save_failures: true
+
+      - type: not_null
+        id: stg_payment_not_null_name
+        name: "Payment type name must not be null"
+        columns: [PAYMENT_TYPE]
+        save_failures: true
+
+  # =========================================================================
+  # STG_RATE_CODE
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_rate_code
+
+    tests:
+      - type: not_null
+        id: stg_ratecode_not_null_id
+        name: "Rate code ID must not be null"
+        columns: [RATE_CODE_ID]
+        save_failures: true
+
+      - type: unique
+        id: stg_ratecode_unique_id
+        name: "Rate code ID must be unique"
+        columns: [RATE_CODE_ID]
+        save_failures: true
+
+      - type: not_null
+        id: stg_ratecode_not_null_name
+        name: "Rate code name must not be null"
+        columns: [RATE_CODE]
+        save_failures: true
+
+  # =========================================================================
+  # ODS_YELLOW_CAB_TRIPS
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::ods_yellow_cab_trips
+
+    tests:
+      - type: unique
+        id: ods_trips_unique_active_trip_id
+        name: "No duplicate active trip records"
+        columns: [TRIP_ID]
+        save_failures: true
+
+      - type: accepted_values
+        id: ods_trips_valid_current_flag
+        name: "System current flag must be Y or N"
+        column: SYSTEM_CURRENT_FLAG
+        values: ["Y", "N"]
+        save_failures: true
+
+  # =========================================================================
+  # BIZ_YELLOW_CAB_TRIPS
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::biz_yellow_cab_trips
+
+    tests:
+      - type: not_null
+        id: biz_trips_not_null_trip_id
+        name: "Business trip ID must not be null"
+        columns: [TRIP_ID]
+        save_failures: true
+
+      - type: not_null
+        id: biz_trips_not_null_vendor_name
+        name: "Vendor name must resolve from dimension"
+        columns: [VENDOR_NAME]
+        save_failures: true
+
+      - type: business_rule
+        id: biz_trips_dropoff_after_pickup
+        name: "Dropoff must be after pickup"
+        sql_expression: "PICKUP_DATETIME < DROPOFF_DATETIME"
+        save_failures: true
+
+      - type: business_rule
+        id: biz_trips_positive_total
+        name: "Total amount must be positive"
+        sql_expression: "TOTAL_AMOUNT > 0"
+        save_failures: true
+
+  # =========================================================================
+  # FCT_YELLOW_CAB_TRIPS
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_gold::fct_yellow_cab_trips
+
+    tests:
+      - type: not_null
+        id: fct_trips_not_null_trip_id
+        name: "Fact trip ID must not be null"
+        columns: [TRIP_ID]
+        save_failures: true
+
+      - type: not_null
+        id: fct_trips_not_null_vendor_id
+        name: "Fact vendor ID must not be null"
+        columns: [VENDOR_ID]
+        save_failures: true
+
+      - type: not_null
+        id: fct_trips_not_null_pickup_dt
+        name: "Fact pickup datetime must not be null"
+        columns: [PICKUP_DATETIME]
+        save_failures: true
+
+      - type: not_null
+        id: fct_trips_not_null_dropoff_dt
+        name: "Fact dropoff datetime must not be null"
+        columns: [DROPOFF_DATETIME]
+        save_failures: true
+
+      - type: not_null
+        id: fct_trips_not_null_load_date
+        name: "Fact load date must not be null"
+        columns: [LOAD_DATE]
+        save_failures: true
+
+      - type: unique
+        id: fct_trips_unique_trip_id
+        name: "Fact trip ID must be unique"
+        columns: [TRIP_ID]
+        save_failures: true
+
+      - type: business_rule
+        id: fct_trips_positive_distance
+        name: "Trip distance must be non-negative"
+        sql_expression: "TRIP_DISTANCE >= 0"
+        save_failures: true
+
+      - type: business_rule
+        id: fct_trips_positive_fare
+        name: "Fare amount must be non-negative"
+        sql_expression: "FARE_AMOUNT >= 0"
+        save_failures: true
+
+      - type: accepted_values
+        id: fct_trips_valid_payment
+        name: "Payment type must be a known value"
+        column: PAYMENT_TYPE
+        values: ["Cash", "Credit card", "No charge", "Dispute"]
+        save_failures: true
+
+      - type: business_rule
+        id: fct_trips_ref_vendor
+        name: "Every trip must reference a valid vendor"
+        sql_expression: "VENDOR_ID IN (SELECT VENDOR_ID FROM SWALKER_DB_DEV.TAXI_GOLD.DIM_VENDOR)"
+        save_failures: true
+
+      - type: business_rule
+        id: fct_trips_ref_payment
+        name: "Every trip must reference a valid payment type"
+        sql_expression: "PAYMENT_TYPE_ID IN (SELECT PAYMENT_TYPE_ID FROM SWALKER_DB_DEV.TAXI_GOLD.DIM_PAYMENT_TYPE)"
+        save_failures: true
+
+      # --- PLANNED FAILURE: planted fare-total variance defect ---
+      - type: business_rule
+        id: fct_trips_fare_component_match
+        name: "Total amount must equal sum of fare components (penny tolerance)"
+        sql_expression: "ABS(TOTAL_AMOUNT - TOTAL_COMPONENT_SUM) <= 0.01"
+        save_failures: true
+
+  # =========================================================================
+  # FCT_YELLOW_CAB_VENDOR_FINANCIAL
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_gold::fct_yellow_cab_vendor_financial
+
+    tests:
+      - type: not_null
+        id: fct_fin_not_null_grain
+        name: "Financial fact grain columns must not be null"
+        columns: [VENDOR_ID, YEAR, MONTH]
+        save_failures: true
+
+      - type: business_rule
+        id: fct_fin_positive_trip_count
+        name: "Trip count must be positive"
+        sql_expression: "TRIP_COUNT > 0"
+        save_failures: true
+
+      - type: business_rule
+        id: fct_fin_total_gte_fare
+        name: "Total amount must be >= total fare amount"
+        sql_expression: "TOTAL_AMOUNT >= TOTAL_FARE_AMOUNT"
+        save_failures: true
+
+      - type: not_null
+        id: fct_fin_not_null_vendor_name
+        name: "Vendor name must not be null in financial fact"
+        columns: [VENDOR_NAME]
+        save_failures: true
+
+  # =========================================================================
+  # FCT_YELLOW_CAB_VENDOR_OPS
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_gold::fct_yellow_cab_vendor_ops
+
+    tests:
+      - type: not_null
+        id: fct_ops_not_null_grain
+        name: "Ops fact grain columns must not be null"
+        columns: [VENDOR_ID, YEAR, MONTH]
+        save_failures: true
+
+      - type: business_rule
+        id: fct_ops_positive_trip_count
+        name: "Trip count must be positive"
+        sql_expression: "TRIP_COUNT > 0"
+        save_failures: true
+
+      - type: business_rule
+        id: fct_ops_positive_distance
+        name: "Total distance must be non-negative"
+        sql_expression: "TRIP_DISTANCE_TOTAL >= 0"
+        save_failures: true

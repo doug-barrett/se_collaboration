@@ -1,0 +1,10 @@
+@id("45ee01a9-8765-4f3c-8b93-c996b48d26db")
+@nodeType("6")
+@testsEnabled
+SELECT
+  RATE_CODE_ID                  @isBusinessKey @tests("SELECT * FROM {{ this }} WHERE RATE_CODE_ID IS NULL", "SELECT RATE_CODE_ID, COUNT(*) FROM {{ this }} GROUP BY RATE_CODE_ID HAVING COUNT(*) > 1"),
+  RATE_CODE                     @tests("SELECT * FROM {{ this }} WHERE RATE_CODE IS NULL"),
+  TARIFF_EFFECTIVE_DATE,
+  UPDATED_AT
+FROM {{ ref("BRONZE", "RATE_CODE") }}
+QUALIFY ROW_NUMBER() OVER (PARTITION BY RATE_CODE_ID ORDER BY UPDATED_AT DESC) = 1

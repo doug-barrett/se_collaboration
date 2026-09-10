@@ -1,9 +1,0 @@
-@id("30e80c86-17a1-4c75-9501-f0257fd8b480")
-@nodeType("6")
-SELECT
-     "VENDOR_ID" AS "VENDOR_ID",
-     "HQ_ADDRESS_DETAILS" AS "HQ_ADDRESS_DETAILS",
-     "PHONE" AS "PHONE",
-     "DRIVERS" AS "DRIVERS",
-     'Category' as "Category"
-FROM {{ ref('BRONZE', 'VENDOR_DETAILS') }} "VENDOR_DETAILS"

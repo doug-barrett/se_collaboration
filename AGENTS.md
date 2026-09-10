@@ -38,12 +38,42 @@ There are two tools in play, used for different things:
   under `nodeTypes/` if unsure. Do NOT use node type `426` ("Copy of Stage") — that's a
   workspace-local duplicate, not the real SQL Stage v2. Column types resolve via a live
   warehouse `DESCRIBE` at create/run time, so upstream dependencies must exist before a
-  dependent stage's types will resolve — build layers in order. Node-level annotations
-  (`@preSQL`, `@postSQL`, `@tests`, non-default `@insertStrategy`) do not render locally with
-  this `coa` CLI version even when the node type declares a matching config `attributeName` —
-  verified empirically 2026-08-25. Only column-level annotations (`@isBusinessKey`,
-  `@description(...)`, etc.) work. Any node-level config beyond the SELECT itself must be set
-  via the `coa serve` UI after the node is created, and won't be tracked in the `.sql` file.
+  dependent stage's types will resolve — build layers in order.
+  - **Column-level `@tests(...)` annotations work** on SQL Stage v2 and are the recommended way
+    to add data quality checks that stay in version control. Syntax:
+    ```sql
+    VENDOR_ID  @isBusinessKey @tests("SELECT * FROM {{ this }} WHERE VENDOR_ID IS NULL", "SELECT VENDOR_ID, COUNT(*) FROM {{ this }} GROUP BY VENDOR_ID HAVING COUNT(*) > 1"),
+    ```
+    Each parameter becomes a separate test stage in `coa run`. A test **fails** if the query
+    returns any rows. Use `{{ this }}` to reference the node's own table. Multiple tests on one
+    column go as comma-separated parameters in a single `@tests(...)` — repeating the
+    annotation is silently ignored; only the first is kept. `@testsEnabled` must appear at node
+    level for tests to execute.
+  - **Node-level `@tests(...)` does NOT render** in the current SQL Stage v2 definition — the
+    `tests` config item is not declared, so the annotation is silently dropped. Node-level
+    custom SQL tests still require `coa serve`.
+  - **`@insertStrategy("TRUNCATE")`** does not work — the definition only allows `INSERT`,
+    `UNION`, `UNION ALL`. The `truncateBefore` toggle is declared but not consumed by the run
+    template. Stages default to `INSERT INTO` (append). A `coa create` before `coa run`
+    recreates the table empty, which is the workaround for a clean reload.
+  - **`@preSQL`, `@postSQL`** work as node-level parameterized annotations.
+  - Other node-level config beyond what's listed here must be set via `coa serve` and won't be
+    tracked in the `.sql` file.
+  - **WARNING on Fact v2 and Dimension v2:** column-level `@tests(...)` annotations **break**
+    these node types with `'str object' has no attribute 'name'`. Their run templates expect a
+    different test object shape (`{name, templateString}`) than the annotation parser produces
+    (`{parameters: [...]}`). Do NOT use `@tests(...)` on Fact v2 (`10`) or Dimension v2 (`8`)
+    nodes — use `coa serve` for those.
+- **ODS nodes (`ODS_`):** use the **V2 Persistent Stage** node type (`fileVersion: 2`, `.sql`
+  file, `@nodeType("9")`, under `nodeTypes/PersistentStagev2-9/`). Accumulates across runs via
+  MERGE — never truncated.
+  - `@isBusinessKey` required on the natural key column(s).
+  - `@isSystemVersion` and `@isSystemCurrentFlag` must be in the SELECT.
+  - System columns (surrogate key, version, current flag, start/end/create/update dates) are
+    auto-added by the node type definition.
+  - `@isChangeTracking` marks columns that trigger a new version. It has a known template bug
+    (ambiguous column names in the SCD2 branch) — if that bites, drop it and accept Type 1
+    (merge/upsert) behaviour instead.
 - **Facts:** use the **V1 Fact** node type (`fileVersion: 1`, `.yml`, node type id `Fact`).
 - **Dimensions:** use the **V1 Dimension** node type (`fileVersion: 1`, `.yml`, node type id
   `Dimension`). Always choose a good **business key** (required for dims).
@@ -52,13 +82,43 @@ There are two tools in play, used for different things:
 
 ## Node building conventions
 
-- **Always stage before modelling:** every fact or dim must have **at least one stage** node
-  upstream. Use **more than one stage** when there are a lot of transformations.
-- **One concern per stage:** do **not** combine column-level transformations, JSON
-  flattening, and aggregations in the same node — split them across separate stages.
-- **Keep facts and dims clean:** they are for **modelling logic only**. Never put
-  transformations in a fact or dim unless absolutely necessary — do that work in the
-  upstream stage(s).
+- **Pipeline pattern: Source → Stage(s) → ODS → Business Stage(s) → Dim/Fact**
+  - **Stage (`STG_`):** light transformations only — trim, cast, rename, dedup, add audit
+    columns. Truncate-and-reload each run.
+  - **ODS (`ODS_`):** conformed, deduplicated, incrementally-loaded representation of each
+    source entity, MERGEd on the business key. This is where an accurate picture of each
+    source gets built, before any modelling. **Every source entity MUST have an ODS node.**
+  - **Business Stage(s) (`BIZ_`):** at least one stage between ODS and Dim/Fact where the
+    business logic lives — calculations, derived columns, business rules, cross-entity joins.
+    Use **multiple stages** when there are different transformation types (see modularity).
+  - **Dim/Fact (`DIM_`, `FCT_`):** history tracking and star-schema structure ONLY. Dims track
+    history; facts accumulate events. No transformation logic, no business rules.
+- **Always stage before a persistent table:** never point an ODS, dim or fact directly at a
+  source. Every persistent node has at least one stage upstream of it, and more than one when
+  there are a lot of transformations.
+- **Modularity — one concern per stage:** do **not** combine different transformation types in
+  the same stage node. Split them so the pipeline stays debuggable:
+  - JSON / variant flattening → its own stage
+  - Column-level transforms (casting, renaming, derivations) → its own stage
+  - Aggregations / window functions → its own stage
+  - Cross-entity joins / enrichment → its own stage
+  - Business rules / calculations → its own stage
+- **Keep facts and dims clean:** they are for **building history only**. Never put
+  transformation logic in a fact or dim — do that work in the upstream business stage(s).
+- **Always load incrementally where possible.** When a source table carries an incremental
+  key (`UPDATED_AT`, `LAST_MODIFIED_TS`, `LOAD_DATE` or similar), filter on a high-watermark
+  so a run only processes rows changed since the last one — never full-scan a table that
+  tells you what changed.
+  - ODS nodes: filter on the high-watermark so the MERGE stays cheap.
+  - Stages reading append-only / CDC-style sources: resolve latest-version-per-key with
+    `QUALIFY ROW_NUMBER() OVER (PARTITION BY <business key> ORDER BY <incremental key> DESC) = 1`.
+  - Facts: prefer an incremental `WHERE` on the business date over a full reload.
+  - Only fall back to a full refresh when the source genuinely has no reliable change
+    indicator, and say so explicitly when you do.
+  - Caveat: node-level config does not always render locally from the `.sql` file (see the
+    stage-node note above), so an incremental filter expressed as node config rather than in
+    the SELECT may need setting via `coa serve`. Prefer putting the predicate in the SELECT
+    where the node type allows it, so it stays in version control.
 
 ## Knowledge lookups (definitions, metrics, policies)
 

@@ -1,8 +1,8 @@
 fileVersion: 1
-id: 5d63e4c0-022d-49a2-95cd-8c2af5b74ba7
+id: 7b0879b8-acd4-417c-b1fb-c75dc04820c1
 name: PAYMENT_TYPE
 operation:
-  database: ""
+  database: SWALKER_DB_DEV
   deployEnabled: true
   description: ""
   locationName: BRONZE
@@ -13,8 +13,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 63c1b7d9-e018-4d0a-a052-48399dd29440
-          stepCounter: 5d63e4c0-022d-49a2-95cd-8c2af5b74ba7
+          columnCounter: 2b0f6b14-e486-4ac1-b315-89dcfb7e2975
+          stepCounter: 7b0879b8-acd4-417c-b1fb-c75dc04820c1
         config: {}
         dataType: NUMBER(1,0)
         defaultValue: ""
@@ -32,8 +32,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 94fc07a6-6e5d-4c63-84dd-32fd4ceed07c
-          stepCounter: 5d63e4c0-022d-49a2-95cd-8c2af5b74ba7
+          columnCounter: 9d15d909-2862-4940-8937-bd7c329ee848
+          stepCounter: 7b0879b8-acd4-417c-b1fb-c75dc04820c1
         config: {}
         dataType: VARCHAR(14)
         defaultValue: ""
@@ -46,8 +46,27 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 773dc030-88da-4554-91c4-11dc19e1d4ac
+          stepCounter: 7b0879b8-acd4-417c-b1fb-c75dc04820c1
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: UPDATED_AT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
   name: PAYMENT_TYPE
-  schema: ""
+  schema: TAXI_SRC
   sqlType: Source
   type: sourceInput
   version: 1

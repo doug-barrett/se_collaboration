@@ -1,8 +1,8 @@
 fileVersion: 1
-id: 0c6fa26d-e625-4240-aa4b-13642ea503d6
+id: d984615b-1370-4e26-9628-f400c6dcb528
 name: VENDOR
 operation:
-  database: ""
+  database: SWALKER_DB_DEV
   deployEnabled: true
   description: ""
   locationName: BRONZE
@@ -13,8 +13,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 1136f84d-1bc0-4fb9-a36e-1cbdc27ae6bb
-          stepCounter: 0c6fa26d-e625-4240-aa4b-13642ea503d6
+          columnCounter: 600014ce-eb81-4000-8853-96660c529db0
+          stepCounter: d984615b-1370-4e26-9628-f400c6dcb528
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
@@ -32,8 +32,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 0d542fea-8fe1-4271-ab6c-a86a3832668a
-          stepCounter: 0c6fa26d-e625-4240-aa4b-13642ea503d6
+          columnCounter: 2ebb09fb-be2e-471c-a99f-7687c0cb4810
+          stepCounter: d984615b-1370-4e26-9628-f400c6dcb528
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -46,8 +46,46 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d73f227e-6a2b-49ab-90a4-dbd66c124dc1
+          stepCounter: d984615b-1370-4e26-9628-f400c6dcb528
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: LICENSE_ISSUED_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2deccede-1bc6-451f-b769-d58426200fa7
+          stepCounter: d984615b-1370-4e26-9628-f400c6dcb528
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: UPDATED_AT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
   name: VENDOR
-  schema: ""
+  schema: TAXI_SRC
   sqlType: Source
   type: sourceInput
   version: 1

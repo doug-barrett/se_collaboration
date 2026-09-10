@@ -1,0 +1,167 @@
+# yaml-language-server: $schema=https://schemas.synq.io/synq-recon/v1/config.schema.json
+
+name: taxi-pipeline-recon
+title: "Taxi Pipeline Reconciliation"
+description: "Verify no data is lost between pipeline layers — source through to gold"
+
+reconciliations:
+  # =========================================================================
+  # Trip pipeline — 4 hops, 3 pass + 1 fail (Tue/Thu)
+  # =========================================================================
+  src-to-stg-trips:
+    title: "TRIPS → STG_YELLOW_CAB_TRIPS (source to staging)"
+    description: "Every source trip must appear in staging after the truncate-reload."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SRC.TRIPS
+      columns: [TRIP_ID]
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_SILVER.STG_YELLOW_CAB_TRIPS
+      columns: [TRIP_ID]
+    key_columns: [TRIP_ID]
+    mode: row_checksum
+
+  stg-to-ods-trips:
+    title: "STG_YELLOW_CAB_TRIPS → ODS_YELLOW_CAB_TRIPS (staging to ODS)"
+    description: "Every staged trip must exist as a current row in ODS after the merge."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SILVER.STG_YELLOW_CAB_TRIPS
+      columns: [TRIP_ID]
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_SILVER.ODS_YELLOW_CAB_TRIPS
+      columns: [TRIP_ID]
+      where: "SYSTEM_CURRENT_FLAG = 'Y'"
+    key_columns: [TRIP_ID]
+    mode: row_checksum
+
+  ods-to-biz-trips:
+    title: "ODS_YELLOW_CAB_TRIPS → BIZ_YELLOW_CAB_TRIPS (ODS to business stage)"
+    description: "End-to-end check crossing the business logic layer. Fails on Tue/Thu when the day-of-week filter accidentally drops non-credit-card trips."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SILVER.ODS_YELLOW_CAB_TRIPS
+      columns: [TRIP_ID]
+      where: "SYSTEM_CURRENT_FLAG = 'Y' AND TOTAL_AMOUNT > 0"
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_SILVER.BIZ_YELLOW_CAB_TRIPS
+      columns: [TRIP_ID]
+    key_columns: [TRIP_ID]
+    mode: row_checksum
+
+  biz-to-fct-trips:
+    title: "BIZ_YELLOW_CAB_TRIPS → FCT_YELLOW_CAB_TRIPS (business stage to fact)"
+    description: "BIZ feeds FCT directly — no rows should be lost in this hop."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SILVER.BIZ_YELLOW_CAB_TRIPS
+      columns: [TRIP_ID]
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_GOLD.FCT_YELLOW_CAB_TRIPS
+      columns: [TRIP_ID]
+    key_columns: [TRIP_ID]
+    mode: row_checksum
+
+  # =========================================================================
+  # Vendor pipeline — STG → ODS → DIM (2 hops, both pass)
+  # =========================================================================
+  vendor-stg-to-ods:
+    title: "STG_VENDOR → ODS_VENDOR (staging to ODS)"
+    description: "Every deduped vendor in staging must exist in ODS."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SILVER.STG_VENDOR
+      columns: [VENDOR_ID]
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_SILVER.ODS_VENDOR
+      columns: [VENDOR_ID]
+    key_columns: [VENDOR_ID]
+    mode: row_checksum
+
+  vendor-ods-to-dim:
+    title: "ODS_VENDOR → DIM_VENDOR (ODS to dimension)"
+    description: "Every vendor in ODS must appear in the dimension."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SILVER.ODS_VENDOR
+      columns: [VENDOR_ID]
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_GOLD.DIM_VENDOR
+      columns: [VENDOR_ID]
+    key_columns: [VENDOR_ID]
+    mode: row_checksum
+
+  # =========================================================================
+  # Location pipeline — STG → ODS → DIM (2 hops, both pass)
+  # =========================================================================
+  location-stg-to-ods:
+    title: "STG_LOCATION → ODS_LOCATION (staging to ODS)"
+    description: "Every deduped location in staging must exist in ODS."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SILVER.STG_LOCATION
+      columns: [LOCATION_ID]
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_SILVER.ODS_LOCATION
+      columns: [LOCATION_ID]
+    key_columns: [LOCATION_ID]
+    mode: row_checksum
+
+  location-ods-to-dim:
+    title: "ODS_LOCATION → DIM_LOCATION (ODS to dimension)"
+    description: "Every location in ODS must appear in the dimension."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SILVER.ODS_LOCATION
+      columns: [LOCATION_ID]
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_GOLD.DIM_LOCATION
+      columns: [LOCATION_ID]
+    key_columns: [LOCATION_ID]
+    mode: row_checksum
+
+  # =========================================================================
+  # Payment type — STG → DIM (1 hop, passes)
+  # =========================================================================
+  payment-stg-to-dim:
+    title: "STG_PAYMENT_TYPE → DIM_PAYMENT_TYPE (staging to dimension)"
+    description: "Every payment type in staging must exist in the dimension."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SILVER.STG_PAYMENT_TYPE
+      columns: [PAYMENT_TYPE_ID]
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_GOLD.DIM_PAYMENT_TYPE
+      columns: [PAYMENT_TYPE_ID]
+    key_columns: [PAYMENT_TYPE_ID]
+    mode: row_checksum
+
+  # =========================================================================
+  # Rate code — STG → DIM (1 hop, passes)
+  # =========================================================================
+  ratecode-stg-to-dim:
+    title: "STG_RATE_CODE → DIM_RATE_CODE (staging to dimension)"
+    description: "Every rate code in staging must exist in the dimension."
+    source:
+      connection: snowflake
+      table: SWALKER_DB_DEV.TAXI_SILVER.STG_RATE_CODE
+      columns: [RATE_CODE_ID]
+    target:
+      connection: snowflake_target
+      table: SWALKER_DB_DEV.TAXI_GOLD.DIM_RATE_CODE
+      columns: [RATE_CODE_ID]
+    key_columns: [RATE_CODE_ID]
+    mode: row_checksum
+
+annotations:
+  team: data-engineering
+  domain: taxi-analytics

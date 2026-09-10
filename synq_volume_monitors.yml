@@ -1,0 +1,152 @@
+# yaml-language-server: $schema=https://schemas.synq.io/synq-monitors/v1/config.schema.json
+# Volume and freshness monitors across the full pipeline chain.
+# Separate from tests so volume anomalies trace layer by layer.
+
+version: v1beta2
+namespace: taxi-volume-freshness
+
+defaults:
+  severity: ERROR
+
+entities:
+  # =========================================================================
+  # Source layer — TAXI_SRC (stable, all green)
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_src::trips
+    monitors:
+      - id: src_trips_volume
+        type: volume
+      - id: src_trips_freshness
+        type: freshness
+        expression: LAST_MODIFIED_TS
+
+  - id: sf-fka56740::swalker_db_dev::taxi_src::vendor
+    monitors:
+      - id: src_vendor_volume
+        type: volume
+      - id: src_vendor_freshness
+        type: freshness
+        expression: UPDATED_AT
+
+  - id: sf-fka56740::swalker_db_dev::taxi_src::vendor_details
+    monitors:
+      - id: src_vendor_details_volume
+        type: volume
+      - id: src_vendor_details_freshness
+        type: freshness
+        expression: UPDATED_AT
+
+  - id: sf-fka56740::swalker_db_dev::taxi_src::location
+    monitors:
+      - id: src_location_volume
+        type: volume
+      - id: src_location_freshness
+        type: freshness
+        expression: UPDATED_AT
+
+  - id: sf-fka56740::swalker_db_dev::taxi_src::payment_type
+    monitors:
+      - id: src_payment_type_volume
+        type: volume
+
+  - id: sf-fka56740::swalker_db_dev::taxi_src::rate_code
+    monitors:
+      - id: src_rate_code_volume
+        type: volume
+
+  # =========================================================================
+  # Staging layer — TAXI_SILVER stages (truncate-reload, all green)
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_yellow_cab_trips
+    monitors:
+      - id: stg_trips_volume
+        type: volume
+      - id: stg_trips_freshness
+        type: freshness
+        expression: LAST_MODIFIED_TS
+
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_vendor
+    monitors:
+      - id: stg_vendor_volume
+        type: volume
+      - id: stg_vendor_freshness
+        type: freshness
+        expression: UPDATED_AT
+
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_location
+    monitors:
+      - id: stg_location_volume
+        type: volume
+      - id: stg_location_freshness
+        type: freshness
+        expression: UPDATED_AT
+
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_payment_type
+    monitors:
+      - id: stg_payment_type_volume
+        type: volume
+
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::stg_rate_code
+    monitors:
+      - id: stg_rate_code_volume
+        type: volume
+
+  # =========================================================================
+  # ODS layer (accumulates via MERGE, all green)
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::ods_yellow_cab_trips
+    monitors:
+      - id: ods_trips_volume
+        type: volume
+      - id: ods_trips_freshness
+        type: freshness
+        expression: LAST_MODIFIED_TS
+
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::ods_vendor
+    monitors:
+      - id: ods_vendor_volume
+        type: volume
+
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::ods_location
+    monitors:
+      - id: ods_location_volume
+        type: volume
+
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::ods_payment_type
+    monitors:
+      - id: ods_payment_type_volume
+        type: volume
+
+  # =========================================================================
+  # Business + Gold layer (BIZ and FCT trip volumes FAIL Tue/Thu)
+  # =========================================================================
+  - id: sf-fka56740::swalker_db_dev::taxi_silver::biz_yellow_cab_trips
+    monitors:
+      - id: biz_trips_volume
+        type: volume
+      - id: biz_trips_freshness
+        type: freshness
+        expression: LOAD_DATE
+
+  - id: sf-fka56740::swalker_db_dev::taxi_gold::fct_yellow_cab_trips
+    monitors:
+      - id: fct_trips_volume
+        type: volume
+      - id: fct_trips_freshness
+        type: freshness
+        expression: LOAD_DATE
+
+  - id: sf-fka56740::swalker_db_dev::taxi_gold::dim_vendor
+    monitors:
+      - id: dim_vendor_volume
+        type: volume
+
+  - id: sf-fka56740::swalker_db_dev::taxi_gold::dim_location
+    monitors:
+      - id: dim_location_volume
+        type: volume
+
+  - id: sf-fka56740::swalker_db_dev::taxi_gold::fct_yellow_cab_vendor_financial
+    monitors:
+      - id: fct_vendor_fin_volume
+        type: volume

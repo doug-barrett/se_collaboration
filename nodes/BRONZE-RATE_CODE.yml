@@ -1,8 +1,8 @@
 fileVersion: 1
-id: 52fd1afb-356e-432c-97f2-988e143c6466
+id: 21cf0803-5179-43f4-a1bc-abd0947a1544
 name: RATE_CODE
 operation:
-  database: ""
+  database: SWALKER_DB_DEV
   deployEnabled: true
   description: ""
   locationName: BRONZE
@@ -13,8 +13,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7147190a-92fd-4215-99c7-a56de547eabb
-          stepCounter: 52fd1afb-356e-432c-97f2-988e143c6466
+          columnCounter: 74356b9d-03d0-47a9-b773-abba3e6d55e6
+          stepCounter: 21cf0803-5179-43f4-a1bc-abd0947a1544
         config: {}
         dataType: NUMBER(2,0)
         defaultValue: ""
@@ -32,8 +32,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: c6b4d8b5-3fe0-4dfc-b036-bcf094c011ab
-          stepCounter: 52fd1afb-356e-432c-97f2-988e143c6466
+          columnCounter: b3e19d8e-c257-4201-8bba-ed716c5272cc
+          stepCounter: 21cf0803-5179-43f4-a1bc-abd0947a1544
         config: {}
         dataType: VARCHAR(21)
         defaultValue: ""
@@ -46,8 +46,46 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3c336463-f193-46c6-8c20-2a62d28bdb03
+          stepCounter: 21cf0803-5179-43f4-a1bc-abd0947a1544
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: TARIFF_EFFECTIVE_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 37ed7ea8-4fd1-42ee-9cc7-01362920c60e
+          stepCounter: 21cf0803-5179-43f4-a1bc-abd0947a1544
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: UPDATED_AT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
   name: RATE_CODE
-  schema: ""
+  schema: TAXI_SRC
   sqlType: Source
   type: sourceInput
   version: 1
