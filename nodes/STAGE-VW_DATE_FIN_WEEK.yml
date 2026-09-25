@@ -100,6 +100,7 @@ operation:
         dataType: NUMBER
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: WEEK_KEY
         nullable: true
         sourceColumnReferences:
@@ -107,6 +108,7 @@ operation:
               - columnCounter: "0"
                 stepCounter: "0"
             transform: DATEDIFF(WEEK, '2020-01-01', MIN_DATE)
+        systemColumnType: None
         transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -147,6 +149,7 @@ operation:
         dataType: NUMBER
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: HOLIDAY_WEEK_RELATIVE
         nullable: true
         sourceColumnReferences:
@@ -154,6 +157,7 @@ operation:
               - columnCounter: "0"
                 stepCounter: "0"
             transform: DATEDIFF(WEEK, MAX(HOLIDAY_DATE), MIN(CALENDAR_DATE) ) + 1
+        systemColumnType: None
         transform: ""
     cteString: ""
     enabledColumnTestIDs: []
