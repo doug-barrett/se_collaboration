@@ -13,7 +13,17 @@ operation:
   locationName: GOLD
   materializationType: table
   metadata:
-    appliedNodeTests: []
+    appliedNodeTests:
+      - continueOnFailure: true
+        description: Trip grain must be unique. Replaces the invalid vendor_id-only uniqueness check (VENDOR_ID is a foreign key on this fact).
+        name: Unique trip grain
+        runOrder: After
+        templateString: |-
+          SELECT VENDOR_ID, PICKUP_DATETIME, DROPOFF_DATETIME,
+                 PU_LOCATION_ID, DO_LOCATION_ID, TOTAL_AMOUNT, COUNT(*) AS N
+          FROM {{this}}
+          GROUP BY 1, 2, 3, 4, 5, 6
+          HAVING COUNT(*) > 1
     columns:
       - appliedColumnTests:
           hasNull: true
