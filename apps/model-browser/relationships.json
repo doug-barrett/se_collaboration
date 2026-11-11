@@ -1,0 +1,44 @@
+{
+  "models": {
+    "default": {
+      "relationships": [
+        {
+          "id": "TARGET.DIM_PART:PARTKEY->SRC.PART:P_PARTKEY",
+          "from": {
+            "node": "TARGET.DIM_PART",
+            "column": "PARTKEY"
+          },
+          "to": {
+            "node": "SRC.PART",
+            "column": "P_PARTKEY"
+          },
+          "origin": "manual",
+          "keyClass": null
+        },
+        {
+          "id": "SRC.NATION:N_NAME->SRC.NATION:N_NATIONKEY",
+          "from": {
+            "node": "SRC.NATION",
+            "column": "N_NAME"
+          },
+          "to": {
+            "node": "SRC.NATION",
+            "column": "N_NATIONKEY"
+          },
+          "origin": "manual",
+          "keyClass": null
+        }
+      ],
+      "positions": {},
+      "collapsed": false,
+      "zoom": 1,
+      "types": [],
+      "inferKeys": [
+        "hash",
+        "surrogate",
+        "natural"
+      ]
+    }
+  },
+  "current": "default"
+}

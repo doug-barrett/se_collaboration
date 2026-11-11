@@ -527,8 +527,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 019ce381-279d-707e-8685-6d0ed2f47d37
-                stepCounter: 98458510-9662-499d-8a56-89869970b26a
+              - columnCounter: 3212554c-9179-4d26-a74b-7135d0d8540c
+                stepCounter: 069b735f-a4f5-48b4-8126-10f5fab0775c
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -541,8 +541,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 019ce381-279d-707e-8685-7348f2757bc9
-                stepCounter: 98458510-9662-499d-8a56-89869970b26a
+              - columnCounter: 8ae856ab-2bf7-47f5-acc6-e35b049a1bd9
+                stepCounter: 069b735f-a4f5-48b4-8126-10f5fab0775c
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -555,8 +555,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 019ce381-279d-707e-8685-74342169bb32
-                stepCounter: 98458510-9662-499d-8a56-89869970b26a
+              - columnCounter: 9151f2a9-a66a-4eb4-8d7f-6457a7d07c63
+                stepCounter: 069b735f-a4f5-48b4-8126-10f5fab0775c
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -569,8 +569,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 019ce381-279d-707e-8685-793f2608bd0a
-                stepCounter: 98458510-9662-499d-8a56-89869970b26a
+              - columnCounter: cece5b06-024e-46c1-afc8-b0fef0455444
+                stepCounter: 069b735f-a4f5-48b4-8126-10f5fab0775c
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -583,8 +583,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 019ce381-279d-707e-8685-7ecdbacea43a
-                stepCounter: 98458510-9662-499d-8a56-89869970b26a
+              - columnCounter: 0c2b4ede-19c0-4df1-999d-676aa5c0fe61
+                stepCounter: 069b735f-a4f5-48b4-8126-10f5fab0775c
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -597,8 +597,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 019ce381-279d-707e-8685-806ef6abb97e
-                stepCounter: 98458510-9662-499d-8a56-89869970b26a
+              - columnCounter: c5625aaf-482c-4585-91c5-0dd8dedba673
+                stepCounter: 069b735f-a4f5-48b4-8126-10f5fab0775c
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -611,8 +611,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 019ce381-279d-707e-8685-8457cdbf549d
-                stepCounter: 98458510-9662-499d-8a56-89869970b26a
+              - columnCounter: 63b8e6cf-1098-4329-b2d7-5ed16a6dd44d
+                stepCounter: 069b735f-a4f5-48b4-8126-10f5fab0775c
             transform: ""
     cteString: ""
     description: ""
@@ -624,7 +624,7 @@ operation:
           DIM_PAYMENT_TYPE: fd95686e-fedb-4743-8a8c-704e0aed5da0
           DIM_RATE_CODE: e219d141-aeb0-4944-8599-f34cc250ab37
           DIM_VENDOR: 823d4bf9-8860-478a-bdb6-efd072072981
-          DIM_VENDOR_DETAILS: 98458510-9662-499d-8a56-89869970b26a
+          DIM_VENDOR_DETAILS: 069b735f-a4f5-48b4-8126-10f5fab0775c
           DROPOFF_LOCATION: 7599cd4f-c8c0-4128-b5dc-524c401d4426
           PICKUP_LOCATION: 01434221-f013-4743-845b-c28708f52b66
           STG_YELLOW_CAB_TRIPS: cd9ff3ed-0ebc-4865-86a3-186bb19aebc0
@@ -637,7 +637,7 @@ operation:
             nodeName: DIM_RATE_CODE
           - locationName: GOLD
             nodeName: DIM_VENDOR
-          - locationName: GOLD
+          - locationName: SILVER
             nodeName: DIM_VENDOR_DETAILS
           - locationName: SILVER
             nodeName: DROPOFF_LOCATION
@@ -653,7 +653,7 @@ operation:
             LEFT JOIN {{ ref('GOLD', 'DIM_VENDOR') }} "DIM_VENDOR"
             ON "STG_YELLOW_CAB_TRIPS"."VENDOR_ID"= "DIM_VENDOR"."VENDOR_ID"
 
-            LEFT JOIN {{ ref('GOLD', 'DIM_VENDOR_DETAILS') }} "DIM_VENDOR_DETAILS"
+            LEFT JOIN {{ ref('SILVER', 'DIM_VENDOR_DETAILS') }} "DIM_VENDOR_DETAILS"
             ON "DIM_VENDOR"."VENDOR_ID" = "DIM_VENDOR_DETAILS"."VENDOR_ID"
 
             LEFT JOIN {{ ref('GOLD', 'DIM_PAYMENT_TYPE') }} "DIM_PAYMENT_TYPE"
