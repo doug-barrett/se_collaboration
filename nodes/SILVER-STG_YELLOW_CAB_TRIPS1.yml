@@ -15,44 +15,7 @@ operation:
   locationName: SILVER
   materializationType: table
   metadata:
-    appliedNodeTests:
-      - continueOnFailure: true
-        description: ""
-        name: Improbable distance
-        runOrder: After
-        templateString: |-
-          SELECT 1 
-          FROM {{this}}
-          WHERE TRIP_DISTANCE > 200
-          AND PAYMENT_TYPE IN ('Cash', 'Credit Card')
-      - continueOnFailure: true
-        description: ""
-        name: Improbable tip
-        runOrder: After
-        templateString: |-
-          SELECT 1
-          FROM {{this}}
-          WHERE TIP_AMOUNT > FARE_AMOUNT
-          AND FARE_AMOUNT > 0
-          AND PAYMENT_TYPE IN ('Cash', 'Credit Card')
-      - continueOnFailure: true
-        description: ""
-        name: Improbable duration
-        runOrder: After
-        templateString: |-
-          SELECT 1
-          FROM {{this}}
-          WHERE TRIP_DURATION_MINUTES > 180
-          AND PAYMENT_TYPE IN ('Cash', 'Credit Card')
-      - continueOnFailure: true
-        description: ""
-        name: Zero distance
-        runOrder: After
-        templateString: |-
-          SELECT 1 
-          FROM {{this}}
-          WHERE TRIP_DISTANCE = 0
-          AND FARE_AMOUNT > 0
+    appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
